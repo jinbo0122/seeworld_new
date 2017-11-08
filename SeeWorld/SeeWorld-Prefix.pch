@@ -1,0 +1,65 @@
+//
+//  SeeWorld-Prefix.pch
+//  SeeWorld
+//
+//  Created by Albert Lee on 8/31/15.
+//  Copyright (c) 2015 SeeWorld. All rights reserved.
+//
+
+#ifndef SeeWorld_SeeWorld_Prefix_pch
+#define SeeWorld_SeeWorld_Prefix_pch
+#import "ALExtension-Prefix.pch"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define STRINGIFY(S) #S
+#define DEFER_STRINGIFY(S) STRINGIFY(S)
+#define PRAGMA_MESSAGE(MSG) _Pragma(STRINGIFY(message(MSG)))
+#define FORMATTED_MESSAGE(MSG) "[TODO] " MSG " \n" \
+DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
+#define KEYWORDIFY try {} @catch (...) {}
+#define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
+#define SLTitleWidth (UIScreenWidth==320?220:250)
+#import <RongIMKit/RongIMKit.h>
+#import "SWUtils+Macros.h"
+#import "SWAlertView.h"
+#import "SWConfigManager.h"
+#import "TabViewController.h"
+#import "SWString.h"
+#import "SWHomeFeedVC.h"
+#import "SWExploreVC.h"
+#import "SWFeedInteractNavView.h"
+#import "SWSearchBar.h"
+#import "SWFeedInteractVC.h"
+#import "SWTagFeedsVC.h"
+#import <CoreLocation/CoreLocation.h>
+#import "SWLocationManager.h"
+#import "PersonProfile.h"
+#import "MePersonViewController.h"
+#import "SWNoticeVC.h"
+#import "SWFeedInteractNavView.h"
+#import "SWFeedLikeListAPI.h"
+#import "SWFeedCommentListAPI.h"
+#import "SWNoticeModel.h"
+#import "SWUserAddFollowAPI.h"
+#import "SWUserRemoveFollowAPI.h"
+#import "SWCommentDeleteAPI.h"
+#import "SWFeedInteractLikeCell.h"
+#import "SWFeedInteractCommentCell.h"
+#import "SWNoticeAPI.h"
+#import "SWNoticeMarkAPI.h"
+#import "SWNoticeMsgItem.h"
+#import "SWNoticeCell.h"
+#import "SWFeedDetailScrollVC.h"
+#import "SWFeedSingleAPI.h"
+#import "GeTuiSdk.h"
+#import "SWPushSyncAPI.h"
+#import "SWChatModel.h"
+#import "SWMsgVC.h"
+#import "SWPostEnterView.h"
+#import "SWUtility.h"
+#import "SWSelectContactVC.h"
+#import "SWContactModel.h"
+#import "SWDefine.h"
+#define SWURLAgreement @"https://seeworldplus.com/user_terms";
+#endif

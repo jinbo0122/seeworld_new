@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "20C4A75FAEE36F32921EA74BA00F8A28F74E011B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "20C4A75FAEE36F32921EA74BA00F8A28F74E011B" : 0,
+    "B6262CD791917CCB00739869A9DE66C22107C3C9" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6418CD35-3A8C-42A5-8EF3-72319DD1D8F3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "20C4A75FAEE36F32921EA74BA00F8A28F74E011B" : "seeworld-local\/",
+    "B6262CD791917CCB00739869A9DE66C22107C3C9" : "seeworld\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SeeWorld",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SeeWorld.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "10.211.55.5:\/home\/git\/repositories\/seeworld",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "20C4A75FAEE36F32921EA74BA00F8A28F74E011B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "54coder.net:\/git\/ios\/seeworld.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B6262CD791917CCB00739869A9DE66C22107C3C9"
+    }
+  ]
+}

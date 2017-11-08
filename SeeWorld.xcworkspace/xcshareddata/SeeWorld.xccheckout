@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6418CD35-3A8C-42A5-8EF3-72319DD1D8F3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SeeWorld</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B6262CD791917CCB00739869A9DE66C22107C3C9</key>
+		<string>54coder.net:/git/ios/seeworld.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SeeWorld.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B6262CD791917CCB00739869A9DE66C22107C3C9</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>54coder.net:/git/ios/seeworld.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B6262CD791917CCB00739869A9DE66C22107C3C9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B6262CD791917CCB00739869A9DE66C22107C3C9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>seeworld</string>
+		</dict>
+	</array>
+</dict>
+</plist>

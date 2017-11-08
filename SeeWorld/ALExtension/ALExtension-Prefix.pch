@@ -1,0 +1,48 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "ALExtension.h"
+#import "ALSingleton.h"
+#import "NSArray+ALExtension.h"
+#import "NSDictionary+ALExtension.h"
+#import "NSString+ALExtension.h"
+#import "NSData+ALExtension.h"
+#import "NSUserDefaults+ALExtension.h"
+#import "UIColor+ALExtension.h"
+#import "UIDevice+Resolutions.h"
+#import "UIDevice-Hardware.h"
+#import "UIImage+ALExtension.h"
+#import "UILabel+ALExtension.h"
+#import "UIBarButtonItem+ALExtension.h"
+#import "ALBaseTitleView.h"
+#import "ALTitleLabel.h"
+#import "ALBaseVC.h"
+#import "JSONKit.h"
+#import "ALReceiveHitTestSubView.h"
+#import "ALZoomRotateImageView.h"
+#import "ALAssetsLibrary+CustomPhotoAlbum.h"
+#import "UINavigationController+ALExtension.h"
+#import "UIResponder+KeyboardCache.h"
+#import "UIView+ALExtension.h"
+#import "RIActionSheetAlertView/UIActionSheet+Blocks.h"
+#import "RIActionSheetAlertView/UIAlertView+Blocks.h"
+#import "Reachability/Reachability.h"
+#import "MBProgressHUD+ALExtension.h"
+#import "NSDate+ALExtension.h"
+#import "UIButton+ALExtension.h"
+#import "UISegmentedControl+ALExtension.h"
+#import "ALPhotoListFullView.h"
+#import "UIImageView+WebCache.h"
+#define DD_LEGACY_MACROS 0
+#import "DDLog.h"
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "ALLineView.h"
+#endif
