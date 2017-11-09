@@ -58,7 +58,7 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   self.view.backgroundColor = [UIColor whiteColor];
   self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width - 60, 50)];
   self.navigationItem.titleView = self.btnSearch;
-  
+  self.automaticallyAdjustsScrollViewInsets = NO;
   self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 7+iOSTopHeight, self.btnSearch.width, 30)];
   self.searchBar.placeholder = SWStringSearch;
   self.searchBar.userInteractionEnabled = NO;
@@ -124,8 +124,9 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   self.tbVC.refreshControl = [[UIRefreshControl alloc] init];
   [self.tbVC.refreshControl addTarget:self action:@selector(onHomeRefreshed) forControlEvents:UIControlEventValueChanged];
   [self.view addSubview:self.tbVC.tableView];
-  
-  
+  if (@available(iOS 11.0, *)) {
+    _tbVC.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+  }
   self.headerView = [[SWHomeFeedRecommandView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 80)];
   self.headerView.delegate = self;
   [self onHomeRefreshed];
