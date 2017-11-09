@@ -59,7 +59,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
   
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x17293d];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"照片"
-                                                                color:[UIColor whiteColor]
+                                                                color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:18];
   
   UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];

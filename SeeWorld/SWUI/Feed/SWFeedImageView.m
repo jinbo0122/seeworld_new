@@ -23,9 +23,7 @@
   if (self) {
     self.userInteractionEnabled = YES;
     self.layer.masksToBounds = YES;
-    self.layer.borderWidth   = 0.5;
-    self.layer.borderColor   = [UIColor colorWithRGBHex:0x1a2531].CGColor;
-    self.backgroundColor     = [UIColor colorWithRGBHex:0x1e252e];
+    self.backgroundColor     = [UIColor colorWithRGBHex:0xffffff];
     self.contentMode         = UIViewContentModeScaleAspectFit;
     _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onImageTapped:)];
     [self addGestureRecognizer:_tapGesture];
@@ -53,17 +51,20 @@
                                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                            if (image.size.width>image.size.height) {
                                              CGFloat height = image.size.height * UIScreenWidth/image.size.width;
-                                             wSelf.tagView.frame = CGRectMake(0, (wSelf.height-height)/2.0, wSelf.width, height);
+                                             wSelf.tagView.frame = CGRectMake(0, 0, wSelf.width, height);
                                            }else if (image.size.width<image.size.height){
                                              CGFloat width = image.size.width * UIScreenWidth/image.size.height;
                                              wSelf.tagView.frame = CGRectMake((wSelf.width-width)/2.0, 0, width, wSelf.height);
                                            }else{
                                              wSelf.tagView.frame = wSelf.bounds;
                                            }
+//                                           if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(feedImageViewDidNeedReloadCell:)]) {
+//                                             [wSelf.delegate feedImageViewDidNeedReloadCell:feedItem];
+//                                           }
                                            [wSelf.tagView reloadData];
                                          }
    ];
-  self.backgroundColor = [UIColor blackColor];
+  self.backgroundColor = [UIColor whiteColor];
 }
 
 #pragma mark - WTTagView DataSource

@@ -16,21 +16,11 @@
     self.barTintColor = [UIColor whiteColor];
     self.placeholder = SWStringSearchUser;
     self.tintColor = [UIColor whiteColor];
-    [self setImage:[UIImage imageNamed:@"search_icon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     self.layer.masksToBounds = YES;
+    self.layer.borderWidth = 0.5;
+    self.layer.cornerRadius = 4.0;
     
-    UIView *subview = [self.subviews lastObject];
-    if (subview.subviews.count>2) {
-      UITextField *textView;
-      for (UIView *view in subview.subviews) {
-        if ([view isKindOfClass:[UITextField class]]) {
-          textView = (id)view;
-        }
-      }
-      textView.layer.borderWidth = 0.5;
-      textView.layer.cornerRadius = 4.0;
-      textView.layer.borderColor = [UIColor colorWithRGBHex:0x8b9cad].CGColor;
-    }
+    [self setImage:[UIImage imageNamed:@"search_icon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
   }
   return self;
 }

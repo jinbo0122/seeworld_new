@@ -23,13 +23,13 @@
   // Do any additional setup after loading the view.
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringAddFriend
-                                                                color:[UIColor whiteColor]
+                                                                color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:18];
   
-  self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, self.view.width, 50)];
+  self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 50)];
   [self.view addSubview:self.btnSearch];
   
-  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 10, self.view.width, 30)];
+  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 7+iOSTopHeight, self.view.width, 30)];
   self.searchBar.placeholder = SWStringSearchFriend;
   self.searchBar.userInteractionEnabled = NO;
   self.searchBar.showsCancelButton = NO;

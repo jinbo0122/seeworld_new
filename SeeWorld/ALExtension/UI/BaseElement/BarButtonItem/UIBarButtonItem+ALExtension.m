@@ -16,7 +16,7 @@
                                         target:(id)target
                                         action:(SEL)action{
   UIBarButtonItem *bbtn;
-  UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(isRunningOnIOS7?10:5, 0, 60, 40)];
+  UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 60, 40)];
   lblTitle.backgroundColor = [UIColor clearColor];
   lblTitle.text = title;
   lblTitle.textColor = textColor;
@@ -36,7 +36,7 @@
 + (UIBarButtonItem*)loadLeftBarButtonItemWithTitle:(NSString*)title color:(UIColor*)textColor
                                               font:(UIFont*)font target:(id)target action:(SEL)action{
   UIBarButtonItem *bbtn;
-  UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(isRunningOnIOS7?0:5, 1, 50, 40)];
+  UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 1, 50, 40)];
   lblTitle.backgroundColor = [UIColor clearColor];
   lblTitle.text = title;
   lblTitle.textColor = textColor;

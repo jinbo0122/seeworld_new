@@ -58,6 +58,7 @@
     NSDictionary *tagDic = [tagsArray safeDicObjectAtIndex:j];
     [feed.tags safeAddObject:[SWFeedTagItem feedTagItemByDic:tagDic]];
   }
+  feed.imageHeight = @(UIScreenWidth);
   return feed;
 }
 

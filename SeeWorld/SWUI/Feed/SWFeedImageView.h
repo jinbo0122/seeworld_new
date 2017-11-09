@@ -20,4 +20,5 @@
 @protocol SWFeedImageViewDelegate <NSObject>
 - (void)feedImageViewDidPressTag:(SWFeedTagItem *)tagItem;
 - (void)feedImageViewDidPressImage:(SWFeedItem *)feedItem;
+- (void)feedImageViewDidNeedReloadCell:(SWFeedItem *)feedItem;
 @end

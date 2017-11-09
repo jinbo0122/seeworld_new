@@ -40,7 +40,7 @@ SWFeedInteractLikeCellDelegate,SWSearchFriendModelDelegate>
   line.backgroundColor = [UIColor colorWithRGBHex:0x283748];
   [self.view addSubview:line];
   
-  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight+0.5, self.view.width, self.view.height-iOS7NavHeight-0.5)
+  self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, iOSNavHeight+0.5, self.view.width, self.view.height-iOSNavHeight-0.5)
                                                 style:UITableViewStylePlain];
   self.tableView.delegate = self;
   self.tableView.dataSource = self;

@@ -19,12 +19,12 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringDiscussionName color:[UIColor whiteColor]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOS7NavHeight+ 10, self.view.width, 0.5) colorHex:0xc8c7cc]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOS7NavHeight+ 55, self.view.width, 0.5) colorHex:0xc8c7cc]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOS7NavHeight+ 10.5, self.view.width, 44.5) colorHex:0xffffff]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringDiscussionName color:[UIColor colorWithRGBHex:0x191d28]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOSNavHeight+ 10, self.view.width, 0.5) colorHex:0xc8c7cc]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOSNavHeight+ 55, self.view.width, 0.5) colorHex:0xc8c7cc]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOSNavHeight+ 10.5, self.view.width, 44.5) colorHex:0xffffff]];
 
-  _txtField = [[UITextField alloc] initWithFrame:CGRectMake(10, iOS7NavHeight+10.5, self.view.width-20, 44.5)];
+  _txtField = [[UITextField alloc] initWithFrame:CGRectMake(10, iOSNavHeight+10.5, self.view.width-20, 44.5)];
   _txtField.textColor = [UIColor colorWithRGBHex:0x4a4a4a];
   _txtField.font = [UIFont systemFontOfSize:17];
   [self.view addSubview:_txtField];

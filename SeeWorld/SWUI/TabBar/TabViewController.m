@@ -18,8 +18,8 @@
 #define kTag_TabBar_Base 0
 #define kTag_TabBar_FeedList kTag_TabBar_Base + 1
 #define kTag_TabBar_Discovertory kTag_TabBar_Base + 2
-#define kTag_TabBar_Publish kTag_TabBar_Base + 3
-#define kTag_TabBar_Message kTag_TabBar_Base + 4
+#define kTag_TabBar_Notice kTag_TabBar_Base + 3
+#define kTag_TabBar_Message kTag_TabBar_Base + 3
 #define kTag_TabBar_Me kTag_TabBar_Base + 5
 
 @interface TabViewController ()<UITabBarControllerDelegate,UzysAssetsPickerControllerDelegate,SWPostEnterViewDelegate>
@@ -33,6 +33,9 @@
 @property (nonatomic, strong) SWNoticeVC *noticeVC;
 @property (nonatomic, strong) UINavigationController *mineNav;
 @property (nonatomic, strong) SWMineVC *mineVC;
+@property (nonatomic, strong) UINavigationController *msgNav;
+@property (nonatomic, strong) SWNoticeVC *msgVC;
+
 @end
 
 @implementation TabViewController{
@@ -43,54 +46,55 @@
 - (void)initControllers
 {
   self.delegate = self;
-  
-  UIStoryboard *publishStoryBoard = [UIStoryboard storyboardWithName:@"Publish" bundle:[NSBundle mainBundle]];
-  UINavigationController *publishViewCotroller = [publishStoryBoard instantiateInitialViewController];
-  
+    
   self.noticeVC = [[SWNoticeVC alloc] init];
   self.noticeNav = [[UINavigationController alloc] initWithRootViewController:self.noticeVC];
+  
+  self.msgVC = [[SWNoticeVC alloc] init];
+  self.msgNav = [[UINavigationController alloc] initWithRootViewController:self.msgVC];
+  
   
   SWHomeFeedVC *homeFeedVC = [[SWHomeFeedVC alloc] init];
   UINavigationController *feedListViewCotroller = [[UINavigationController alloc] initWithRootViewController:homeFeedVC];
   
   UITabBarItem *feedListItem = [[UITabBarItem alloc] initWithTitle:@""
-                                                             image:[[UIImage imageNamed:@"tab_btn_home_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                             image:[[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                tag:kTag_TabBar_FeedList];
-  feedListItem.selectedImage = [[UIImage imageNamed:@"tab_btn_home_pressed"]
+  feedListItem.selectedImage = [[UIImage imageNamed:@"home_highlight"]
                                 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   feedListViewCotroller.tabBarItem = feedListItem;
   
   UITabBarItem *discovertoryItem = [[UITabBarItem alloc] initWithTitle:@""
-                                                                 image:[[UIImage imageNamed:@"tab_btn_find_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                                 image:[[UIImage imageNamed:@"discover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                    tag:kTag_TabBar_Discovertory];
   SWExploreVC *discovertoryVC = [[SWExploreVC alloc] init];
   UINavigationController *discovertoryCotroller = [[UINavigationController alloc] initWithRootViewController:discovertoryVC];
-  discovertoryItem.selectedImage = [[UIImage imageNamed:@"tab_btn_find_pressed"]
+  discovertoryItem.selectedImage = [[UIImage imageNamed:@"discover_highlight"]
                                     imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   discovertoryCotroller.tabBarItem = discovertoryItem;
   
-  UITabBarItem *publishItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"tab_btn_publish_default"]
-                                                              tag:kTag_TabBar_Publish];
-  publishItem.selectedImage = [[UIImage imageNamed:@"tab_btn_publish_default"]
-                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-  publishItem.image = [[UIImage imageNamed:@"tab_btn_publish_default"]
-                       imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-  publishViewCotroller.tabBarItem = publishItem;
+  
+  UITabBarItem *noticeItem = [[UITabBarItem alloc] initWithTitle:@""
+                                                           image:[[UIImage imageNamed:@"notification"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                             tag:kTag_TabBar_Notice];
+  noticeItem.selectedImage = [[UIImage imageNamed:@"notification_highlight"]
+                              imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+  self.noticeNav.tabBarItem = noticeItem;
   
   UITabBarItem *messageItem = [[UITabBarItem alloc] initWithTitle:@""
-                                                            image:[[UIImage imageNamed:@"tab_btn_notice_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                              tag:kTag_TabBar_Publish];
-  messageItem.selectedImage = [[UIImage imageNamed:@"tab_btn_notice_pressed"]
+                                                            image:[[UIImage imageNamed:@"tabbar_message"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                              tag:kTag_TabBar_Message];
+  messageItem.selectedImage = [[UIImage imageNamed:@"tabbar_message_highlight"]
                                imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-  self.noticeNav.tabBarItem = messageItem;
+  self.msgNav.tabBarItem = messageItem;
   
   self.mineVC = [[SWMineVC alloc] init];
   self.mineNav = [[UINavigationController alloc] initWithRootViewController:self.mineVC];
   
   UITabBarItem *meItem = [[UITabBarItem alloc] initWithTitle:@""
-                                                       image:[[UIImage imageNamed:@"tab_btn_profile_default"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                       image:[[UIImage imageNamed:@"me"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                          tag:kTag_TabBar_Me];
-  meItem.selectedImage = [[UIImage imageNamed:@"tab_btn_profile_pressed"]
+  meItem.selectedImage = [[UIImage imageNamed:@"me_highlight"]
                           imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   self.mineNav.tabBarItem = meItem;
   
@@ -98,25 +102,20 @@
   feedListItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:discovertoryItem];
   discovertoryItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
-  [self setTabbarItemInset:publishItem];
-  publishItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:messageItem];
   messageItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+  [self setTabbarItemInset:noticeItem];
+  noticeItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:meItem];
   meItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   
-  self.viewControllers = @[feedListViewCotroller, discovertoryCotroller, publishViewCotroller, self.noticeNav, self.mineNav];
-  UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2 - 35,0,70, self.tabBar.height)];
-  [button setImage:[UIImage imageNamed:@"tab_btn_publish_default"] forState:UIControlStateNormal];
-  [button addTarget:self action:@selector(showComposeView) forControlEvents:UIControlEventTouchUpInside];
-  [self.tabBar addSubview:button];
-  
+  self.viewControllers = @[feedListViewCotroller, discovertoryCotroller, _msgNav, _noticeNav, _mineNav];  
 }
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGBHex:0x184866]]];
+  [[UITabBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]];
   [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hidePickerController) name:@"hidePickerController" object:nil];
   // Do any additional setup after loading the view.
@@ -193,13 +192,6 @@
   [self setSelectedIndex:selectedIndex];
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-  if (item.tag == kTag_TabBar_Publish)
-  {
-    
-  }
-}
 
 - (void)updateLocation
 {
@@ -258,9 +250,11 @@
       UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Publish" bundle:nil];
       AddTagViewController *vc = [sb instantiateViewControllerWithIdentifier:@"AddTagViewController"];
       vc.photoImage = image;
-      UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-      [self presentViewController:nav animated:YES
-                       completion:nil];
+      [self dismissViewControllerAnimated:NO completion:^{
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:nav animated:NO
+                         completion:nil];
+      }];
     }
   }];
 }

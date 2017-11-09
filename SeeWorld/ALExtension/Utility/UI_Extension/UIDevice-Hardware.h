@@ -130,6 +130,7 @@ typedef enum{
   UIDEVICE_4INCH = 1,
   UIDEVICE_4_7_INCH = 2,
   UIDEVICE_5_5_INCH = 3,
+  UIDEVICE_5_8_INCH = 4,
 }UIDeviceSreenType;
 
 @interface UIDevice (Hardware)

@@ -44,7 +44,7 @@
   _bgView.contentMode = UIViewContentModeScaleAspectFill;
   [self.view addSubview:_bgView];
   
-  _btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(30, 20+iOS7NavHeight, self.view.width-60, 35)];
+  _btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(30, 20+iOSNavHeight, self.view.width-60, 35)];
   _btnPhone.lblCustom = [UILabel initWithFrame:_btnPhone.bounds
                                        bgColor:[UIColor clearColor]
                                      textColor:[UIColor whiteColor]

@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"Facebook好友"
-                                                                color:[UIColor whiteColor]
+                                                                color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:18];
   self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds
                                                 style:UITableViewStylePlain];

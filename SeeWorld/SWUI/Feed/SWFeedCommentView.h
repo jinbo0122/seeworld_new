@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SWFeedItem.h"
 @protocol SWFeedCommentViewDelegate;
-@interface SWFeedCommentView : UIView
+@interface SWFeedCommentView : UIButton
 @property(nonatomic,   weak)id<SWFeedCommentViewDelegate>delegate;
 @property(nonatomic, strong)UITapGestureRecognizer  *tapGesture;
 - (void)refreshWithFeedComments:(NSArray *)comments;

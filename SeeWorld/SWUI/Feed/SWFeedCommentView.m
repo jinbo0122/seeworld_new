@@ -12,68 +12,30 @@
 @end
 @implementation SWFeedCommentView{
   NSArray   *_comments;
+  UILabel   *_lblComment;
 }
 
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]) {
+    _lblComment = [UILabel initWithFrame:CGRectZero
+                                 bgColor:[UIColor clearColor]
+                               textColor:[UIColor colorWithRGBHex:0x8A9BAC]
+                                    text:@""
+                           textAlignment:NSTextAlignmentLeft
+                                    font:[UIFont systemFontOfSize:13]];
+    [self addSubview:_lblComment];
+    
+    [self addTarget:self action:@selector(onTap:) forControlEvents:UIControlEventTouchUpInside];
   }
   return self;
 }
 
 - (void)refreshWithFeedComments:(NSArray *)comments{
-  for (UIButton *button in self.subviews) {
-    [button removeFromSuperview];
-  }
   _comments = comments;
-  CGFloat top = 0;
-  for (NSInteger i=0; i<MIN(5, comments.count); i++) {
-    SWFeedCommentItem *comment = [comments safeObjectAtIndex:i];
-    NSString *name = comment.user.name;
-    NSDictionary *info = [comment.text safeJsonDicFromJsonString];
-    NSString *content = [[info safeNumberObjectForKey:@"isImage"] boolValue]?SWStringMsgPic:[info safeStringObjectForKey:@"text"];
-    
-    NSString *display = [NSString stringWithFormat:@"%@   %@",name,content];
-    NSMutableAttributedString *mut = [[NSMutableAttributedString alloc] initWithString:display
-                                                                            attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
-    if ([content isEqualToString:SWStringMsgPic]) {
-      [mut addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRGBHex:0xffffff]
-                  range:[display rangeOfString:content]];
-    }else{
-      [mut addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRGBHex:0xffffff]
-                  range:[display rangeOfString:content
-                                       options:NSRegularExpressionSearch
-                                         range:NSMakeRange(name.length, display.length-name.length)]];
-    }
-    [mut addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRGBHex:0xacccf0] range:[display rangeOfString:name]];
-    
-    CGSize size = [display sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
-                            constrainedToSize:CGSizeMake(UIScreenWidth-40, 1000)];
-    CGSize nameSize = [name sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
-    TTTAttributedLabel *lblCustom = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(20, top,size.width, size.height+10)];
-    lblCustom.enabledTextCheckingTypes = NSTextCheckingTypeLink;
-    [lblCustom setText:mut];
-    lblCustom.delegate = self;
-    lblCustom.nameWidth = nameSize.width;
-    lblCustom.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
-    lblCustom.lineBreakMode = NSLineBreakByCharWrapping;
-    lblCustom.numberOfLines = 0;
-    [self addSubview:lblCustom];
-    
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, top, nameSize.width, nameSize.height+10)];
-    [self addSubview:button];
-    button.tag = i;
-    [button addTarget:self action:@selector(onTap:) forControlEvents:UIControlEventTouchUpInside];
-    top+=(lblCustom.height);
-  }
-  if (comments.count>5) {
-    UIButton *btnMore = [[UIButton alloc] initWithFrame:CGRectMake(20, top, 43, 28)];
-    [btnMore setTitle:@"....更多" forState:UIControlStateNormal];
-    [btnMore setTitleColor:[UIColor colorWithRGBHex:0x00f8ff] forState:UIControlStateNormal];
-    [btnMore.titleLabel setFont:[UIFont systemFontOfSize:12]];
-    [btnMore addTarget:self action:@selector(onTap:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btnMore];
-  }
-  self.frame = CGRectMake(0, 0, UIScreenWidth, (comments.count>5?28:0)+top);
+  _lblComment.text = [NSString stringWithFormat:@"%@條評論",@(comments.count)];
+  _lblComment.hidden = comments.count==0;
+  self.frame = CGRectMake(0, 0, UIScreenWidth, comments.count?19:0);
+  _lblComment.frame = CGRectMake(12, 0, self.width-24, self.height);
 }
 
 - (void)onTap:(UIButton *)button{
@@ -98,17 +60,6 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 + (CGFloat)heightByFeedComments:(NSArray *)comments{
-  CGFloat top = 0;
-  for (NSInteger i=0; i<MIN(5, comments.count); i++) {
-    SWFeedCommentItem *comment = [comments safeObjectAtIndex:i];
-    NSString *name = comment.user.name;
-    NSDictionary *info = [comment.text safeJsonDicFromJsonString];
-    NSString *content = [[info safeNumberObjectForKey:@"isImage"] boolValue]?SWStringMsgPic:[info safeStringObjectForKey:@"text"];
-    NSString *display = [NSString stringWithFormat:@"%@   %@",name,content];
-    CGSize size = [display sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
-                            constrainedToSize:CGSizeMake(UIScreenWidth-40, 1000)];
-    top+=(size.height+10);
-  }
-  return top+(comments.count>5?28:0);
+  return comments.count?19:0;
 }
 @end

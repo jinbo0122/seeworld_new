@@ -142,9 +142,9 @@ SWChatSettingHeaderViewDelegate>
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringChatDetail color:[UIColor whiteColor]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringChatDetail color:[UIColor colorWithRGBHex:0x191d28]];
   self.automaticallyAdjustsScrollViewInsets = NO;
-  self.headerView = [[SWChatSettingHeaderView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, self.view.width, 60)];
+  self.headerView = [[SWChatSettingHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 60)];
   [self.view addSubview:self.headerView];
   self.headerView.delegate = self;
   

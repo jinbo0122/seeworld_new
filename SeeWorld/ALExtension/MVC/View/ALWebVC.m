@@ -21,7 +21,7 @@
   _webView.delegate = self;
   _webView.scalesPageToFit = YES;
 #ifndef BBSDKMODE
-  _webView.height+=iOS7NavHeight;
+  _webView.height+=iOSNavHeight;
   _webView.height-=10;
 #else
 #endif
@@ -32,7 +32,7 @@
   __weak typeof(self)wSelf = self;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     if ([[wSelf.navigationController.viewControllers lastObject] isEqual:wSelf]) {
-      wSelf.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:title color:[UIColor whiteColor]];
+      wSelf.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:title color:[UIColor colorWithRGBHex:0x191d28]];
     }
   });
 }

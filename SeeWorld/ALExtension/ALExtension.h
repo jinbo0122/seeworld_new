@@ -17,9 +17,18 @@
 #define is4InchDevice  [UIDevice currentDevice].screenType==UIDEVICE_4INCH
 #define is55InchDevice [UIDevice currentDevice].screenType==UIDEVICE_5_5_INCH
 #define is47InchDevice [UIDevice currentDevice].screenType==UIDEVICE_4_7_INCH
-#define isRunningOnIOS7           [[UIDevice currentDevice] isIOS7]
+#define is58InchDevice ([UIDevice currentDevice].screenType==UIDEVICE_5_8_INCH)
+#define is320WidthDevice          (UIScreenWidth==320)
 #define isRunningOnIOS8           [[UIDevice currentDevice] isIOS8]
-#define iOS7NavHeight             (isRunningOnIOS7?64:0)
+#define isRunningOnIOS9           [[UIDevice currentDevice] isIOS9]
+#define isRunningOnIOS10          [[UIDevice currentDevice] isIOS10]
+#define isRunningOnIOS11          [[UIDevice currentDevice] isIOS11]
+#define iOS7NavHeight             (64)
+#define iOS11NavHeight            (44)
+#define iOSNavHeight              (is58InchDevice?88:64)
+#define iOSStatusBarHeight        (is58InchDevice?44:20)
+#define iphoneXBottomAreaHeight   (is58InchDevice?34:0)
+#define iOSTopHeight              (is58InchDevice?24:0)
 
 #define SWWeixinAPI @"wxcddd6d0e13441065"
 #define SWWeiboAPI @"3615135038"

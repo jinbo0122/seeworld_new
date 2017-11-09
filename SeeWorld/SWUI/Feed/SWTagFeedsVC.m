@@ -38,13 +38,13 @@ SWFeedCellDelegate>
 #pragma mark Custom Methods
 - (void)uiInitialize{
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:[NSString stringWithFormat:@"#%@",self.model.tagItem.tagName]
-                                                                color:[UIColor whiteColor] fontSize:18];
+                                                                color:[UIColor colorWithRGBHex:0x191d28] fontSize:18];
   
   self.tbVC.view.frame = self.view.bounds;
   self.tbVC = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
   if (self.model.tagItem)
   {
-    self.tbVC.tableView.contentInset   = UIEdgeInsetsMake(iOS7NavHeight-20, 0, 0, 0);
+    self.tbVC.tableView.contentInset   = UIEdgeInsetsMake(iOSNavHeight-20, 0, 0, 0);
   }
 
   self.tbVC.tableView.dataSource = self;

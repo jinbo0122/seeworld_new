@@ -16,18 +16,16 @@
 - (id)initWithFrame:(CGRect)frame{
   self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor colorWithRGBHex:0x17293d];
+    self.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     
     _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
     _iconAvatar.layer.masksToBounds = YES;
     _iconAvatar.layer.cornerRadius  = _iconAvatar.width/2.0;
-    _iconAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
-    _iconAvatar.layer.borderWidth = 1.0;
     [self addSubview:_iconAvatar];
     
     _lblName    = [UILabel initWithFrame:CGRectZero
                                  bgColor:[UIColor clearColor]
-                               textColor:[UIColor whiteColor]
+                               textColor:[UIColor colorWithRGBHex:0x191d28]
                                     text:@""
                            textAlignment:NSTextAlignmentLeft
                                     font:[UIFont systemFontOfSize:16.2]];
@@ -35,10 +33,10 @@
     
     _lblTime    = [UILabel initWithFrame:CGRectZero
                                  bgColor:[UIColor clearColor]
-                               textColor:[UIColor colorWithRGBHex:0x8b9cad]
+                               textColor:[UIColor colorWithRGBHex:0x8A9BAC]
                                     text:@""
                            textAlignment:NSTextAlignmentLeft
-                                    font:[UIFont systemFontOfSize:11]];
+                                    font:[UIFont systemFontOfSize:13]];
     [self addSubview:_lblTime];
   }
   return self;

@@ -27,11 +27,11 @@
   [super viewDidLoad];
   if (_type == eRelationshipTypeFollows){
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"追蹤列表"
-                                                                  color:[UIColor whiteColor]
+                                                                  color:[UIColor colorWithRGBHex:0x191d28]
                                                                fontSize:18];
   }else{
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"粉絲列表"
-                                                                  color:[UIColor whiteColor]
+                                                                  color:[UIColor colorWithRGBHex:0x191d28]
                                                                fontSize:18];
   }
   self.title = @"";

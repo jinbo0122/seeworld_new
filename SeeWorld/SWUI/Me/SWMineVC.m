@@ -47,7 +47,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   _tableView.dataSource = self;
   _tableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  _tableView.contentInset = UIEdgeInsetsMake(-iOS7NavHeight, 0, 0, 0);
+  _tableView.contentInset = UIEdgeInsetsMake(-iOSNavHeight, 0, 0, 0);
   [self.view addSubview:_tableView];
   
   _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 246)];
@@ -140,7 +140,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   [self.navigationController.navigationBar setBackgroundImage:nil
                                                 forBarMetrics:UIBarMetricsDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.user?self.user.name:[SWConfigManager sharedInstance].user.name
-                                                                color:[UIColor whiteColor]];
+                                                                color:[UIColor colorWithRGBHex:0x191d28]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,7 +149,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
-  return UIStatusBarStyleLightContent;
+  return UIStatusBarStyleDefault;
 }
 
 - (void)rightBar{

@@ -44,10 +44,10 @@
 - (id)initWithFrame:(CGRect)frame{
   self = [super initWithFrame:frame];
   if (self) {
-    self.backgroundColor = [UIColor colorWithRGBHex:0x17293d];
-    [self addSubview:[ALLineView lineWithFrame:CGRectMake(2.0*self.width/3.0, 12, 0.5, 14) colorHex:0x2a3847]];
-    [self addSubview:[ALLineView lineWithFrame:CGRectMake(self.width/3.0, 12, 0.5, 14) colorHex:0x2a3847]];
-    [self addSubview:[ALLineView lineWithFrame:CGRectMake(15, self.height-0.5, self.width-30, 0.5) colorHex:0x2a3847]];
+    self.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
+    [self addSubview:[ALLineView lineWithFrame:CGRectMake(2.0*self.width/3.0, 12, 0.5, 14) colorHex:0x9B9B9B alpha:0.7]];
+    [self addSubview:[ALLineView lineWithFrame:CGRectMake(self.width/3.0, 12, 0.5, 14) colorHex:0x9B9B9B alpha:0.7]];
+    [self addSubview:[ALLineView lineWithFrame:CGRectMake(15, self.height-0.5, self.width-30, 0.5) colorHex:0x9B9B9B alpha:0.5]];
     
     
     _btnLike = [[SWFeedInteractButton alloc] initWithFrame:CGRectMake(0, 0, self.width/3.0, self.height)];

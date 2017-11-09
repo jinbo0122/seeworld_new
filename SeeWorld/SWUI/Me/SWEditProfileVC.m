@@ -32,7 +32,7 @@
 @implementation SWEditProfileVC
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear:animated];
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [_header refreshWithUser:[SWConfigManager sharedInstance].user];
   _header.isEditMode = YES;
 }
@@ -40,17 +40,17 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯個人資料" color:[UIColor whiteColor]];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯個人資料" color:[UIColor colorWithRGBHex:0x191d28]];
   
   _editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)];
   [self.view addSubview:_editView];
   
-  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 220+iOS7NavHeight)];
+  UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 220+iOSNavHeight)];
   view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   [self.view addSubview:view];
   
-  _header = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, UIScreenWidth, 220)];
+  _header = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 220)];
   [self.view addSubview:_header];
   [_header refreshWithUser:[SWConfigManager sharedInstance].user];
   _header.isEditMode = YES;

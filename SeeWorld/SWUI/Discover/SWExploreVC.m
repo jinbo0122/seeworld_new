@@ -55,14 +55,14 @@ SWExploreFeedItemViewDelegate>
 
 #pragma mark Custom
 - (void)uiInitialize{
-  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, UIScreenWidth, 38)
+  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 38)
                                                      items:@[@"",@""]
                                                     images:@[@"explore_btn_find",@"explore_btn_locad"]];
   self.titleView.delegate = self;
   self.titleView.selectedIndex = 0;
   [self.view addSubview:self.titleView];
   
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"探索" color:[UIColor whiteColor]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"探索" color:[UIColor colorWithRGBHex:0x191d28]];
 //  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"explore_btn_search"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
 //                                                                            style:UIBarButtonItemStylePlain
 //                                                                           target:self action:@selector(onSearchClicked:)];
@@ -71,10 +71,10 @@ SWExploreFeedItemViewDelegate>
   
   CGFloat itemWidth = UIScreenWidth-40;
   CGFloat itemHeight = itemWidth*0.85 + 57;
-  self.itemFrames = @[[NSValue valueWithCGRect:CGRectMake(20,iOS7NavHeight+self.titleView.height + 25 +itemStartY, itemWidth, itemHeight)],
-                      [NSValue valueWithCGRect:CGRectMake(20,iOS7NavHeight+self.titleView.height + 30 +itemStartY+itemOffsetY,
+  self.itemFrames = @[[NSValue valueWithCGRect:CGRectMake(20,iOSNavHeight+self.titleView.height + 25 +itemStartY, itemWidth, itemHeight)],
+                      [NSValue valueWithCGRect:CGRectMake(20,iOSNavHeight+self.titleView.height + 30 +itemStartY+itemOffsetY,
                                                           itemWidth,itemHeight)],
-                      [NSValue valueWithCGRect:CGRectMake(20,iOS7NavHeight+self.titleView.height + 35 +itemStartY+itemOffsetY*2,
+                      [NSValue valueWithCGRect:CGRectMake(20,iOSNavHeight+self.titleView.height + 35 +itemStartY+itemOffsetY*2,
                                                           itemWidth, itemHeight)]];
   
   

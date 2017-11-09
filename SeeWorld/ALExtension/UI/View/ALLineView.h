@@ -10,4 +10,5 @@
 
 @interface ALLineView : UIView
 + (ALLineView *)lineWithFrame:(CGRect)frame colorHex:(UInt32)colorHex;
++ (ALLineView *)lineWithFrame:(CGRect)frame colorHex:(UInt32)colorHex alpha:(CGFloat)alpha;
 @end

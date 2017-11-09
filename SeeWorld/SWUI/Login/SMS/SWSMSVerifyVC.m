@@ -36,7 +36,7 @@
   _bgView.contentMode = UIViewContentModeScaleAspectFill;
   [self.view addSubview:_bgView];
   
-  _lblTitle = [UILabel initWithFrame:CGRectMake(0, iOS7NavHeight+30, self.view.width, 13)
+  _lblTitle = [UILabel initWithFrame:CGRectMake(0, iOSNavHeight+30, self.view.width, 13)
                              bgColor:[UIColor clearColor]
                            textColor:[UIColor whiteColor]
                                 text:@"正在發送驗證碼，請稍等"
@@ -56,7 +56,7 @@
   CGFloat gap   = (self.view.width-width*4-10)/5.0;
   CGFloat initX = gap+5;
   
-  _txtCode = [[UITextField alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, self.view.width, 20)];
+  _txtCode = [[UITextField alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 20)];
   [self.view addSubview:_txtCode];
   [_txtCode addTarget:self action:@selector(onTxtChanged:) forControlEvents:UIControlEventEditingChanged];
   _txtCode.keyboardType = UIKeyboardTypeNumberPad;

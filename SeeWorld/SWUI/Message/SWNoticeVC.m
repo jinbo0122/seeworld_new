@@ -59,8 +59,8 @@ SWExploreSegViewDelegate>
 #pragma mark Custom
 - (void)uiInitialize{
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"動態消息"
-                                                                color:[UIColor whiteColor]];
-  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, UIScreenWidth, 38)
+                                                                color:[UIColor colorWithRGBHex:0x191d28]];
+  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 38)
                                                      items:@[@"",@""]
                                                     images:@[@"notice_btn_notice",@"home_btn_comment"]];
   self.titleView.delegate = self;
@@ -179,7 +179,7 @@ SWExploreSegViewDelegate>
     [self.scrollView addSubview:self.chatVC.view];
     self.chatVC.delegate = self;
     
-    _emptyChatView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.width + (self.view.width-144)/2.0,iOS7NavHeight+50, 144, 144)];
+    _emptyChatView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.width + (self.view.width-144)/2.0,iOSNavHeight+50, 144, 144)];
     _emptyChatView.image = [UIImage imageNamed:@"no_message"];
     _emptyChatView.tag = 1001;
     [self.scrollView addSubview:_emptyChatView];

@@ -70,7 +70,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 }
 
 - (void)uiInitialize{
-  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, self.view.width, 38)
+  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 38)
                                                      items:@[@"",@""]
                                                     images:@[@"home_btn_comment",@"home_btn_like"]];
   self.titleView.delegate = self;
@@ -90,7 +90,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   self.tbVCComments.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
   self.tbVCComments.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
   self.tbVCComments.tableView.backgroundColor= [UIColor colorWithRGBHex:0x1a2531];
-  self.tbVCComments.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOS7NavHeight+self.titleView.height, 0);
+  self.tbVCComments.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height, 0);
   self.tbVCComments.tableView.tableFooterView = [UIView new];
   self.tbVCComments.tableView.separatorInset = UIEdgeInsetsZero;
   self.tbVCComments.refreshControl = [[UIRefreshControl alloc] init];
@@ -113,7 +113,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   self.tbVCLikes.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
   self.tbVCLikes.tableView.backgroundColor= [UIColor colorWithRGBHex:0x1a2531];
   self.tbVCLikes.tableView.tableFooterView = [UIView new];
-  self.tbVCLikes.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOS7NavHeight+self.titleView.height, 0);
+  self.tbVCLikes.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height, 0);
   self.tbVCLikes.tableView.separatorInset = UIEdgeInsetsZero;
   self.tbVCLikes.refreshControl = [[UIRefreshControl alloc] init];
   [self.tbVCLikes.refreshControl addTarget:self action:@selector(onLikesRefreshed) forControlEvents:UIControlEventValueChanged];

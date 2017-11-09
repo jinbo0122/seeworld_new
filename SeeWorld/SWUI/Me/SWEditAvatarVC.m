@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x000000];
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:@"取消"
                                                                                     color:[UIColor whiteColor]
@@ -40,7 +40,7 @@
                                                                                   font:[UIFont systemFontOfSize:18]
                                                                                 target:self
                                                                                 action:@selector(onSave)];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯大頭照" color:[UIColor whiteColor]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯大頭照" color:[UIColor colorWithRGBHex:0x191d28]];
   
   _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (UIScreenHeight-UIScreenWidth)/2.0, UIScreenWidth, UIScreenWidth)];
   [_avatarView sd_setImageWithURL:[NSURL URLWithString:[SWConfigManager sharedInstance].user.picUrl]];
@@ -160,6 +160,6 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
-  return UIStatusBarStyleLightContent;
+  return UIStatusBarStyleDefault;
 }
 @end

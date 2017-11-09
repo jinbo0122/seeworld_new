@@ -53,27 +53,27 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringHome
-                                                                color:[UIColor whiteColor]
+                                                                color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:18];
-  
-  self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, self.view.width - 60, 50)];
+  self.view.backgroundColor = [UIColor whiteColor];
+  self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width - 60, 50)];
   self.navigationItem.titleView = self.btnSearch;
   
-  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 10, self.btnSearch.width, 30)];
+  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 7+iOSTopHeight, self.btnSearch.width, 30)];
   self.searchBar.placeholder = SWStringSearch;
   self.searchBar.userInteractionEnabled = NO;
   self.searchBar.showsCancelButton = NO;
+  self.searchBar.layer.borderColor = [UIColor colorWithRGBHex:0x34414e].CGColor;
+  [_searchBar setSearchFieldBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] size:_searchBar.size] forState:UIControlStateNormal];
   [self.btnSearch addSubview:self.searchBar];
   [self.btnSearch addTarget:self action:@selector(onSearchClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
-                                     initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
-                                     target:nil action:nil];
-  negativeSpacer.width = -10;
-  self.navigationItem.rightBarButtonItems = @[negativeSpacer,[UIBarButtonItem loadBarButtonItemWithImage:@"home_btn_addfridays"
-                                                                                  rect:CGRectMake(17, 11, 21, 18)
-                                                                                 arget:self action:@selector(onAddFriendClicked:)]];
-  
+  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"home_btn_addfridays"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                           style:UIBarButtonItemStylePlain
+                                                          target:self
+                                                          action:@selector(onAddFriendClicked:)];
+  item.imageInsets = UIEdgeInsetsMake(0, 0, 0, -10);
+  self.navigationItem.rightBarButtonItem = item;
   [self uiInitialize];
   
   __weak typeof(self)wSelf= self;
@@ -116,8 +116,11 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   self.tbVC.tableView.dataSource = self;
   self.tbVC.tableView.delegate   = self;
   self.tbVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tbVC.tableView.backgroundColor= [UIColor colorWithRGBHex:0x1a2531];
-  self.tbVC.tableView.contentInset   = UIEdgeInsetsMake(iOS7NavHeight, 0, 49, 0);
+  self.tbVC.tableView.backgroundColor= [UIColor colorWithRGBHex:0xE8EDF3];
+  self.tbVC.tableView.contentInset   = UIEdgeInsetsMake(iOSNavHeight, 0, 49+iphoneXBottomAreaHeight, 0);
+  self.tbVC.tableView.estimatedRowHeight = 0;
+  self.tbVC.tableView.estimatedSectionFooterHeight = 0;
+  self.tbVC.tableView.estimatedSectionHeaderHeight = 0;
   self.tbVC.refreshControl = [[UIRefreshControl alloc] init];
   [self.tbVC.refreshControl addTarget:self action:@selector(onHomeRefreshed) forControlEvents:UIControlEventValueChanged];
   [self.view addSubview:self.tbVC.tableView];
@@ -156,6 +159,7 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   }
   [cell refreshHomeFeed:[self.model.feeds safeObjectAtIndex:indexPath.row] row:indexPath.row];
   cell.delegate = self;
+  [cell layoutIfNeeded];
   return cell;
 }
 
@@ -176,12 +180,12 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
 }
 
 - (void)homeFeedModelDidRecommandUser:(SWFeedUserItem *)user{
-  [self.headerView refreshWithUser:user];
-  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"disableHomeFeedRecommandUser"]) {
-    self.tbVC.tableView.tableHeaderView = nil;
-  }else{
-    self.tbVC.tableView.tableHeaderView = self.headerView;
-  }
+  //  [self.headerView refreshWithUser:user];
+  //  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"disableHomeFeedRecommandUser"]) {
+  //    self.tbVC.tableView.tableHeaderView = nil;
+  //  }else{
+  //    self.tbVC.tableView.tableHeaderView = self.headerView;
+  //  }
 }
 
 - (void)homeFeedModelDidPressLike:(SWHomeFeedModel *)model row:(NSInteger)row{
@@ -257,6 +261,15 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeFeedCellDidNeedReload:(SWFeedItem *)feedItem row:(NSInteger)row{
+  SWFeedItem *feed = [_model.feeds safeObjectAtIndex:row];
+  if ([feedItem.feed.imageHeight isEqualToNumber:feed.feed.imageHeight]) {
+    return;
+  }
+  [_model.feeds replaceObjectAtIndex:row withObject:feedItem];
+  [self.tbVC.tableView reloadData];
 }
 
 - (void)homeFeedCellDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row{

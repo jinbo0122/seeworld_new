@@ -34,7 +34,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringSelectContact
-                                                                color:[UIColor whiteColor]
+                                                                color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:19];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:SWStringCancel
                                                                                     color:[UIColor colorWithRGBHex:0x8b9cad]
@@ -46,7 +46,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                                 target:self action:@selector(startChat)];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   self.automaticallyAdjustsScrollViewInsets = NO;
-  _selectView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, iOS7NavHeight, self.view.width, 104)];
+  _selectView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 104)];
   _selectView.alwaysBounceHorizontal = YES;
   _selectView.contentInset = UIEdgeInsetsZero;
   [self.view addSubview:_selectView];

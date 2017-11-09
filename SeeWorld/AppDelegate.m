@@ -31,8 +31,8 @@
   if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBackIndicatorImage:)]){
     appearanceNavigationBar.backIndicatorImage = [[UIImage imageNamed:@"setting_btn_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     appearanceNavigationBar.backIndicatorTransitionMaskImage = [[UIImage imageNamed:@"setting_btn_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    appearanceNavigationBar.tintColor = [UIColor whiteColor];
-    appearanceNavigationBar.barTintColor = [UIColor colorWithRGBHex:0x152c3e];
+    appearanceNavigationBar.tintColor = [UIColor colorWithRGBHex:0x191d28];
+    appearanceNavigationBar.barTintColor = [UIColor whiteColor];
     appearanceNavigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20],
                                                     NSForegroundColorAttributeName:[UIColor whiteColor]};
   }

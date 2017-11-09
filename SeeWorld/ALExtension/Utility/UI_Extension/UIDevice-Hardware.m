@@ -365,6 +365,10 @@
   else if ([UIScreen mainScreen].bounds.size.height > 667 && [UIScreen mainScreen].bounds.size.height<=736){
     return UIDEVICE_5_5_INCH;
   }
+  else if ([UIScreen mainScreen].bounds.size.height > 736 && [UIScreen mainScreen].bounds.size.height<=812){
+    return UIDEVICE_5_8_INCH;
+  }
+  
   return UIDEVICE_4INCH;
 }
 

@@ -109,7 +109,7 @@
 }
 
 - (IBAction)backClick:(id)sender {
-  [self popViewController];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)nextStepClick:(id)sender {
   
