@@ -203,7 +203,7 @@
 {
     [super drawRect:rect];
     
-    for (void (^block)() in self.willExecuteBlocks) {
+    for (void (^block)(void) in self.willExecuteBlocks) {
         block();
     }
     [self.willExecuteBlocks removeAllObjects];

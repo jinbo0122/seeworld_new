@@ -10,8 +10,6 @@
 #import "AppDelegate.h"
 #import "UzysAssetsPickerController.h"
 #import "Macros.h"
-#import <TuSDK/TuSDK.h>
-#import <TuSDKGeeV1/TuSDKGeeV1.h>
 #import "AddTagViewController.h"
 #import <INTULocationManager/INTULocationManager.h>
 #import "SWPostEnterView.h"
@@ -24,11 +22,8 @@
 #define kTag_TabBar_Message kTag_TabBar_Base + 4
 #define kTag_TabBar_Me kTag_TabBar_Base + 5
 
-@interface TabViewController ()<UITabBarControllerDelegate,UzysAssetsPickerControllerDelegate,
-TuSDKPFEditEntryControllerDelegate,SWPostEnterViewDelegate>
+@interface TabViewController ()<UITabBarControllerDelegate,UzysAssetsPickerControllerDelegate,SWPostEnterViewDelegate>
 {
-  // 图片编辑组件
-  TuSDKCPPhotoEditMultipleComponent *_photoEditComponent;
   UIViewController *_tuPFEditEntryController;
 }
 
@@ -43,14 +38,6 @@ TuSDKPFEditEntryControllerDelegate,SWPostEnterViewDelegate>
 @implementation TabViewController{
   UIImageView *_dot;
   UILabel *_lblDot;
-}
-
-- (void)onTuSDKPFEditEntry:(TuSDKPFEditEntryController *)controller action:(lsqTuSDKCPEditActionType)action{
-  
-}
-
-- (void)onTuSDKPFEditEntry:(TuSDKPFEditEntryController *)controller result:(TuSDKResult *)result{
-  
 }
 
 - (void)initControllers
@@ -259,57 +246,6 @@ TuSDKPFEditEntryControllerDelegate,SWPostEnterViewDelegate>
                    completion:nil];
 }
 
-/**
- *  开启图片高级编辑
- *
- *  @param controller 来源控制器
- *  @param result     处理结果
- */
-- (void)openEditAdvancedWithController:(UIViewController *)controller
-                                result:(TuSDKResult *)result;
-{
-  if (!controller || !result) return;
-  
-  // 组件选项配置
-  // @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPPhotoEditComponent.html
-  _photoEditComponent =
-  [TuSDKGeeV1 photoEditMultipleWithController:controller
-                                callbackBlock:^(TuSDKResult *result, NSError *error, UIViewController *controller){
-                                  if (error) {
-                                    lsqLError(@"editMultiple error: %@", error.userInfo);
-                                    return;
-                                  }
-                                  [result logInfo];
-                                  UIImage *image = result.image;
-                                  if (!image) {
-                                    image = [result loadResultImage];
-                                  }
-                                  
-                                  UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Publish" bundle:nil];
-                                  AddTagViewController *vc = [sb instantiateViewControllerWithIdentifier:@"AddTagViewController"];
-                                  vc.photoImage = image;
-                                  [controller.navigationController pushViewController:vc animated:YES];
-                                }];
-  
-  _photoEditComponent.inputImage = result.image;
-  _photoEditComponent.inputTempFilePath = result.imagePath;
-  _photoEditComponent.options.editMultipleOptions.saveToAlbum = NO;
-  _photoEditComponent.options.editMultipleOptions.saveToTemp = NO;
-
-  [_photoEditComponent showComponent];
-}
-
-/**
- *  获取组件返回错误信息
- *
- *  @param controller 控制器
- *  @param result     返回结果
- *  @param error      异常信息
- */
-- (void)onComponent:(TuSDKCPViewController *)controller result:(TuSDKResult *)result error:(NSError *)error;
-{
-  lsqLDebug(@"onComponent: controller - %@, result - %@, error - %@", controller, result, error);
-}
 
 #pragma mark - UzysAssetsPickerControllerDelegate
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
@@ -319,10 +255,12 @@ TuSDKPFEditEntryControllerDelegate,SWPostEnterViewDelegate>
     UIImage *image = [UIImage imageWithCGImage:fullScreenImage];
     if (image)
     {
-      TuSDKResult *result = [TuSDKResult result];
-      result.image = image;
-      result.imagePath = [self savePic:image];
-      [self openEditAdvancedWithController:picker result:result];
+      UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Publish" bundle:nil];
+      AddTagViewController *vc = [sb instantiateViewControllerWithIdentifier:@"AddTagViewController"];
+      vc.photoImage = image;
+      UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+      [self presentViewController:nav animated:YES
+                       completion:nil];
     }
   }];
 }

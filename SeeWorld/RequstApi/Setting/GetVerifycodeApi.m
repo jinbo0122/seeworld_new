@@ -1,6 +1,5 @@
 
 #import "GetVerifycodeApi.h"
-#import "MJExtension.h"
 #import "SWDefine.h"
 
 @implementation GetVerifycodeApi

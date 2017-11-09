@@ -16,7 +16,6 @@
 		490DB2341B79091B00A22C68 /* SWModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB2331B79091B00A22C68 /* SWModel.m */; };
 		490DB23A1B7913FE00A22C68 /* SWRequestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB2391B7913FE00A22C68 /* SWRequestApi.m */; };
 		4938A1111BA30E1A003F2E65 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1101BA30E1A003F2E65 /* PublishViewController.m */; };
-		4938A11A1BA3515E003F2E65 /* TuSDKICViewController+Ext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1191BA3515E003F2E65 /* TuSDKICViewController+Ext.m */; };
 		4938A11E1BA356D7003F2E65 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A11D1BA356D7003F2E65 /* AddTagViewController.m */; };
 		4938A1211BA35DEA003F2E65 /* AddTagSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1201BA35DEA003F2E65 /* AddTagSearchViewController.m */; };
 		4938A1241BA36213003F2E65 /* AddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1231BA36213003F2E65 /* AddTagCell.m */; };
@@ -328,7 +327,6 @@
 		4BD3AAE51D54A4170010FA84 /* WTTagViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3AAD41D54A4170010FA84 /* WTTagViewHelper.m */; };
 		4BD3AAE61D54A4170010FA84 /* WTTagViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3AAD61D54A4170010FA84 /* WTTagViewItem.m */; };
 		4BD3AAE71D54A4170010FA84 /* WTTagViewMItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3AAD81D54A4170010FA84 /* WTTagViewMItem.m */; };
-		4BDBFF7A1D0716A1005A757A /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BDBFF791D0716A1005A757A /* TuSDK.bundle */; };
 		4BDBFF7D1D071DB2005A757A /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BDBFF7C1D071DB2005A757A /* Me.storyboard */; };
 		4BE0DE971B9C450700634B33 /* SWFBLoginAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0DE961B9C450700634B33 /* SWFBLoginAPI.m */; };
 		4BE0DE9B1B9C50FA00634B33 /* SWSearcgFBFriendAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE0DE9A1B9C50FA00634B33 /* SWSearcgFBFriendAPI.m */; };
@@ -420,8 +418,6 @@
 		4938A10F1BA30E1A003F2E65 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		4938A1101BA30E1A003F2E65 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		4938A1161BA3438E003F2E65 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		4938A1181BA3515E003F2E65 /* TuSDKICViewController+Ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TuSDKICViewController+Ext.h"; sourceTree = "<group>"; };
-		4938A1191BA3515E003F2E65 /* TuSDKICViewController+Ext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TuSDKICViewController+Ext.m"; sourceTree = "<group>"; };
 		4938A11C1BA356D7003F2E65 /* AddTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagViewController.h; sourceTree = "<group>"; };
 		4938A11D1BA356D7003F2E65 /* AddTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagViewController.m; sourceTree = "<group>"; };
 		4938A11F1BA35DEA003F2E65 /* AddTagSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagSearchViewController.h; sourceTree = "<group>"; };
@@ -1015,7 +1011,6 @@
 		4BD3AAD61D54A4170010FA84 /* WTTagViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTTagViewItem.m; sourceTree = "<group>"; };
 		4BD3AAD71D54A4170010FA84 /* WTTagViewMItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTTagViewMItem.h; sourceTree = "<group>"; };
 		4BD3AAD81D54A4170010FA84 /* WTTagViewMItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTTagViewMItem.m; sourceTree = "<group>"; };
-		4BDBFF791D0716A1005A757A /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TuSDK.bundle; sourceTree = "<group>"; };
 		4BDBFF7C1D071DB2005A757A /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Me.storyboard; sourceTree = "<group>"; };
 		4BE0DE951B9C450700634B33 /* SWFBLoginAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFBLoginAPI.h; sourceTree = "<group>"; };
 		4BE0DE961B9C450700634B33 /* SWFBLoginAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFBLoginAPI.m; sourceTree = "<group>"; };
@@ -1298,7 +1293,6 @@
 		493D444A1B777C8A00C406A1 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
-				4BDBFF781D0716A1005A757A /* TuSDK */,
 				4BED70D91C29386C001A759F /* RongCloud */,
 				493D444B1B777C8A00C406A1 /* AOTag */,
 				493D444E1B777C8A00C406A1 /* DWTagList */,
@@ -1699,8 +1693,6 @@
 				493D45441B77A2B300C406A1 /* Publish.storyboard */,
 				4938A10F1BA30E1A003F2E65 /* PublishViewController.h */,
 				4938A1101BA30E1A003F2E65 /* PublishViewController.m */,
-				4938A1181BA3515E003F2E65 /* TuSDKICViewController+Ext.h */,
-				4938A1191BA3515E003F2E65 /* TuSDKICViewController+Ext.m */,
 				4938A11C1BA356D7003F2E65 /* AddTagViewController.h */,
 				4938A11D1BA356D7003F2E65 /* AddTagViewController.m */,
 				4938A11F1BA35DEA003F2E65 /* AddTagSearchViewController.h */,
@@ -2573,14 +2565,6 @@
 			path = ALExtension/3rd/WTTag;
 			sourceTree = SOURCE_ROOT;
 		};
-		4BDBFF781D0716A1005A757A /* TuSDK */ = {
-			isa = PBXGroup;
-			children = (
-				4BDBFF791D0716A1005A757A /* TuSDK.bundle */,
-			);
-			path = TuSDK;
-			sourceTree = "<group>";
-		};
 		4BE63A091BB5422300CDAD35 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -2864,7 +2848,6 @@
 				4BC0514E1D5DFC8700FD2C1E /* RCConfig.plist in Resources */,
 				4BC0514F1D5DFC8700FD2C1E /* release_notes_ios.txt in Resources */,
 				4BC051551D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */,
-				4BDBFF7A1D0716A1005A757A /* TuSDK.bundle in Resources */,
 				4BEB6A361D365D59000EA0F5 /* UzysAssetPickerController.bundle in Resources */,
 				4BC051561D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */,
 				493D44F81B777C8A00C406A1 /* LICENSE in Resources */,
@@ -3119,7 +3102,6 @@
 				4BC0FE5F1B943B4F003F4723 /* UIButton+ALExtension.m in Sources */,
 				4B283AFE1D087A220099E99D /* SWLoginWBAPI.m in Sources */,
 				490DB2341B79091B00A22C68 /* SWModel.m in Sources */,
-				4938A11A1BA3515E003F2E65 /* TuSDKICViewController+Ext.m in Sources */,
 				4BC0FEAA1B943E28003F4723 /* UIAlertView+Blocks.m in Sources */,
 				49AD7C2A1BA77861000405F4 /* FeedComposeResponse.m in Sources */,
 				4BB3F0F91CE9CEFA0065CFBC /* SWEditAvatarVC.m in Sources */,

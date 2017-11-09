@@ -13,7 +13,6 @@
 #import "WeiboSDK.h"
 #import "SWLoginVC.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import "TuSDK/TuSDK.h"
 #import "TabViewController.h"
 #import "SWLoginWBAPI.h"
 #import "LoginResponse.h"
@@ -72,8 +71,6 @@
   
   [SWConfigManager sharedInstance];
   
-  [TuSDK initSdkWithAppKey:@"52552e73d9b0921f-01-4wuzn1"];
-  [TuSDK setLogLevel:lsqLogLevelDEBUG];
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   self.window.backgroundColor = [UIColor whiteColor];
   

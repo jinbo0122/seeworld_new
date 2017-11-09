@@ -21,7 +21,7 @@ static const NSUInteger kSWActionSheetShareHeight = 15 + 46 + 5 + 14 + 15;
 @interface SWActionSheetItem()
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,strong) UIImage *image;
-@property (nonatomic,copy) void (^block)();
+@property (nonatomic,copy) void (^block)(void);
 @end
 
 

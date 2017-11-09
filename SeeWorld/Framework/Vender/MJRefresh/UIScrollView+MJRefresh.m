@@ -16,7 +16,7 @@
 
 @implementation UIScrollView (MJRefresh)
 #pragma mark - 下拉刷新
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)(void))block dateKey:(NSString *)dateKey
 {
     MJRefreshLegendHeader *header = [self addLegendHeader];
     header.refreshingBlock = block;
@@ -38,7 +38,7 @@
     return [self addLegendHeaderWithRefreshingTarget:target refreshingAction:action dateKey:nil];
 }
 
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)(void))block
 {
     return [self addLegendHeaderWithRefreshingBlock:block dateKey:nil];
 }
@@ -51,7 +51,7 @@
     return header;
 }
 
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)(void))block dateKey:(NSString *)dateKey
 {
     MJRefreshGifHeader *header = [self addGifHeader];
     header.refreshingBlock = block;
@@ -68,7 +68,7 @@
     return header;
 }
 
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)(void))block
 {
     return [self addGifHeaderWithRefreshingBlock:block dateKey:nil];
 }
@@ -135,7 +135,7 @@ static char MJRefreshHeaderKey;
 }
 
 #pragma mark - 上拉刷新
-- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)(void))block
 {
     MJRefreshLegendFooter *footer = [self addLegendFooter];
     footer.refreshingBlock = block;
@@ -158,7 +158,7 @@ static char MJRefreshHeaderKey;
     return footer;
 }
 
-- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)(void))block
 {
     MJRefreshGifFooter *footer = [self addGifFooter];
     footer.refreshingBlock = block;
@@ -251,7 +251,7 @@ static char MJRefreshFooterKey;
  *
  *  @param callback 回调
  */
-- (void)addHeaderWithCallback:(void (^)())callback
+- (void)addHeaderWithCallback:(void (^)(void))callback
 {
     [self addHeaderWithCallback:callback dateKey:nil];
 }
@@ -262,7 +262,7 @@ static char MJRefreshFooterKey;
  *  @param callback 回调
  *  @param dateKey 刷新时间保存的key值
  */
-- (void)addHeaderWithCallback:(void (^)())callback dateKey:(NSString*)dateKey
+- (void)addHeaderWithCallback:(void (^)(void))callback dateKey:(NSString*)dateKey
 {
     [self addLegendHeader];
     self.header.dateKey = dateKey;
@@ -337,7 +337,7 @@ static char MJRefreshFooterKey;
  *
  *  @param callback 回调
  */
-- (void)addFooterWithCallback:(void (^)())callback
+- (void)addFooterWithCallback:(void (^)(void))callback
 {
     [self addLegendFooter];
     self.footer.refreshingBlock = callback;

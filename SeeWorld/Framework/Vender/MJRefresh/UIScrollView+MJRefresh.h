@@ -28,14 +28,14 @@
  *
  * @param block 进入刷新状态就会自动调用这个block
  */
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block;
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)(void))block;
 /**
  * 添加一个传统的下拉刷新控件
  *
  * @param block     进入刷新状态就会自动调用这个block
  * @param dateKey   用来记录刷新时间的key
  */
-- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
+- (MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)(void))block dateKey:(NSString *)dateKey;
 /**
  * 添加一个传统的下拉刷新控件
  *
@@ -56,14 +56,14 @@
  *
  * @param block 进入刷新状态就会自动调用这个block
  */
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block;
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)(void))block;
 /**
  * 添加一个gif图片的下拉刷新控件
  *
  * @param block     进入刷新状态就会自动调用这个block
  * @param dateKey   用来记录刷新时间的key
  */
-- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
+- (MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)(void))block dateKey:(NSString *)dateKey;
 /**
  * 添加一个gif图片的下拉刷新控件
  *
@@ -103,7 +103,7 @@
  *
  * @param block 进入刷新状态就会自动调用这个block
  */
-- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block;
+- (MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)(void))block;
 /**
  * 添加一个传统的上拉刷新控件
  *
@@ -116,7 +116,7 @@
  *
  * @param block 进入刷新状态就会自动调用这个block
  */
-- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block;
+- (MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)(void))block;
 /**
  * 添加一个gif图片的上拉刷新控件
  *
@@ -140,7 +140,7 @@
  *
  *  @param callback 回调
  */
-- (void)addHeaderWithCallback:(void (^)())callback MJDeprecated("建议使用addLegendHeaderWithRefreshingBlock:");
+- (void)addHeaderWithCallback:(void (^)(void))callback MJDeprecated("建议使用addLegendHeaderWithRefreshingBlock:");
 
 /**
  *  添加一个下拉刷新头部控件
@@ -148,7 +148,7 @@
  *  @param callback 回调
  *  @param dateKey 刷新时间保存的key值
  */
-- (void)addHeaderWithCallback:(void (^)())callback dateKey:(NSString*)dateKey MJDeprecated("建议使用addLegendHeaderWithRefreshingBlock:dateKey:");
+- (void)addHeaderWithCallback:(void (^)(void))callback dateKey:(NSString*)dateKey MJDeprecated("建议使用addLegendHeaderWithRefreshingBlock:dateKey:");
 
 /**
  *  添加一个下拉刷新头部控件
@@ -193,7 +193,7 @@
  *
  *  @param callback 回调
  */
-- (void)addFooterWithCallback:(void (^)())callback MJDeprecated("建议使用addLegendFooterWithRefreshingBlock:");
+- (void)addFooterWithCallback:(void (^)(void))callback MJDeprecated("建议使用addLegendFooterWithRefreshingBlock:");
 
 /**
  *  添加一个上拉刷新尾部控件

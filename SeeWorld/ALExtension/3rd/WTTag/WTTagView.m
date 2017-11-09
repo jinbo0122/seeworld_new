@@ -193,7 +193,7 @@
     CGPoint centerPoint = [gestureRecognizer locationInView:self.tagsContainer];
     CGRect containerBounds = self.tagsContainer.bounds;
     
-    void (^reportDelegateSavePosition)() = ^ {
+    void (^reportDelegateSavePosition)(void) = ^ {
         if ([self.delegate respondsToSelector:@selector(tagView:didMoveTagViewItem:atIndex:toNewPositonPercentage:)]) {
             CGPoint itemPosition = tagViewItem.layer.position;
             CGPoint centerPointPercentage = CGPointMake(itemPosition.x / self.bounds.size.width, itemPosition.y / self.bounds.size.height);

@@ -23,7 +23,7 @@
 
 #pragma mark - 刷新处理
 /** 正在刷新的回调 */
-@property (copy, nonatomic) void (^refreshingBlock)();
+@property (copy, nonatomic) void (^refreshingBlock)(void);
 /** 设置回调对象和回调方法 */
 - (void)setRefreshingTarget:(id)target refreshingAction:(SEL)action;
 @property (weak, nonatomic) id refreshingTarget;

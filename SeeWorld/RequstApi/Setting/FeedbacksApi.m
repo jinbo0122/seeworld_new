@@ -1,6 +1,5 @@
 
 #import "FeedbacksApi.h"
-#import "MJExtension.h"
 #import "SWDefine.h"
 
 @implementation FeedbacksApi

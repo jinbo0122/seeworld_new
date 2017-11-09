@@ -1,6 +1,5 @@
 
 #import "ModifyUserInfoApi.h"
-#import "MJExtension.h"
 #import "SWDefine.h"
 
 @implementation ModifyUserInfoApi

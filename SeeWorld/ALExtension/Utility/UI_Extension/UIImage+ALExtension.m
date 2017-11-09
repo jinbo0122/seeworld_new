@@ -693,7 +693,7 @@ static CGRect swapWidthAndHeight(CGRect rect)
       [[PHImageManager defaultManager] requestImageForAsset:lastAsset
                                                  targetSize:sender.size
                                                 contentMode:PHImageContentModeAspectFill
-                                                    options:PHImageRequestOptionsVersionCurrent
+                                                    options:NULL
                                               resultHandler:^(UIImage *result, NSDictionary *info) {
                                                 dispatch_async(dispatch_get_main_queue(), ^{
                                                   if([sender isKindOfClass:[UIImageView class]]){

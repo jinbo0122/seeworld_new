@@ -8,7 +8,6 @@ pod 'SDWebImage'
 pod 'Reachability'
 pod 'CocoaLumberjack'
 pod 'FMDB'
-pod 'MJExtension'
 pod 'RegExCategories'
 pod "Qiniu"
 pod 'UIView+FDCollapsibleConstraints'
@@ -18,7 +17,6 @@ pod 'RKNotificationHub'
 pod 'UITableView+FDTemplateLayoutCell'
 pod "SKTagView"
 pod 'YTKNetwork'
-pod 'TuSDK'
 pod 'INTULocationManager'
 project 'SeeWorld/SeeWorld.xcodeproj'
 

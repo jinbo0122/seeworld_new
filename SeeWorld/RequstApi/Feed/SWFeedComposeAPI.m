@@ -1,6 +1,5 @@
 
 #import "SWFeedComposeAPI.h"
-#import "MJExtension.h"
 
 @implementation SWFeedComposeAPI
 - (NSString *)requestUrl{
