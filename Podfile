@@ -3,21 +3,17 @@ workspace 'SeeWorld'
 project 'SeeWorld/SeeWorld.xcodeproj'
 
 target :SeeWorld do
-platform :ios, '7.0'
+platform :ios, '8.0'
 pod 'SDWebImage'
 pod 'Reachability'
 pod 'CocoaLumberjack'
 pod 'FMDB'
 pod 'MJExtension'
-pod 'RegExCategories', '~> 1.0'
-pod "Qiniu", "~> 7.0"
+pod 'RegExCategories'
+pod "Qiniu"
 pod 'UIView+FDCollapsibleConstraints'
-pod 'PSTCollectionView'
-pod 'DACircularProgress'
 pod 'MCFireworksButton'
 pod 'FXNotifications'
-pod 'BLKFlexibleHeightBar'
-pod 'NYXImagesKit'
 pod 'RKNotificationHub'
 pod 'UITableView+FDTemplateLayoutCell'
 pod "SKTagView"
