@@ -63,7 +63,7 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   self.searchBar.placeholder = SWStringSearch;
   self.searchBar.userInteractionEnabled = NO;
   self.searchBar.showsCancelButton = NO;
-  self.searchBar.layer.borderColor = [UIColor colorWithRGBHex:0x34414e].CGColor;
+  self.searchBar.layer.borderColor = [UIColor colorWithRGBHex:0x28323d].CGColor;
   [_searchBar setSearchFieldBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] size:_searchBar.size] forState:UIControlStateNormal];
   [self.btnSearch addSubview:self.searchBar];
   [self.btnSearch addTarget:self action:@selector(onSearchClicked:) forControlEvents:UIControlEventTouchUpInside];
