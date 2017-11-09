@@ -268,11 +268,12 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
     return;
   }
   feed.feed.imageHeight = imageHeight;
+  __weak typeof(self)wSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
-    [self.tbVC.tableView beginUpdates];
-    [self.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
+    [wSelf.tbVC.tableView beginUpdates];
+    [wSelf.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
                                withRowAnimation:UITableViewRowAnimationNone];
-    [self.tbVC.tableView endUpdates];
+    [wSelf.tbVC.tableView endUpdates];
   });
 }
 

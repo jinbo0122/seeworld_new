@@ -177,4 +177,8 @@
     [self.delegate feedItemViewDidPressTag:tagItem];
   }
 }
+
+- (void)feedImageViewDidNeedReloadCell:(NSNumber *)imageHeight{
+  
+}
 @end

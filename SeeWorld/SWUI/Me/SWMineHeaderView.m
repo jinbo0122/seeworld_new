@@ -156,7 +156,7 @@
     [_btnMode addTarget:self action:@selector(onMode) forControlEvents:UIControlEventTouchUpInside];
     
     
-    _privateView = [[UIView alloc] initWithFrame:CGRectMake((UIScreenWidth-114)/2.0, self.height+62, 114, 113)];
+    _privateView = [[UIView alloc] initWithFrame:CGRectMake((UIScreenWidth-120)/2.0, self.height+62, 120, 113)];
     [self addSubview:_privateView];
     
     UIImageView *iconPrivate = [[UIImageView alloc] initWithFrame:CGRectMake(18, 0, 78, 78)];

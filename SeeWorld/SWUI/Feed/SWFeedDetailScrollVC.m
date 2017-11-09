@@ -57,7 +57,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
   }
   
   
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x17293d];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"照片"
                                                                 color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:18];
@@ -267,6 +267,18 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
                                                                     index:0];
   [view setFeedItem:feedItem];
   [[UIApplication sharedApplication].delegate.window addSubview:view];
+}
+
+- (void)feedDetailViewDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row{
+  SWFeedItem *feed = [_model.feeds safeObjectAtIndex:row];
+  if ([imageHeight isEqualToNumber:feed.feed.imageHeight]) {
+    return;
+  }
+  feed.feed.imageHeight = imageHeight;
+  __weak typeof(self)wSelf = self;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [wSelf.collectionView reloadDataAtIndex:row];
+  });
 }
 
 #pragma mark Feed Interact VC Delegate

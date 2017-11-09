@@ -17,7 +17,7 @@
     self.delegate = self;
     self.dataSource = self;
     self.pagingEnabled = YES;
-    self.backgroundColor = [UIColor colorWithRGBHex:0x17293d];
+    self.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [self registerClass:[SWFeedCollectionCell class] forCellWithReuseIdentifier:@"pbIdentifier"];
   }
   return self;

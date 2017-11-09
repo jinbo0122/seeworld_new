@@ -30,7 +30,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
   self = [super initWithFrame:frame];
   if (self) {
     _bgView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, UIScreenWidth, UIScreenHeight-64)];
-    _bgView.backgroundColor = [UIColor colorWithRGBHex:0x17293d];
+    _bgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [self.contentView addSubview:_bgView];
     
     _headerView = [[SWFeedUserInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 55)];
@@ -181,5 +181,9 @@ didLongPressLinkWithURL:(NSURL *)url
   if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressImage:rect:)]) {
     [self.delegate feedDetailViewDidPressImage:feedItem rect:rect];
   }
+}
+
+- (void)feedImageViewDidNeedReloadCell:(NSNumber *)imageHeight{
+  
 }
 @end

@@ -48,6 +48,9 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   _tableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   _tableView.contentInset = UIEdgeInsetsMake(-iOSNavHeight, 0, 0, 0);
+  _tableView.estimatedRowHeight = 0;
+  _tableView.estimatedSectionFooterHeight = 0;
+  _tableView.estimatedSectionHeaderHeight = 0;
   [self.view addSubview:_tableView];
   
   _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 246)];
@@ -132,8 +135,8 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
 
 - (void)recoverNavLine{
   self.navigationController.navigationBar.translucent = YES;
-  self.navigationController.navigationBar.tintColor = [UIColor colorWithRGBHex:0x152c3e];
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
+  self.navigationController.navigationBar.tintColor = [UIColor colorWithRGBHex:0xffffff];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0xffffff]];
   [self.navigationController.navigationBar setBackgroundImage:nil
                                                 forBarMetrics:UIBarMetricsDefault];
   self.navigationController.navigationBar.shadowImage = nil;

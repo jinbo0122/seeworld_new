@@ -28,4 +28,6 @@
 - (void)feedDetailViewDidPressLikeList:(SWFeedItem *)feedItem row:(NSInteger)row;
 - (void)feedDetailViewDidPressTag:(SWFeedTagItem *)tagItem;
 - (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect;
+- (void)feedDetailViewDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row;
+
 @end
