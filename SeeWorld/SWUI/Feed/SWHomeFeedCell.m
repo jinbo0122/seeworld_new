@@ -96,6 +96,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
   
   [_feedImageView refreshWithFeed:feed];
   _feedImageView.top = feed.feed.content.length?(_lblContent.bottom+10):55;
+  _feedImageView.height = [feed.feed.imageHeight integerValue];
   _feedImageView.delegate = self;
   
   [_interactView refreshWithFeed:feed];
@@ -136,8 +137,8 @@ didLongPressLinkWithURL:(NSURL *)url
   CGSize contentSize = [TTTAttributedLabel sizeThatFitsAttributedString:content
                                                         withConstraints:CGSizeMake(UIScreenWidth-30, 1000)
                                                  limitedToNumberOfLines:50];
-  NSInteger imageHeight = [feed.feed.imageHeight integerValue]>0?[feed.feed.imageHeight integerValue]:UIScreenWidth;
-  NSLog(@"*************%d********",imageHeight);
+  NSInteger imageHeight = [feed.feed.imageHeight integerValue];
+  NSLog(@"imageHeight:%@",@(imageHeight));
   CGFloat height = 7/*间隙*/+ 55/*头部*/ + imageHeight + 40 /*按钮*/;
   height+= (feed.feed.content.length>0?ELEMENT_GAP_HEIGHT:0);//文字空隙
   height+= (feed.feed.content.length>0?(contentSize.height+ELEMENT_GAP_HEIGHT):0);//文字高度
@@ -225,9 +226,9 @@ didLongPressLinkWithURL:(NSURL *)url
   }
 }
 
-- (void)feedImageViewDidNeedReloadCell:(SWFeedItem *)feedItem{
+- (void)feedImageViewDidNeedReloadCell:(NSNumber *)imageHeight{
   if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidNeedReload:row:)]) {
-    [self.delegate homeFeedCellDidNeedReload:feedItem row:self.row];
+    [self.delegate homeFeedCellDidNeedReload:imageHeight row:self.row];
   }
 }
 @end

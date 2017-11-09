@@ -58,9 +58,9 @@
                                            }else{
                                              wSelf.tagView.frame = wSelf.bounds;
                                            }
-//                                           if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(feedImageViewDidNeedReloadCell:)]) {
-//                                             [wSelf.delegate feedImageViewDidNeedReloadCell:feedItem];
-//                                           }
+                                           if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(feedImageViewDidNeedReloadCell:)]) {
+                                             [wSelf.delegate feedImageViewDidNeedReloadCell:@(wSelf.tagView.height)];
+                                           }
                                            [wSelf.tagView reloadData];
                                          }
    ];

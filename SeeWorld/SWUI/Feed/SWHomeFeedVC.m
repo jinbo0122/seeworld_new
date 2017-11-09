@@ -159,7 +159,6 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   }
   [cell refreshHomeFeed:[self.model.feeds safeObjectAtIndex:indexPath.row] row:indexPath.row];
   cell.delegate = self;
-  [cell layoutIfNeeded];
   return cell;
 }
 
@@ -263,13 +262,18 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)homeFeedCellDidNeedReload:(SWFeedItem *)feedItem row:(NSInteger)row{
+- (void)homeFeedCellDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row{
   SWFeedItem *feed = [_model.feeds safeObjectAtIndex:row];
-  if ([feedItem.feed.imageHeight isEqualToNumber:feed.feed.imageHeight]) {
+  if ([imageHeight isEqualToNumber:feed.feed.imageHeight]) {
     return;
   }
-  [_model.feeds replaceObjectAtIndex:row withObject:feedItem];
-  [self.tbVC.tableView reloadData];
+  feed.feed.imageHeight = imageHeight;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [self.tbVC.tableView beginUpdates];
+    [self.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
+                               withRowAnimation:UITableViewRowAnimationNone];
+    [self.tbVC.tableView endUpdates];
+  });
 }
 
 - (void)homeFeedCellDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row{
