@@ -27,7 +27,7 @@
  *
  *  @param controller 图片编辑裁切旋转控制器
  *  @param result 处理结果
- *  @return 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKPFEditCuter:(TuSDKPFEditCuterController *)controller result:(TuSDKResult *)result;
 @end
@@ -50,7 +50,7 @@
 /**
  *  图片编辑裁切旋转控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFEditCuterControllerDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFEditCuterControllerDelegate> delegate;
 
 /**
  *  视图类 (默认:TuSDKPFEditCuterView, 需要继承 TuSDKPFEditCuterView)

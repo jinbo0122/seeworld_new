@@ -33,10 +33,16 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
      * 正在拍摄
      */
     lsqCameraStateCapturing = 3,
+    
+    /**
+     * 录制暂停
+     */
+    lsqCameraStatePaused = 4,
+    
     /**
      * 拍摄完成
      */
-    lsqCameraStateCaptured = 4
+    lsqCameraStateCaptured = 5
 };
 
 #pragma mark - TuSDKVideoCameraDelegate
@@ -47,6 +53,7 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  */
 @protocol TuSDKVideoCameraDelegate <NSObject>
 
+@optional
 /**
  *  相机状态改变 (如需操作UI线程， 请检查当前线程是否为主线程)
  *
@@ -55,7 +62,6 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  */
 - (void)onVideoCamera:(id<TuSDKVideoCameraInterface>)camera stateChanged:(lsqCameraState)state;
 
-@optional
 /**
  *  相机滤镜改变 (如需操作UI线程， 请检查当前线程是否为主线程)
  *
@@ -63,6 +69,15 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *  @param newFilter 新的滤镜对象
  */
 - (void)onVideoCamera:(id<TuSDKVideoCameraInterface>)camera filterChanged:(TuSDKFilterWrap *)newFilter;
+
+/**
+ *  获取拍摄图片 (如需操作UI线程， 请检查当前线程是否为主线程)
+ *
+ *  @param camera 相机对象
+ *  @param result 获取的结果
+ *  @param error  错误信息
+ */
+- (void)onVideoCamera:(id<TuSDKVideoCameraInterface>)camera takedResult:(TuSDKResult *)result error:(NSError *)error;
 
 /**
  *  原始帧采样缓冲数据
@@ -83,8 +98,20 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *
  *  @param sampleBuffer 帧采样缓冲
  *  @param rotation     原始图像方向
+ *  @param previewSize  预览尺寸
+ *  @param angle        设备角度
  */
-- (void)onProcessVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer rotation:(UIImageOrientation)rotation angle:(float)angle;
+- (void)onProcessVideoSampleBuffer:(CMSampleBufferRef)sampleBuffer rotation:(UIImageOrientation)rotation previewSize:(CGSize)previewSize angle:(float)angle;
+
+@optional
+/**
+ *  原始帧采样缓冲数据
+ *
+ *  @param pixelBuffer  帧采样缓冲
+ *  @param rotation     原始图像方向
+ *  @param angle        设备角度
+ */
+- (void)onProcessVideoPixelBuffer:(CVPixelBufferRef)pixelBuffer rotation:(UIImageOrientation)rotation angle:(float)angle;
 @end
 
 @protocol TuSDKVideoCameraExtendViewInterface;
@@ -196,9 +223,24 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
 @property (nonatomic) BOOL enableFaceDetection;
 
 /**
+ *  是否开启焦距调节 (默认关闭)
+ */
+@property (nonatomic, assign) BOOL enableFocalDistance;
+
+/**
+ *  相机显示焦距 (默认为 1，最大不可超过硬件最大值，当小于 1 时，取 1)
+ */
+@property (nonatomic, assign) CGFloat focalDistanceScale;
+
+/**
+ *  相机支持的最大值 (只读属性)
+ */
+@property (nonatomic, readonly, assign) CGFloat supportMaxFocalDistanceScale;
+
+/**
  *  视频相机前置或后置
  *
- *  @return 视频相机前置或后置
+ *  @return cameraPosition 视频相机前置或后置
  */
 - (AVCaptureDevicePosition)cameraPosition;
 
@@ -207,7 +249,7 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *
  *  @param focusMode 对焦模式
  *
- *  @return 是否支持对焦
+ *  @return BOOL 是否支持对焦
  */
 - (BOOL)isSupportFocusWithMode:(AVCaptureFocusMode)focusMode;
 
@@ -216,7 +258,7 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *
  *  @param focusMode 曝光模式
  *
- *  @return 是否支持曝光模式
+ *  @return BOOL 是否支持曝光模式
  */
 - (BOOL)isSupportExposureWithMode:(AVCaptureExposureMode)exposureMode;
 
@@ -230,7 +272,7 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
 /**
  *  是否存在闪关灯
  *
- *  @return 是否存在闪关灯
+ *  @return BOOL 是否存在闪关灯
  */
 - (BOOL)hasFlash;
 
@@ -241,6 +283,13 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *  @param flashMode 设置闪光灯模式
  */
 - (void)flashWithMode:(AVCaptureFlashMode)flashMode;
+
+/**
+ *  获取闪光灯模式
+ *
+ *  @return AVCaptureFlashMode
+ */
+- (AVCaptureFlashMode) getFlashModel;
 
 /**
  *  改变视频视图显示比例 (使用动画)
@@ -260,6 +309,16 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
 - (void)resumeCameraCapture;
 
 /**
+ *  暂停拍摄
+ */
+- (void)pauseCameraCapture;
+
+/**
+ *  停止拍摄
+ */
+- (void)stopCameraCapture;
+
+/**
  *  开始获取照片
  */
 - (void)captureImage;
@@ -274,7 +333,7 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *
  *  @param code 滤镜代号
  *
- *  @return 是否成功切换滤镜
+ *  @return BOOL 是否成功切换滤镜
  */
 - (BOOL)switchFilterWithCode:(NSString *)code;
 
@@ -305,6 +364,15 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *  @param error  错误信息
  */
 - (void)onStillCamera:(id<TuSDKStillCameraInterface>)camera takedResult:(TuSDKResult *)result error:(NSError *)error;
+
+/**
+ *  切换滤镜完成
+ *
+ *  @param camera 相机对象
+ *  @param newFilter 当前的滤镜对象
+ */
+- (void)onStillCamera:(id<TuSDKStillCameraInterface>)camera filterChanged:(TuSDKFilterWrap *)newFilter;
+
 @end
 #pragma mark - TuSDKStillCameraDelegate
 /**
@@ -314,7 +382,7 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
 /**
  *  相机事件委托
  */
-@property (nonatomic, assign) id<TuSDKStillCameraDelegate> captureDelegate;
+@property (nonatomic, weak) id<TuSDKStillCameraDelegate> captureDelegate;
 @end
 
 #pragma mark - TuSDKVideoCameraExtendViewInterface
@@ -335,6 +403,11 @@ typedef NS_ENUM(NSInteger, lsqCameraState)
  *  禁用持续自动对焦 (默认: NO)
  */
 @property (nonatomic) BOOL disableContinueFoucs;
+
+/**
+ *  是否禁止触摸聚焦 (默认: YES)
+ */
+@property (nonatomic) BOOL disableTapFocus;
 
 /**
  *  自动聚焦延时 (默认: 5秒)

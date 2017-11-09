@@ -261,7 +261,7 @@
 - (void)connectWithToken:(NSString *)token
                  success:(void (^)(NSString *userId))successBlock
                    error:(void (^)(RCConnectErrorCode status))errorBlock
-          tokenIncorrect:(void (^)())tokenIncorrectBlock;
+          tokenIncorrect:(void (^)(void))tokenIncorrectBlock;
 
 ///*!
 // 重新建立与服务器的连接
@@ -626,7 +626,7 @@ __deprecated_msg("已废弃，请勿使用。");
                     progress:(void (^)(int progress))progressBlock
                      success:(void (^)(NSString *mediaPath))successBlock
                        error:(void (^)(RCErrorCode errorCode))errorBlock
-                      cancel:(void (^)())cancelBlock;
+                      cancel:(void (^)(void))cancelBlock;
 
 /*!
  取消下载消息中的媒体信息
@@ -1054,7 +1054,7 @@ FOUNDATION_EXPORT NSString *const RCLibDispatchReadReceiptNotification;
  */
 - (void)deleteMessages:(RCConversationType)conversationType
               targetId:(NSString *)targetId
-               success:(void (^)())successBlock
+               success:(void (^)(void))successBlock
                  error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1297,7 +1297,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)setNotificationQuietHours:(NSString *)startTime
                          spanMins:(int)spanMins
-                          success:(void (^)())successBlock
+                          success:(void (^)(void))successBlock
                             error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1306,7 +1306,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  @param successBlock    删除屏蔽成功的回调
  @param errorBlock      删除屏蔽失败的回调 [status:失败的错误码]
  */
-- (void)removeNotificationQuietHours:(void (^)())successBlock
+- (void)removeNotificationQuietHours:(void (^)(void))successBlock
                                error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1336,7 +1336,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)setConversationNotificationQuietHours:(NSString *)startTime
                                      spanMins:(int)spanMins
-                                      success:(void (^)())successBlock
+                                      success:(void (^)(void))successBlock
                                         error:(void (^)(RCErrorCode status))
                                                   errorBlock
     __deprecated_msg("已废弃，请勿使用。");
@@ -1350,7 +1350,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  @warning **已废弃，请勿使用。**
  升级说明：如果您之前使用了此接口，可以直接替换为removeNotificationQuietHours:error:接口，行为和实现完全一致。
  */
-- (void)removeConversationNotificationQuietHours:(void (^)())successBlock
+- (void)removeConversationNotificationQuietHours:(void (^)(void))successBlock
                                            error:(void (^)(RCErrorCode status))
                                                      errorBlock
     __deprecated_msg("已废弃，请勿使用。");
@@ -1393,7 +1393,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  @param errorBlock      加入黑名单失败的回调 [status:失败的错误码]
  */
 - (void)addToBlacklist:(NSString *)userId
-               success:(void (^)())successBlock
+               success:(void (^)(void))successBlock
                  error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1404,7 +1404,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  @param errorBlock      移出黑名单失败的回调[status:失败的错误码]
  */
 - (void)removeFromBlacklist:(NSString *)userId
-                    success:(void (^)())successBlock
+                    success:(void (^)(void))successBlock
                       error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1517,7 +1517,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)setDiscussionName:(NSString *)discussionId
                      name:(NSString *)discussionName
-                  success:(void (^)())successBlock
+                  success:(void (^)(void))successBlock
                     error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1533,7 +1533,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)setDiscussionInviteStatus:(NSString *)discussionId
                            isOpen:(BOOL)isOpen
-                          success:(void (^)())successBlock
+                          success:(void (^)(void))successBlock
                             error:(void (^)(RCErrorCode status))errorBlock;
 
 #pragma mark - 群组操作（已废弃，请勿使用）
@@ -1551,7 +1551,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  @warning **已废弃，请勿使用。**
  */
 - (void)syncGroups:(NSArray *)groupList
-           success:(void (^)())successBlock
+           success:(void (^)(void))successBlock
              error:(void (^)(RCErrorCode status))errorBlock
     __deprecated_msg("已废弃，请勿使用。");
 
@@ -1570,7 +1570,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)joinGroup:(NSString *)groupId
         groupName:(NSString *)groupName
-          success:(void (^)())successBlock
+          success:(void (^)(void))successBlock
             error:(void (^)(RCErrorCode status))errorBlock
     __deprecated_msg("已废弃，请勿使用。");
 
@@ -1587,7 +1587,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  @warning **已废弃，请勿使用。**
  */
 - (void)quitGroup:(NSString *)groupId
-          success:(void (^)())successBlock
+          success:(void (^)(void))successBlock
             error:(void (^)(RCErrorCode status))errorBlock
     __deprecated_msg("已废弃，请勿使用。");
 
@@ -1608,7 +1608,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)joinChatRoom:(NSString *)targetId
         messageCount:(int)messageCount
-             success:(void (^)())successBlock
+             success:(void (^)(void))successBlock
                error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1632,7 +1632,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)joinExistChatRoom:(NSString *)targetId
              messageCount:(int)messageCount
-                  success:(void (^)())successBlock
+                  success:(void (^)(void))successBlock
                     error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1644,7 +1644,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  [status:退出聊天室失败的错误码]
  */
 - (void)quitChatRoom:(NSString *)targetId
-             success:(void (^)())successBlock
+             success:(void (^)(void))successBlock
                error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1706,7 +1706,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)subscribePublicService:(RCPublicServiceType)publicServiceType
                publicServiceId:(NSString *)publicServiceId
-                       success:(void (^)())successBlock
+                       success:(void (^)(void))successBlock
                          error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1719,7 +1719,7 @@ getConversationNotificationStatus:(RCConversationType)conversationType
  */
 - (void)unsubscribePublicService:(RCPublicServiceType)publicServiceType
                  publicServiceId:(NSString *)publicServiceId
-                         success:(void (^)())successBlock
+                         success:(void (^)(void))successBlock
                            error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1975,7 +1975,7 @@ startCustomerService:(NSString *)kefuId
  *  @return
  */
 - (void)sendReadReceiptRequest:(RCMessage *)message
-                              success:(void (^)())successBlock
+                              success:(void (^)(void))successBlock
                                 error:(void (^)(RCErrorCode nErrorCode))errorBlock;
 
 /**
@@ -1992,7 +1992,7 @@ startCustomerService:(NSString *)kefuId
 - (void)sendReadReceiptResponse:(RCConversationType)conversationType
                               targetId:(NSString *)targetId
                            messageList:(NSArray<RCMessage *> *)messageList
-                               success:(void (^)())successBlock
+                               success:(void (^)(void))successBlock
                                  error:(void (^)(RCErrorCode nErrorCode))errorBlock;
 
 
@@ -2007,7 +2007,7 @@ startCustomerService:(NSString *)kefuId
 - (void)syncConversationReadStatus:(RCConversationType)conversationType
                      targetId:(NSString *)targetId
                          time:(long long)timestamp
-                      success:(void (^)())successBlock
+                      success:(void (^)(void))successBlock
                         error:(void (^)(RCErrorCode nErrorCode))errorBlock;
 
 

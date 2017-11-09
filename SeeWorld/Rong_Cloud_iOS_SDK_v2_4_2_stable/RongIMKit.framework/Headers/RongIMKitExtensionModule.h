@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RongIMKit/RongIMKit.h>
 
-typedef void (^RCConversationPluginItemTapBlock)();
+typedef void (^RCConversationPluginItemTapBlock)(void);
 
 /*!
  MessageCell信息

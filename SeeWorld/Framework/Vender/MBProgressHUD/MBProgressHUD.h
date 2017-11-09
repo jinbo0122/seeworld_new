@@ -94,7 +94,7 @@ sizeWithFont:font constrainedToSize:maxSize lineBreakMode:mode] : CGSizeZero;
 #endif
 
 #if NS_BLOCKS_AVAILABLE
-typedef void (^MBProgressHUDCompletionBlock)();
+typedef void (^MBProgressHUDCompletionBlock)(void);
 #endif
 
 

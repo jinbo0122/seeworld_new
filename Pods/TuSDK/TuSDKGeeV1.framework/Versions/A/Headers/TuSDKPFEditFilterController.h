@@ -27,7 +27,7 @@
  *
  *  @param controller 图片编辑滤镜控制器
  *  @param result 处理结果
- *  @return 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKPFEditFilter:(TuSDKPFEditFilterController *)controller result:(TuSDKResult *)result;
 @end
@@ -49,7 +49,7 @@
 /**
  *  图片编辑滤镜控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFEditFilterControllerDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFEditFilterControllerDelegate> delegate;
 
 /**
  *  视图类 (默认:TuSDKPFEditFilterView, 需要继承 TuSDKPFEditFilterView)

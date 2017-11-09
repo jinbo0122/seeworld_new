@@ -158,6 +158,25 @@
  *  @return 按屏幕DPI进行缩放后的图片
  */
 - (UIImage *)lsqScaledImageForKey:(NSString *)key;
+
+/**
+ Get adaptive histogram equalization
+ 
+ @param iClipXNum 水平切片数目
+ @param iClipYNum 垂直切片数目
+ @param fLimit 调节系数
+ @return
+ */
+- (uint8_t *)lsqGetBitmapClipHistListWithClipX:(NSUInteger)iClipXNum
+                                         ClipY:(NSUInteger)iClipYNum
+                                        fLimit:(CGFloat)fLimit;
+
+/**
+ Get histogram range
+ 
+ @return
+ */
+- (NSDictionary *)lsqGetBitmapHistRange;
 @end
 
 #pragma mark - ResizeAndRotate
@@ -296,6 +315,15 @@
  *  @return 图片的方向
  */
 + (UIImageOrientation)lsqOrientationWithExif:(NSUInteger)exifOrientation;
+
+/**
+ 根据传入的弧度值，旋转图片(绕图片中心旋转)
+ 
+ @param rotate 需要旋转的弧度值
+ @return 返回旋转后的UIImage对象
+ */
+- (UIImage *)lsqTransformRotateWithRotateRadian:(CGFloat)rotate;
+
 @end
 
 #pragma mark - ImageCorp
@@ -429,8 +457,21 @@
                               rectSize:(CGSize)rectSize;
 @end
 
-#pragma mark - PlanarPixelBufferRefExtends
-@interface UIImage(PlanarPixelBufferRefExtends)
+#pragma mark - PixelBufferRefExtends
+@interface UIImage(lsqPixelBufferRefExtends)
+
+/**
+ *  从PixelBuffer获取图片
+ *
+ *  @param pixelBuffer CVPixelBufferRef
+ *  @param rotation    旋转方向
+ *  @param rectSize    区域长宽 (输出的图片不允许超过区域)
+ *
+ *  @return 从PixelBuffer获取图片
+ */
++ (UIImage *)lsqImageFromPixelBuffer:(CVPixelBufferRef)pixelBuffer
+                            rotation:(UIImageOrientation)rotation
+                            rectSize:(CGSize)rectSize;
 
 /**
  *  从 PlanarPixelBuffer 获取图片 (420f)

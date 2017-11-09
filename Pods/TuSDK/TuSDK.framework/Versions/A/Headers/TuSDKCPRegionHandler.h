@@ -23,6 +23,11 @@
 @property (nonatomic) CGSize wrapSize;
 
 /**
+ *  顶部偏移百分比 0~1 默认 -1  即居中显示
+ */
+@property (nonatomic) CGFloat offsetPercentTop;
+
+/**
  *  选区范围百分比
  */
 @property (nonatomic, readonly) CGRect rectPercent;
@@ -33,7 +38,7 @@
  *  @param ratio   比例
  *  @param changer 切换动作
  *
- *  @return 确定的选区范围百分比
+ *  @return rectPercent 确定的选区范围百分比
  */
 - (CGRect)changeWithRatio:(CGFloat)ratio changer:(void (^)(CGRect rectPercent))changer;
 @end

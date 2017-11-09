@@ -38,7 +38,7 @@
 /**
  *  滤镜组选择栏委托
  */
-@property (nonatomic, assign) id<TuSDKCPGroupFilterBarDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKCPGroupFilterBarDelegate> delegate;
 /**
  *  滤镜分组元素类型
  */
@@ -53,6 +53,11 @@
  *  行视图宽度
  */
 @property (nonatomic)CGFloat cellWidth;
+
+/**
+ *  折叠区视图宽度
+ */
+@property (nonatomic)CGFloat stackViewWidth;
 
 /**
  *  滤镜分组列表行视图类 (默认:TuSDKCPGroupFilterGroupCellBase, 需要继承 TuSDKCPGroupFilterGroupCellBase)
@@ -163,7 +168,7 @@
 /**
  *  滤镜组选择栏委托
  */
-@property (nonatomic, assign) id<TuSDKCPGroupFilterBarDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKCPGroupFilterBarDelegate> delegate;
 
 /**
  *  滤镜分组元素类型

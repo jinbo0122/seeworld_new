@@ -78,9 +78,15 @@
 @property (nonatomic, assign) NSUInteger maxUndoCount;
 
 /**
+ *  该图所在的imageView的 size，用来计算对应到图片上的相对位置
+ */
+@property (nonatomic, assign) CGSize  originIVSize;
+
+
+/**
  *  设置绘制底图
  *
- *  @return
+ *  @return scaledImage
  */
 -(void)setImage: (UIImage *)scaledImage;
 
@@ -91,14 +97,14 @@
 
 /**
  *  重做上一条操作，并返回预览图像
- *  @return 重做操作后的画布图像
+ *  @return image 重做操作后的画布图像
  */
 - (UIImage *)getRedoData;
 
 /**
  *  撤销上一步操作，并返回预览图像
  *
- *  @return 撤销操作后的画布图像
+ *  @return image 撤销操作后的画布图像
  */
 - (UIImage *)getUndoData;
 
@@ -133,7 +139,7 @@
  *  @param currentTouchPoint  当前触点
  *  @param previousTouchPoint 上一个触点
  *
- *  @return 预览图
+ *  @return image 预览图
  */
 - (UIImage *)drawAtCurrentPoint: (CGPoint)currentTouchPoint
                            from: (CGPoint)previousTouchPoint;
@@ -149,7 +155,7 @@
  *
  *  @param includeSmudge 是否包含涂抹效果
  *
- *  @return 图片
+ *  @return image 图片
  */
 - (UIImage *)getPreviewImage:(BOOL)includeSmudge;
 
@@ -157,5 +163,8 @@
  *  销毁数据
  */
 - (void)destroy;
-
+/**
+ *  销毁历史记录
+ */
+- (void)destroyHistory;
 @end

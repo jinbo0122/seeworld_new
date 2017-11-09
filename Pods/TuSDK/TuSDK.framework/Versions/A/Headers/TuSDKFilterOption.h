@@ -10,6 +10,17 @@
 #import <GPUImage/GPUImage.h>
 #import "TuSDKDataJson.h"
 
+#pragma mark - RuntimeTextureDelegate
+
+@protocol RuntimeTextureDelegate<NSObject>
+
+/**
+ 运行时材质委托
+ */
+-(NSArray<GPUImagePicture *> *)getRunTimeTextures;
+
+@end
+
 /**
  *  滤镜配置选项
  */
@@ -116,16 +127,21 @@
 @property (nonatomic, retain) NSArray *internalTextures;
 
 /**
+ 运行时材质委托
+ */
+@property (nonatomic, weak) id<RuntimeTextureDelegate> runtimeTextureDelegate;
+
+/**
  * 复制滤镜配置选项
  *
- * @return
+ * @return copy
  */
 - (TuSDKFilterOption *)copy;
 
 /**
  * 获取滤镜实例
  *
- * @return
+ * @return getFilter
  */
 - (GPUImageOutput <GPUImageInput> *)getFilter;
 
@@ -134,12 +150,23 @@
  *
  *  @return 获取语言资源名称
  */
-- (NSString *)nameKey;
+- (NSString *)getFilterName;
 
 /**
  *  获取预览图名称
  *
- *  @return 获取预览图名称
+ *  
  */
 - (NSString *)thumbKey;
+@end
+
+
+
+#pragma mark - TuSDKSkinFilterOption
+
+/**
+ *  美颜滤镜选项
+ */
+@interface TuSDKSkinFilterOption : TuSDKFilterOption
+
 @end

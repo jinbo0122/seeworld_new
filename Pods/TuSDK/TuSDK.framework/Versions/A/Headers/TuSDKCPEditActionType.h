@@ -29,6 +29,12 @@ typedef NS_ENUM(NSInteger, lsqTuSDKCPEditActionType)
      * 贴纸动作
      */
     lsqTuSDKCPEditActionSticker,
+    
+    /**
+     * 文字动作
+     */
+    lsqTuSDKCPEditActionText,
+
     /**
      * 美颜动作
      */
@@ -61,6 +67,18 @@ typedef NS_ENUM(NSInteger, lsqTuSDKCPEditActionType)
      * 圣光动作
      */
     lsqTuSDKCPEditActionHolyLight,
+    /**
+     * HDR 动作
+     */
+    lsqTuSDKCPEditActionHDR,
+    /**
+     * 编辑动作
+     */
+    lsqTuSDKCPEditActionMultipleEdit,
+    /**
+     * 旋转和镜像动作
+     */
+    lsqTuSDKCPEditActionTurnAndMirror,
 };
 
 /**
@@ -70,14 +88,14 @@ typedef NS_ENUM(NSInteger, lsqTuSDKCPEditActionType)
 /**
  *  高级编辑功能模块列表
  *
- *  @return 高级编辑功能模块列表
+ *  @return entryActionTypes 高级编辑功能模块列表
  */
 + (NSArray *)entryActionTypes;
 
 /**
  *  多功能编辑功能模块列表
  *
- *  @return 多功能编辑功能模块列表
+ *  @return multipleActionTypes 多功能编辑功能模块列表
  */
 + (NSArray *)multipleActionTypes;
 @end

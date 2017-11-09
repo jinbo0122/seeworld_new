@@ -20,7 +20,7 @@
  *  @param view 图片编辑滤镜控制器滤镜栏视图
  *  @param item 滤镜分组元素
  *
- *  @return 是否允许继续执行
+ *  @return BOOL 是否允许继续执行
  */
 - (BOOL)onTuSDKPFEditFilterGroup:(TuSDKPFEditFilterGroupView *)view
                     selectedItem:(TuSDKCPGroupFilterItem *)item;
@@ -55,7 +55,7 @@
 /**
  *  图片编辑滤镜控制器滤镜栏视图委托
  */
-@property (nonatomic, assign) id<TuSDKPFEditFilterGroupDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFEditFilterGroupDelegate> delegate;
 
 /**
  *  参数配置视图

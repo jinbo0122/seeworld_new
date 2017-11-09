@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TuSDKTKStatistics.h"
 
 #pragma mark - NSObjectExceptionExtend
 /**
@@ -26,7 +25,7 @@
 /**
  *  抛出异常
  *
- *  @param msg 异常信息
+ *  @param reason 异常信息
  */
 - (void)lsqThrowWithReason:(NSString *)reason;
 

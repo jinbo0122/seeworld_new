@@ -8,8 +8,13 @@
 
 #import "TuSDKGeeV1Import.h"
 #import "TuSDKPFCameraView.h"
+#import "TuSDKCPFocusTouchView.h"
+#import "TuSDKPFCameraPreviewView.h"
+
 
 @class TuSDKPFCameraViewController;
+
+#pragma mark - TuSDKPFCameraDelegate
 
 /**
  *  默认相机视图控制器委托
@@ -22,13 +27,14 @@
  *  @param result     拍摄结果
  */
 - (void)onTuSDKPFCamera:(TuSDKPFCameraViewController *)controller captureResult:(TuSDKResult *)result;
+
 @optional
 /**
  *  获取一个拍摄结果 (异步方法)
  *
  *  @param controller 默认相机视图控制器
  *  @param result     拍摄结果
- *  @return 是否截断默认处理逻辑 (默认: false, 设置为True时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: false, 设置为True时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKPFCamera:(TuSDKPFCameraViewController *)controller captureResult:(TuSDKResult *)result;
 
@@ -41,10 +47,12 @@
 
 @end
 
+#pragma mark - TuSDKPFCameraViewController
+
 /**
  *  默认相机视图控制器
  */
-@interface TuSDKPFCameraViewController : TuSDKPFCameraViewControllerBase<TuSDKPFCameraViewDelegate, TuSDKPFCameraFilterGroupViewDelegate>{
+@interface TuSDKPFCameraViewController : TuSDKPFCameraViewControllerBase<TuSDKPFCameraViewDelegate, TuSDKPFCameraFilterGroupViewDelegate, TuSDKPFCameraPreviewViewDelegate>{
 @protected
     // 默认样式视图
     TuSDKPFCameraView *_defaultStyleView;
@@ -57,7 +65,7 @@
 /**
  *  默认相机视图控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFCameraDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFCameraDelegate> delegate;
 
 /**
  *  视图类 (默认:TuSDKPFCameraView, 需要继承 TuSDKPFCameraView)
@@ -75,9 +83,14 @@
 @property (nonatomic, strong) Class bottomBarViewClazz;
 
 /**
- *  闪光灯视图类 (默认:TuSDKPFCameraFlashView, 需要继承 TuSDKPFCameraFlashView)
+ *  设置视图类 (默认:TuSDKPFCameraSettingView, 需要继承 TuSDKPFCameraSettingView)
  */
-@property (nonatomic, strong) Class flashViewClazz;
+@property (nonatomic, strong) Class settingViewClazz;
+
+/**
+ *  结果预览视图类 (默认:TuSDKPFCameraPreviewView, 需要继承 TuSDKPFCameraPreviewView)
+ */
+@property (nonatomic, strong) Class previewViewClazz;
 
 /**
  *  滤镜视图类 (默认:TuSDKPFCameraFilterGroupView, 需要继承 TuSDKPFCameraFilterGroupView)
@@ -118,6 +131,11 @@
  *  开启在线滤镜
  */
 @property (nonatomic) BOOL enableOnlineFilter;
+
+/**
+ *  是否预览拍照结果 (默认: NO 不预览)
+ */
+@property (nonatomic) BOOL enablePreview;
 
 /**
  *  在线滤镜控制器类型 (需要继承 UIViewController,以及实现TuSDKCPFilterOnlineControllerInterface接口)
@@ -235,6 +253,18 @@
 @property (nonatomic) BOOL enableCaptureWithVolumeKeys;
 
 /**
+ *  是否开启焦距调节 (默认关闭)
+ */
+@property (nonatomic, assign) BOOL enableFocalDistance;
+
+/**
+ *  相机显示焦距 (默认为 1，最大不可超过硬件最大值，当小于 1 时，取 1)
+ */
+@property (nonatomic, assign) CGFloat focalDistanceScale;
+
+
+
+/**
  *  创建滤镜栏视图
  *
  *  @param view 默认样式视图 (如需创建自定义视图，请覆盖该方法，并配置自己的视图类)
@@ -252,7 +282,7 @@
  *  选中一个滤镜
  *
  *  @param filterName 滤镜名称
- *  @return 是否成功切换滤镜
+ *  @return BOOL 是否成功切换滤镜
  */
 - (BOOL)onSelectedFilterCode:(NSString *)code;
 

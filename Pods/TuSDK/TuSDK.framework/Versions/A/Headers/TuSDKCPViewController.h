@@ -32,7 +32,7 @@
 /**
  *  组件控制器错误信息委托
  */
-@property (nonatomic, assign) id<TuSDKCPComponentErrorDelegate> errorDelegate;
+@property (nonatomic, weak) id<TuSDKCPComponentErrorDelegate> errorDelegate;
 
 /**
  *  通知错误信息
@@ -45,7 +45,7 @@
 /**
  *  通知错误信息
  *
- *  @param error  错误信息
+ *  @param errorType  错误信息
  *  @param result 处理结果
  */
 - (void)notifyErrorType:(lsqCPErrorType)errorType result:(TuSDKResult *)result;

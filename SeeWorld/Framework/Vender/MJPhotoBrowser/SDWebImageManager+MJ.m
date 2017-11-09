@@ -15,10 +15,9 @@
     [[self sharedManager]downloadImageWithURL:url
                                       options:SDWebImageLowPriority|SDWebImageRetryFailed
                                      progress:nil
-                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL)
-    {
-        
-    }];
+                                    completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+                                      
+                                    }];
 
 }
 @end

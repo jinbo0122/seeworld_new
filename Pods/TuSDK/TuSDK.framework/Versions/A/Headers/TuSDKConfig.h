@@ -65,6 +65,11 @@
 @property (nonatomic) BOOL wipeFilterEnabled;
 
 /**
+ *  hdr
+ */
+@property (nonatomic) BOOL hdrFilterEnabled;
+
+/**
  *  beauty Level
  */
 @property (nonatomic) NSInteger beautyLevel;
@@ -118,6 +123,52 @@
  *  Filter API
  */
 @property (nonatomic) BOOL filterAPIEnabled;
+
+/**
+ video record continuous support
+ */
+@property (nonatomic) BOOL videoRecordContinuousSupport;
+
+/**
+ video camera shot support
+ */
+@property (nonatomic) BOOL videoCameraShotSupport;
+
+/**
+ video camera sticker support
+ */
+@property (nonatomic) BOOL videoCameraStickerSupport;
+
+/**
+ video camera bitrate support
+ */
+@property (nonatomic) BOOL videoCameraBitrateSupport;
+
+/**
+ video editor music support
+ */
+@property (nonatomic) BOOL videoEditorMusicSupport;
+
+/**
+ video editor sticker support
+ */
+@property (nonatomic) BOOL videoEditorStickerSupport;
+
+/**
+ video editor filter support
+ */
+@property (nonatomic) BOOL videoEditorFilterSupport;
+
+/**
+ video editor bitrate support
+ */
+@property (nonatomic) BOOL videoEditorBitrateSupport;
+
+/**
+ video editor resolution support
+ */
+@property (nonatomic) BOOL videoEditorResolutionSupport;
+
 
 /**
  *  Filter list which could be used by FilterAPI

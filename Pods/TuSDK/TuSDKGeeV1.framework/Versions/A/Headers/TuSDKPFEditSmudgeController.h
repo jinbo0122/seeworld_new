@@ -28,7 +28,7 @@
  *
  *  @param controller 笔刷编辑控制器
  *  @param result 处理结果
- *  @return 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKPFEditSmudge:(TuSDKPFEditSmudgeController *)controller result:(TuSDKResult *)result;
 @end
@@ -52,7 +52,7 @@
 /**
  *  涂抹编辑控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFEditSmudgeControllerDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFEditSmudgeControllerDelegate> delegate;
 
 /**
  *  视图类 (默认:TuSDKPFEditSmudgeView, 需要继承 TuSDKPFEditSmudgeView)

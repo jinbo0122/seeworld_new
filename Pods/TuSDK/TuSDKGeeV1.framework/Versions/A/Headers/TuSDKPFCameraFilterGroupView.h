@@ -48,14 +48,12 @@
     UIView<TuSDKCPSubtitlesViewInterface> *_titleView;
     // 底部栏目
     UIView *_bottomView;
-    // 关闭按钮
-    UIButton *_closeButton;
 }
 
 /**
  *  相机滤镜视图委托
  */
-@property (nonatomic, assign) id<TuSDKPFCameraFilterGroupViewDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFCameraFilterGroupViewDelegate> delegate;
 
 /**
  *  底部栏目
@@ -77,4 +75,10 @@
  *  @param option 默认显示的滤镜配置选项
  */
 - (void)loadFilters:(TuSDKFilterOption *)option;
+
+/**
+ *  滤镜包装对象
+ */
+@property (nonatomic, retain) TuSDKFilterWrap *filterWrap;
+
 @end

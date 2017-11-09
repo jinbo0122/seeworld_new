@@ -329,7 +329,7 @@ FOUNDATION_EXPORT NSString *const RCKitDispatchMessageReceiptRequestNotification
 - (void)connectWithToken:(NSString *)token
                  success:(void (^)(NSString *userId))successBlock
                    error:(void (^)(RCConnectErrorCode status))errorBlock
-          tokenIncorrect:(void (^)())tokenIncorrectBlock;
+          tokenIncorrect:(void (^)(void))tokenIncorrectBlock;
 
 /*!
  断开与融云服务器的连接
@@ -485,7 +485,7 @@ FOUNDATION_EXPORT NSString *const RCKitDispatchMessageReceiptRequestNotification
                     progress:(void (^)(int progress))progressBlock
                      success:(void (^)(NSString *mediaPath))successBlock
                        error:(void (^)(RCErrorCode errorCode))errorBlock
-                      cancel:(void (^)())cancelBlock;
+                      cancel:(void (^)(void))cancelBlock;
 
 /*!
  取消下载消息中的媒体信息
@@ -728,7 +728,7 @@ __deprecated_msg("已废弃，请使用sendMediaMessage函数。");
  */
 - (void)setDiscussionName:(NSString *)discussionId
                      name:(NSString *)discussionName
-                  success:(void (^)())successBlock
+                  success:(void (^)(void))successBlock
                     error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -744,7 +744,7 @@ __deprecated_msg("已废弃，请使用sendMediaMessage函数。");
  */
 - (void)setDiscussionInviteStatus:(NSString *)discussionId
                            isOpen:(BOOL)isOpen
-                          success:(void (^)())successBlock
+                          success:(void (^)(void))successBlock
                             error:(void (^)(RCErrorCode status))errorBlock;
 
 #pragma mark - 用户信息、群组信息相关

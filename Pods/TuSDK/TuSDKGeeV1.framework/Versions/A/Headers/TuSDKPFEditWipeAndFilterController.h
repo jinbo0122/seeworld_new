@@ -28,7 +28,7 @@
  *
  *  @param controller 滤镜涂抹控制器
  *  @param result 处理结果
- *  @return 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKPFEditWipeAndFilter:(TuSDKPFEditWipeAndFilterController *)controller result:(TuSDKResult *)result;
 @end
@@ -52,7 +52,7 @@
 /**
  *  滤镜涂抹控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFEditWipeAndFilterControllerDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFEditWipeAndFilterControllerDelegate> delegate;
 
 /**
  *  视图类 (默认:TuSDKPFEditWipeAndFilterView, 需要继承 TuSDKPFEditWipeAndFilterView)

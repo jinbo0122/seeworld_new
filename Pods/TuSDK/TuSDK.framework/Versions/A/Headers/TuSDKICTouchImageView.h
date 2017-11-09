@@ -59,7 +59,7 @@ typedef NS_ENUM(NSInteger, lsqImageChange)
 /**
  *  图片编辑视图 (旋转，缩放)委托
  */
-@property (nonatomic, assign) id<TuSDKICTouchImageViewDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKICTouchImageViewDelegate> delegate;
 
 /**
  *  图片视图
@@ -115,14 +115,14 @@ typedef NS_ENUM(NSInteger, lsqImageChange)
 /**
  *  计算图片裁剪区域百分比
  *
- *  @return 图片裁剪区域百分比
+ *  @return countImageCutRect 图片裁剪区域百分比
  */
 - (CGRect)countImageCutRect;
 
 /**
  *  是否正在动作
  *
- *  @return 是否正在动作
+ *  @return BOOL 是否正在动作
  */
 - (BOOL)inActioning;
 
@@ -154,7 +154,7 @@ typedef NS_ENUM(NSInteger, lsqImageChange)
 /**
  *  图片编辑视图 (旋转，缩放)委托
  */
-@property (nonatomic, assign) id<TuSDKICTouchImageViewDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKICTouchImageViewDelegate> delegate;
 
 /**
  *  旋转和裁剪 裁剪区域视图

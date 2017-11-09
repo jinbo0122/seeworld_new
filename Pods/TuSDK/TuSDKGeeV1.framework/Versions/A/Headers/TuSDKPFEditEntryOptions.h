@@ -45,12 +45,12 @@
 /**
  *  贴纸视图委托
  */
-@property (nonatomic, assign) id<TuSDKPFStickerViewDelegate> stickerViewDelegate;
+@property (nonatomic, weak) id<TuSDKPFStickerViewDelegate> stickerViewDelegate;
 
 /**
  *  图片编辑入口控制器对象
  *
- *  @return 图片编辑入口控制器对象
+ *  @return controller 图片编辑入口控制器对象
  */
 - (TuSDKPFEditEntryController *)viewController;
 @end

@@ -445,27 +445,6 @@ CGFloat RadiansToDegrees(CGFloat radians) {return radians * 180/M_PI;};
   return image;
 }
 
-+ (UIImage *)imageWithLocalPathOfUrl:(NSString *)imageURL
-{
-  //    NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:imageURL]];
-  //    return [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:key];
-  //    BOOL exists = [_fileManager fileExistsAtPath:[[SDImageCache sharedImageCache] defaultCachePathForKey:key]];
-  BOOL isExit = [[SDWebImageManager sharedManager] diskImageExistsForURL:[NSURL URLWithString:imageURL]];
-  if (isExit)
-  {
-    NSString *cacheImageKey = [[SDWebImageManager sharedManager] cacheKeyForURL:[NSURL URLWithString:imageURL]];
-    if (cacheImageKey.length)
-    {
-      NSString *cacheImagePath = [[SDImageCache sharedImageCache] defaultCachePathForKey:cacheImageKey];
-      if (cacheImagePath.length)
-      {
-        return [UIImage imageWithContentsOfFile:cacheImagePath];
-      }
-    }
-  }
-  return nil;
-}
-
 + (UIImage *)resizableImageWithName:(NSString *)imageName
 {
   UIImage *oldImage = [UIImage imageNamed:imageName];

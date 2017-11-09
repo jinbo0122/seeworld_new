@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^HiddenToast)();
+typedef void (^HiddenToast)(void);
 
 @interface SWHUD :NSObject
 

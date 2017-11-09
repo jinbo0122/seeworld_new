@@ -31,7 +31,7 @@
  *  @param view  参数配置视图
  *  @param index 参数索引
  *
- *  @return 参数值
+ *  @return parameterConfig 参数值
  */
 - (CGFloat)onTuSDKCPParameterConfig:(UIView<TuSDKCPParameterConfigViewInterface> *)view
                      valueWithIndex:(NSUInteger)index;
@@ -53,7 +53,7 @@
 /**
  *  参数配置视图委托
  */
-@property (nonatomic, assign) id<TuSDKCPParameterConfigDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKCPParameterConfigDelegate> delegate;
 /**
  *  跳到指定百分比
  *

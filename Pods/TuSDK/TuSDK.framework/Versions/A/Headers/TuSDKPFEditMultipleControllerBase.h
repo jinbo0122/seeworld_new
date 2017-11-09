@@ -8,13 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "TuSDKCPImageResultController.h"
-#import "TuSdkCPEditActionType.h"
+#import "TuSDKCPEditActionType.h"
 #import "TuSDKWaterMarkOption.h"
 
 /**
  *  多功能图像编辑控制器基础类
  */
 @interface TuSDKPFEditMultipleControllerBase : TuSDKCPImageResultController
+{
+    @protected
+    // 历史记录
+    NSMutableArray *_histories;
+    // 丢弃的记录
+    NSMutableArray *_brushies;
+}
 /**
  *  最大输出图片边长 (默认:0, 不限制图片宽高)
  */

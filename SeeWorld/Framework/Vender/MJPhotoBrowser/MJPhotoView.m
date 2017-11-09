@@ -114,16 +114,16 @@
       _imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfFile:_photo.url.absoluteString]];
       [self photoDidFinishLoadWithImage:_imageView.image];
     }else{
-      [_imageView sd_setImageWithURL:_photo.url placeholderImage:_photo.srcImageView.image options:SDWebImageRetryFailed|SDWebImageLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize)
-       {
-         if (!loading) return;
-         if (receivedSize > kMinProgress) {
-           loading.progress = (float)receivedSize/expectedSize;
-         }
-       } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-         if (!photoView) return;
-         [photoView photoDidFinishLoadWithImage:image];
-       }];
+      [_imageView sd_setImageWithURL:_photo.url placeholderImage:_photo.srcImageView.image options:SDWebImageRetryFailed|SDWebImageLowPriority
+                            progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                              if (!loading) return;
+                              if (receivedSize > kMinProgress) {
+                                loading.progress = (float)receivedSize/expectedSize;
+                              }
+                            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                              if (!photoView) return;
+                              [photoView photoDidFinishLoadWithImage:image];
+                            }];
     }
     
   }

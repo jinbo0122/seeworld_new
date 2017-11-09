@@ -44,7 +44,7 @@
 /**
  *  相册照片列表控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFPhotosDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFPhotosDelegate> delegate;
 
 /**
  *  视图类 (默认:TuSDKPFPhotosView, 需要继承 TuSDKPFPhotosView)
@@ -70,6 +70,11 @@
  *  空数据视图类 (默认:TuSDKICEmptyView, 需要继承 TuSDKICEmptyView)
  */
 @property (nonatomic, strong) Class emptyViewClazz;
+
+/**
+ *  选择图片的尺寸限制 默认：CGSize(8000,8000)
+ */
+@property (nonatomic,assign) CGSize maxSelectionImageSize;
 
 /**
  *  系统相册组

@@ -21,24 +21,30 @@ extern BOOL const lsqTuSDKNKNetworkEngineDebug;
 /**
  *  sdk应用层网络引擎
  *
- *  @return sdk应用层网络引擎
+ *  @return sdk 应用层网络引擎
  */
 + (instancetype) sharedEngine;
 
 /**
  *  sdk业务网络引擎
  *
- *  @return sdk业务网络引擎
+ *  @return sdk 业务网络引擎
  */
 + (instancetype) serviceEngine;
 
+/**
+ *  sdk下载资源业务网络引擎
+ *
+ *  @return sdk 下载资源业务网络引擎
+ */
++ (instancetype) webEngine;
 
 /**
- *  获取服务器地址
+ * 唯一设备ID
  *
- *  @return NSString
+ *  @return 唯一设备ID
  */
-- (NSString *) serviceDomain;
++ (NSString *)uniqueDeviceID;
 
 /**
  *  开发者ID
@@ -51,12 +57,19 @@ extern BOOL const lsqTuSDKNKNetworkEngineDebug;
 @property (nonatomic, copy) NSString *userIdentify;
 
 /**
+ *  获取服务器地址
+ *
+ *  @return NSString
+ */
+- (NSString *) serviceDomain;
+
+/**
  * 获取在线链接
  *
  * @param url
  * @param needAuth
  *            是否需要验证
- * @return
+ * @return url
  */
 - (NSString *)webUrlWithUrl:(NSString *)url needAuth:(BOOL)needAuth;
 #pragma mark - Http

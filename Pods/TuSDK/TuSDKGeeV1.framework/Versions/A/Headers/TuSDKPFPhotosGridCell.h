@@ -34,7 +34,7 @@
 /**
  *  初始化方法
  *
- *  @param dic 字典数据
+ *  @param asset 字典数据
  *
  */
 + (instancetype)dataWithAsset:(id<TuSDKTSAssetInterface>)asset;
@@ -59,6 +59,9 @@ extern NSString * const CAMERA_PLACEHOLDER;
     
     @protected
     UIButton *_selectedView;
+    
+    @protected
+    UIButton *_selectButton;
     
     @protected
     BOOL _cellSelected;
@@ -87,7 +90,7 @@ extern NSString * const CAMERA_PLACEHOLDER;
 /**
  * 相册照片表单元格协议
  */
-@property (nonatomic, assign) id<TuSDKPFPhotosGridCellDelegate> photosGridCellDelegate;
+@property (nonatomic, weak) id<TuSDKPFPhotosGridCellDelegate> photosGridCellDelegate;
 
 /**
  *  初始化视图

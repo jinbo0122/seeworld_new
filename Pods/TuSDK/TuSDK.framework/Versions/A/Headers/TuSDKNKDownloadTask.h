@@ -36,13 +36,13 @@
 /**
  *  下载任务委托
  */
-@property (nonatomic, assign) id<TuSDKNKDownloadTaskDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKNKDownloadTaskDelegate> delegate;
 /**
  *  初始化 下载任务
  *
  *  @param item 下载对象
  *
- *  @return 下载任务
+ *  @return item 下载任务
  */
 + (instancetype)initWithItem:(TuSDKNKDownloadItem *)item;
 
@@ -52,14 +52,14 @@
  *  @param type 下载类型
  *  @param idt  下载资源ID
  *
- *  @return 是否匹配任务
+ *  @return BOOL 是否匹配任务
  */
 - (BOOL)isEqual:(lsqDownloadTaskType)type idt:(uint64_t)idt;
 
 /**
  *  是否允许执行任务
  *
- *  @return 是否允许执行任务
+ *  @return canRunTask 是否允许执行任务
  */
 - (BOOL)canRunTask;
 

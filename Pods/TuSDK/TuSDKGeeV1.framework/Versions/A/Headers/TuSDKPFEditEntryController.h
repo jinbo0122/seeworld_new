@@ -36,7 +36,7 @@
  *
  *  @param controller 图片编辑入口控制器
  *  @param result 图片编辑入口控制器处理结果
- *  @return 是否截断默认处理逻辑 (默认: false, 设置为True时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: false, 设置为True时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKPFEditEntry:(TuSDKPFEditEntryController *)controller result:(TuSDKResult *)result;
 @end
@@ -58,12 +58,12 @@
 /**
  *  图片编辑入口控制器委托
  */
-@property (nonatomic, assign) id<TuSDKPFEditEntryControllerDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKPFEditEntryControllerDelegate> delegate;
 
 /**
  *  贴纸视图委托
  */
-@property (nonatomic, assign) id<TuSDKPFStickerViewDelegate> stickerViewDelegate;
+@property (nonatomic, weak) id<TuSDKPFStickerViewDelegate> stickerViewDelegate;
 
 #pragma mark - config
 /**

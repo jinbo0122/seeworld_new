@@ -44,7 +44,7 @@
  *
  *  @param controller 图片编辑控制器
  *  @param result 处理结果
- *  @return 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
+ *  @return BOOL 是否截断默认处理逻辑 (默认: NO, 设置为YES时使用自定义处理逻辑)
  */
 - (BOOL)onAsyncTuSDKFilterResult:(TuSDKCPFilterResultController *)controller result:(TuSDKResult *)result;
 @end
@@ -68,7 +68,7 @@
 /**
  *  控制器委托
  */
-@property (nonatomic, assign) id<TuSDKCPFilterResultControllerDelegate> delegate;
+@property (nonatomic, weak) id<TuSDKCPFilterResultControllerDelegate> delegate;
 
 /**
  *  视图类 (需要实现 TuSDKCPFilterResultViewInterface 接口)
@@ -100,10 +100,8 @@
 - (void)requestRender;
 
 /**
- *  绑定滤镜配置选项
- *
- *  @param params 配置选项列表
- *  @param index  选中索引
+ 刷新滤镜参数视图
  */
-- (void)bindWithConfigParams:(NSArray *)params selectedIndex:(NSUInteger)index;
+- (void)refreshConfigView;
+
 @end

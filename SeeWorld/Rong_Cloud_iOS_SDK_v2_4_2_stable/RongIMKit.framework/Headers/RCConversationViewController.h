@@ -760,6 +760,6 @@ __deprecated_msg("已废弃，请勿使用。");
  @discussion 开发者如果想更换选人界面，可以重写方法，弹出自定义的选人界面，选人结束之后，调用selectedBlock传入选中的UserInfo即可。
  */
 - (void)showChooseUserViewController:(void (^)(RCUserInfo *selectedUserInfo))selectedBlock
-                              cancel:(void (^)())cancelBlock;
+                              cancel:(void (^)(void))cancelBlock;
 @end
 #endif

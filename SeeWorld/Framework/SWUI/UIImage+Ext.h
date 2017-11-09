@@ -50,7 +50,6 @@ typedef NS_ENUM(NSInteger, ImageMarkPosition) {
 
 + (UIImage*)imageWithColor:(UIColor*)color size:(CGSize)size;
 + (UIImage*)imageWithRandomColorOfSize:(CGSize)size;
-+ (UIImage *)imageWithLocalPathOfUrl:(NSString *)imageURL;
 
 /**
  *  图片拉伸

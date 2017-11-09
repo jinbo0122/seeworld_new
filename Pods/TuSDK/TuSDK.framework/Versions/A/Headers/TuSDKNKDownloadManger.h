@@ -36,7 +36,7 @@
 /**
  *  下载管理器
  *
- *  @return 下载管理器
+ *  @return manager 下载管理器
  */
 + (instancetype)manager;
 
@@ -65,12 +65,22 @@
 - (void)appenTaskWithType:(lsqDownloadTaskType)type idt:(uint64_t)idt key:(NSString *)key fileId:(NSString *)fileId;
 
 /**
+ *  是否正在下载某个资源
+ *
+ *  @param type 下载类型
+ *  @param idt  下载对象ID
+ *
+ *  @return true: 下载中
+ */
+- (BOOL)isDownloadingWithType:(lsqDownloadTaskType)type idt:(uint64_t)idt;
+
+/**
  *  取消任务
  *
  *  @param type 下载类型
  *  @param idt  下载对象ID
  *
- *  @return 是否取消任务
+ *  @return BOOL 是否取消任务
  */
 - (BOOL)cancelTaskWithType:(lsqDownloadTaskType)type idt:(uint64_t)idt;
 

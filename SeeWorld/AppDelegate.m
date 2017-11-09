@@ -101,10 +101,7 @@
       }
     }];
   }
-  [SMSSDK registerApp:@"17e13a6c92280" withSecret:@"1ee42041e0f56c2dafeb335fc64035a7"];
-  [[SDImageCache sharedImageCache] setMaxCacheAge:60*60*24*30];
-  [[SDImageCache sharedImageCache] setMaxCacheSize:1024*1024*1024];
-  
+  [SMSSDK registerApp:@"17e13a6c92280" withSecret:@"1ee42041e0f56c2dafeb335fc64035a7"];  
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                   didFinishLaunchingWithOptions:launchOptions];;
 }

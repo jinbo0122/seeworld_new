@@ -16,7 +16,7 @@
  *
  *  @param X 字号
  *
- *  @return 返回字体对象
+ *  @return font 返回字体对象
  */
 #define lsqFontSize(X)                 [UIFont systemFontOfSize:X]
 
@@ -25,7 +25,7 @@
  *
  *  @param X 字号
  *
- *  @return 返回字体对象
+ *  @return font 返回字体对象
  */
 #define lsqBoldFontSize(X)             [UIFont boldSystemFontOfSize:X]
 
@@ -37,7 +37,7 @@
  *  @param b
  *  @param a
  *
- *  @return 系统颜色
+ *  @return color 系统颜色
  */
 #define lsqRGBA(r, g, b, a)        [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
@@ -48,7 +48,7 @@
  *  @param g
  *  @param b
  *
- *  @return
+ *  @return color
  */
 #define lsqRGB(r, g, b)            lsqRGBA(r, g, b, 1)
 
@@ -58,10 +58,10 @@
  *  @param key     语言键名
  *  @param comment 注释
  *
- *  @return 语言字符串
+ *  @return string 语言字符串
  */
 #define LSQString(key, comment) \
-[[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:@"TuSDK"]
+[[NSBundle mainBundle] localizedStringForKey:(key) value:comment table:@"TuSDK"]
 #endif
 
 #pragma mark - UIViewExtend
@@ -74,7 +74,7 @@
  *
  *  @param frame 坐标长宽
  *
- *  @return 视图
+ *  @return frame 视图
  */
 + (instancetype)initWithFrame:(CGRect)frame;
 
@@ -85,7 +85,7 @@
  *  @param space 底部距离
  *  @param size  视图大小
  *
- *  @return 相对传入视图底部CGRect
+ *  @return frame 相对传入视图底部CGRect
  */
 + (CGRect)lsqGetRectOnBottomWithView:(UIView *)view space:(CGFloat)space size:(CGSize)size;
 
@@ -106,151 +106,151 @@
  *
  *  @param size 长宽
  *
- *  @return 视图对象
+ *  @return size 视图对象
  */
-- (id)setSize:(CGSize)size;
+- (id)lsqSetSize:(CGSize)size;
 
 /**
  *  获取长宽
  *
- *  @return 长宽
+ *  @return lsqGetSize 长宽
  */
-- (CGSize)getSize;
+- (CGSize)lsqGetSize;
 
 /**
  *  获取像素长宽
  *
- *  @return 长宽
+ *  @return lsqGetSize 长宽
  */
-- (CGSize)getPixiesSize;
+- (CGSize)lsqGetPixiesSize;
 
 /**
  *  设置宽度
  *
  *  @param width 宽度
  *
- *  @return 视图对象
+ *  @return width 视图对象
  */
-- (id)setSizeWidth:(CGFloat)width;
+- (id)lsqSetSizeWidth:(CGFloat)width;
 
 /**
  *  获取宽度
  *
- *  @return 宽度
+ *  @return lsqGetSizeWidth 宽度
  */
-- (CGFloat)getSizeWidth;
+- (CGFloat)lsqGetSizeWidth;
 
 /**
  *  设置高度
  *
  *  @param height 高度
  *
- *  @return 视图对象
+ *  @return height 视图对象
  */
-- (id)setSizeHeight:(CGFloat)height;
+- (id)lsqSetSizeHeight:(CGFloat)height;
 
 /**
  *  获取高度
  *
- *  @return 高度
+ *  @return lsqGetSizeHeight 高度
  */
-- (CGFloat)getSizeHeight;
+- (CGFloat)lsqGetSizeHeight;
 
 /**
  *  设置坐标
  *
  *  @param origin 坐标
  *
- *  @return 视图对象
+ *  @return origin 视图对象
  */
-- (id)setOrigin:(CGPoint)origin;
+- (id)lsqSetOrigin:(CGPoint)origin;
 
 /**
  *  获取坐标
  *
- *  @return 坐标
+ *  @return lsqGetOrigin 坐标
  */
-- (CGPoint)getOrigin;
+- (CGPoint)lsqGetOrigin;
 
 /**
  *  设置x坐标
  *
  *  @param originX x坐标
  *
- *  @return 视图对象
+ *  @return originX 视图对象
  */
-- (id)setOriginX:(CGFloat)originX;
+- (id)lsqSetOriginX:(CGFloat)originX;
 
 /**
  *  获取x坐标
  *
- *  @return x坐标
+ *  @return x 坐标
  */
-- (CGFloat)getOriginX;
+- (CGFloat)lsqGetOriginX;
 
 /**
  *  设置y坐标
  *
  *  @param originY y坐标
  *
- *  @return 视图对象
+ *  @return originY 视图对象
  */
-- (id)setOriginY:(CGFloat)originY;
+- (id)lsqSetOriginY:(CGFloat)originY;
 
 /**
  *  获取y坐标
  *
- *  @return y坐标
+ *  @return y 坐标
  */
-- (CGFloat)getOriginY;
+- (CGFloat)lsqGetOriginY;
 
 /**
  *  获取右边X坐标
  *
- *  @return 右边X坐标
+ *  @return lsqGetRightX 右边X坐标
  */
-- (CGFloat)getRightX;
+- (CGFloat)lsqGetRightX;
 
 /**
  *  获取下边Y坐标
  *
- *  @return 下边Y坐标
+ *  @return lsqGetBottomY 下边Y坐标
  */
-- (CGFloat)getBottomY;
+- (CGFloat)lsqGetBottomY;
 
 /**
  *  获取右下角坐标
  *
- *  @return 右下角坐标
+ *  @return lsqGetRightBottomXY 右下角坐标
  */
-- (CGPoint)getRightBottomXY;
+- (CGPoint)lsqGetRightBottomXY;
 
 /**
  *  获取目标相对于自己中心的X坐标
  *
  *  @param targetWidth 目标视图宽度
  *
- *  @return 目标相对于自己中心的X坐标
+ *  @return centerX 目标相对于自己中心的X坐标
  */
-- (CGFloat)getCenterX:(float)targetWidth;
+- (CGFloat)lsqGetCenterX:(float)targetWidth;
 
 /**
  *  获取目标相对于自己中心的Y坐标
  *
  *  @param targetHeight 目标视图高度
  *
- *  @return 目标相对于自己中心的Y坐标
+ *  @return centerYCenterY 目标相对于自己中心的Y坐标
  */
-- (CGFloat)getCenterY:(float)targetHeight;
+- (CGFloat)lsqGetCenterY:(float)targetHeight;
 
 /**
  *  获取目标相对于自己中心的坐标
  *
  *  @param size 目标长宽
  *
- *  @return 目标相对于自己中心的坐标
+ *  @return size 目标相对于自己中心的坐标
  */
-- (CGPoint)getCenterWithSize:(CGSize)size;
+- (CGPoint)lsqGetCenterWithSize:(CGSize)size;
 
 /**
  *  删除所有子元素
@@ -263,14 +263,14 @@
  *  @param width 边框宽度
  *  @param color 颜色
  */
-- (void)setBorderWidth:(CGFloat)width color:(UIColor *)color;
+- (void)lsqSetBorderWidth:(CGFloat)width color:(UIColor *)color;
 
 /**
  *  设置圆角
  *
  *  @param radius 角度
  */
-- (void)setCornerRadius:(CGFloat)radius;
+- (void)lsqSetCornerRadius:(CGFloat)radius;
 
 /**
  *  旋转视图
@@ -302,7 +302,7 @@
  *
  *  @param tag 视图Tag
  *
- *  @return 视图(没有找到返回nil)
+ *  @return view 视图(没有找到返回nil)
  */
 - (UIView *) findViewByTag:(NSInteger)tag;
 
@@ -312,7 +312,7 @@
  *  @param tag       视图Tag
  *  @param needChild 是否查找子视图
  *
- *  @return 视图(没有找到返回nil)
+ *  @return view 视图(没有找到返回nil)
  */
 - (UIView *) findViewByTag:(NSInteger)tag needChild:(BOOL)needChild;
 
@@ -321,7 +321,7 @@
  *
  *  @param ratio 长宽比例
  *
- *  @return 实际位置长宽  (contents scaled to fit with fixed aspect. remainder is transparent)
+ *  @return ratio 实际位置长宽  (contents scaled to fit with fixed aspect. remainder is transparent)
  */
 - (CGRect)convertScaleAspectFitWithRatio:(float)ratio;
 
@@ -330,7 +330,7 @@
  *
  *  @param size 长宽
  *
- *  @return 实际位置长宽 (contents scaled to fit with fixed aspect. remainder is transparent)
+ *  @return size 实际位置长宽 (contents scaled to fit with fixed aspect. remainder is transparent)
  */
 - (CGRect)convertScaleAspectFitWithSize:(CGSize)size;
 
@@ -340,7 +340,7 @@
  *  @param viewSize 视图位置
  *  @param size     长宽
  *
- *  @return 实际位置长宽 (contents scaled to fit with fixed aspect. remainder is transparent)
+ *  @return size 实际位置长宽 (contents scaled to fit with fixed aspect. remainder is transparent)
  */
 + (CGRect)convertViewSize:(CGSize)viewSize scaleAspectFitWithSize:(CGSize)size;
 
@@ -349,7 +349,7 @@
  *
  *  @param size 长宽
  *
- *  @return 实际位置长宽 (contents scaled to fill with fixed aspect. some portion of content may be clipped.)
+ *  @return size 实际位置长宽 (contents scaled to fill with fixed aspect. some portion of content may be clipped.)
  */
 - (CGRect)convertScaleAspectFillWithSize:(CGSize)size;
 
@@ -359,7 +359,7 @@
  *  @param viewSize 视图位置
  *  @param size     长宽
  *
- *  @return 实际位置长宽 (contents scaled to fill with fixed aspect. some portion of content may be clipped.)
+ *  @return size 实际位置长宽 (contents scaled to fill with fixed aspect. some portion of content may be clipped.)
  */
 + (CGRect)convertViewSize:(CGSize)viewSize scaleAspectFillWithSize:(CGSize)size;
 @end
@@ -475,7 +475,7 @@
  *  @param font 字体
  *  @param size 希望的大小
  *
- *  @return 最佳字体大小
+ *  @return size 最佳字体大小
  */
 - (CGFloat)fontSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
 @end
@@ -491,7 +491,7 @@
  *  @param frame      坐标长宽
  *  @param imageNamed 图片名称
  *
- *  @return 图片对象
+ *  @return image 图片对象
  */
 + (instancetype)initWithFrame:(CGRect)frame imageNamed:(NSString *)imageNamed;
 @end
@@ -518,7 +518,7 @@
  *  @param frame     坐标长宽
  *  @param imageName 图片名称
  *
- *  @return 按钮对象
+ *  @return button 按钮对象
  */
 + (instancetype)buttonWithFrame:(CGRect)frame imageName:(NSString *)imageName;
 
@@ -528,7 +528,7 @@
  *  @param frame     坐标长宽
  *  @param imageName 背景图片名称
  *
- *  @return 按钮对象
+ *  @return button 按钮对象
  */
 + (instancetype)buttonWithFrame:(CGRect)frame backgroundImageName:(NSString *)imageName;
 
@@ -541,7 +541,7 @@
  *  @param capInsets 图片拉伸区域
  *  @param font      字体
  *
- *  @return 按钮对象
+ *  @return button 按钮对象
  */
 + (instancetype)buttonWithFrame:(CGRect)frame
             backgroundImageName:(NSString *)imageName
@@ -557,7 +557,7 @@
  *  @param font  字体
  *  @param color 颜色
  *
- *  @return 按钮对象
+ *  @return button 按钮对象
  */
 + (instancetype)buttonWithFrame:(CGRect)frame
                           title:(NSString *)title
@@ -676,14 +676,14 @@
 /**
  *  获取缩放后的中心点
  *
- *  @return 中心点
+ *  @return getScaleCenter 中心点
  */
 - (CGPoint)getScaleCenter;
 
 /**
  *  是否正在动作
  *
- *  @return 是否正在动作
+ *  @return BOOL 是否正在动作
  */
 - (BOOL)inActioning;
 @end

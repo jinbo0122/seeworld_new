@@ -22,36 +22,36 @@ extern NSString * const lsqGeeVersion;
 @interface TuSDKGeeV1 : NSObject
 /**
  *  自定义系统相册组件
- *  @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPAlbumComponent.html
+ *  @see-https://tusdk.com/docs/ios/api-gee/Classes/TuSDKCPAlbumComponent.html
  *
  *  @param controller 来源控制器
  *  @param block      组件回调结果
  *
- *  @return 自定义系统相册组件
+ *  @return commponent 自定义系统相册组件
  */
 + (TuSDKCPAlbumComponent *)albumCommponentWithController:(UIViewController *)controller
                                            callbackBlock:(TuSDKCPComponentBlock)block;
 
 /**
  *  多功能相册组件，选择一张照片
- *  @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPAlbumMultipleComponent.html
+ *  @see-https://tusdk.com/docs/ios/api-gee/Classes/TuSDKCPAlbumMultipleComponent.html
  *
  *  @param controller 来源控制器
  *  @param block      组件回调结果
  *
- *  @return 多功能相册组件
+ *  @return commponent 多功能相册组件
  */
 + (TuSDKCPAlbumMultipleComponent *)albumMultipleCommponentWithController:(UIViewController *)controller
                                                            callbackBlock:(TuSDKCPComponentBlock)block;
 /**
  *  多功能相册组件，选择多张照片
- *  @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPAlbumMultipleComponent.html
+ *  @see-https://tusdk.com/docs/ios/api-gee/Classes/TuSDKCPAlbumMultipleComponent.html
  *
  *  @param controller   来源控制器
  *  @param block        组件回调结果
  *  @param maxSelection 最大选择数目
  *
- *  @return 多功能相册组件
+ *  @return commponent 多功能相册组件
  */
 + (TuSDKCPAlbumMultipleComponent *)albumMultipleCommponentWithController:(UIViewController *)controller
                                                            callbackBlock:(TuSDKCPComponentBlock)block
@@ -59,36 +59,36 @@ extern NSString * const lsqGeeVersion;
 
 /**
  *  获取头像设置组件
- *  @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPAvatarComponent.html
+ *  @see-https://tusdk.com/docs/ios/api-gee/Classes/TuSDKCPAvatarComponent.html
  *
  *  @param controller 来源控制器
  *  @param block      组件回调结果
  *
- *  @return 头像设置组件
+ *  @return commponent 头像设置组件
  */
 + (TuSDKCPAvatarComponent *)avatarCommponentWithController:(UIViewController *)controller
                                              callbackBlock:(TuSDKCPComponentBlock)block;
 
 /**
  *  获取图片编辑组件
- *  @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPPhotoEditComponent.html
+ *  @seehttps://tusdk.com/docs/ios/api-gee/Classes/TuSDKCPPhotoEditComponent.html
  *
  *  @param controller 来源控制器
  *  @param block      组件回调结果
  *
- *  @return 图片编辑组件
+ *  @return commponent 图片编辑组件
  */
 + (TuSDKCPPhotoEditComponent *)photoEditCommponentWithController:(UIViewController *)controller
                                                    callbackBlock:(TuSDKCPComponentBlock)block;
 
 /**
  *  获取多功能图像编辑组件
- *  @see-http://tusdk.com/docs/ios/api/Classes/TuSDKCPPhotoEditMultipleComponent.html
+ *  @see-https://tusdk.com/docs/ios/api-gee/Classes/TuSDKCPPhotoEditMultipleComponent.html
  *
  *  @param controller 来源控制器
  *  @param block      组件回调结果
  *
- *  @return 多功能图像编辑组件
+ *  @return commponent 多功能图像编辑组件
  */
 + (TuSDKCPPhotoEditMultipleComponent *)photoEditMultipleWithController:(UIViewController *)controller
                                                          callbackBlock:(TuSDKCPComponentBlock)block;
