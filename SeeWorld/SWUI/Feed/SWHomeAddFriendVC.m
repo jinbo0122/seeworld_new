@@ -75,6 +75,7 @@
     NSArray *permissions =  @[@"public_profile", @"email",@"user_friends",@"read_custom_friendlists"];
     FBSDKLoginManager *loginA = [[FBSDKLoginManager alloc] init];
     [loginA logInWithReadPermissions:permissions
+                  fromViewController:self
                              handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                                if (!error && !result.isCancelled) {
                                  [wSelf fbBound];

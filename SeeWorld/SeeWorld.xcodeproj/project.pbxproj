@@ -358,6 +358,7 @@
 		4BF403CD1BB57A3F0076BE2C /* SWFeedSingleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF403CC1BB57A3F0076BE2C /* SWFeedSingleAPI.m */; };
 		4BF403D71BB599BE0076BE2C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF403D61BB599BE0076BE2C /* libz.tbd */; };
 		4BF403D91BB599CA0076BE2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF403D81BB599CA0076BE2C /* libsqlite3.tbd */; };
+		4BF46FB91FB6058100DD546B /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF46FB71FB6058100DD546B /* Bolts.framework */; };
 		4BFBFBDB1C3A418C003C3D87 /* SWPostEnterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBFBDA1C3A418C003C3D87 /* SWPostEnterView.m */; };
 		4BFBFBDE1C3A4247003C3D87 /* SWUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFBFBDD1C3A4247003C3D87 /* SWUtility.m */; };
 		8A837C383905E98EC5E55268 /* libPods-SeeWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CAC8C9266E1CC9C61983B98 /* libPods-SeeWorld.a */; };
@@ -1067,6 +1068,7 @@
 		4BF403CC1BB57A3F0076BE2C /* SWFeedSingleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFeedSingleAPI.m; sourceTree = "<group>"; };
 		4BF403D61BB599BE0076BE2C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		4BF403D81BB599CA0076BE2C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		4BF46FB71FB6058100DD546B /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		4BFBFBD91C3A418C003C3D87 /* SWPostEnterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPostEnterView.h; sourceTree = "<group>"; };
 		4BFBFBDA1C3A418C003C3D87 /* SWPostEnterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPostEnterView.m; sourceTree = "<group>"; };
 		4BFBFBDC1C3A4247003C3D87 /* SWUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUtility.h; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 				4BC0FE891B943DAA003F4723 /* MessageUI.framework in Frameworks */,
 				4BC0FE6D1B943D26003F4723 /* Security.framework in Frameworks */,
 				4B0FD6871DAF4B4600F11FCE /* JavaScriptCore.framework in Frameworks */,
+				4BF46FB91FB6058100DD546B /* Bolts.framework in Frameworks */,
 				4BC0FE791B943D74003F4723 /* CoreMotion.framework in Frameworks */,
 				4BC051581D5DFC9000FD2C1E /* VideoToolbox.framework in Frameworks */,
 				4BED70F81C29393E001A759F /* libxml2.tbd in Frameworks */,
@@ -2102,6 +2105,7 @@
 		4B4A66DE1B98B4F600F56B78 /* FacebookSDK */ = {
 			isa = PBXGroup;
 			children = (
+				4BF46FB71FB6058100DD546B /* Bolts.framework */,
 				4B4A66DF1B98B4F600F56B78 /* FBSDKCoreKit.framework */,
 				4B4A66E01B98B4F600F56B78 /* FBSDKLoginKit.framework */,
 				4B4A66E11B98B4F600F56B78 /* FBSDKShareKit.framework */,

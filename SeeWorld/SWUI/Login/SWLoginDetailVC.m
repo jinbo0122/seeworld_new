@@ -377,6 +377,7 @@
   FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
   [login logOut];
   [login logInWithReadPermissions: @[@"public_profile"]
+               fromViewController:self
                           handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
                             if (!error && !result.isCancelled) {
                               NSString *openid = result.token.userID;

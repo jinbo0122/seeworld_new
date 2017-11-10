@@ -18,9 +18,35 @@
 
 #import <Foundation/Foundation.h>
 
-#import "FBSDKAccessToken.h"
-#import "FBSDKAccessTokenCaching.h"
+#import <FBSDKShareKit/FBSDKCameraEffectArguments.h>
+#import <FBSDKShareKit/FBSDKCameraEffectTextures.h>
+#import <FBSDKShareKit/FBSDKSharingContent.h>
 
-@interface FBSDKAccessTokenCacheV4 : NSObject<FBSDKAccessTokenCaching>
+/**
+ A model for content to share with a Facebook camera effect.
+ */
+@interface FBSDKShareCameraEffectContent : NSObject <FBSDKSharingContent>
+
+/**
+ ID of the camera effect to use.
+ */
+@property (nonatomic, copy) NSString *effectID;
+
+/**
+ Arguments for the effect.
+ */
+@property (nonatomic, copy) FBSDKCameraEffectArguments *effectArguments;
+
+/**
+ Textures for the effect.
+ */
+@property (nonatomic, copy) FBSDKCameraEffectTextures *effectTextures;
+
+/**
+ Compares the receiver to another camera effect content.
+ - Parameter content: The other content
+ - Returns: YES if the receiver's values are equal to the other content's values; otherwise NO
+ */
+- (BOOL)isEqualToShareCameraEffectContent:(FBSDKShareCameraEffectContent *)content;
 
 @end
