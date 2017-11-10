@@ -20,11 +20,14 @@
 #import "SWActionSheetView.h"
 #import "SWAgreementVC.h"
 #import "SWSearchVC.h"
+#import "SWHomeHeaderView.h"
 @interface SWHomeFeedVC ()<UITableViewDataSource,UITableViewDelegate,SWHomeFeedModelDelegate,
-SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
+SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,
+SWHomeHeaderViewDelegate>
 @property(nonatomic, strong)UITableViewController     *tbVC;
 @property(nonatomic, strong)SWHomeFeedModel           *model;
 @property(nonatomic, strong)SWHomeFeedRecommandView   *headerView;
+@property(nonatomic, strong)SWHomeHeaderView          *postView;
 @property(nonatomic, strong)UIDocumentInteractionController *documentController;
 
 @property(nonatomic, strong)SWSearchBar *searchBar;
@@ -56,10 +59,10 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
                                                                 color:[UIColor colorWithRGBHex:0x191d28]
                                                              fontSize:18];
   self.view.backgroundColor = [UIColor whiteColor];
-  self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width - 60, 50)];
+  self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width - 20, 50)];
   self.navigationItem.titleView = self.btnSearch;
   self.automaticallyAdjustsScrollViewInsets = NO;
-  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 7+iOSTopHeight, self.btnSearch.width, 30)];
+  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 7, self.btnSearch.width, 30)];
   self.searchBar.placeholder = SWStringSearch;
   self.searchBar.userInteractionEnabled = NO;
   self.searchBar.showsCancelButton = NO;
@@ -68,12 +71,6 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   [self.btnSearch addSubview:self.searchBar];
   [self.btnSearch addTarget:self action:@selector(onSearchClicked:) forControlEvents:UIControlEventTouchUpInside];
   
-  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"home_btn_addfridays"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                           style:UIBarButtonItemStylePlain
-                                                          target:self
-                                                          action:@selector(onAddFriendClicked:)];
-  item.imageInsets = UIEdgeInsetsMake(0, 0, 0, -10);
-  self.navigationItem.rightBarButtonItem = item;
   [self uiInitialize];
   
   __weak typeof(self)wSelf= self;
@@ -98,6 +95,41 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
 }
 
 #pragma mark - Custom Methods
+- (void)showNavPostEntry{
+  if (self.navigationItem.rightBarButtonItem) {
+    return;
+  }
+  __weak typeof(self)wSelf = self;
+  [UIView animateWithDuration:0.2
+                   animations:^{
+                     wSelf.btnSearch.width = wSelf.view.width - 60;
+                     wSelf.searchBar.width = wSelf.btnSearch.width;
+                   }];
+  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"home_post"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                           style:UIBarButtonItemStylePlain
+                                                          target:self
+                                                          action:@selector(onPostClicked:)];
+  item.imageInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+  self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)hideNavPostEntry{
+  if (self.navigationItem.rightBarButtonItem == nil) {
+    return;
+  }
+  __weak typeof(self)wSelf = self;
+  [UIView animateWithDuration:0.2
+                   animations:^{
+                     wSelf.btnSearch.width = wSelf.view.width - 20;
+                     wSelf.searchBar.width = wSelf.btnSearch.width;
+                   }];
+  self.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)onPostClicked:(UIBarButtonItem *)item{
+  [self homeHeaderViewDidPressPost:_postView];
+}
+
 - (void)onAddFriendClicked:(UIBarButtonItem *)item{
   SWHomeAddFriendVC *vc = [[SWHomeAddFriendVC alloc] init];
   vc.hidesBottomBarWhenPushed = YES;
@@ -129,6 +161,10 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   }
   self.headerView = [[SWHomeFeedRecommandView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 80)];
   self.headerView.delegate = self;
+  
+  _postView = [[SWHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 110)];
+  _tbVC.tableView.tableHeaderView = _postView;
+  _postView.delegate = self;
   [self onHomeRefreshed];
 }
 
@@ -141,6 +177,23 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
 - (void)onHomeRefreshed{
   [self.model getLatestFeeds];
   [self.model getRecommandUser];
+}
+
+#pragma mark Header View Delegate
+- (void)homeHeaderViewDidPressPost:(SWHomeHeaderView *)headerView{
+
+}
+
+- (void)homeHeaderViewDidPressCamera:(SWHomeHeaderView *)headerView{
+  
+}
+
+- (void)homeHeaderViewDidPressAlbum:(SWHomeHeaderView *)headerView{
+  
+}
+
+- (void)homeHeaderViewDidPressLBS:(SWHomeHeaderView *)headerView{
+  
 }
 
 #pragma mark Table View Delegate
@@ -169,6 +222,13 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   float h = size.height;
   
   float reload_distance = -10;
+  
+  if (scrollView.contentOffset.y > _postView.height - iOSNavHeight) {
+    [self showNavPostEntry];
+  }else{
+    [self hideNavPostEntry];
+  }
+  
   if(y > h + reload_distance && size.height>300) {
     [self.model loadMoreFeeds];
   }
@@ -271,10 +331,12 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
   feed.feed.imageHeight = imageHeight;
   __weak typeof(self)wSelf = self;
   dispatch_async(dispatch_get_main_queue(), ^{
-    [wSelf.tbVC.tableView beginUpdates];
-    [wSelf.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
-                               withRowAnimation:UITableViewRowAnimationNone];
-    [wSelf.tbVC.tableView endUpdates];
+    if ([wSelf.tbVC.tableView numberOfRowsInSection:0]>row) {
+      [wSelf.tbVC.tableView beginUpdates];
+      [wSelf.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
+                                  withRowAnimation:UITableViewRowAnimationNone];
+      [wSelf.tbVC.tableView endUpdates];
+    }
   });
 }
 

@@ -155,6 +155,7 @@
 		4B1F2AFF1D0454670031F820 /* SWLoginDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F2AFE1D0454670031F820 /* SWLoginDetailVC.m */; };
 		4B207FBD1BA54FF400203393 /* SWExploreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B207FBC1BA54FF400203393 /* SWExploreAPI.m */; };
 		4B207FC01BA5508C00203393 /* SWSearchTagAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B207FBF1BA5508C00203393 /* SWSearchTagAPI.m */; };
+		4B2220301FB59D0100AC13F1 /* SWHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B22202F1FB59D0100AC13F1 /* SWHomeHeaderView.m */; };
 		4B25342B1B9562E900B7F68B /* SWFeedInteractView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25342A1B9562E900B7F68B /* SWFeedInteractView.m */; };
 		4B25342F1B95899E00B7F68B /* SWFeedTagButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B25342E1B95899E00B7F68B /* SWFeedTagButton.m */; };
 		4B2534351B95B49700B7F68B /* SWHomeFeedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B2534341B95B49700B7F68B /* SWHomeFeedAPI.m */; };
@@ -691,6 +692,8 @@
 		4B207FBC1BA54FF400203393 /* SWExploreAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWExploreAPI.m; sourceTree = "<group>"; };
 		4B207FBE1BA5508C00203393 /* SWSearchTagAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSearchTagAPI.h; sourceTree = "<group>"; };
 		4B207FBF1BA5508C00203393 /* SWSearchTagAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSearchTagAPI.m; sourceTree = "<group>"; };
+		4B22202E1FB59D0100AC13F1 /* SWHomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWHomeHeaderView.h; sourceTree = "<group>"; };
+		4B22202F1FB59D0100AC13F1 /* SWHomeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWHomeHeaderView.m; sourceTree = "<group>"; };
 		4B2534291B9562E900B7F68B /* SWFeedInteractView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFeedInteractView.h; sourceTree = "<group>"; };
 		4B25342A1B9562E900B7F68B /* SWFeedInteractView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFeedInteractView.m; sourceTree = "<group>"; };
 		4B25342D1B95899E00B7F68B /* SWFeedTagButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFeedTagButton.h; sourceTree = "<group>"; };
@@ -2479,28 +2482,30 @@
 		4BC0FEB11B944812003F4723 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4BC0FEB51B944D27003F4723 /* SWHomeFeedRecommandView.h */,
-				4BC0FEB61B944D27003F4723 /* SWHomeFeedRecommandView.m */,
-				4BC0FEBE1B9450DE003F4723 /* SWHomeFeedCell.h */,
-				4BC0FEBF1B9450DE003F4723 /* SWHomeFeedCell.m */,
-				4BC0FEC11B94553D003F4723 /* SWFeedUserInfoHeaderView.h */,
-				4BC0FEC21B94553D003F4723 /* SWFeedUserInfoHeaderView.m */,
+				4B1063361BC6794F007C5641 /* SWActionSheetView.h */,
+				4B1063371BC6794F007C5641 /* SWActionSheetView.m */,
 				4BA4D9F61D05288F009521B0 /* SWFeedCommentView.h */,
 				4BA4D9F71D05288F009521B0 /* SWFeedCommentView.m */,
 				4BC0FEC41B9461D5003F4723 /* SWFeedImageView.h */,
 				4BC0FEC51B9461D5003F4723 /* SWFeedImageView.m */,
-				4B25342D1B95899E00B7F68B /* SWFeedTagButton.h */,
-				4B25342E1B95899E00B7F68B /* SWFeedTagButton.m */,
 				4B2534291B9562E900B7F68B /* SWFeedInteractView.h */,
 				4B25342A1B9562E900B7F68B /* SWFeedInteractView.m */,
 				4BC0FEC71B94645F003F4723 /* SWFeedLikeMemberView.h */,
 				4BC0FEC81B94645F003F4723 /* SWFeedLikeMemberView.m */,
-				4B1063361BC6794F007C5641 /* SWActionSheetView.h */,
-				4B1063371BC6794F007C5641 /* SWActionSheetView.m */,
-				4B4A66921B97256100F56B78 /* SWHomeFeedShareView.h */,
-				4B4A66931B97256100F56B78 /* SWHomeFeedShareView.m */,
+				4B25342D1B95899E00B7F68B /* SWFeedTagButton.h */,
+				4B25342E1B95899E00B7F68B /* SWFeedTagButton.m */,
+				4BC0FEC11B94553D003F4723 /* SWFeedUserInfoHeaderView.h */,
+				4BC0FEC21B94553D003F4723 /* SWFeedUserInfoHeaderView.m */,
+				4BC0FEBE1B9450DE003F4723 /* SWHomeFeedCell.h */,
+				4BC0FEBF1B9450DE003F4723 /* SWHomeFeedCell.m */,
+				4BC0FEB51B944D27003F4723 /* SWHomeFeedRecommandView.h */,
+				4BC0FEB61B944D27003F4723 /* SWHomeFeedRecommandView.m */,
 				4B4A66951B97256E00F56B78 /* SWHomeFeedReportView.h */,
 				4B4A66961B97256E00F56B78 /* SWHomeFeedReportView.m */,
+				4B4A66921B97256100F56B78 /* SWHomeFeedShareView.h */,
+				4B4A66931B97256100F56B78 /* SWHomeFeedShareView.m */,
+				4B22202E1FB59D0100AC13F1 /* SWHomeHeaderView.h */,
+				4B22202F1FB59D0100AC13F1 /* SWHomeHeaderView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3089,6 +3094,7 @@
 				4B0FD6791DAF3E6200F11FCE /* PDSMSCodeCell.m in Sources */,
 				4BEB6A341D365D59000EA0F5 /* UIImage+UzysExtension.m in Sources */,
 				4BB422921B96F3A000022D63 /* SWCommentAddAPI.m in Sources */,
+				4B2220301FB59D0100AC13F1 /* SWHomeHeaderView.m in Sources */,
 				4B4A66971B97256E00F56B78 /* SWHomeFeedReportView.m in Sources */,
 				4BD3AADC1D54A4170010FA84 /* MASLayoutConstraint.m in Sources */,
 				4BC0FEA81B943E28003F4723 /* RIButtonItem.m in Sources */,
@@ -3405,8 +3411,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seeworldplus.SeeWorldPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74502338-b2e6-4558-887e-a7e2d31bb767";
-				PROVISIONING_PROFILE_SPECIFIER = sw_dev_171016a;
+				PROVISIONING_PROFILE = "2bef3f7e-090a-4971-8e1a-0e7c28c6becf";
+				PROVISIONING_PROFILE_SPECIFIER = sw_dev_171110;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../**";
 				VALID_ARCHS = "arm64 armv7 armv7s";

@@ -111,6 +111,7 @@
   user.followedCount = [feedUserDic safeNumberObjectForKey:@"followedCount"];
   user.bghead = [feedUserDic safeStringObjectForKey:@"bghead"];
   user.issecret = [feedUserDic safeNumberObjectForKey:@"issecret"];
+  
   return user;
 }
 
@@ -170,6 +171,7 @@
   return @{@"uId":self.uId?self.uId:@0,
            @"name":self.name?self.name:@"",
            @"picUrl":self.picUrl?self.picUrl:@"",
+           @"head":self.picUrl?self.picUrl:@"",
            @"intro":self.intro?self.intro:@"",
            @"gender":self.gender?self.gender:@0,
            @"relation":self.relation?self.relation:@0,

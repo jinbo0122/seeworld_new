@@ -12,4 +12,10 @@
 @property (nonatomic, strong)NSString *tagString;
 @property (nonatomic, strong)UIImageView *customImageView;
 @property (nonatomic, strong)UILabel *lblCustom;
+- (void)arrangeCustomSubviewToCenterWithGap:(CGFloat)gap;
+- (void)setImage:(UIImage *)image
+            text:(NSString *)text
+    textColorHex:(UInt32)textColorHex
+        fontSize:(NSInteger)fontSize
+             gap:(CGFloat)gap;
 @end
