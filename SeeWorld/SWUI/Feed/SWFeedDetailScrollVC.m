@@ -83,10 +83,18 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
                                                 usingBlock:^(NSNotification *note) {
                                                   [wSelf.collectionView reloadDataAtIndex:wSelf.currentIndex];
                                                 }];
+  
+  
+  if (_needEnableKeyboardOnLoad) {
+    __weak typeof(self)wSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[wSelf.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:wSelf.currentIndex inSection:0]];
+      [cell.commentInputView.txtField becomeFirstResponder];
+    });
+  }
 }
 
-- (void)onDelButtonClicked:(UIButton *)sender
-{
+- (void)onDelButtonClicked:(UIButton *)sender{
   __weak typeof(self)wSelf = self;
   [[[SWAlertView alloc] initWithTitle:@"確認刪除該動態？"
                            cancelText:SWStringCancel
@@ -142,14 +150,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 }
 
 - (void)feedDetailViewDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row{
-  SWFeedInteractVC *vc = [[SWFeedInteractVC alloc] init];
-  vc.delegate = self;
-  vc.defaultIndex = SWFeedInteractIndexComments;
-  vc.feedRow  = row;
-  vc.isModal  = YES;
-  vc.model.feedItem  = feedItem;
-  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-  [self presentViewController:nav animated:YES completion:nil];
+  
 }
 
 - (void)feedDetailViewDidPressUrl:(NSURL *)url row:(NSInteger)row{

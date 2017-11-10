@@ -12,6 +12,7 @@
 #import "SWFeedLikeAPI.h"
 #import "SWFeedDislikeAPi.h"
 @implementation SWTagFeedsModel
+@synthesize feeds,userId;
 - (id)init{
   if (self = [super init]) {
     self.feeds = [NSMutableArray array];

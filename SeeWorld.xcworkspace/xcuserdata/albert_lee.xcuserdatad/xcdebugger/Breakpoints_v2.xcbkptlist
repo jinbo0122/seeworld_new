@@ -74,7 +74,7 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/swp/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532022802.787624"
+                  timestampString = "532028770.119004"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -89,7 +89,7 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/swp/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532022802.789123"
+                  timestampString = "532028770.12019"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532022802.712519"
+            timestampString = "532022931.622911"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "382"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532022802.712825"
+            timestampString = "532022931.623156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "387"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532022802.712917"
+            timestampString = "532022931.623193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "397"
@@ -164,27 +164,17 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Feed/SWFeedCollectionCell.m"
-            timestampString = "532022802.713"
+            timestampString = "532028770.014029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
             landmarkName = "-scrollViewDidScroll:"
             landmarkType = "7">
          </BreakpointContent>

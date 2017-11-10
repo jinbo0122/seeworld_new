@@ -22,7 +22,7 @@
 @protocol SWHomeFeedCellDelegate <NSObject>
 - (void)homeFeedCellDidPressUser:(SWFeedUserItem *)userItem;
 - (void)homeFeedCellDidPressLike:(SWFeedItem *)feedItem row:(NSInteger)row;
-- (void)homeFeedCellDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row;
+- (void)homeFeedCellDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row enableKeyboard:(BOOL)enableKeyboard;
 - (void)homeFeedCellDidPressUrl:(NSURL *)url row:(NSInteger)row;
 - (void)homeFeedCellDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row;
 - (void)homeFeedCellDidPressLikeList:(SWFeedItem *)feedItem row:(NSInteger)row;

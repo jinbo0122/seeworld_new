@@ -70,56 +70,56 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 }
 
 - (void)uiInitialize{
-  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 38)
-                                                     items:@[@"",@""]
-                                                    images:@[@"home_btn_comment",@"home_btn_like"]];
-  self.titleView.delegate = self;
-  self.titleView.selectedIndex = self.defaultIndex;
-  [self.view addSubview:self.titleView];
-  
-  self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.titleView.bottom, self.view.width, self.view.height-self.titleView.bottom)];
-  self.scrollView.bounces = NO;
-  self.scrollView.scrollEnabled = NO;
-  self.scrollView.contentSize = CGSizeMake(UIScreenWidth *2, 1);
-  [self.view addSubview:self.scrollView];
-  
-  self.tbVCComments = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-  self.tbVCComments.view.frame = self.view.bounds;
-  self.tbVCComments.tableView.dataSource = self;
-  self.tbVCComments.tableView.delegate   = self;
-  self.tbVCComments.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-  self.tbVCComments.tableView.separatorColor = [UIColor colorWithRGBHex:0xe8e9e8];
-  self.tbVCComments.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
-  self.tbVCComments.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height+iphoneXBottomAreaHeight, 0);
-  self.tbVCComments.tableView.tableFooterView = [UIView new];
-  self.tbVCComments.tableView.separatorInset = UIEdgeInsetsZero;
-  self.tbVCComments.refreshControl = [[UIRefreshControl alloc] init];
-  [self.tbVCComments.refreshControl addTarget:self action:@selector(onCommentsRefreshed) forControlEvents:UIControlEventValueChanged];
-  [self.scrollView addSubview:self.tbVCComments.tableView];
-  UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewTapped:)];
-  [self.tbVCComments.tableView addGestureRecognizer:gesture];
-  
-  self.commentInputView = [[SWCommentInputView alloc] initWithFrame:CGRectMake(0, self.scrollView.height-48-iphoneXBottomAreaHeight, UIScreenWidth, 48+iphoneXBottomAreaHeight)];
-  self.commentInputView.txtField.delegate = self;
-  [self.commentInputView.btnPhoto addTarget:self action:@selector(onSendPhotoClicked) forControlEvents:UIControlEventTouchUpInside];
-  [self.scrollView addSubview:self.commentInputView];
-  
+//  self.titleView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 38)
+//                                                     items:@[@"",@""]
+//                                                    images:@[@"home_btn_comment",@"home_btn_like"]];
+//  self.titleView.delegate = self;
+//  self.titleView.selectedIndex = self.defaultIndex;
+//  [self.view addSubview:self.titleView];
+//
+//  self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.titleView.bottom, self.view.width, self.view.height-self.titleView.bottom)];
+//  self.scrollView.bounces = NO;
+//  self.scrollView.scrollEnabled = NO;
+//  self.scrollView.contentSize = CGSizeMake(UIScreenWidth *2, 1);
+//  [self.view addSubview:self.scrollView];
+//
+//  self.tbVCComments = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+//  self.tbVCComments.view.frame = self.view.bounds;
+//  self.tbVCComments.tableView.dataSource = self;
+//  self.tbVCComments.tableView.delegate   = self;
+//  self.tbVCComments.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//  self.tbVCComments.tableView.separatorColor = [UIColor colorWithRGBHex:0xe8e9e8];
+//  self.tbVCComments.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
+//  self.tbVCComments.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height+iphoneXBottomAreaHeight, 0);
+//  self.tbVCComments.tableView.tableFooterView = [UIView new];
+//  self.tbVCComments.tableView.separatorInset = UIEdgeInsetsZero;
+//  self.tbVCComments.refreshControl = [[UIRefreshControl alloc] init];
+//  [self.tbVCComments.refreshControl addTarget:self action:@selector(onCommentsRefreshed) forControlEvents:UIControlEventValueChanged];
+//  [self.scrollView addSubview:self.tbVCComments.tableView];
+//  UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewTapped:)];
+//  [self.tbVCComments.tableView addGestureRecognizer:gesture];
+//
+//  self.commentInputView = [[SWCommentInputView alloc] initWithFrame:CGRectMake(0, self.scrollView.height-48-iphoneXBottomAreaHeight, UIScreenWidth, 48+iphoneXBottomAreaHeight)];
+//  self.commentInputView.txtField.delegate = self;
+//  [self.commentInputView.btnPhoto addTarget:self action:@selector(onSendPhotoClicked) forControlEvents:UIControlEventTouchUpInside];
+//  [self.scrollView addSubview:self.commentInputView];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"贊" color:[UIColor colorWithRGBHex:0x191d28]];
   self.tbVCLikes = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
   self.tbVCLikes.view.frame = self.view.bounds;
-  self.tbVCLikes.view.left  = UIScreenWidth;
+  self.tbVCLikes.view.left  = 0;
   self.tbVCLikes.tableView.dataSource = self;
   self.tbVCLikes.tableView.delegate   = self;
   self.tbVCLikes.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
   self.tbVCLikes.tableView.separatorColor = [UIColor colorWithRGBHex:0xe8e9e8];
   self.tbVCLikes.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
   self.tbVCLikes.tableView.tableFooterView = [UIView new];
-  self.tbVCLikes.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height+iphoneXBottomAreaHeight, 0);
+  self.tbVCLikes.tableView.contentInset   = UIEdgeInsetsMake(iOSNavHeight, 0, iphoneXBottomAreaHeight, 0);
   self.tbVCLikes.tableView.separatorInset = UIEdgeInsetsZero;
   self.tbVCLikes.refreshControl = [[UIRefreshControl alloc] init];
   [self.tbVCLikes.refreshControl addTarget:self action:@selector(onLikesRefreshed) forControlEvents:UIControlEventValueChanged];
-  [self.scrollView addSubview:self.tbVCLikes.tableView];
+  [self.view addSubview:self.tbVCLikes.tableView];
   
-  self.scrollView.contentOffset = CGPointMake(UIScreenWidth*self.defaultIndex, 0);
+//  self.scrollView.contentOffset = CGPointMake(UIScreenWidth*self.defaultIndex, 0);
 }
 
 - (void)onCommentsRefreshed{

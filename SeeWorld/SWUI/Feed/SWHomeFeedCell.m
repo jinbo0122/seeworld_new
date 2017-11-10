@@ -177,8 +177,8 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 - (void)onReplyClicked:(UIButton *)button{
-  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressReply:row:)]) {
-    [self.delegate homeFeedCellDidPressReply:self.feedItem row:self.row];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressReply:row:enableKeyboard:)]) {
+    [self.delegate homeFeedCellDidPressReply:self.feedItem row:self.row enableKeyboard:YES];
   }
 }
 
@@ -189,20 +189,20 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 - (void)feedLikeMemberViewDidPressMore:(SWFeedLikeMemberView *)view{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressReply:row:enableKeyboard:)]) {
+    [self.delegate homeFeedCellDidPressReply:self.feedItem row:self.row enableKeyboard:NO];
+  }
+}
+
+- (void)feedLikeMemberViewDidPressUser:(SWFeedUserItem *)userItem{
   if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressLikeList:row:)]) {
     [self.delegate homeFeedCellDidPressLikeList:self.feedItem row:self.row];
   }
 }
 
-- (void)feedLikeMemberViewDidPressUser:(SWFeedUserItem *)userItem{
-  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressUser:)]) {
-    [self.delegate homeFeedCellDidPressUser:userItem];
-  }
-}
-
 - (void)feedCommentViewDidPressUser:(SWFeedUserItem *)userItem{
-  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressReply:row:)]) {
-    [self.delegate homeFeedCellDidPressReply:self.feedItem row:self.row];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressReply:row:enableKeyboard:)]) {
+    [self.delegate homeFeedCellDidPressReply:self.feedItem row:self.row enableKeyboard:NO];
   }
 }
 

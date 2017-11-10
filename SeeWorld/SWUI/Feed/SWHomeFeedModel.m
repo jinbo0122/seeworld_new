@@ -15,6 +15,7 @@
 #import "SWFeedDislikeAPi.h"
 #import "SWFeedLikeAPI.h"
 @implementation SWHomeFeedModel
+@synthesize feeds,userId;
 - (id)init{
   if (self = [super init]) {
     self.feeds = [NSMutableArray array];

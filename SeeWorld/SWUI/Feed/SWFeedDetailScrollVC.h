@@ -7,8 +7,9 @@
 //
 
 #import "ALBaseVC.h"
-#import "SWTagFeedsModel.h"
+#import "SWFeedModelProtocol.h"
 @interface SWFeedDetailScrollVC : ALBaseVC
-@property(nonatomic, weak)SWTagFeedsModel *model;
+@property(nonatomic, weak)id<SWFeedModelProtocol>model;
 @property(nonatomic, assign)NSInteger currentIndex;
+@property(nonatomic, assign)BOOL needEnableKeyboardOnLoad;
 @end

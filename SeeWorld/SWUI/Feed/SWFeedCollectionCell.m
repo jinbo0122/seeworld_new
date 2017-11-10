@@ -217,10 +217,7 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 - (void)onReplyClicked:(UIButton *)button{
-  [self dismissKeyboard];
-  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressReply:row:)]) {
-    [self.delegate feedDetailViewDidPressReply:self.feedItem row:self.row];
-  }
+  [_commentInputView.txtField becomeFirstResponder];
 }
 
 - (void)feedCommentViewDidPressUser:(SWFeedUserItem *)userItem{
@@ -253,8 +250,8 @@ didLongPressLinkWithURL:(NSURL *)url
 
 - (void)feedLikeMemberViewDidPressUser:(SWFeedUserItem *)userItem{
   [self dismissKeyboard];
-  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressUser:)]) {
-    [self.delegate feedDetailViewDidPressUser:userItem];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressLikeList:row:)]) {
+    [self.delegate feedDetailViewDidPressLikeList:self.feedItem row:self.row];
   }
 }
 

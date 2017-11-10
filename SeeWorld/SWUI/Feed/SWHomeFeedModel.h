@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SWFeedItem.h"
+#import "SWFeedModelProtocol.h"
 @protocol SWHomeFeedModelDelegate;
 
-@interface SWHomeFeedModel : NSObject
+@interface SWHomeFeedModel : NSObject<SWFeedModelProtocol>
 @property(nonatomic,   weak)id<SWHomeFeedModelDelegate>delegate;
-@property(nonatomic, strong)NSMutableArray *feeds;
 @property(nonatomic, strong)NSNumber       *lastFeedId;
 @property(nonatomic, assign)BOOL            hasMore;
 @property(nonatomic, assign)BOOL            isLoading;
@@ -21,8 +21,6 @@
 
 - (void)getRecommandUser;
 - (void)addFollowUser:(SWFeedUserItem *)userItem;
-
-- (void)likeClickedByRow:(NSInteger)row;
 @end
 
 @protocol SWHomeFeedModelDelegate <NSObject>

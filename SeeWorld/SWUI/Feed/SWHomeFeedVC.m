@@ -299,15 +299,13 @@ SWHomeHeaderViewDelegate>
   [self.model likeClickedByRow:row];
 }
 
-- (void)homeFeedCellDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row{
-  SWFeedInteractVC *vc = [[SWFeedInteractVC alloc] init];
-  vc.delegate = self;
-  vc.defaultIndex = SWFeedInteractIndexComments;
-  vc.feedRow  = row;
-  vc.isModal  = YES;
-  vc.model.feedItem  = feedItem;
-  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-  [self presentViewController:nav animated:YES completion:nil];
+- (void)homeFeedCellDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row enableKeyboard:(BOOL)enableKeyboard{
+  SWFeedDetailScrollVC *vc = [[SWFeedDetailScrollVC alloc] init];
+  vc.model = _model;
+  vc.currentIndex = row;
+  vc.hidesBottomBarWhenPushed = YES;
+  vc.needEnableKeyboardOnLoad = enableKeyboard;
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)homeFeedCellDidPressUrl:(NSURL *)url row:(NSInteger)row{

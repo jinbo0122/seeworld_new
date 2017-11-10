@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SWFeedModelProtocol.h"
 @protocol SWTagFeedsModelDelegate;
-@interface SWTagFeedsModel : NSObject
+@interface SWTagFeedsModel : NSObject<SWFeedModelProtocol>
 @property (nonatomic, strong)SWFeedTagItem *tagItem;
-@property (nonatomic, strong)NSString *userId;
 @property (nonatomic, weak  )id<SWTagFeedsModelDelegate>delegate;
-@property(nonatomic, strong)NSMutableArray *feeds;
 @property(nonatomic, strong)NSNumber       *lastFeedId;
 @property(nonatomic, strong)NSNumber       *feedCount;
 @property(nonatomic, assign)BOOL            hasMore;
@@ -23,7 +22,6 @@
 - (void)getLatestTagFeeds;
 - (void)getMoreTagFeeds;
 
-- (void)likeClickedByRow:(NSInteger)row;
 @end
 
 @protocol SWTagFeedsModelDelegate <NSObject>

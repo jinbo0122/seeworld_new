@@ -789,6 +789,7 @@
 		4BA4DAE41FB5CE15000A1290 /* PDProgressHUD+ALExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PDProgressHUD+ALExtension.m"; path = "Common/PDProgressHUD+ALExtension.m"; sourceTree = "<group>"; };
 		4BA809631C50647700726FF1 /* SWContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWContactAPI.h; sourceTree = "<group>"; };
 		4BA809641C50647700726FF1 /* SWContactAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWContactAPI.m; sourceTree = "<group>"; };
+		4BAC2A921FB6191700FBEE97 /* SWFeedModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWFeedModelProtocol.h; sourceTree = "<group>"; };
 		4BB3F0D31CE9710C0065CFBC /* SWMineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWMineVC.h; sourceTree = "<group>"; };
 		4BB3F0D41CE9710C0065CFBC /* SWMineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWMineVC.m; sourceTree = "<group>"; };
 		4BB3F0D91CE977AA0065CFBC /* SWSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSettingVC.h; sourceTree = "<group>"; };
@@ -2477,6 +2478,7 @@
 		4BC0FEB01B94480F003F4723 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4BAC2A921FB6191700FBEE97 /* SWFeedModelProtocol.h */,
 				4BC0FEB21B944B59003F4723 /* SWHomeFeedModel.h */,
 				4BC0FEB31B944B59003F4723 /* SWHomeFeedModel.m */,
 				4BC0FEBB1B944E0E003F4723 /* SWHomeFeedItem.h */,
