@@ -19,6 +19,6 @@
 
 - (id)requestArgument{
   return @{@"jwt":[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"jwt"],
-           @"count":@1};
+           @"count":@10};
 }
 @end
