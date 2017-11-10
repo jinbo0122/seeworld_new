@@ -217,7 +217,7 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
     if ([wSelf.tbVC.tableView numberOfRowsInSection:0]>row) {
       [wSelf.tbVC.tableView beginUpdates];
       [wSelf.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
-                                  withRowAnimation:UITableViewRowAnimationNone];
+                                  withRowAnimation:UITableViewRowAnimationFade];
       [wSelf.tbVC.tableView endUpdates];
     }
   });
