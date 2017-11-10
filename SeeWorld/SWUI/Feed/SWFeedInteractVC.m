@@ -88,7 +88,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   self.tbVCComments.tableView.dataSource = self;
   self.tbVCComments.tableView.delegate   = self;
   self.tbVCComments.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-  self.tbVCComments.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  self.tbVCComments.tableView.separatorColor = [UIColor colorWithRGBHex:0xa3a4a5];
   self.tbVCComments.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
   self.tbVCComments.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height, 0);
   self.tbVCComments.tableView.tableFooterView = [UIView new];
@@ -110,7 +110,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   self.tbVCLikes.tableView.dataSource = self;
   self.tbVCLikes.tableView.delegate   = self;
   self.tbVCLikes.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-  self.tbVCLikes.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  self.tbVCLikes.tableView.separatorColor = [UIColor colorWithRGBHex:0xa3a4a5];
   self.tbVCLikes.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
   self.tbVCLikes.tableView.tableFooterView = [UIView new];
   self.tbVCLikes.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height, 0);
