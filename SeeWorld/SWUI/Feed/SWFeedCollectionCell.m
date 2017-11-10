@@ -29,7 +29,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
 - (id)initWithFrame:(CGRect)frame{
   self = [super initWithFrame:frame];
   if (self) {
-    _bgView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 44, UIScreenWidth, UIScreenHeight-64)];
+    _bgView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, iOSNavHeight - 10, UIScreenWidth, UIScreenHeight-iOSNavHeight)];
     _bgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [self.contentView addSubview:_bgView];
     
@@ -37,6 +37,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
     [_bgView addSubview:_headerView];
     
     _feedImageView = [[SWFeedImageView alloc] initWithFrame:CGRectMake(-0.5, _headerView.bottom, UIScreenWidth+1, UIScreenWidth)];
+    _feedImageView.delegate = self;
     [_bgView addSubview:_feedImageView];
     
     _interactView  = [[SWFeedInteractView alloc] initWithFrame:CGRectMake(0, _feedImageView.bottom, UIScreenWidth, 40)];
@@ -45,7 +46,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
     _lblContent = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     _lblContent.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     _lblContent.delegate = self;
-    _lblContent.textColor = [UIColor whiteColor];
+    _lblContent.textColor = [UIColor colorWithRGBHex:0x191d28];
     _lblContent.font = [UIFont systemFontOfSize:12];
     _lblContent.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
     _lblContent.lineBreakMode = NSLineBreakByCharWrapping;
@@ -84,12 +85,13 @@ didLongPressLinkWithURL:(NSURL *)url
   [_headerView refresshWithFeed:feed];
   [_feedImageView refreshWithFeed:feed];
   _feedImageView.delegate = self;
-  
+  _feedImageView.height = [feed.feed.imageHeight integerValue];
+
   [_interactView refreshWithFeed:feed];
-  
+  _interactView.top = _feedImageView.bottom;
   NSAttributedString *content = [[NSAttributedString alloc] initWithString:feed.feed.content
                                                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
-                                                                             NSForegroundColorAttributeName:[UIColor whiteColor]}];
+                                                                             NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x191d28]}];
   CGSize contentSize = [TTTAttributedLabel sizeThatFitsAttributedString:content
                                                         withConstraints:CGSizeMake(UIScreenWidth-30, 1000)
                                                  limitedToNumberOfLines:50];
@@ -115,7 +117,9 @@ didLongPressLinkWithURL:(NSURL *)url
 + (CGFloat)heightByFeed:(SWFeedItem *)feed{
   CGSize contentSize = [feed.feed.content sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
                                            constrainedToSize:CGSizeMake(UIScreenWidth-30, 1000)];
-  return 10/*间隙*/+ 55/*头部*/ + UIScreenWidth + 40 /*按钮*/
+  NSInteger imageHeight = [feed.feed.imageHeight integerValue];
+
+  return 10/*间隙*/+ 55/*头部*/ + imageHeight + 40 /*按钮*/
   + (feed.feed.content.length>0?(contentSize.height+15):0)
   + [SWFeedCommentView heightByFeedComments:feed.comments]+
   + (feed.likes.count>0?30:0) /*赞成员*/ + ((feed.feed.content.length>0||feed.likes.count>0||feed.comments.count>0)?15:0);
@@ -184,6 +188,8 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 - (void)feedImageViewDidNeedReloadCell:(NSNumber *)imageHeight{
-  
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidNeedReload:row:)]) {
+    [self.delegate feedDetailViewDidNeedReload:imageHeight row:self.row];
+  }
 }
 @end

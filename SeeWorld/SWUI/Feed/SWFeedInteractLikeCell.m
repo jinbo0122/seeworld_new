@@ -18,7 +18,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(13, 13, 40, 40)];
     _iconAvatar.layer.masksToBounds = YES;
     _iconAvatar.layer.borderColor = [UIColor whiteColor].CGColor;

@@ -36,7 +36,7 @@
   [UIView setAnimationBeginsFromCurrentState:YES];
   [UIView setAnimationDuration:[duration doubleValue]];
   [UIView setAnimationCurve:[curve intValue]];
-  self.top = self.superview.height-keyboardBounds.size.height-self.height;
+  self.top = self.superview.height-keyboardBounds.size.height-self.height+iphoneXBottomAreaHeight;
   [UIView commitAnimations];
 }
 

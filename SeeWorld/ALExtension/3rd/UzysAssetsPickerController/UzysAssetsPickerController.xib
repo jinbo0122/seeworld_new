@@ -61,7 +61,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="16"/>
                             <state key="normal" title=".">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" red="0.098039215686274508" green="0.11372549019607843" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="9iB-BX-fxc"/>
@@ -75,7 +75,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.10196078431372549" green="0.14509803921568626" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="rd5-Z7-vdI" firstAttribute="trailing" secondItem="uvL-Np-IWv" secondAttribute="leading" constant="-3" id="5tI-lL-2ql"/>
                         <constraint firstItem="GMr-RU-k94" firstAttribute="bottom" secondItem="eF0-Xh-u5U" secondAttribute="bottom" constant="-7" id="Owl-NB-pwD"/>

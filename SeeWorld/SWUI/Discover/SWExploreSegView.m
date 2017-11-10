@@ -53,7 +53,7 @@
     [self addSubview:_btnRight];
     [_btnRight addTarget:self action:@selector(onLikeClick) forControlEvents:UIControlEventTouchUpInside];
     
-    [self addSubview:[ALLineView lineWithFrame:CGRectMake(0, self.height-2, self.width, 2) colorHex:0x2a3a4b]];
+    [self addSubview:[ALLineView lineWithFrame:CGRectMake(0, self.height-2, self.width, 2) colorHex:0xffffff]];
     [self addSubview:[ALLineView lineWithFrame:CGRectMake(self.width/2.0, (self.height-20)/2.0, 1.0, 20) colorHex:0x596d80]];
 
     

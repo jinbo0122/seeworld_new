@@ -34,8 +34,8 @@
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
     _bgView = [[UIView alloc] initWithFrame:CGRectZero];
-    _bgView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    _bgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
+    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [self.contentView addSubview:_bgView];
     
     _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
@@ -80,7 +80,7 @@
     _lblComment = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     _lblComment.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     _lblComment.delegate = self;
-    _lblComment.textColor = [UIColor whiteColor];
+    _lblComment.textColor = [UIColor colorWithRGBHex:0x191d28];
     _lblComment.font = [UIFont systemFontOfSize:12];
     _lblComment.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
     _lblComment.lineBreakMode = NSLineBreakByCharWrapping;
@@ -200,7 +200,7 @@ didLongPressLinkWithURL:(NSURL *)url
     NSString *comment = [[commentItem.text safeJsonDicFromJsonString] safeStringObjectForKey:@"text"];
     NSAttributedString *content = [[NSAttributedString alloc] initWithString:comment
                                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
-                                                                               NSForegroundColorAttributeName:[UIColor whiteColor]}];
+                                                                               NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x191d28]}];
     CGSize contentSize = [TTTAttributedLabel sizeThatFitsAttributedString:content
                                                           withConstraints:CGSizeMake(UIScreenWidth-75, 1000)
                                                    limitedToNumberOfLines:50];

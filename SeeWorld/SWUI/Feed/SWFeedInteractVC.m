@@ -89,7 +89,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   self.tbVCComments.tableView.delegate   = self;
   self.tbVCComments.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
   self.tbVCComments.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
-  self.tbVCComments.tableView.backgroundColor= [UIColor colorWithRGBHex:0x1a2531];
+  self.tbVCComments.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
   self.tbVCComments.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height, 0);
   self.tbVCComments.tableView.tableFooterView = [UIView new];
   self.tbVCComments.tableView.separatorInset = UIEdgeInsetsZero;
@@ -99,7 +99,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTableViewTapped:)];
   [self.tbVCComments.tableView addGestureRecognizer:gesture];
   
-  self.commentInputView = [[SWCommentInputView alloc] initWithFrame:CGRectMake(0, self.scrollView.height-48, UIScreenWidth, 48)];
+  self.commentInputView = [[SWCommentInputView alloc] initWithFrame:CGRectMake(0, self.scrollView.height-48-iphoneXBottomAreaHeight, UIScreenWidth, 48+iphoneXBottomAreaHeight)];
   self.commentInputView.txtField.delegate = self;
   [self.commentInputView.btnPhoto addTarget:self action:@selector(onSendPhotoClicked) forControlEvents:UIControlEventTouchUpInside];
   [self.scrollView addSubview:self.commentInputView];
@@ -111,7 +111,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   self.tbVCLikes.tableView.delegate   = self;
   self.tbVCLikes.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
   self.tbVCLikes.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
-  self.tbVCLikes.tableView.backgroundColor= [UIColor colorWithRGBHex:0x1a2531];
+  self.tbVCLikes.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
   self.tbVCLikes.tableView.tableFooterView = [UIView new];
   self.tbVCLikes.tableView.contentInset   = UIEdgeInsetsMake(0, 0, 48+iOSNavHeight+self.titleView.height, 0);
   self.tbVCLikes.tableView.separatorInset = UIEdgeInsetsZero;
@@ -237,8 +237,8 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 - (void)onSendPhotoClicked{
   [self dismissKeyboard];
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.navigationBar.tintColor = [UIColor whiteColor];
-  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
+  picker.navigationBar.tintColor = [UIColor colorWithRGBHex:0x191d28];
+  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRGBHex:0x191d28]};
   [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
   [picker setDelegate:self];
   [self presentViewController:picker animated:YES completion:nil];

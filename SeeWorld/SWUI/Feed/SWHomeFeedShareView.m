@@ -29,7 +29,7 @@
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]) {
     self.backgroundColor = [UIColor colorWithRGBHex:0x000000 alpha:0.44];
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 220)];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 220+iphoneXBottomAreaHeight)];
     _bgView.backgroundColor = [UIColor colorWithRGBHex:0x203647];
     [self addSubview:_bgView];
     
@@ -37,7 +37,7 @@
     gesture.delegate = self;
     [self addGestureRecognizer:gesture];
 
-    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50, self.width, 50)];
+    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50-iphoneXBottomAreaHeight, self.width, 50)];
     [_btnCancel setBackgroundColor:[UIColor colorWithRGBHex:0x152c3e]];
     [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
     [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0xcacaca] forState:UIControlStateNormal];

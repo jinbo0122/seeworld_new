@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		490DB2151B77A32400A22C68 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490DB2141B77A32400A22C68 /* Message.storyboard */; };
-		490DB21A1B77A33200A22C68 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 490DB2191B77A33200A22C68 /* Discover.storyboard */; };
 		490DB2201B77A39C00A22C68 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB21F1B77A39C00A22C68 /* TabViewController.m */; };
 		490DB22C1B79065600A22C68 /* CommonResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB2291B79065600A22C68 /* CommonResponse.m */; };
 		490DB22D1B79065600A22C68 /* CommonMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB22B1B79065600A22C68 /* CommonMeta.m */; };
@@ -376,7 +375,6 @@
 		1CAC8C9266E1CC9C61983B98 /* libPods-SeeWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SeeWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41E4D7E71AA98E72F6B526E0 /* Pods-SeeWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeeWorld.release.xcconfig"; path = "../Pods/Target Support Files/Pods-SeeWorld/Pods-SeeWorld.release.xcconfig"; sourceTree = "<group>"; };
 		490DB2141B77A32400A22C68 /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
-		490DB2191B77A33200A22C68 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discover.storyboard; sourceTree = "<group>"; };
 		490DB21E1B77A39C00A22C68 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		490DB21F1B77A39C00A22C68 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		490DB2281B79065600A22C68 /* CommonResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonResponse.h; sourceTree = "<group>"; };
@@ -1591,7 +1589,6 @@
 			isa = PBXGroup;
 			children = (
 				4B207FB91BA54FDD00203393 /* API */,
-				490DB2191B77A33200A22C68 /* Discover.storyboard */,
 				4B1666FA1B9FF3E800590D06 /* SWExploreVC.h */,
 				4B1666FB1B9FF3E800590D06 /* SWExploreVC.m */,
 				4B1728CF1D0426B4000E5270 /* SWExploreSegView.h */,
@@ -2846,7 +2843,6 @@
 				4BDBFF7D1D071DB2005A757A /* Me.storyboard in Resources */,
 				4BC0514C1D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */,
 				493D450D1B777C8A00C406A1 /* QBImagePickerController.strings in Resources */,
-				490DB21A1B77A33200A22C68 /* Discover.storyboard in Resources */,
 				493D44EB1B777C8A00C406A1 /* MJRefresh.bundle in Resources */,
 				4BC0FEA71B943E28003F4723 /* MHPrettyDate.strings in Resources */,
 				493D44FB1B777C8A00C406A1 /* combine-libs.sh in Resources */,

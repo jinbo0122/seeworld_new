@@ -4,16 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -68,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-            timestampString = "532003931.759915"
+            timestampString = "532006417.836449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1109"
@@ -84,11 +74,11 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532002041.966101"
+                  timestampString = "532006417.940577"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1107"
-                  endingLineNumber = "1107"
+                  startingLineNumber = "1110"
+                  endingLineNumber = "1110"
                   offsetFromSymbolStart = "716">
                </Location>
                <Location
@@ -99,11 +89,11 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532002041.967776"
+                  timestampString = "532006417.94262"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1107"
-                  endingLineNumber = "1107"
+                  startingLineNumber = "1110"
+                  endingLineNumber = "1110"
                   offsetFromSymbolStart = "1340">
                </Location>
             </Locations>
@@ -116,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-            timestampString = "532003931.75998"
+            timestampString = "532006417.836769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1115"

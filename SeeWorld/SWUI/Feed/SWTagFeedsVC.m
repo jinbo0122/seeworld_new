@@ -42,22 +42,23 @@ SWFeedCellDelegate>
   
   self.tbVC.view.frame = self.view.bounds;
   self.tbVC = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-  if (self.model.tagItem)
-  {
-    self.tbVC.tableView.contentInset   = UIEdgeInsetsMake(iOSNavHeight-20, 0, 0, 0);
-  }
-
   self.tbVC.tableView.dataSource = self;
   self.tbVC.tableView.delegate   = self;
   self.tbVC.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.tbVC.tableView.backgroundColor= [UIColor colorWithRGBHex:0x1a2531];
+  self.tbVC.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
+  self.tbVC.tableView.estimatedRowHeight = 0;
+  self.tbVC.tableView.estimatedSectionFooterHeight = 0;
+  self.tbVC.tableView.estimatedSectionHeaderHeight = 0;
+  _tbVC.tableView.contentInset = UIEdgeInsetsMake(iOS11NavHeight, 0, 0, 0);
+  if (@available(iOS 11.0, *)) {
+    _tbVC.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+  }
   self.tbVC.refreshControl = [[UIRefreshControl alloc] init];
   [self.tbVC.refreshControl addTarget:self action:@selector(onHomeRefreshed) forControlEvents:UIControlEventValueChanged];
   [self.view addSubview:self.tbVC.tableView];
   
   
-  if (self.model.tagItem)
-  {
+  if (self.model.tagItem){
       self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 33)];
       self.lblFeedsCount = [UILabel initWithFrame:CGRectMake(0, 0, UIScreenWidth-10, self.headerView.height)
                                           bgColor:[UIColor clearColor]
@@ -66,7 +67,7 @@ SWFeedCellDelegate>
                                     textAlignment:NSTextAlignmentRight
                                              font:[UIFont systemFontOfSize:12]];
       [self.headerView addSubview:self.lblFeedsCount];
-      self.headerView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+      self.headerView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
       self.tbVC.tableView.tableHeaderView = self.headerView;
   }
   [self onHomeRefreshed];
@@ -102,7 +103,7 @@ SWFeedCellDelegate>
   }else{
     [cell refreshThumbCell:[self.model.feeds subarrayWithRange:NSMakeRange(location, length)] row:indexPath.row];
   }
-  cell.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  cell.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   cell.delegate = self;
   return cell;
 }

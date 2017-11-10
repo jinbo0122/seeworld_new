@@ -21,7 +21,7 @@
       _thumb[i] = [[UIButton alloc] initWithFrame:CGRectMake((width+1)*i, 0, width, width)];
       _thumb[i].customImageView = [[UIImageView alloc] initWithFrame:_thumb[i].bounds];
       _thumb[i].customImageView.contentMode = UIViewContentModeScaleAspectFill;
-      _thumb[i].customImageView.backgroundColor     = [UIColor colorWithRGBHex:0x1e252e];
+      _thumb[i].customImageView.backgroundColor     = [UIColor colorWithRGBHex:0xffffff];
       _thumb[i].clipsToBounds = YES;
       [_thumb[i] addSubview:_thumb[i].customImageView];
       [self.contentView addSubview:_thumb[i]];
