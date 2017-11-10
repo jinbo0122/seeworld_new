@@ -13,4 +13,5 @@
 - (void)startChat;
 - (void)pushChat:(UIViewController *)vc;
 - (void)popChatSetting;
+- (void)compose;
 @end

@@ -37,7 +37,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   [super viewDidLoad];
   // Do any additional setup after loading the view.
   if (self.isModal) {
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadBarButtonItemWithImage:@"setting_btn_back" rect:CGRectMake(0, 12.5, 22, 21)
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadBarButtonItemWithImage:@"back" rect:CGRectMake(0, 12.5, 11, 19)
                                                                                   arget:self action:@selector(onDismissVC)];
   }
   self.automaticallyAdjustsScrollViewInsets = NO;

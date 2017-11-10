@@ -1,13 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AppleSDGothicNeo.ttc">
+            <string>AppleSDGothicNeo-Bold</string>
+        </array>
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UzysAssetsPickerController">
             <connections>
                 <outlet property="bottomView" destination="kxD-PY-Oat" id="fmO-n5-9uB"/>
+                <outlet property="bottomViewHeightContraint" destination="dnt-YD-Jtz" id="61N-hX-ehf"/>
                 <outlet property="btnCamera" destination="8h0-kN-iqH" id="BN1-UZ-Qbu"/>
                 <outlet property="btnClose" destination="GMr-RU-k94" id="n3I-0d-H4l"/>
                 <outlet property="btnDone" destination="abt-dZ-axW" id="2rA-uc-JhG"/>
@@ -15,86 +28,87 @@
                 <outlet property="imageViewTitleArrow" destination="uvL-Np-IWv" id="Nbb-OE-YWu"/>
                 <outlet property="labelSelectedMedia" destination="HUE-lo-MS3" id="SFl-yr-V8h"/>
                 <outlet property="navigationTop" destination="eF0-Xh-u5U" id="gxF-h7-gEE"/>
+                <outlet property="navigationTopHeightConstraint" destination="RWs-kl-R4L" id="Ykb-jd-XeA"/>
                 <outlet property="segmentedControl" destination="44q-K1-3XI" id="15T-I7-UsW"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="1">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF0-Xh-u5U" userLabel="NavigationTop">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMr-RU-k94" userLabel="Button - Close">
-                            <rect key="frame" x="7" y="28" width="30" height="30"/>
+                            <rect key="frame" x="7" y="27" width="30" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="dUZ-MP-wO6"/>
                                 <constraint firstAttribute="width" constant="30" id="oKJ-E8-Zab"/>
                             </constraints>
                             <state key="normal" image="UzysAssetPickerController.bundle/uzysAP_navi_icon_close.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="yp1-Q0-WuH"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rd5-Z7-vdI" userLabel="Button - Title">
-                            <rect key="frame" x="145" y="23" width="30" height="40"/>
+                            <rect key="frame" x="172.5" y="27" width="30" height="32"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="pid-dK-XVP"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="16"/>
                             <state key="normal" title=".">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="9iB-BX-fxc"/>
                             </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UzysAssetPickerController.bundle/uzysAP_ico_arrow_upload_album_d.png" translatesAutoresizingMaskIntoConstraints="NO" id="uvL-Np-IWv">
-                            <rect key="frame" x="178" y="41" width="9" height="9"/>
+                            <rect key="frame" x="205.5" y="40" width="9" height="9"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="9" id="g2U-7j-09o"/>
                                 <constraint firstAttribute="width" constant="9" id="i2o-2b-m2Z"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.10196078431372549" green="0.14509803921568626" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.10196078431372549" green="0.14509803921568626" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="rd5-Z7-vdI" firstAttribute="trailing" secondItem="uvL-Np-IWv" secondAttribute="leading" constant="-3" id="5tI-lL-2ql"/>
-                        <constraint firstItem="GMr-RU-k94" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="28" id="Owl-NB-pwD"/>
+                        <constraint firstItem="GMr-RU-k94" firstAttribute="bottom" secondItem="eF0-Xh-u5U" secondAttribute="bottom" constant="-7" id="Owl-NB-pwD"/>
                         <constraint firstAttribute="height" constant="64" id="RWs-kl-R4L"/>
-                        <constraint firstItem="uvL-Np-IWv" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="41" id="fEh-hJ-QAP"/>
-                        <constraint firstItem="rd5-Z7-vdI" firstAttribute="top" secondItem="eF0-Xh-u5U" secondAttribute="top" constant="23" id="gpf-ZL-oEO"/>
+                        <constraint firstItem="uvL-Np-IWv" firstAttribute="bottom" secondItem="eF0-Xh-u5U" secondAttribute="bottom" constant="-15" id="fEh-hJ-QAP"/>
+                        <constraint firstItem="rd5-Z7-vdI" firstAttribute="bottom" secondItem="eF0-Xh-u5U" secondAttribute="bottom" constant="-5" id="gpf-ZL-oEO"/>
                         <constraint firstAttribute="centerX" secondItem="rd5-Z7-vdI" secondAttribute="centerX" id="o4w-kG-MCJ"/>
-                        <constraint firstAttribute="bottom" secondItem="rd5-Z7-vdI" secondAttribute="bottom" constant="1" id="qrL-Sb-ad9"/>
                         <constraint firstItem="GMr-RU-k94" firstAttribute="leading" secondItem="eF0-Xh-u5U" secondAttribute="leading" constant="7" id="xXP-qa-Zce"/>
                     </constraints>
                 </view>
                 <view tag="201" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxD-PY-Oat" userLabel="BottomView">
-                    <rect key="frame" x="0.0" y="520" width="320" height="48"/>
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
                     <subviews>
                         <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abt-dZ-axW">
-                            <rect key="frame" x="249" y="9" width="55" height="30"/>
-                            <color key="backgroundColor" red="0.88235294117647056" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="304" y="9" width="55" height="30"/>
+                            <color key="backgroundColor" red="0.88235294117647056" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="55" id="QKW-c3-OwO"/>
+                                <constraint firstAttribute="height" constant="30" id="qPZ-B7-vzK"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <inset key="titleEdgeInsets" minX="-32" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <inset key="imageEdgeInsets" minX="32" minY="1" maxX="0.0" maxY="0.0"/>
                             <state key="normal">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="sbl-ar-Pla"/>
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="44q-K1-3XI">
-                            <rect key="frame" x="85" y="10" width="150" height="29"/>
+                            <rect key="frame" x="112.5" y="10" width="150" height="29"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="150" id="GmF-cg-Lkw"/>
                             </constraints>
@@ -106,18 +120,18 @@
                                     <size key="contentOffset" width="0.0" height="1"/>
                                 </segment>
                             </segments>
-                            <color key="tintColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="indexDidChangeForSegmentedControl:" destination="-1" eventType="valueChanged" id="xud-fs-HXo"/>
                             </connections>
                         </segmentedControl>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUE-lo-MS3">
-                            <rect key="frame" x="80" y="12" width="160" height="24"/>
+                            <rect key="frame" x="107.5" y="12" width="160" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="160" id="HP4-c4-4oE"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8h0-kN-iqH" userLabel="Button - Camera">
@@ -128,14 +142,14 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" image="UzysAssetPickerController.bundle/uzysAP_ico_upload_camera.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="btnAction:" destination="-1" eventType="touchUpInside" id="2aB-DM-9M6"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="abt-dZ-axW" secondAttribute="trailing" constant="16" id="3TZ-fj-zIL"/>
                         <constraint firstItem="abt-dZ-axW" firstAttribute="top" secondItem="kxD-PY-Oat" secondAttribute="top" constant="9" id="6fZ-3n-daD"/>
@@ -145,13 +159,12 @@
                         <constraint firstItem="8h0-kN-iqH" firstAttribute="top" secondItem="kxD-PY-Oat" secondAttribute="top" constant="9" id="NKE-1D-iRI"/>
                         <constraint firstAttribute="bottom" secondItem="HUE-lo-MS3" secondAttribute="bottom" constant="12" id="ZA1-gd-zrp"/>
                         <constraint firstAttribute="height" constant="48" id="dnt-YD-Jtz"/>
-                        <constraint firstAttribute="bottom" secondItem="abt-dZ-axW" secondAttribute="bottom" constant="9" id="ehi-Px-fag"/>
                         <constraint firstItem="44q-K1-3XI" firstAttribute="top" secondItem="kxD-PY-Oat" secondAttribute="top" constant="10" id="sPa-Ne-XLU"/>
                         <constraint firstAttribute="centerX" secondItem="44q-K1-3XI" secondAttribute="centerX" id="x1J-0Q-Ppt"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="kxD-PY-Oat" secondAttribute="trailing" id="1Ea-x9-NZ5"/>
                 <constraint firstAttribute="bottom" secondItem="kxD-PY-Oat" secondAttribute="bottom" id="PMN-qw-pbb"/>
@@ -160,6 +173,7 @@
                 <constraint firstItem="kxD-PY-Oat" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="lRT-Lk-7bJ"/>
                 <constraint firstItem="eF0-Xh-u5U" firstAttribute="top" secondItem="1" secondAttribute="top" id="r5i-6J-hnL"/>
             </constraints>
+            <point key="canvasLocation" x="43" y="54"/>
         </view>
     </objects>
     <resources>

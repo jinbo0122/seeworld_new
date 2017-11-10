@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *labelSelectedMedia;
 @property (weak, nonatomic) IBOutlet UIButton *btnCamera;
 @property (weak, nonatomic) IBOutlet UIButton *btnClose;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *navigationTopHeightConstraint;
 @property (nonatomic, strong) UIView *noAssetView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UzysWrapperPickerController *picker;
@@ -43,6 +43,7 @@
 
 - (IBAction)btnAction:(id)sender;
 - (IBAction)indexDidChangeForSegmentedControl:(id)sender;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *bottomViewHeightContraint;
 
 @end
 
@@ -89,6 +90,8 @@
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
+  _navigationTopHeightConstraint.constant = 64+iOSTopHeight;
+  _bottomViewHeightContraint.constant = 48+iphoneXBottomAreaHeight;
   [self initVariable];
   [self initImagePicker];
   [self setupOneMediaTypeSelection];
@@ -234,7 +237,7 @@
   layout.minimumInteritemSpacing      = 1.0;
   layout.minimumLineSpacing           = appearanceConfig.cellSpacing;
   
-  self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64 -48) collectionViewLayout:layout];
+  self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, UIScreenHeight - iOSNavHeight -48-iphoneXBottomAreaHeight) collectionViewLayout:layout];
   self.collectionView.allowsMultipleSelection = YES;
   [self.collectionView registerClass:[UzysAssetsViewCell class]
           forCellWithReuseIdentifier:kAssetsViewCellIdentifier];

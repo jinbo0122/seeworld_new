@@ -11,7 +11,7 @@
 #import "UzysAssetsPickerController_Configuration.h"
 
 #define BounceAnimationPixel 5
-#define NavigationHeight 64
+#define NavigationHeight iOSNavHeight
 @implementation UzysGroupPickerView
 
 - (id)initWithGroups:(NSMutableArray *)groups

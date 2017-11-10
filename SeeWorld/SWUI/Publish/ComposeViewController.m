@@ -27,22 +27,23 @@
 - (void)viewWillAppear:(BOOL)animated{
   [super viewWillAppear:animated];
   [self.navigationController setNavigationBarHidden:NO];
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+  [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear:animated];
   [self.navigationController setNavigationBarHidden:NO];
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+  [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 - (void)viewDidLoad{
   [super viewDidLoad];
   [self.navigationController setNavigationBarHidden:NO];
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
-  [self.navigationController.navigationBar setTintColor:[UIColor colorWithRGBHex:0x152c3e]];
-  [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRGBHex:0x152c3e]];
-  [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGBHex:0x152c3e] size:CGSizeMake(UIScreenWidth, 64)] forBarMetrics:UIBarMetricsDefault];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+  [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+
 
   CGFloat photoWidth = UIScreenHeight<=568?80:180;
   
@@ -57,11 +58,11 @@
   
   _txtContent = [[UITextView alloc] initWithFrame:CGRectMake(15, _photoView.bottom+10, UIScreenWidth-30, self.view.height-_photoView.bottom-10)];
   [self.view addSubview:_txtContent];
-  _txtContent.textColor = [UIColor whiteColor];
+  _txtContent.textColor = [UIColor colorWithRGBHex:0x191d28];
   _txtContent.font = [UIFont systemFontOfSize:16];
-  _txtContent.tintColor = [UIColor colorWithRGBHex:0x7ce7ef];
+  _txtContent.tintColor = [UIColor colorWithRGBHex:0x191d28];
   _txtContent.delegate = self;
-  _txtContent.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  _txtContent.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [_txtContent becomeFirstResponder];
   
   _lblLength = [UILabel initWithFrame:CGRectMake(0, _txtContent.bottom+5, _txtContent.width, 19)

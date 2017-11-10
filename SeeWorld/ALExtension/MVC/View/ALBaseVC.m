@@ -28,7 +28,7 @@
   [super viewDidLoad];
   self.navigationItem.backBarButtonItem = nil;
   self.navigationItem.title = @" ";
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
 }
 
 - (void)didReceiveMemoryWarning

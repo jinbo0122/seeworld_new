@@ -181,19 +181,31 @@ SWHomeHeaderViewDelegate>
 
 #pragma mark Header View Delegate
 - (void)homeHeaderViewDidPressPost:(SWHomeHeaderView *)headerView{
-
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
 }
 
 - (void)homeHeaderViewDidPressCamera:(SWHomeHeaderView *)headerView{
-  
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
 }
 
 - (void)homeHeaderViewDidPressAlbum:(SWHomeHeaderView *)headerView{
-  
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
 }
 
 - (void)homeHeaderViewDidPressLBS:(SWHomeHeaderView *)headerView{
-  
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
 }
 
 #pragma mark Table View Delegate

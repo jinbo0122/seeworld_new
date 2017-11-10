@@ -37,15 +37,15 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
-  [self.navigationController.navigationBar setTintColor:[UIColor colorWithRGBHex:0x152c3e]];
-  _tagView = [[WTTagView alloc] initWithFrame:CGRectMake(0, 20, UIScreenWidth, UIScreenWidth)];
-  [self.view addSubview:[ALLineView lineWithFrame:_tagView.frame colorHex:0x000000]];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+  [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+  _tagView = [[WTTagView alloc] initWithFrame:CGRectMake(0, 20 + iOSTopHeight, UIScreenWidth, UIScreenWidth)];
+  [self.view addSubview:[ALLineView lineWithFrame:_tagView.frame colorHex:0xffffff]];
   [self.view addSubview:_tagView];
   self.tagView.backgroundImageView.image = self.photoImage;
   self.tagView.delegate = self;
   self.tagView.dataSource = self;
-  self.tagView.backgroundColor = [UIColor blackColor];
+  self.tagView.backgroundColor = [UIColor whiteColor];
   CGFloat scale = [UIScreen mainScreen].scale;
   if (self.photoImage.size.width>self.photoImage.size.height) {
     CGFloat height = self.photoImage.size.height * UIScreenWidth/self.photoImage.size.width;
@@ -71,7 +71,7 @@
   
   _lblInfo = [UILabel initWithFrame:CGRectZero
                             bgColor:[UIColor clearColor]
-                          textColor:[UIColor whiteColor]
+                          textColor:[UIColor colorWithRGBHex:0x191d28]
                                text:@"點擊圖片加入標籤"
                       textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:18]];
   [_lblInfo sizeToFit];
@@ -84,7 +84,7 @@
   
   _lblIntro = [UILabel initWithFrame:CGRectMake(0, self.view.height-51-42-18, self.view.width, 18)
                              bgColor:[UIColor clearColor]
-                           textColor:[UIColor whiteColor]
+                           textColor:[UIColor colorWithRGBHex:0x191d28]
                                 text:@"標記品牌、地點或者人物"
                        textAlignment:NSTextAlignmentCenter font:[UIFont systemFontOfSize:18]];
   [self.view addSubview:_lblIntro];
@@ -95,7 +95,7 @@
                               text:@"添加標籤"
                      textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:18]];
   [_lblAdd sizeToFit];
-  _lblAdd.top  = self.view.height-51 + (51-_lblAdd.height)/2.0;
+  _lblAdd.top  = self.view.height-51 + (51-_lblAdd.height)/2.0 - iphoneXBottomAreaHeight;
   _lblAdd.left = (self.view.width-_lblAdd.width)/2.0;
   [self.view addSubview:_lblAdd];
   
@@ -206,9 +206,7 @@
 - (void)tagView:(WTTagView *)tagView addNewTagViewItemTappedAtPosition:(CGPoint)ponit
 {
   self.selectedPoint = ponit;
-  
-  UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Publish" bundle:nil];
-  AddTagSearchViewController *vc = [sb instantiateViewControllerWithIdentifier:@"AddTagSearchViewController"];
+  AddTagSearchViewController *vc = [[AddTagSearchViewController alloc] init];
   __weak __typeof(self)weakSelf = self;
   vc.endInputTitleHandler = ^(NSString *inputTitle) {
     __strong __typeof(weakSelf)strongSelf = weakSelf;

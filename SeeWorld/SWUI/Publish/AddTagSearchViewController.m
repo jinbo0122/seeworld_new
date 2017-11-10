@@ -11,19 +11,35 @@
 #import "WTextField.h"
 #import "SWHotTagsAPI.h"
 @interface AddTagSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet WTextField *tagTextFeild;
-@property (weak, nonatomic) IBOutlet UITableView *tagTableView;
+@property (strong, nonatomic) WTextField *tagTextFeild;
+@property (strong, nonatomic) UITableView *tagTableView;
+@property (strong, nonatomic) UIView   *tagSearchBgView;
+
 @property (strong, nonatomic) NSMutableArray  *hotTags;
 @end
 
-@implementation AddTagSearchViewController
+@implementation AddTagSearchViewController{
+  UIButton *_btnCancel;
+}
 
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1f2a38];
+  
+  _tagSearchBgView = [[UIView alloc] initWithFrame:CGRectMake(0,20+ iOSTopHeight, self.view.width, 56)];
+  [self.view addSubview:_tagSearchBgView];
+  
+  _tagTextFeild = [[WTextField alloc] initWithFrame:CGRectMake(15, 12, self.view.width - 75, 32)];
+  [_tagSearchBgView addSubview:_tagTextFeild];
+  
+  _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width - 60, 0, 60, _tagSearchBgView.height)];
+  [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
+  [_btnCancel addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
+  [_tagSearchBgView addSubview:_btnCancel];
+  [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
+  
   [self.tagTextFeild addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
-  self.tagTableView.dataSource = self;
-  self.tagTableView.delegate = self;
   self.tagTextFeild.delegate = self;
   
   self.tagTextFeild.editingInsetPoint = CGPointMake(10, 0);
@@ -37,6 +53,16 @@
   _tagTextFeild.layer.borderColor = [UIColor colorWithRGBHex:0x8b9cad].CGColor;
   _tagTextFeild.layer.borderWidth = 0.5;
   _tagTextFeild.layer.cornerRadius  = 4.0;
+  
+  _tagTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _tagSearchBgView.bottom, self.view.width, self.view.height-_tagSearchBgView.bottom)
+                                               style:UITableViewStylePlain];
+  _tagTableView.dataSource = self;
+  _tagTableView.delegate = self;
+  _tagTableView.rowHeight = 44;
+  _tagTableView.separatorInset = UIEdgeInsetsZero;
+  _tagTableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  _tagTableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  [self.view addSubview:_tagTableView];
   
   _hotTags = [NSMutableArray array];
   __weak typeof(self)wSelf = self;
@@ -65,7 +91,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  AddTagCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AddTagCell"];
+  static NSString *identifier = @"AddTagCell";
+  AddTagCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+  if (!cell) {
+    cell = [[AddTagCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+  }
   if (indexPath.row == 0 && self.tagTextFeild.text.length > 0){
     cell.hotTagLabelText.text = [NSString stringWithFormat:@"添加標籤:%@", self.tagTextFeild.text];
   }else if ((indexPath.row == 0 && self.tagTextFeild.text.length == 0)||

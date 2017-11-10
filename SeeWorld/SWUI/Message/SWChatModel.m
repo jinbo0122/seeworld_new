@@ -50,7 +50,7 @@
                                 [wSelf getToken];
                               }];
   [RCIM sharedRCIM].receiveMessageDelegate = self;
-  [RCIM sharedRCIM].globalNavigationBarTintColor = [UIColor colorWithRGBHex:0x152c3e];
+  [RCIM sharedRCIM].globalNavigationBarTintColor = [UIColor colorWithRGBHex:0xffffff];
   [RCIM sharedRCIM].globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
   [RCIM sharedRCIM].enableMessageAttachUserInfo=YES;
   [[RCIM sharedRCIM] setUserInfoDataSource:self];

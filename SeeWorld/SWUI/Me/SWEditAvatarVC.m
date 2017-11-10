@@ -29,7 +29,7 @@
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x000000];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x152c3e]];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:@"取消"
                                                                                     color:[UIColor whiteColor]
                                                                                      font:[UIFont systemFontOfSize:18]

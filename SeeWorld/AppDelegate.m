@@ -29,8 +29,8 @@
   [self createFolders];
   UINavigationBar* appearanceNavigationBar = [UINavigationBar appearance];
   if ([[UINavigationBar class] instancesRespondToSelector:@selector(setBackIndicatorImage:)]){
-    appearanceNavigationBar.backIndicatorImage = [[UIImage imageNamed:@"setting_btn_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    appearanceNavigationBar.backIndicatorTransitionMaskImage = [[UIImage imageNamed:@"setting_btn_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    appearanceNavigationBar.backIndicatorImage = [[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    appearanceNavigationBar.backIndicatorTransitionMaskImage = [[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     appearanceNavigationBar.tintColor = [UIColor colorWithRGBHex:0x191d28];
     appearanceNavigationBar.barTintColor = [UIColor whiteColor];
     appearanceNavigationBar.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20],
@@ -42,9 +42,9 @@
   [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
    setBackgroundColor:[UIColor clearColor]];
   
-  UIOffset backButtonTextOffset = UIOffsetMake(0, -60);
-  [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:backButtonTextOffset
-                                                       forBarMetrics:UIBarMetricsDefault];
+//  UIOffset backButtonTextOffset = UIOffsetMake(0, -40);
+//  [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:backButtonTextOffset
+//                                                       forBarMetrics:UIBarMetricsDefault];
 #if TARGET_IPHONE_SIMULATOR
 #else
   [WXApi registerApp:SWWeixinAPI];

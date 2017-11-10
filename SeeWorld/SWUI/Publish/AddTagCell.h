@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AddTagCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *hotTagLabelText;
+@property (strong, nonatomic) UILabel *hotTagLabelText;
 @end
