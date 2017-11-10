@@ -40,29 +40,31 @@
     _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50-iphoneXBottomAreaHeight, self.width, 50)];
     [_btnCancel setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
     [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
-    [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0xcacaca] forState:UIControlStateNormal];
-    [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0x8A9BAC] forState:UIControlStateNormal];
+    [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:17]];
     [_bgView addSubview:_btnCancel];
     [_btnCancel addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [_btnCancel addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0.5, _btnCancel.width, 0.5) colorHex:0xcccccc]];
     
     _btnReport = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnCancel.top-0.5-50, self.width, 50)];
     [_btnReport setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
     [_btnReport setTitle:SWStringReport forState:UIControlStateNormal];
-    [_btnReport setTitleColor:[UIColor colorWithRGBHex:0xcacaca] forState:UIControlStateNormal];
-    [_btnReport.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [_btnReport setTitleColor:[UIColor colorWithRGBHex:0x8A9BAC] forState:UIControlStateNormal];
+    [_btnReport.titleLabel setFont:[UIFont systemFontOfSize:17]];
     [_bgView addSubview:_btnReport];
     [_btnReport addTarget:self action:@selector(onReportClicked) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_btnReport addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, _btnReport.width, 0.5) colorHex:0xcccccc]];
+
     UIView *shareBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 119)];
     shareBgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [_bgView addSubview:shareBgView];
     
     UILabel *lblHint = [UILabel initWithFrame:CGRectMake((self.width-50)/2.0, 16, 50, 22.5)
                                       bgColor:[UIColor clearColor]
-                                    textColor:[UIColor colorWithRGBHex:0xcacaca]
+                                    textColor:[UIColor colorWithRGBHex:0x34414e]
                                          text:SWStringShare
                                 textAlignment:NSTextAlignmentCenter
-                                         font:[UIFont systemFontOfSize:12]];
+                                         font:[UIFont systemFontOfSize:15]];
     [_bgView addSubview:lblHint];
     
     CGFloat initX = (self.width-30*6-20)/7.0;

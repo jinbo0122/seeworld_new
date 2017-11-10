@@ -26,7 +26,7 @@ SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,
 SWHomeHeaderViewDelegate>
 @property(nonatomic, strong)UITableViewController     *tbVC;
 @property(nonatomic, strong)SWHomeFeedModel           *model;
-@property(nonatomic, strong)SWHomeFeedRecommandView   *headerView;
+@property(nonatomic, strong)SWHomeFeedRecommandView   *recommandView;
 @property(nonatomic, strong)SWHomeHeaderView          *postView;
 @property(nonatomic, strong)UIDocumentInteractionController *documentController;
 
@@ -34,7 +34,9 @@ SWHomeHeaderViewDelegate>
 @property(nonatomic, strong)UIButton    *btnSearch;
 @end
 
-@implementation SWHomeFeedVC
+@implementation SWHomeFeedVC{
+  UIView *_headerView;
+}
 
 - (id)init{
   self = [super init];
@@ -159,12 +161,18 @@ SWHomeHeaderViewDelegate>
   if (@available(iOS 11.0, *)) {
     _tbVC.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
-  self.headerView = [[SWHomeFeedRecommandView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 80)];
-  self.headerView.delegate = self;
-  
   _postView = [[SWHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 110)];
-  _tbVC.tableView.tableHeaderView = _postView;
   _postView.delegate = self;
+  _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, _postView.height)];
+  [_headerView addSubview:_postView];
+  
+  _recommandView = [[SWHomeFeedRecommandView alloc] initWithFrame:CGRectMake(0, _postView.bottom+7, UIScreenWidth, 183)];
+  _recommandView.delegate = self;
+  [_headerView addSubview:_recommandView];
+  _recommandView.hidden = YES;
+
+  _tbVC.tableView.tableHeaderView = _headerView;
+
   [self onHomeRefreshed];
 }
 
@@ -251,13 +259,11 @@ SWHomeHeaderViewDelegate>
   [self.tbVC.refreshControl endRefreshing];
 }
 
-- (void)homeFeedModelDidRecommandUser:(SWFeedUserItem *)user{
-  //  [self.headerView refreshWithUser:user];
-  //  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"disableHomeFeedRecommandUser"]) {
-  //    self.tbVC.tableView.tableHeaderView = nil;
-  //  }else{
-  //    self.tbVC.tableView.tableHeaderView = self.headerView;
-  //  }
+- (void)homeFeedModelDidRecommandUser:(NSArray *)users{
+  [_recommandView refreshWithUsers:users];
+  _recommandView.hidden = NO;
+  _headerView.height = _recommandView.bottom;
+  self.tbVC.tableView.tableHeaderView = _headerView;
 }
 
 - (void)homeFeedModelDidPressLike:(SWHomeFeedModel *)model row:(NSInteger)row{

@@ -86,15 +86,19 @@
     NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
     NSArray *data = [dic safeArrayObjectForKey:@"data"];
     if (data.count>0) {
-      SWFeedUserItem *user = [SWFeedUserItem feedUserItemByDic:[[dic safeArrayObjectForKey:@"data"] safeDicObjectAtIndex:0]];
+      NSMutableArray *users = [NSMutableArray array];
+      for (NSInteger i=0; i<data.count; i++) {
+        SWFeedUserItem *user = [SWFeedUserItem feedUserItemByDic:[[dic safeArrayObjectForKey:@"data"] safeDicObjectAtIndex:i]];
+        [users safeAddObject:user];
+      }
       if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(homeFeedModelDidRecommandUser:)]) {
-        [wSelf.delegate homeFeedModelDidRecommandUser:user];
+        [wSelf.delegate homeFeedModelDidRecommandUser:users];
       }
     }
     
     if(isFakeDataOn){
       if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(homeFeedModelDidRecommandUser:)]) {
-        [wSelf.delegate homeFeedModelDidRecommandUser:[SWFeedUserItem myself]];
+        [wSelf.delegate homeFeedModelDidRecommandUser:@[[SWFeedUserItem myself]]];
       }
     }
     

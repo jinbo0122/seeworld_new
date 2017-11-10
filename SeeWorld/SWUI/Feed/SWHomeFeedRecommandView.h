@@ -13,7 +13,7 @@
 @property(nonatomic, weak)id<SWHomeFeedRecommandViewDelegate>delegate;
 @property(nonatomic, strong)UIButton *btnHide;
 
-- (void)refreshWithUser:(SWFeedUserItem *)user;
+- (void)refreshWithUsers:(NSArray *)users;
 @end
 
 @protocol SWHomeFeedRecommandViewDelegate <NSObject>

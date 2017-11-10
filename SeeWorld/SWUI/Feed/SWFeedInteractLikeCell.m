@@ -28,7 +28,7 @@
     
     _lblName = [UILabel initWithFrame:CGRectMake(_iconAvatar.right+10, 15, UIScreenWidth-140, 19.5)
                               bgColor:[UIColor clearColor]
-                            textColor:[UIColor colorWithRGBHex:0x838cda]
+                            textColor:[UIColor colorWithRGBHex:0x34414e]
                                  text:@""
                         textAlignment:NSTextAlignmentLeft
                                  font:[UIFont systemFontOfSize:14]];
@@ -41,9 +41,6 @@
                         textAlignment:NSTextAlignmentLeft
                                  font:[UIFont systemFontOfSize:11]];
     [self.contentView addSubview:_lblTime];
-    
-    _btnFollow = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-121, 19, 106, 28)];
-    [self.contentView addSubview:_btnFollow];
   }
   return self;
 }

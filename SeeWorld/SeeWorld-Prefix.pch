@@ -61,5 +61,7 @@ DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
 #import "SWSelectContactVC.h"
 #import "SWContactModel.h"
 #import "SWDefine.h"
+#import "PDProgressHUD.h"
+#import "PDProgressHUD+ALExtension.h"
 #define SWURLAgreement @"https://seeworldplus.com/user_terms";
 #endif

@@ -30,6 +30,6 @@
 - (void)homeFeedModelDidLoadContents:(SWHomeFeedModel *)model;
 - (void)homeFeedModelDidPressLike:(SWHomeFeedModel *)model row:(NSInteger)row;
 @optional
-- (void)homeFeedModelDidRecommandUser:(SWFeedUserItem *)user;
+- (void)homeFeedModelDidRecommandUser:(NSArray *)users;
 
 @end

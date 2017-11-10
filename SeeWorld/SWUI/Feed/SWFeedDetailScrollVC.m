@@ -50,7 +50,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
                                                               action:@selector(onDelButtonClicked:)];
-    [barbtn setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+    [barbtn setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x191d28],
                                      NSFontAttributeName:[UIFont systemFontOfSize:14]}
                           forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = barbtn;

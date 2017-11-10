@@ -196,6 +196,8 @@
 		4B95D1CF1C3BAB5700FF02F2 /* SWSelectContactCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B95D1CE1C3BAB5700FF02F2 /* SWSelectContactCell.m */; };
 		4BA4D9F81D05288F009521B0 /* SWFeedCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4D9F71D05288F009521B0 /* SWFeedCommentView.m */; };
 		4BA4DA021D0548B0009521B0 /* SWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4DA011D0548B0009521B0 /* SWAlertView.m */; };
+		4BA4DAE21FB5CDD2000A1290 /* PDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4DAE11FB5CDD2000A1290 /* PDProgressHUD.m */; };
+		4BA4DAE51FB5CE15000A1290 /* PDProgressHUD+ALExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4DAE41FB5CE15000A1290 /* PDProgressHUD+ALExtension.m */; };
 		4BA809651C50647700726FF1 /* SWContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA809641C50647700726FF1 /* SWContactAPI.m */; };
 		4BB3F0D51CE9710C0065CFBC /* SWMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB3F0D41CE9710C0065CFBC /* SWMineVC.m */; };
 		4BB3F0DB1CE977AA0065CFBC /* SWSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB3F0DA1CE977AA0065CFBC /* SWSettingVC.m */; };
@@ -780,6 +782,10 @@
 		4BA4D9F71D05288F009521B0 /* SWFeedCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFeedCommentView.m; sourceTree = "<group>"; };
 		4BA4DA001D0548B0009521B0 /* SWAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWAlertView.h; path = Common/SWAlertView.h; sourceTree = "<group>"; };
 		4BA4DA011D0548B0009521B0 /* SWAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWAlertView.m; path = Common/SWAlertView.m; sourceTree = "<group>"; };
+		4BA4DAE01FB5CDD2000A1290 /* PDProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PDProgressHUD.h; path = Common/PDProgressHUD.h; sourceTree = "<group>"; };
+		4BA4DAE11FB5CDD2000A1290 /* PDProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDProgressHUD.m; path = Common/PDProgressHUD.m; sourceTree = "<group>"; };
+		4BA4DAE31FB5CE15000A1290 /* PDProgressHUD+ALExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PDProgressHUD+ALExtension.h"; path = "Common/PDProgressHUD+ALExtension.h"; sourceTree = "<group>"; };
+		4BA4DAE41FB5CE15000A1290 /* PDProgressHUD+ALExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PDProgressHUD+ALExtension.m"; path = "Common/PDProgressHUD+ALExtension.m"; sourceTree = "<group>"; };
 		4BA809631C50647700726FF1 /* SWContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWContactAPI.h; sourceTree = "<group>"; };
 		4BA809641C50647700726FF1 /* SWContactAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWContactAPI.m; sourceTree = "<group>"; };
 		4BB3F0D31CE9710C0065CFBC /* SWMineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWMineVC.h; sourceTree = "<group>"; };
@@ -2107,6 +2113,10 @@
 		4BA4D9FF1D05489F009521B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4BA4DAE01FB5CDD2000A1290 /* PDProgressHUD.h */,
+				4BA4DAE11FB5CDD2000A1290 /* PDProgressHUD.m */,
+				4BA4DAE31FB5CE15000A1290 /* PDProgressHUD+ALExtension.h */,
+				4BA4DAE41FB5CE15000A1290 /* PDProgressHUD+ALExtension.m */,
 				4BA4DA001D0548B0009521B0 /* SWAlertView.h */,
 				4BA4DA011D0548B0009521B0 /* SWAlertView.m */,
 			);
@@ -2971,6 +2981,7 @@
 				4BC0FE631B943B4F003F4723 /* UIImage+ALExtension.m in Sources */,
 				4BE0DE971B9C450700634B33 /* SWFBLoginAPI.m in Sources */,
 				4BCCC6361C3E409E0056EC83 /* ALLineView.m in Sources */,
+				4BA4DAE21FB5CDD2000A1290 /* PDProgressHUD.m in Sources */,
 				49AD7C291BA77861000405F4 /* FeedData.m in Sources */,
 				4BC0FE681B943B4F003F4723 /* UIView+ALExtension.m in Sources */,
 				4BC0FEB71B944D27003F4723 /* SWHomeFeedRecommandView.m in Sources */,
@@ -2980,6 +2991,7 @@
 				493D44D91B777C8A00C406A1 /* HPTextViewInternal.m in Sources */,
 				493D44EE1B777C8A00C406A1 /* MJRefreshFooter.m in Sources */,
 				4BD3AAE61D54A4170010FA84 /* WTTagViewItem.m in Sources */,
+				4BA4DAE51FB5CE15000A1290 /* PDProgressHUD+ALExtension.m in Sources */,
 				4BC0FE4F1B943B4F003F4723 /* ALSingleton.m in Sources */,
 				493D44FD1B777C8A00C406A1 /* NSTextCheckingResult+ExtendedURL.m in Sources */,
 				4BD3AAD91D54A4170010FA84 /* MASCompositeConstraint.m in Sources */,
