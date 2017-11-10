@@ -30,7 +30,7 @@
   if (self = [super initWithFrame:frame]) {
     self.backgroundColor = [UIColor colorWithRGBHex:0x000000 alpha:0.44];
     _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 220+iphoneXBottomAreaHeight)];
-    _bgView.backgroundColor = [UIColor colorWithRGBHex:0x203647];
+    _bgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [self addSubview:_bgView];
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
@@ -38,7 +38,7 @@
     [self addGestureRecognizer:gesture];
 
     _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50-iphoneXBottomAreaHeight, self.width, 50)];
-    [_btnCancel setBackgroundColor:[UIColor colorWithRGBHex:0x152c3e]];
+    [_btnCancel setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
     [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
     [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0xcacaca] forState:UIControlStateNormal];
     [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -46,7 +46,7 @@
     [_btnCancel addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     
     _btnReport = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnCancel.top-0.5-50, self.width, 50)];
-    [_btnReport setBackgroundColor:[UIColor colorWithRGBHex:0x152c3e]];
+    [_btnReport setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
     [_btnReport setTitle:SWStringReport forState:UIControlStateNormal];
     [_btnReport setTitleColor:[UIColor colorWithRGBHex:0xcacaca] forState:UIControlStateNormal];
     [_btnReport.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -54,12 +54,12 @@
     [_btnReport addTarget:self action:@selector(onReportClicked) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *shareBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 119)];
-    shareBgView.backgroundColor = [UIColor colorWithRGBHex:0x152c3e];
+    shareBgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     [_bgView addSubview:shareBgView];
     
     UILabel *lblHint = [UILabel initWithFrame:CGRectMake((self.width-50)/2.0, 16, 50, 22.5)
                                       bgColor:[UIColor clearColor]
-                                    textColor:[UIColor colorWithRGBHex:0xffffff]
+                                    textColor:[UIColor colorWithRGBHex:0xcacaca]
                                          text:SWStringShare
                                 textAlignment:NSTextAlignmentCenter
                                          font:[UIFont systemFontOfSize:12]];
