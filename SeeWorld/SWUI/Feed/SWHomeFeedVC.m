@@ -21,6 +21,7 @@
 #import "SWAgreementVC.h"
 #import "SWSearchVC.h"
 #import "SWHomeHeaderView.h"
+#import "RelationshipViewController.h"
 @interface SWHomeFeedVC ()<UITableViewDataSource,UITableViewDelegate,SWHomeFeedModelDelegate,
 SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,
 SWHomeHeaderViewDelegate>
@@ -280,38 +281,13 @@ SWHomeHeaderViewDelegate>
   [self.model addFollowUser:user];
 }
 
-- (void)feedRecommandDidPressHide:(SWHomeFeedRecommandView *)view{
-  __weak typeof(self)wSelf = self;
-  __weak typeof(view)wRec = view;
-  
-  [UIView animateWithDuration:0.5
-                   animations:^{
-                     wRec.btnHide.customImageView.transform = CGAffineTransformRotate(wRec.btnHide.customImageView.transform, -M_PI);
-                   }];
-  
-  SWActionSheetView *action = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds title:nil content:@"隱藏推薦好友"];
-  action.cancelBlock = ^{
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                       wRec.btnHide.customImageView.transform = CGAffineTransformIdentity;
-                     }];
-  };
-  action.completeBlock = ^{
-    SWActionSheetView *confirmView = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds title:@"確定隱藏推薦好友？" content:@"確定隱藏"];
-    confirmView.cancelBlock = ^{
-      [UIView animateWithDuration:0.5
-                       animations:^{
-                         wRec.btnHide.customImageView.transform = CGAffineTransformIdentity;
-                       }];
-    };
-    confirmView.completeBlock = ^{
-      [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"disableHomeFeedRecommandUser"];
-      [[NSUserDefaults standardUserDefaults] synchronize];
-      wSelf.tbVC.tableView.tableHeaderView = nil;
-    };
-    [confirmView show];
-  };
-  [action show];
+- (void)feedRecommandDidPressMore:(SWHomeFeedRecommandView *)view{
+  UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
+  RelationshipViewController *vc = [sb instantiateViewControllerWithIdentifier:@"RelationshipViewController"];
+  vc.userId = [[SWConfigManager sharedInstance].user.uId stringValue];
+  vc.type = eRelationshipTypeRecommand;
+  vc.hidesBottomBarWhenPushed = YES;
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark Cell Delegate

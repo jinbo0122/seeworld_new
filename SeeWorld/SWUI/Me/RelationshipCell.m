@@ -24,13 +24,14 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     _btnFollow = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-116, 21, 106, 28)];
     [self.contentView addSubview:_btnFollow];
     _btnFollow.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70, 8, 13, 12)];
     [_btnFollow addSubview:_btnFollow.customImageView];
     [_btnFollow addTarget:self action:@selector(onFollowClicked:) forControlEvents:UIControlEventTouchUpInside];
     _btnFollow.titleLabel.font = [UIFont systemFontOfSize:11];
+    [_btnFollow setTitleColor:[UIColor colorWithRGBHex:0x55acef] forState:UIControlStateNormal];
     
     _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 50, 50)];
     _iconAvatar.layer.masksToBounds = YES;
@@ -39,7 +40,7 @@
     
     _lblName = [UILabel initWithFrame:CGRectMake(_iconAvatar.right+10, 0, _btnFollow.left-_iconAvatar.right-20, 70)
                               bgColor:[UIColor clearColor]
-                            textColor:[UIColor whiteColor]
+                            textColor:[UIColor colorWithRGBHex:0x333333]
                                  text:@""
                         textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16]];
     [self.contentView addSubview:_lblName];

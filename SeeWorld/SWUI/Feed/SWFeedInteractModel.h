@@ -26,10 +26,11 @@
 
 @protocol SWFeedInteractModelDelegate <NSObject>
 
-- (void)feedInteractModelDidLoadLikes:(SWFeedInteractModel *)model;
 - (void)feedInteractModelDidLoadComments:(SWFeedInteractModel *)model;
-
 - (void)feedInteractModelDidDeleteComments:(SWFeedInteractModel *)model;
 - (void)feedInteractModelDidSendComments:(SWFeedInteractModel *)model;
 - (void)feedInteractModelDidSendImages:(SWFeedInteractModel *)model;
+
+@optional
+- (void)feedInteractModelDidLoadLikes:(SWFeedInteractModel *)model;
 @end

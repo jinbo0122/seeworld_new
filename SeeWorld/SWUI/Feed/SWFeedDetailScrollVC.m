@@ -15,7 +15,7 @@
 #import "SWFeedTagButton.h"
 #import "SWAgreementVC.h"
 @interface SWFeedDetailScrollVC ()<SWFeedCollectionViewDelegate,SWFeedDetailViewDelegate,
-SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
+SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic, strong)SWFeedCollectionView *collectionView;
 @property(nonatomic, strong)UIDocumentInteractionController *documentController;
 @property(strong, nonatomic)UIButton *rightButton;
@@ -279,6 +279,28 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
   dispatch_async(dispatch_get_main_queue(), ^{
     [wSelf.collectionView reloadDataAtIndex:row];
   });
+}
+
+- (void)feedDetailViewDidNeedOpenImagePicker:(SWFeedCollectionCell *)cell{
+  UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+  picker.navigationBar.tintColor = [UIColor colorWithRGBHex:0x191d28];
+  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRGBHex:0x191d28]};
+  [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+  [picker setDelegate:self];
+  [self presentViewController:picker animated:YES completion:nil];
+}
+
+#pragma mark Photo Delegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+  __weak typeof(self)wSelf = self;
+  [self dismissViewControllerAnimated:YES completion:^{
+    SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[wSelf.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:wSelf.currentIndex inSection:0]];
+    [cell.interactModel sendImage:[info objectForKey:UIImagePickerControllerOriginalImage] replyUser:cell.commentInputView.replyUser];
+  }];
 }
 
 #pragma mark Feed Interact VC Delegate

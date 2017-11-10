@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SWFeedItem.h"
 #import "SWFeedImageView.h"
+#import "SWFeedInteractModel.h"
+#import "SWCommentInputView.h"
+
 @protocol SWFeedDetailViewDelegate;
 @interface SWFeedCollectionCell : UICollectionViewCell
 @property(nonatomic, strong)SWFeedImageView           *feedImageView;
 @property(nonatomic, weak)id<SWFeedDetailViewDelegate>delegate;
+@property(nonatomic, strong)SWFeedInteractModel       *interactModel;
+@property(nonatomic, strong)SWCommentInputView        *commentInputView;
 
 - (void)refreshFeedView:(SWFeedItem *)feed row:(NSInteger)row;
 + (CGFloat)heightByFeed:(SWFeedItem *)feed;
@@ -29,5 +34,5 @@
 - (void)feedDetailViewDidPressTag:(SWFeedTagItem *)tagItem;
 - (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect;
 - (void)feedDetailViewDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row;
-
+- (void)feedDetailViewDidNeedOpenImagePicker:(SWFeedCollectionCell *)cell;
 @end

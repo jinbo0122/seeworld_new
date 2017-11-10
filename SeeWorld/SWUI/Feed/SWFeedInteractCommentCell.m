@@ -71,10 +71,10 @@
     
     _lblTime = [UILabel initWithFrame:CGRectZero
                               bgColor:[UIColor clearColor]
-                            textColor:[UIColor colorWithRGBHex:0x8b9cad]
+                            textColor:[UIColor colorWithRGBHex:0x999999 alpha:0.8]
                                  text:@""
                         textAlignment:NSTextAlignmentLeft
-                                 font:[UIFont systemFontOfSize:9]];
+                                 font:[UIFont systemFontOfSize:12]];
     [_bgView addSubview:_lblTime];
     
     _lblComment = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
@@ -185,8 +185,6 @@ didLongPressLinkWithURL:(NSURL *)url
     _lblReplyName.hidden = YES;
   }
   
-  _lblTime.frame = CGRectMake(UIScreenWidth-_lblTime.width-10, 10, _lblTime.width, _lblTime.height);
-  
   BOOL isImage = [[[commentItem.text safeJsonDicFromJsonString] safeNumberObjectForKey:@"isImage"] boolValue];
   if (isImage) {
     [_btnImage.customImageView sd_setImageWithURL:[NSURL URLWithString:[[commentItem.text safeJsonDicFromJsonString] safeStringObjectForKey:@"text"]]];
@@ -195,6 +193,7 @@ didLongPressLinkWithURL:(NSURL *)url
     _btnImage.customImageView.frame = _btnImage.bounds;
     _lblComment.hidden = YES;
     _btnImage.hidden = NO;
+    _lblTime.frame = CGRectMake(_lblName.left, _btnImage.bottom+7, _lblTime.width, _lblTime.height);
     _bgView.frame = CGRectMake(0, 0, self.contentView.width, [SWFeedInteractCommentCell heightOfComment:commentItem]);
   }else{
     NSString *comment = [[commentItem.text safeJsonDicFromJsonString] safeStringObjectForKey:@"text"];
@@ -208,6 +207,7 @@ didLongPressLinkWithURL:(NSURL *)url
     _lblComment.frame = CGRectMake(_lblName.left, _lblName.bottom+5, contentSize.width, contentSize.height);
     _lblComment.hidden = NO;
     _btnImage.hidden = YES;
+    _lblTime.frame = CGRectMake(_lblName.left, _lblComment.bottom+7, _lblTime.width, _lblTime.height);
     _bgView.frame = CGRectMake(0, 0, self.contentView.width, [SWFeedInteractCommentCell heightOfComment:commentItem]);
   }
   
@@ -223,6 +223,8 @@ didLongPressLinkWithURL:(NSURL *)url
                        btnDelete.left = UIScreenWidth;
                      }];
   }
+  
+
 }
 
 - (void)onImageClicked{
@@ -259,12 +261,12 @@ didLongPressLinkWithURL:(NSURL *)url
   BOOL isImage = [[[commentItem.text safeJsonDicFromJsonString] safeNumberObjectForKey:@"isImage"] boolValue];
   if (isImage) {
     CGSize imageSize = [SWFeedInteractCommentCell imageSizeByCommentItem:commentItem];
-    return 48+MAX(12, imageSize.height);
+    return 48+MAX(12, imageSize.height)+24;
   }else{
     NSString *comment = [[commentItem.text safeJsonDicFromJsonString] safeStringObjectForKey:@"text"];
     CGSize commentSize = [comment sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
                                    constrainedToSize:CGSizeMake(UIScreenWidth-75, 1000)];
-    return 48+MAX(12, commentSize.height);
+    return 48+MAX(12, commentSize.height)+24;
   }
 }
 

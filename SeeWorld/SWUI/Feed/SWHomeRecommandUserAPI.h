@@ -9,5 +9,5 @@
 #import "SWRequestApi.h"
 
 @interface SWHomeRecommandUserAPI : SWRequestApi
-
+@property(nonatomic, assign)NSInteger num;
 @end

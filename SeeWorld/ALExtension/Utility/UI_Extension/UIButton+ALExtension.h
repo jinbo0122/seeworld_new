@@ -18,4 +18,5 @@
     textColorHex:(UInt32)textColorHex
         fontSize:(NSInteger)fontSize
              gap:(CGFloat)gap;
+- (void)setImage:(UIImage *)image text:(NSString *)text textColorHex:(UInt32)textColorHex fontSize:(NSInteger)fontSize;
 @end

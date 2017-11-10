@@ -21,7 +21,7 @@
 #import "SWAgreementVC.h"
 #import "SWSearchVC.h"
 @interface SWExploreVC ()<UITableViewDataSource,UITableViewDelegate,SWHomeFeedModelDelegate,
-SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
+SWHomeFeedCellDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate>
 @property(nonatomic, strong)UITableViewController     *tbVC;
 @property(nonatomic, strong)SWHomeFeedModel           *model;
 @property(nonatomic, strong)UIDocumentInteractionController *documentController;

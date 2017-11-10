@@ -13,13 +13,13 @@
 @implementation SWCommentInputView
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]) {
-    self.backgroundColor = [UIColor colorWithRGBHex:0xe5e7eb];
-    self.btnPhoto = [[UIButton alloc] initWithFrame:CGRectMake(9, 12, 21, 24)];
-    [self.btnPhoto setImage:[UIImage imageNamed:@"comment_btn_camera"] forState:UIControlStateNormal];
-    [self addSubview:self.btnPhoto];
-    
-    self.txtField = [[SWCommentTextField alloc] initWithFrame:CGRectMake(self.btnPhoto.right+8, 10, UIScreenWidth-51, 28)];
+    self.backgroundColor = [UIColor colorWithRGBHex:0xf9f9f9];
+    self.txtField = [[SWCommentTextField alloc] initWithFrame:CGRectMake(15, 8, UIScreenWidth-71, 34)];
     [self addSubview:self.txtField];
+    
+    self.btnPhoto = [[UIButton alloc] initWithFrame:CGRectMake(_txtField.right+10.5, 14, 30, 25)];
+    [self.btnPhoto setImage:[UIImage imageNamed:@"detail_camera"] forState:UIControlStateNormal];
+    [self addSubview:self.btnPhoto];
     
     [self registerForKeyboardNotifications];
   }

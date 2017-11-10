@@ -15,7 +15,7 @@
 #import "RelationshipResponse.h"
 #import "PersonInfoData.h"
 #import "PersonInfoData.h"
-
+#import "SWHomeRecommandUserAPI.h"
 @interface RelationshipViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *persons;
@@ -29,15 +29,20 @@
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"追蹤列表"
                                                                   color:[UIColor colorWithRGBHex:0x191d28]
                                                                fontSize:18];
-  }else{
+  }if (_type == eRelationshipTypeFollowers){
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"粉絲列表"
+                                                                  color:[UIColor colorWithRGBHex:0x191d28]
+                                                               fontSize:18];
+  }else{
+    self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"推薦好友"
                                                                   color:[UIColor colorWithRGBHex:0x191d28]
                                                                fontSize:18];
   }
   self.title = @"";
   _tableView.separatorInset = UIEdgeInsetsZero;
+  __weak typeof(self)wSelf = self;
   [_tableView addLegendHeaderWithRefreshingBlock:^{
-    [self refresh];
+    [wSelf refresh];
   }];
   _tableView.tableFooterView = [UIView new];
   [self refresh];
@@ -53,49 +58,58 @@
 
 - (void)stopRefresh
 {
-  if ([_tableView.header isRefreshing])
-  {
+  if ([_tableView.header isRefreshing]){
     [_tableView.header endRefreshing];
-  }
-  if ([_tableView.footer isRefreshing])
-  {
+  }if ([_tableView.footer isRefreshing]){
     [_tableView.footer endRefreshing];
   }
 }
 
-- (void)refresh
-{
+- (void)refresh{
   if (_type == eRelationshipTypeFollows) {
     GetFollowsApi *api = [[GetFollowsApi alloc] init];
     api.userId = _userId;
+    __weak typeof(self)wSelf = self;
     [api startWithModelClass:[RelationshipResponse class] completionBlock:^(ModelMessage *message) {
-      [self stopRefresh];
-      if (message.isSuccess)
-      {
-        _persons = [NSMutableArray arrayWithArray:((RelationshipResponse *)message.object).data];
-        [_tableView reloadData];
-      }
-      else
-      {
+      [wSelf stopRefresh];
+      if (message.isSuccess){
+        wSelf.persons = [NSMutableArray arrayWithArray:((RelationshipResponse *)message.object).data];
+        [wSelf.tableView reloadData];
+      }else{
         [SWHUD showCommonToast:(message.message.length == 0? @"请求失败！":message.message)];
       }
     }];
-  }
-  else
-  {
+  }else if (_type == eRelationshipTypeFollowers) {
     GetFollowersApi *api = [[GetFollowersApi alloc] init];
     api.userId = _userId;
+    __weak typeof(self)wSelf = self;
     [api startWithModelClass:[RelationshipResponse class] completionBlock:^(ModelMessage *message) {
-      [self stopRefresh];
-      if (message.isSuccess)
-      {
-        _persons = [NSMutableArray arrayWithArray:((RelationshipResponse *)message.object).data];
-        [_tableView reloadData];
-      }
-      else
-      {
+      [wSelf stopRefresh];
+      if (message.isSuccess){
+        wSelf.persons = [NSMutableArray arrayWithArray:((RelationshipResponse *)message.object).data];
+        [wSelf.tableView reloadData];
+      }else{
         [SWHUD showCommonToast:(message.message.length == 0? @"请求失败！":message.message)];
       }
+    }];
+  }else{
+    __weak typeof(self)wSelf = self;
+    SWHomeRecommandUserAPI *recommandAPI = [[SWHomeRecommandUserAPI alloc] init];
+    recommandAPI.num = 50;
+    [recommandAPI startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
+      [wSelf stopRefresh];
+      NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
+      NSArray *data = [dic safeArrayObjectForKey:@"data"];
+      if (data.count>0) {
+        ModelMessage * message = [[RelationshipResponse class] messageWithRequst:request];
+        wSelf.persons = [NSMutableArray arrayWithArray:((RelationshipResponse *)message.object).data];
+        for (PersonInfoData *person in wSelf.persons) {
+          person.relation = 2;
+        }
+        [wSelf.tableView reloadData];
+      }
+    } failure:^(YTKBaseRequest *request) {
+      [wSelf stopRefresh];
     }];
   }
 }

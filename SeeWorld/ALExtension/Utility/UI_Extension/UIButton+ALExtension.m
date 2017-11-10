@@ -64,4 +64,18 @@ static char UIButtonALExtensionCustomTitleLabel;
   [self addSubview:self.lblCustom];
   [self arrangeCustomSubviewToCenterWithGap:gap];
 }
+
+- (void)setImage:(UIImage *)image text:(NSString *)text textColorHex:(UInt32)textColorHex fontSize:(NSInteger)fontSize{
+  self.customImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+  self.customImageView.image = image;
+  [self addSubview:self.customImageView];
+  
+  self.lblCustom = [UILabel initWithFrame:CGRectZero
+                                  bgColor:[UIColor clearColor]
+                                textColor:[UIColor colorWithRGBHex:textColorHex]
+                                     text:text
+                            textAlignment:NSTextAlignmentLeft
+                                     font:[UIFont systemFontOfSize:fontSize]];
+  [self addSubview:self.lblCustom];
+}
 @end

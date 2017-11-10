@@ -9,6 +9,7 @@
 typedef enum : NSUInteger {
     eRelationshipTypeFollows,
     eRelationshipTypeFollowers,
+  eRelationshipTypeRecommand,
 } RelationshipType;
 
 @interface RelationshipViewController : ALBaseVC

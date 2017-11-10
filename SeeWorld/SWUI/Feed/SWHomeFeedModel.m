@@ -82,6 +82,7 @@
 - (void)getRecommandUser{
   __weak typeof(self)wSelf = self;
   SWHomeRecommandUserAPI *recommandAPI = [[SWHomeRecommandUserAPI alloc] init];
+  recommandAPI.num = 10;
   [recommandAPI startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
     NSArray *data = [dic safeArrayObjectForKey:@"data"];

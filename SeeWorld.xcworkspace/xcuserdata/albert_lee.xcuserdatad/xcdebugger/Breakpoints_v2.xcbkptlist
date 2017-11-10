@@ -73,8 +73,8 @@
                   symbolName = "-[UzysAssetsPickerController imagePickerController:didFinishPickingMediaWithInfo:]"
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532010383.778277"
+                  urlString = "file:///Users/albert_lee/Documents/swp/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
+                  timestampString = "532022311.311598"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -88,8 +88,8 @@
                   symbolName = "-[UzysAssetsPickerController imagePickerController:didFinishPickingMediaWithInfo:]"
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532010383.780641"
+                  urlString = "file:///Users/albert_lee/Documents/swp/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
+                  timestampString = "532022311.313167"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -160,6 +160,32 @@
             startingLineNumber = "396"
             endingLineNumber = "396"
             landmarkName = "-onFB"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Feed/SWFeedCollectionCell.m"
+            timestampString = "532022311.208004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-scrollViewDidScroll:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

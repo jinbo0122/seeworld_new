@@ -19,6 +19,6 @@
 @protocol SWHomeFeedRecommandViewDelegate <NSObject>
 - (void)feedRecommandDidPressUser:(SWFeedUserItem *)user;
 - (void)feedRecommandDidPressAdd:(SWFeedUserItem *)user;
-- (void)feedRecommandDidPressHide:(SWHomeFeedRecommandView *)view;
+- (void)feedRecommandDidPressMore:(SWHomeFeedRecommandView *)view;
 
 @end
