@@ -138,7 +138,6 @@ didLongPressLinkWithURL:(NSURL *)url
                                                         withConstraints:CGSizeMake(UIScreenWidth-30, 1000)
                                                  limitedToNumberOfLines:50];
   NSInteger imageHeight = [feed.feed.imageHeight integerValue];
-  NSLog(@"imageHeight:%@",@(imageHeight));
   CGFloat height = 7/*间隙*/+ 55/*头部*/ + imageHeight + 40 /*按钮*/;
   height+= (feed.feed.content.length>0?ELEMENT_GAP_HEIGHT:0);//文字空隙
   height+= (feed.feed.content.length>0?(contentSize.height+ELEMENT_GAP_HEIGHT):0);//文字高度
