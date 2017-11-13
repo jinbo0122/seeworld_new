@@ -49,9 +49,9 @@
                                       @(ConversationType_SYSTEM)]];
   [self setCollectionConversationType:@[]];
   [self setConversationAvatarStyle:RC_USER_AVATAR_CYCLE];
-  self.conversationListTableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 1) colorHex:0x9B9B9B alpha:0.5];
+  self.conversationListTableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 1) colorHex:0xE8EDF3];
   self.conversationListTableView.separatorInset = UIEdgeInsetsZero;
-  self.conversationListTableView.separatorColor = [UIColor colorWithRGBHex:0x9B9B9B alpha:0.5];
+  self.conversationListTableView.separatorColor = [UIColor colorWithRGBHex:0xE8EDF3];
   self.conversationListTableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
   self.conversationListTableView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self setConversationPortraitSize:CGSizeMake(40, 40)];

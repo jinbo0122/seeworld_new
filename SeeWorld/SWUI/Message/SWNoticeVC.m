@@ -51,7 +51,7 @@ SWNoticeCellDelegate,SWNoticeModelDelegate>
   self.tbVCNotices.tableView.dataSource = self;
   self.tbVCNotices.tableView.delegate   = self;
   self.tbVCNotices.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-  self.tbVCNotices.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  self.tbVCNotices.tableView.separatorColor = [UIColor colorWithRGBHex:0xE8EDF3];
   self.tbVCNotices.tableView.backgroundColor= [UIColor colorWithRGBHex:0xffffff];
   self.tbVCNotices.tableView.tableFooterView = [UIView new];
   self.tbVCNotices.tableView.contentInset   = UIEdgeInsetsMake(iOSNavHeight, 0, 49+iphoneXBottomAreaHeight, 0);
