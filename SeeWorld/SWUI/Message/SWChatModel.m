@@ -15,7 +15,9 @@
 
 @end
 
-@implementation SWChatModel
+@implementation SWChatModel{
+  BOOL _hasInit;
+}
 + (SWChatModel *)sharedInstance{
   static dispatch_once_t once;
   static SWChatModel   *chatModel = nil;
@@ -33,7 +35,10 @@
 }
 
 - (void)connect{
-  [[RCIM sharedRCIM] initWithAppKey:RongCloudAppKey];
+  if (!_hasInit) {
+    [[RCIM sharedRCIM] initWithAppKey:RongCloudAppKey];
+    _hasInit = YES;
+  }
   NSString *uId = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"];
   NSString *name = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userName"];
   NSString *picUrl = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userPicUrl"];

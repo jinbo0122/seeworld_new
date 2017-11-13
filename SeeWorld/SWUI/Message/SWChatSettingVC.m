@@ -257,7 +257,9 @@ SWChatSettingHeaderViewDelegate>
   vc.userIds = (self.cType==ConversationType_DISCUSSION)?self.discussion.memberIdList:@[self.targetId];
   vc.isFromAdd = YES;
   vc.discussionId = (self.cType==ConversationType_DISCUSSION)?self.discussion.discussionId:nil;
-  vc.singleChatName = self.cType==ConversationType_PRIVATE?[[self.chat.jsonDict safeDicObjectForKey:@"user"] safeStringObjectForKey:@"name"]:@"";
+  if (self.chat) {
+    vc.singleChatName = self.cType==ConversationType_PRIVATE?[[self.chat.jsonDict safeDicObjectForKey:@"user"] safeStringObjectForKey:@"name"]:@"";
+  }
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
   [self presentViewController:nav animated:YES completion:nil];
 }
