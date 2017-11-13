@@ -29,7 +29,7 @@
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"追蹤列表"
                                                                   color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                fontSize:18];
-  }if (_type == eRelationshipTypeFollowers){
+  }else if (_type == eRelationshipTypeFollowers){
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"粉絲列表"
                                                                   color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                fontSize:18];
