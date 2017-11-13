@@ -771,11 +771,11 @@
 		4B7716DD1FB98F410006B814 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
 		4B7716DE1FB98F410006B814 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
 		4B7716E11FB98F410006B814 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
-		4B7716E21FB98F410006B814 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
 		4B7716E31FB98F410006B814 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
 		4B7716E41FB98F410006B814 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
 		4B7716E61FB98F410006B814 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
 		4B7716F11FB98FB40006B814 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
+		4B7716F41FB9B1320006B814 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
 		4B8C3BC71BA2D283008B2664 /* SWTagResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTagResultCell.h; sourceTree = "<group>"; };
 		4B8C3BC81BA2D283008B2664 /* SWTagResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTagResultCell.m; sourceTree = "<group>"; };
 		4B8ECA921BB28FAD00C8BE9C /* SWNoticeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWNoticeVC.h; sourceTree = "<group>"; };
@@ -3233,7 +3233,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4B7716E11FB98F410006B814 /* zh-Hans */,
-				4B7716E21FB98F410006B814 /* en */,
+				4B7716F41FB9B1320006B814 /* zh-Hant */,
 			);
 			name = RongCloudKit.strings;
 			sourceTree = "<group>";
