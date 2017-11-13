@@ -38,28 +38,28 @@
   if (!_hasInit) {
     [[RCIM sharedRCIM] initWithAppKey:RongCloudAppKey];
     _hasInit = YES;
+    NSString *uId = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"];
+    NSString *name = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userName"];
+    NSString *picUrl = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userPicUrl"];
+    NSString *token = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"rongToken"];
+    
+    __weak typeof(self)wSelf = self;
+    [RCIM sharedRCIM].currentUserInfo = [[RCUserInfo alloc] initWithUserId:uId name:name portrait:picUrl];
+    [[RCIM sharedRCIM] connectWithToken:token
+                                success:^(NSString *userId) {
+                                  [[NSNotificationCenter defaultCenter] postNotificationName:@"RCIMConnected" object:nil];
+                                } error:^(RCConnectErrorCode status) {
+                                  [wSelf getToken];
+                                } tokenIncorrect:^{
+                                  [wSelf getToken];
+                                }];
+    [RCIM sharedRCIM].receiveMessageDelegate = self;
+    [RCIM sharedRCIM].globalNavigationBarTintColor = [UIColor colorWithRGBHex:0xffffff];
+    [RCIM sharedRCIM].globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
+    [RCIM sharedRCIM].enableMessageAttachUserInfo=YES;
+    [[RCIM sharedRCIM] setUserInfoDataSource:self];
+    [[RCIM sharedRCIM] setGroupInfoDataSource:self];
   }
-  NSString *uId = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"];
-  NSString *name = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userName"];
-  NSString *picUrl = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userPicUrl"];
-  NSString *token = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"rongToken"];
-  
-  __weak typeof(self)wSelf = self;
-  [RCIM sharedRCIM].currentUserInfo = [[RCUserInfo alloc] initWithUserId:uId name:name portrait:picUrl];
-  [[RCIM sharedRCIM] connectWithToken:token
-                              success:^(NSString *userId) {
-                                [[NSNotificationCenter defaultCenter] postNotificationName:@"RCIMConnected" object:nil];
-                              } error:^(RCConnectErrorCode status) {
-                                [wSelf getToken];
-                              } tokenIncorrect:^{
-                                [wSelf getToken];
-                              }];
-  [RCIM sharedRCIM].receiveMessageDelegate = self;
-  [RCIM sharedRCIM].globalNavigationBarTintColor = [UIColor colorWithRGBHex:0xffffff];
-  [RCIM sharedRCIM].globalMessageAvatarStyle = RC_USER_AVATAR_CYCLE;
-  [RCIM sharedRCIM].enableMessageAttachUserInfo=YES;
-  [[RCIM sharedRCIM] setUserInfoDataSource:self];
-  [[RCIM sharedRCIM] setGroupInfoDataSource:self];
 }
 
 - (void)getToken{

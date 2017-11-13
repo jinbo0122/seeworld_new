@@ -21,8 +21,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  self.conversationMessageCollectionView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor whiteColor];
+  self.conversationMessageCollectionView.backgroundColor = [UIColor whiteColor];
   self.defaultInputType = RCChatSessionInputBarInputText;
   self.displayUserNameInCell = NO;
   [[RCIM sharedRCIM] setGlobalMessagePortraitSize:CGSizeMake(35, 35)];
@@ -119,8 +119,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
   [self dismissViewControllerAnimated:YES completion:nil];
   RCImageMessage *msg = [RCImageMessage messageWithImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
-  [self sendMediaMessage:msg
-             pushContent:[NSString stringWithFormat:@"%@ 發來了一條消息",[SWConfigManager sharedInstance].user.name]];
+  [self sendMediaMessage:msg pushContent:[NSString stringWithFormat:@"%@ 發來了一條消息",[SWConfigManager sharedInstance].user.name] appUpload:NO];
 }
 
 - (void)sendMessage:(RCMessageContent *)messageContent

@@ -188,6 +188,17 @@
 		4B4A66E41B98B4F600F56B78 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4A66E11B98B4F600F56B78 /* FBSDKShareKit.framework */; };
 		4B5DF7A31C292D1200D61C44 /* SWChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5DF7A21C292D1200D61C44 /* SWChatModel.m */; };
 		4B6176D51BBA49FB00887BA2 /* SWPushSyncAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6176D41BBA49FB00887BA2 /* SWPushSyncAPI.m */; };
+		4B7716E71FB98F410006B814 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D81FB98F410006B814 /* RongCallLib.framework */; };
+		4B7716E81FB98F410006B814 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */; };
+		4B7716E91FB98F410006B814 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716DB1FB98F410006B814 /* RongIMLib.framework */; };
+		4B7716EA1FB98F410006B814 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716DC1FB98F410006B814 /* libopencore-amrnb.a */; };
+		4B7716EB1FB98F410006B814 /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B7716DD1FB98F410006B814 /* RCConfig.plist */; };
+		4B7716EC1FB98F410006B814 /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4B7716DE1FB98F410006B814 /* release_notes_ios.txt */; };
+		4B7716ED1FB98F410006B814 /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B7716E01FB98F410006B814 /* RongCloudKit.strings */; };
+		4B7716EE1FB98F410006B814 /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4B7716E31FB98F410006B814 /* Emoji.plist */; };
+		4B7716EF1FB98F410006B814 /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B7716E41FB98F410006B814 /* RongCloud.bundle */; };
+		4B7716F01FB98F410006B814 /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716E61FB98F410006B814 /* RongCallKit.framework */; };
+		4B7716F21FB98FB40006B814 /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716F11FB98FB40006B814 /* RongIMKit.framework */; };
 		4B8C3BC91BA2D283008B2664 /* SWTagResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C3BC81BA2D283008B2664 /* SWTagResultCell.m */; };
 		4B8ECA941BB28FAD00C8BE9C /* SWNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8ECA931BB28FAD00C8BE9C /* SWNoticeVC.m */; };
 		4B8ECA981BB291C900C8BE9C /* SWNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8ECA971BB291C900C8BE9C /* SWNoticeModel.m */; };
@@ -227,19 +238,6 @@
 		4BB422951B96F3AC00022D63 /* SWCommentDeleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB422941B96F3AC00022D63 /* SWCommentDeleteAPI.m */; };
 		4BB422981B97071A00022D63 /* SWCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB422971B97071A00022D63 /* SWCommentInputView.m */; };
 		4BB8C0AF1D70B2A80077EE72 /* libGeTuiSdk-1.4.3-noidfa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB8C0AE1D70B2A80077EE72 /* libGeTuiSdk-1.4.3-noidfa.a */; };
-		4BC0514A1D5DFC8700FD2C1E /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC051371D5DFC8700FD2C1E /* AgoraRtcEngineKit.framework */; };
-		4BC0514B1D5DFC8700FD2C1E /* Emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BC051381D5DFC8700FD2C1E /* Emoji.plist */; };
-		4BC0514C1D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0513A1D5DFC8700FD2C1E /* RongCloudKit.strings */; };
-		4BC0514D1D5DFC8700FD2C1E /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0513C1D5DFC8700FD2C1E /* libopencore-amrnb.a */; };
-		4BC0514E1D5DFC8700FD2C1E /* RCConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0513D1D5DFC8700FD2C1E /* RCConfig.plist */; };
-		4BC0514F1D5DFC8700FD2C1E /* release_notes_ios.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0513E1D5DFC8700FD2C1E /* release_notes_ios.txt */; };
-		4BC051501D5DFC8700FD2C1E /* RongCallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0513F1D5DFC8700FD2C1E /* RongCallKit.framework */; };
-		4BC051511D5DFC8700FD2C1E /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC051401D5DFC8700FD2C1E /* RongCallLib.framework */; };
-		4BC051521D5DFC8700FD2C1E /* RongCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BC051411D5DFC8700FD2C1E /* RongCloud.bundle */; };
-		4BC051531D5DFC8700FD2C1E /* RongIMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC051421D5DFC8700FD2C1E /* RongIMKit.framework */; };
-		4BC051541D5DFC8700FD2C1E /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC051431D5DFC8700FD2C1E /* RongIMLib.framework */; };
-		4BC051551D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC051451D5DFC8700FD2C1E /* RongCloudKit.strings */; };
-		4BC051561D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BC051481D5DFC8700FD2C1E /* RongCloudKit.strings */; };
 		4BC051581D5DFC9000FD2C1E /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC051571D5DFC9000FD2C1E /* VideoToolbox.framework */; };
 		4BC0FE4F1B943B4F003F4723 /* ALSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0FE101B943B4F003F4723 /* ALSingleton.m */; };
 		4BC0FE501B943B4F003F4723 /* ALBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0FE131B943B4F003F4723 /* ALBaseVC.m */; };
@@ -766,6 +764,18 @@
 		4B606F211D93CDFE00B9F9E0 /* SeeWorld.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeeWorld.entitlements; sourceTree = SOURCE_ROOT; };
 		4B6176D31BBA49FB00887BA2 /* SWPushSyncAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPushSyncAPI.h; sourceTree = "<group>"; };
 		4B6176D41BBA49FB00887BA2 /* SWPushSyncAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPushSyncAPI.m; sourceTree = "<group>"; };
+		4B7716D81FB98F410006B814 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
+		4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
+		4B7716DB1FB98F410006B814 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
+		4B7716DC1FB98F410006B814 /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
+		4B7716DD1FB98F410006B814 /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RCConfig.plist; sourceTree = "<group>"; };
+		4B7716DE1FB98F410006B814 /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes_ios.txt; sourceTree = "<group>"; };
+		4B7716E11FB98F410006B814 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RongCloudKit.strings"; sourceTree = "<group>"; };
+		4B7716E21FB98F410006B814 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
+		4B7716E31FB98F410006B814 /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Emoji.plist; sourceTree = "<group>"; };
+		4B7716E41FB98F410006B814 /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RongCloud.bundle; sourceTree = "<group>"; };
+		4B7716E61FB98F410006B814 /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallKit.framework; sourceTree = "<group>"; };
+		4B7716F11FB98FB40006B814 /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMKit.framework; sourceTree = "<group>"; };
 		4B8C3BC71BA2D283008B2664 /* SWTagResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTagResultCell.h; sourceTree = "<group>"; };
 		4B8C3BC81BA2D283008B2664 /* SWTagResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTagResultCell.m; sourceTree = "<group>"; };
 		4B8ECA921BB28FAD00C8BE9C /* SWNoticeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWNoticeVC.h; sourceTree = "<group>"; };
@@ -846,19 +856,6 @@
 		4BB422971B97071A00022D63 /* SWCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCommentInputView.m; sourceTree = "<group>"; };
 		4BB8C0AD1D70B2A80077EE72 /* GeTuiSdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeTuiSdk.h; sourceTree = "<group>"; };
 		4BB8C0AE1D70B2A80077EE72 /* libGeTuiSdk-1.4.3-noidfa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libGeTuiSdk-1.4.3-noidfa.a"; sourceTree = "<group>"; };
-		4BC051371D5DFC8700FD2C1E /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgoraRtcEngineKit.framework; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/AgoraRtcEngineKit.framework; sourceTree = SOURCE_ROOT; };
-		4BC051381D5DFC8700FD2C1E /* Emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Emoji.plist; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/Emoji.plist; sourceTree = SOURCE_ROOT; };
-		4BC0513B1D5DFC8700FD2C1E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = RongCloudKit.strings; sourceTree = "<group>"; };
-		4BC0513C1D5DFC8700FD2C1E /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrnb.a"; path = "Rong_Cloud_iOS_SDK_v2_4_2_stable/libopencore-amrnb.a"; sourceTree = SOURCE_ROOT; };
-		4BC0513D1D5DFC8700FD2C1E /* RCConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = RCConfig.plist; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/RCConfig.plist; sourceTree = SOURCE_ROOT; };
-		4BC0513E1D5DFC8700FD2C1E /* release_notes_ios.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = release_notes_ios.txt; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/release_notes_ios.txt; sourceTree = SOURCE_ROOT; };
-		4BC0513F1D5DFC8700FD2C1E /* RongCallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RongCallKit.framework; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/RongCallKit.framework; sourceTree = SOURCE_ROOT; };
-		4BC051401D5DFC8700FD2C1E /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RongCallLib.framework; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/RongCallLib.framework; sourceTree = SOURCE_ROOT; };
-		4BC051411D5DFC8700FD2C1E /* RongCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = RongCloud.bundle; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/RongCloud.bundle; sourceTree = SOURCE_ROOT; };
-		4BC051421D5DFC8700FD2C1E /* RongIMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RongIMKit.framework; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/RongIMKit.framework; sourceTree = SOURCE_ROOT; };
-		4BC051431D5DFC8700FD2C1E /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RongIMLib.framework; path = Rong_Cloud_iOS_SDK_v2_4_2_stable/RongIMLib.framework; sourceTree = SOURCE_ROOT; };
-		4BC051461D5DFC8700FD2C1E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = RongCloudKit.strings; sourceTree = "<group>"; };
-		4BC051491D5DFC8700FD2C1E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = RongCloudKit.strings; sourceTree = "<group>"; };
 		4BC051571D5DFC9000FD2C1E /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		4BC0FE0F1B943B4F003F4723 /* ALSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSingleton.h; sourceTree = "<group>"; };
 		4BC0FE101B943B4F003F4723 /* ALSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSingleton.m; sourceTree = "<group>"; };
@@ -1093,13 +1090,13 @@
 				4BC0FE791B943D74003F4723 /* CoreMotion.framework in Frameworks */,
 				4BC051581D5DFC9000FD2C1E /* VideoToolbox.framework in Frameworks */,
 				4BED70F81C29393E001A759F /* libxml2.tbd in Frameworks */,
+				4B7716F21FB98FB40006B814 /* RongIMKit.framework in Frameworks */,
 				4BED70F61C293937001A759F /* libstdc++.tbd in Frameworks */,
 				4BED70F41C293920001A759F /* libc++abi.tbd in Frameworks */,
-				4BC051531D5DFC8700FD2C1E /* RongIMKit.framework in Frameworks */,
 				4BC0FE8D1B943DBA003F4723 /* ImageIO.framework in Frameworks */,
 				4BC0FE8F1B943DCA003F4723 /* CoreVideo.framework in Frameworks */,
-				4BC051541D5DFC8700FD2C1E /* RongIMLib.framework in Frameworks */,
 				4BED70F21C2938FE001A759F /* CoreMedia.framework in Frameworks */,
+				4B7716E71FB98F410006B814 /* RongCallLib.framework in Frameworks */,
 				4BED70F01C2938F4001A759F /* CoreGraphics.framework in Frameworks */,
 				4B0FD6851DAF498700F11FCE /* SMS_SDK.framework in Frameworks */,
 				4BC0FE811B943D8A003F4723 /* AudioToolbox.framework in Frameworks */,
@@ -1107,13 +1104,14 @@
 				4BC0FE911B943DD0003F4723 /* CFNetwork.framework in Frameworks */,
 				4BC0FE6F1B943D3E003F4723 /* SystemConfiguration.framework in Frameworks */,
 				4BF403D91BB599CA0076BE2C /* libsqlite3.tbd in Frameworks */,
-				4BC0514A1D5DFC8700FD2C1E /* AgoraRtcEngineKit.framework in Frameworks */,
+				4B7716E81FB98F410006B814 /* AgoraRtcEngineKit.framework in Frameworks */,
 				4B4A66DC1B98AB1F00F56B78 /* libc++.dylib in Frameworks */,
 				4BC0FE991B943DEE003F4723 /* Foundation.framework in Frameworks */,
 				4B4A66E41B98B4F600F56B78 /* FBSDKShareKit.framework in Frameworks */,
 				4BC0FE971B943DE6003F4723 /* UIKit.framework in Frameworks */,
 				4BC0FE951B943DDC003F4723 /* AssetsLibrary.framework in Frameworks */,
 				4BC0FE931B943DD8003F4723 /* AVFoundation.framework in Frameworks */,
+				4B7716E91FB98F410006B814 /* RongIMLib.framework in Frameworks */,
 				4B4A66D61B98A70B00F56B78 /* libWeChatSDK.a in Frameworks */,
 				4BC0FE8B1B943DB0003F4723 /* MapKit.framework in Frameworks */,
 				4BC0FE871B943DA2003F4723 /* MobileCoreServices.framework in Frameworks */,
@@ -1125,14 +1123,13 @@
 				4BC0FE7D1B943D7F003F4723 /* MediaPlayer.framework in Frameworks */,
 				4BC0FE7B1B943D7B003F4723 /* CoreAudio.framework in Frameworks */,
 				4BB8C0AF1D70B2A80077EE72 /* libGeTuiSdk-1.4.3-noidfa.a in Frameworks */,
-				4BC051511D5DFC8700FD2C1E /* RongCallLib.framework in Frameworks */,
-				4BC0514D1D5DFC8700FD2C1E /* libopencore-amrnb.a in Frameworks */,
+				4B7716EA1FB98F410006B814 /* libopencore-amrnb.a in Frameworks */,
 				4BC0FE771B943D5E003F4723 /* CoreTelephony.framework in Frameworks */,
 				4BC0FE751B943D59003F4723 /* CoreText.framework in Frameworks */,
 				4BC0FE731B943D54003F4723 /* CoreLocation.framework in Frameworks */,
-				4BC051501D5DFC8700FD2C1E /* RongCallKit.framework in Frameworks */,
 				4BC0FE711B943D4F003F4723 /* CoreImage.framework in Frameworks */,
 				4B4A66E21B98B4F600F56B78 /* FBSDKCoreKit.framework in Frameworks */,
+				4B7716F01FB98F410006B814 /* RongCallKit.framework in Frameworks */,
 				8A837C383905E98EC5E55268 /* libPods-SeeWorld.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1304,7 +1301,7 @@
 		493D444A1B777C8A00C406A1 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
-				4BED70D91C29386C001A759F /* RongCloud */,
+				4B7716D61FB98F410006B814 /* Rong_Cloud_iOS_SDK */,
 				493D444B1B777C8A00C406A1 /* AOTag */,
 				493D444E1B777C8A00C406A1 /* DWTagList */,
 				493D44511B777C8A00C406A1 /* HPGrowingTextView */,
@@ -2115,6 +2112,56 @@
 			path = ALExtension/3rd/FacebookSDK;
 			sourceTree = SOURCE_ROOT;
 		};
+		4B7716D61FB98F410006B814 /* Rong_Cloud_iOS_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				4B7716D71FB98F410006B814 /* CallLib */,
+				4B7716DA1FB98F410006B814 /* IMLib */,
+				4B7716DE1FB98F410006B814 /* release_notes_ios.txt */,
+				4B7716DF1FB98F410006B814 /* IMKit */,
+				4B7716E51FB98F410006B814 /* CallKit */,
+			);
+			path = Rong_Cloud_iOS_SDK;
+			sourceTree = "<group>";
+		};
+		4B7716D71FB98F410006B814 /* CallLib */ = {
+			isa = PBXGroup;
+			children = (
+				4B7716D81FB98F410006B814 /* RongCallLib.framework */,
+				4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */,
+			);
+			path = CallLib;
+			sourceTree = "<group>";
+		};
+		4B7716DA1FB98F410006B814 /* IMLib */ = {
+			isa = PBXGroup;
+			children = (
+				4B7716DB1FB98F410006B814 /* RongIMLib.framework */,
+				4B7716DC1FB98F410006B814 /* libopencore-amrnb.a */,
+				4B7716DD1FB98F410006B814 /* RCConfig.plist */,
+			);
+			path = IMLib;
+			sourceTree = "<group>";
+		};
+		4B7716DF1FB98F410006B814 /* IMKit */ = {
+			isa = PBXGroup;
+			children = (
+				4B7716F11FB98FB40006B814 /* RongIMKit.framework */,
+				4B7716E01FB98F410006B814 /* RongCloudKit.strings */,
+				4B7716E31FB98F410006B814 /* Emoji.plist */,
+				4B7716E41FB98F410006B814 /* RongCloud.bundle */,
+			);
+			path = IMKit;
+			sourceTree = "<group>";
+		};
+		4B7716E51FB98F410006B814 /* CallKit */ = {
+			isa = PBXGroup;
+			children = (
+				4B7716E61FB98F410006B814 /* RongCallKit.framework */,
+			);
+			path = CallKit;
+			sourceTree = "<group>";
+		};
 		4BA4D9FF1D05489F009521B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -2230,33 +2277,6 @@
 			);
 			name = Comment;
 			sourceTree = "<group>";
-		};
-		4BC051391D5DFC8700FD2C1E /* en.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				4BC0513A1D5DFC8700FD2C1E /* RongCloudKit.strings */,
-			);
-			name = en.lproj;
-			path = Rong_Cloud_iOS_SDK_v2_4_2_stable/en.lproj;
-			sourceTree = SOURCE_ROOT;
-		};
-		4BC051441D5DFC8700FD2C1E /* zh-Hans.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				4BC051451D5DFC8700FD2C1E /* RongCloudKit.strings */,
-			);
-			name = "zh-Hans.lproj";
-			path = "Rong_Cloud_iOS_SDK_v2_4_2_stable/zh-Hans.lproj";
-			sourceTree = SOURCE_ROOT;
-		};
-		4BC051471D5DFC8700FD2C1E /* zh-Hant.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				4BC051481D5DFC8700FD2C1E /* RongCloudKit.strings */,
-			);
-			name = "zh-Hant.lproj";
-			path = "Rong_Cloud_iOS_SDK_v2_4_2_stable/zh-Hant.lproj";
-			sourceTree = SOURCE_ROOT;
 		};
 		4BC0FE0B1B9439C0003F4723 /* ALExtension */ = {
 			isa = PBXGroup;
@@ -2640,26 +2660,6 @@
 			path = ALExtension/3rd/UzysAssetsPickerController;
 			sourceTree = SOURCE_ROOT;
 		};
-		4BED70D91C29386C001A759F /* RongCloud */ = {
-			isa = PBXGroup;
-			children = (
-				4BC051371D5DFC8700FD2C1E /* AgoraRtcEngineKit.framework */,
-				4BC051381D5DFC8700FD2C1E /* Emoji.plist */,
-				4BC051391D5DFC8700FD2C1E /* en.lproj */,
-				4BC0513C1D5DFC8700FD2C1E /* libopencore-amrnb.a */,
-				4BC0513D1D5DFC8700FD2C1E /* RCConfig.plist */,
-				4BC0513E1D5DFC8700FD2C1E /* release_notes_ios.txt */,
-				4BC0513F1D5DFC8700FD2C1E /* RongCallKit.framework */,
-				4BC051401D5DFC8700FD2C1E /* RongCallLib.framework */,
-				4BC051411D5DFC8700FD2C1E /* RongCloud.bundle */,
-				4BC051421D5DFC8700FD2C1E /* RongIMKit.framework */,
-				4BC051431D5DFC8700FD2C1E /* RongIMLib.framework */,
-				4BC051441D5DFC8700FD2C1E /* zh-Hans.lproj */,
-				4BC051471D5DFC8700FD2C1E /* zh-Hant.lproj */,
-			);
-			name = RongCloud;
-			sourceTree = "<group>";
-		};
 		4BF403D01BB5996D0076BE2C /* GETUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -2852,23 +2852,21 @@
 				4BEB6A381D365D59000EA0F5 /* UzysAssetsPickerController.xib in Resources */,
 				4B4A66D51B98A70B00F56B78 /* WeiboSDK.bundle in Resources */,
 				493D44F71B777C8A00C406A1 /* CHANGELOG in Resources */,
-				4BC051521D5DFC8700FD2C1E /* RongCloud.bundle in Resources */,
-				4BC0514B1D5DFC8700FD2C1E /* Emoji.plist in Resources */,
+				4B7716EE1FB98F410006B814 /* Emoji.plist in Resources */,
 				49D2FFFE1B772D5A0083EE9B /* Images.xcassets in Resources */,
 				490DB2151B77A32400A22C68 /* Message.storyboard in Resources */,
 				4BDBFF7D1D071DB2005A757A /* Me.storyboard in Resources */,
-				4BC0514C1D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */,
 				493D450D1B777C8A00C406A1 /* QBImagePickerController.strings in Resources */,
 				493D44EB1B777C8A00C406A1 /* MJRefresh.bundle in Resources */,
 				4BC0FEA71B943E28003F4723 /* MHPrettyDate.strings in Resources */,
 				493D44FB1B777C8A00C406A1 /* combine-libs.sh in Resources */,
-				4BC0514E1D5DFC8700FD2C1E /* RCConfig.plist in Resources */,
-				4BC0514F1D5DFC8700FD2C1E /* release_notes_ios.txt in Resources */,
-				4BC051551D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */,
+				4B7716EC1FB98F410006B814 /* release_notes_ios.txt in Resources */,
+				4B7716EF1FB98F410006B814 /* RongCloud.bundle in Resources */,
 				4BEB6A361D365D59000EA0F5 /* UzysAssetPickerController.bundle in Resources */,
-				4BC051561D5DFC8700FD2C1E /* RongCloudKit.strings in Resources */,
 				493D44F81B777C8A00C406A1 /* LICENSE in Resources */,
+				4B7716ED1FB98F410006B814 /* RongCloudKit.strings in Resources */,
 				4B0FD67A1DAF3E6200F11FCE /* sms.plist in Resources */,
+				4B7716EB1FB98F410006B814 /* RCConfig.plist in Resources */,
 				49D2FFFB1B772D470083EE9B /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3231,26 +3229,11 @@
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
-		4BC0513A1D5DFC8700FD2C1E /* RongCloudKit.strings */ = {
+		4B7716E01FB98F410006B814 /* RongCloudKit.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4BC0513B1D5DFC8700FD2C1E /* en */,
-			);
-			name = RongCloudKit.strings;
-			sourceTree = "<group>";
-		};
-		4BC051451D5DFC8700FD2C1E /* RongCloudKit.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BC051461D5DFC8700FD2C1E /* zh-Hans */,
-			);
-			name = RongCloudKit.strings;
-			sourceTree = "<group>";
-		};
-		4BC051481D5DFC8700FD2C1E /* RongCloudKit.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4BC051491D5DFC8700FD2C1E /* zh-Hant */,
+				4B7716E11FB98F410006B814 /* zh-Hans */,
+				4B7716E21FB98F410006B814 /* en */,
 			);
 			name = RongCloudKit.strings;
 			sourceTree = "<group>";
@@ -3380,6 +3363,10 @@
 					"$(PROJECT_DIR)/ALExtension/3rd/FacebookSDK",
 					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
 					"$(PROJECT_DIR)/SWUI/Login/SMS_SDK",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/CallLib",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/CallKit",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "SeeWorld-Prefix.pch";
@@ -3422,6 +3409,7 @@
 					"$(PROJECT_DIR)/ALExtension/3rd/WeChatSDK_1.4.2.1",
 					"$(PROJECT_DIR)/ALExtension/3rd/GETUI",
 					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seeworldplus.SeeWorldPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3450,6 +3438,10 @@
 					"$(PROJECT_DIR)/ALExtension/3rd/FacebookSDK",
 					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
 					"$(PROJECT_DIR)/SWUI/Login/SMS_SDK",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/CallLib",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/CallKit",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMKit",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "SeeWorld-Prefix.pch";
@@ -3492,6 +3484,7 @@
 					"$(PROJECT_DIR)/ALExtension/3rd/WeChatSDK_1.4.2.1",
 					"$(PROJECT_DIR)/ALExtension/3rd/GETUI",
 					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
+					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seeworldplus.SeeWorldPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
