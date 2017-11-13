@@ -40,8 +40,11 @@
 @end
 
 @implementation TabViewController{
-  UIImageView *_dot;
-  UILabel *_lblDot;
+  UIImageView *_noticeDot;
+  UILabel *_lblNoticeDot;
+  
+  UIImageView *_msgDot;
+  UILabel *_lblMsgDot;
 }
 
 - (void)initControllers
@@ -130,27 +133,46 @@
 + (void)dotNotice:(NSInteger)unreadNoticeCount msg:(NSInteger)totalUnreadCount{
   TabViewController *tab = (TabViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
   if([tab isKindOfClass:[TabViewController class]]){
-    [tab hideDotView:unreadNoticeCount<=0&&totalUnreadCount<=0 num:totalUnreadCount+unreadNoticeCount];
+    [tab hideMsgDotView:totalUnreadCount<=0 noticeDotView:unreadNoticeCount<=0 msgNum:totalUnreadCount noticeNum:unreadNoticeCount];
   }
 }
 
-- (void)hideDotView:(BOOL)hide num:(NSInteger)num{
-  [_dot removeFromSuperview];
-  [_lblDot removeFromSuperview];
-  if (!hide) {
-    _dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_pubup_notice"]];
-    _dot.frame = CGRectMake(UIScreenWidth *7.1/10.0 + 15, -5, 26, 26);
-    _lblDot = [UILabel initWithFrame:CGRectMake(0, 0, _dot.width, 24)
+- (void)hideMsgDotView:(BOOL)hideMsgDotView noticeDotView:(BOOL)hideNoticeDotView msgNum:(NSInteger)msgNum noticeNum:(NSInteger)noticeNum{
+  [_msgDot removeFromSuperview];
+  [_noticeDot removeFromSuperview];
+  [_lblMsgDot removeFromSuperview];
+  [_lblNoticeDot removeFromSuperview];
+  if (!hideMsgDotView) {
+    _msgDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_pubup_notice"]];
+    _msgDot.frame = CGRectMake(UIScreenWidth *5.1/10.0 + 15, -5, 26, 26);
+    _lblMsgDot = [UILabel initWithFrame:CGRectMake(0, 0, _msgDot.width, 24)
                              bgColor:[UIColor clearColor]
                            textColor:[UIColor whiteColor]
-                                text:num>99?@"...":[@(num) stringValue]
+                                text:msgNum>99?@"...":[@(msgNum) stringValue]
                        textAlignment:NSTextAlignmentCenter
                                 font:[UIFont systemFontOfSize:12]];
-    [_dot addSubview:_lblDot];
-    [self.tabBar addSubview:_dot];
-    _dot.hidden = num==0;
-    
-    [UIApplication sharedApplication].applicationIconBadgeNumber = num;
+    [_msgDot addSubview:_lblMsgDot];
+    [self.tabBar addSubview:_msgDot];
+    _msgDot.hidden = msgNum==0;
+  }
+  
+  if (!hideNoticeDotView) {
+    _noticeDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_pubup_notice"]];
+    _noticeDot.frame = CGRectMake(UIScreenWidth *7.1/10.0 + 15, -5, 26, 26);
+    _lblMsgDot = [UILabel initWithFrame:CGRectMake(0, 0, _noticeDot.width, 24)
+                                bgColor:[UIColor clearColor]
+                              textColor:[UIColor whiteColor]
+                                   text:noticeNum>99?@"...":[@(noticeNum) stringValue]
+                          textAlignment:NSTextAlignmentCenter
+                                   font:[UIFont systemFontOfSize:12]];
+    [_noticeDot addSubview:_lblMsgDot];
+    [self.tabBar addSubview:_noticeDot];
+    _noticeDot.hidden = noticeNum==0;
+  }
+  
+  
+  if (msgNum+noticeNum > 0) {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = msgNum+noticeNum;
   }else{
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
   }
