@@ -12,9 +12,3 @@
 @property(nonatomic, weak)id<SWChatListVCDelegate>delegate;
 - (void)reloadChats;
 @end
-
-@protocol SWChatListVCDelegate <NSObject>
-
-- (void)chatListDidPressWithVC:(UIViewController *)vc;
-
-@end

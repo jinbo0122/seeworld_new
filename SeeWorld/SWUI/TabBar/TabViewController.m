@@ -14,6 +14,7 @@
 #import <INTULocationManager/INTULocationManager.h>
 #import "SWPostEnterView.h"
 #import "SWMineVC.h"
+#import "SWChatListVC.h"
 
 #define kTag_TabBar_Base 0
 #define kTag_TabBar_FeedList kTag_TabBar_Base + 1
@@ -34,7 +35,7 @@
 @property (nonatomic, strong) UINavigationController *mineNav;
 @property (nonatomic, strong) SWMineVC *mineVC;
 @property (nonatomic, strong) UINavigationController *msgNav;
-@property (nonatomic, strong) SWNoticeVC *msgVC;
+@property (nonatomic, strong) SWChatListVC *msgVC;
 
 @end
 
@@ -50,7 +51,7 @@
   self.noticeVC = [[SWNoticeVC alloc] init];
   self.noticeNav = [[UINavigationController alloc] initWithRootViewController:self.noticeVC];
   
-  self.msgVC = [[SWNoticeVC alloc] init];
+  self.msgVC = [[SWChatListVC alloc] init];
   self.msgNav = [[UINavigationController alloc] initWithRootViewController:self.msgVC];
   
   
@@ -156,12 +157,10 @@
 }
 
 - (void)pushChat:(UIViewController *)vc{
-  [self.noticeVC.titleView setSelectedIndex:1];
   [self.noticeNav popToRootViewControllerAnimated:NO];
   [self.noticeNav pushViewController:vc animated:YES];
 }
 - (void)popChatSetting{
-  [self.noticeVC.titleView setSelectedIndex:1];
   [self.noticeNav popViewControllerAnimated:NO];
 }
 

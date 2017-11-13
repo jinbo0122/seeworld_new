@@ -24,7 +24,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 70)];
     [self.contentView addSubview:_bgView];
     
@@ -37,7 +37,7 @@
     [_iconAvatar addGestureRecognizer:gesture];
     _lblName = [UILabel initWithFrame:CGRectMake(_iconAvatar.right+10, 15, UIScreenWidth-140, 17)
                               bgColor:[UIColor clearColor]
-                            textColor:[UIColor colorWithRGBHex:0x838cda]
+                            textColor:[UIColor colorWithRGBHex:0x8A9BAC]
                                  text:@""
                         textAlignment:NSTextAlignmentLeft
                                  font:[UIFont systemFontOfSize:14]];
@@ -45,7 +45,7 @@
     
     _lblContent = [UILabel initWithFrame:CGRectMake(_lblName.left, _lblName.bottom+10, _lblName.width, 13.5)
                                  bgColor:[UIColor clearColor]
-                               textColor:[UIColor colorWithRGBHex:0xfbfcfc]
+                               textColor:[UIColor colorWithRGBHex:0x8A9BAC]
                                     text:@""
                            textAlignment:NSTextAlignmentLeft
                                     font:[UIFont systemFontOfSize:12] numberOfLines:0];
@@ -114,7 +114,7 @@
     _btnFollow.hidden = NO;
     [self refreshButton];
     _lblContent.text = SWStringFollowedYou;
-    _lblContent.textColor = [UIColor colorWithRGBHex:0x89c4e6];
+    _lblContent.textColor = [UIColor colorWithRGBHex:0x8A9BAC];
     [_btnFollow addTarget:self action:@selector(onFollowClick) forControlEvents:UIControlEventTouchUpInside];
   }else{
     _btnFeed.hidden = NO;
@@ -125,10 +125,10 @@
       }else{
         _lblContent.text = msgItem.comment;
       }
-      _lblContent.textColor = [UIColor whiteColor];
+      _lblContent.textColor = [UIColor colorWithRGBHex:0x8A9BAC];
     }else if ([msgItem.mType integerValue] == SWNoticeTypeLike){
       _lblContent.text = SWStringLikedYou;
-      _lblContent.textColor = [UIColor colorWithRGBHex:0x89c4e6];
+      _lblContent.textColor = [UIColor colorWithRGBHex:0x8A9BAC];
     }
     [_btnFeed addTarget:self action:@selector(onFeedClick) forControlEvents:UIControlEventTouchUpInside];
     

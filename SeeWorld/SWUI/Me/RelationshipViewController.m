@@ -27,15 +27,15 @@
   [super viewDidLoad];
   if (_type == eRelationshipTypeFollows){
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"追蹤列表"
-                                                                  color:[UIColor colorWithRGBHex:0x191d28]
+                                                                  color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                fontSize:18];
   }if (_type == eRelationshipTypeFollowers){
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"粉絲列表"
-                                                                  color:[UIColor colorWithRGBHex:0x191d28]
+                                                                  color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                fontSize:18];
   }else{
     self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"推薦好友"
-                                                                  color:[UIColor colorWithRGBHex:0x191d28]
+                                                                  color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                fontSize:18];
   }
   self.title = @"";

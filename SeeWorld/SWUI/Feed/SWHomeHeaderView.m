@@ -43,15 +43,15 @@
     [_bgView addSubview:[ALLineView lineWithFrame:CGRectMake(0, _btnPost.height-0.5, self.width, 0.5) colorHex:0xe9ebee]];
     
     _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnPost.bottom, self.width/3.0, 36)];
-    [_btnCamera setImage:[UIImage imageNamed:@"home_post_camera"] text:@"拍攝" textColorHex:0x191d28 fontSize:16 gap:5];
+    [_btnCamera setImage:[UIImage imageNamed:@"home_post_camera"] text:@"拍攝" textColorHex:NAV_BAR_COLOR_HEX fontSize:16 gap:5];
     [_bgView addSubview:_btnCamera];
     
     _btnAlbum = [[UIButton alloc] initWithFrame:CGRectMake(_btnCamera.right, _btnPost.bottom, self.width/3.0, 36)];
-    [_btnAlbum setImage:[UIImage imageNamed:@"home_post_album"] text:@"相冊" textColorHex:0x191d28 fontSize:16 gap:5];
+    [_btnAlbum setImage:[UIImage imageNamed:@"home_post_album"] text:@"相冊" textColorHex:NAV_BAR_COLOR_HEX fontSize:16 gap:5];
     [_bgView addSubview:_btnAlbum];
     
     _btnLBS = [[UIButton alloc] initWithFrame:CGRectMake(_btnAlbum.right, _btnPost.bottom, self.width/3.0, 36)];
-    [_btnLBS setImage:[UIImage imageNamed:@"home_post_lbs"] text:@"打卡" textColorHex:0x191d28 fontSize:16 gap:5];
+    [_btnLBS setImage:[UIImage imageNamed:@"home_post_lbs"] text:@"打卡" textColorHex:NAV_BAR_COLOR_HEX fontSize:16 gap:5];
     [_bgView addSubview:_btnLBS];
     
     [_btnPost addTarget:self action:@selector(onPostClicked) forControlEvents:UIControlEventTouchUpInside];

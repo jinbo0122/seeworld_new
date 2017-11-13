@@ -32,7 +32,7 @@
   __weak typeof(self)wSelf = self;
   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     if ([[wSelf.navigationController.viewControllers lastObject] isEqual:wSelf]) {
-      wSelf.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:title color:[UIColor colorWithRGBHex:0x191d28]];
+      wSelf.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:title color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
     }
   });
 }

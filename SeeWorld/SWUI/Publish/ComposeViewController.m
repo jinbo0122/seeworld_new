@@ -58,9 +58,9 @@
   
   _txtContent = [[UITextView alloc] initWithFrame:CGRectMake(15, _photoView.bottom+10, UIScreenWidth-30, self.view.height-_photoView.bottom-10)];
   [self.view addSubview:_txtContent];
-  _txtContent.textColor = [UIColor colorWithRGBHex:0x191d28];
+  _txtContent.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
   _txtContent.font = [UIFont systemFontOfSize:16];
-  _txtContent.tintColor = [UIColor colorWithRGBHex:0x191d28];
+  _txtContent.tintColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
   _txtContent.delegate = self;
   _txtContent.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [_txtContent becomeFirstResponder];

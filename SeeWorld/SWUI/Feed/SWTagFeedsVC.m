@@ -38,7 +38,7 @@ SWFeedCellDelegate>
 #pragma mark Custom Methods
 - (void)uiInitialize{
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:[NSString stringWithFormat:@"#%@",self.model.tagItem.tagName]
-                                                                color:[UIColor colorWithRGBHex:0x191d28] fontSize:18];
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX] fontSize:18];
   
   self.tbVC.view.frame = self.view.bounds;
   self.tbVC = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];

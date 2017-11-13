@@ -19,7 +19,7 @@
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"關於" color:[UIColor colorWithRGBHex:0x191d28]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"關於" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
   UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, UIScreenWidth/2.0)];
   logo.image = [UIImage imageNamed:@"setting_about_img"];

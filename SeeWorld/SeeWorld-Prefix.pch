@@ -20,6 +20,7 @@ DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
 #define KEYWORDIFY try {} @catch (...) {}
 #define TODO(MSG) KEYWORDIFY PRAGMA_MESSAGE(FORMATTED_MESSAGE(MSG))
 #define SLTitleWidth (UIScreenWidth==320?220:250)
+#define NAV_BAR_COLOR_HEX 0x191d28
 #import <RongIMKit/RongIMKit.h>
 #import "SWUtils+Macros.h"
 #import "SWAlertView.h"

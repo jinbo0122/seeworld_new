@@ -9,6 +9,5 @@
 #import "ALBaseVC.h"
 #import "SWExploreSegView.h"
 @interface SWNoticeVC : ALBaseVC
-@property(nonatomic, strong)SWExploreSegView *titleView;
 - (void)reloadModelData;
 @end

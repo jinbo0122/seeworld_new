@@ -50,7 +50,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
                                                               action:@selector(onDelButtonClicked:)];
-    [barbtn setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x191d28],
+    [barbtn setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX],
                                      NSFontAttributeName:[UIFont systemFontOfSize:14]}
                           forState:UIControlStateNormal];
     self.navigationItem.rightBarButtonItem = barbtn;
@@ -59,7 +59,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   
   self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"照片"
-                                                                color:[UIColor colorWithRGBHex:0x191d28]
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                              fontSize:18];
   
   UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
@@ -284,8 +284,8 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 
 - (void)feedDetailViewDidNeedOpenImagePicker:(SWFeedCollectionCell *)cell{
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.navigationBar.tintColor = [UIColor colorWithRGBHex:0x191d28];
-  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRGBHex:0x191d28]};
+  picker.navigationBar.tintColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
+  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]};
   [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
   [picker setDelegate:self];
   [self presentViewController:picker animated:YES completion:nil];

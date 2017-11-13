@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"設定" color:[UIColor colorWithRGBHex:0x191d28]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"設定" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
   _tableView.dataSource = self;
   _tableView.delegate = self;

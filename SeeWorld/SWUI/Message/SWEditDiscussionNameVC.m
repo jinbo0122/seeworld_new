@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringDiscussionName color:[UIColor colorWithRGBHex:0x191d28]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringDiscussionName color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOSNavHeight+ 10, self.view.width, 0.5) colorHex:0xc8c7cc]];
   [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOSNavHeight+ 55, self.view.width, 0.5) colorHex:0xc8c7cc]];
   [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(0,iOSNavHeight+ 10.5, self.view.width, 44.5) colorHex:0xffffff]];

@@ -27,7 +27,7 @@
   [super viewDidLoad];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"回報問題" color:[UIColor colorWithRGBHex:0x191d28]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"回報問題" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
 
   _bgView = [[UIView alloc] initWithFrame:CGRectMake(26, iOSNavHeight+26, UIScreenWidth-52, UIScreenHeight==480?200:300)];
   _bgView.backgroundColor = [UIColor colorWithRGBHex:0x314153];

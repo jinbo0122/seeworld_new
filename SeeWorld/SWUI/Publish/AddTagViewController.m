@@ -71,7 +71,7 @@
   
   _lblInfo = [UILabel initWithFrame:CGRectZero
                             bgColor:[UIColor clearColor]
-                          textColor:[UIColor colorWithRGBHex:0x191d28]
+                          textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                text:@"點擊圖片加入標籤"
                       textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:18]];
   [_lblInfo sizeToFit];
@@ -84,7 +84,7 @@
   
   _lblIntro = [UILabel initWithFrame:CGRectMake(0, self.view.height-51-42-18, self.view.width, 18)
                              bgColor:[UIColor clearColor]
-                           textColor:[UIColor colorWithRGBHex:0x191d28]
+                           textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                 text:@"標記品牌、地點或者人物"
                        textAlignment:NSTextAlignmentCenter font:[UIFont systemFontOfSize:18]];
   [self.view addSubview:_lblIntro];

@@ -103,7 +103,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 //  self.commentInputView.txtField.delegate = self;
 //  [self.commentInputView.btnPhoto addTarget:self action:@selector(onSendPhotoClicked) forControlEvents:UIControlEventTouchUpInside];
 //  [self.scrollView addSubview:self.commentInputView];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"贊" color:[UIColor colorWithRGBHex:0x191d28]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"贊" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   self.tbVCLikes = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
   self.tbVCLikes.view.frame = self.view.bounds;
   self.tbVCLikes.view.left  = 0;
@@ -237,8 +237,8 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 - (void)onSendPhotoClicked{
   [self dismissKeyboard];
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-  picker.navigationBar.tintColor = [UIColor colorWithRGBHex:0x191d28];
-  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRGBHex:0x191d28]};
+  picker.navigationBar.tintColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
+  picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]};
   [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
   [picker setDelegate:self];
   [self presentViewController:picker animated:YES completion:nil];

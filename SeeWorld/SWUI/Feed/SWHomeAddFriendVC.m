@@ -23,7 +23,7 @@
   // Do any additional setup after loading the view.
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringAddFriend
-                                                                color:[UIColor colorWithRGBHex:0x191d28]
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                              fontSize:18];
   
   self.btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 50)];

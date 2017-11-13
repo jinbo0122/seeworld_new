@@ -34,7 +34,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringSelectContact
-                                                                color:[UIColor colorWithRGBHex:0x191d28]
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                              fontSize:19];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:SWStringCancel
                                                                                     color:[UIColor colorWithRGBHex:0x8b9cad]

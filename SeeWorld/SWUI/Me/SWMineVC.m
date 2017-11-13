@@ -143,7 +143,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   [self.navigationController.navigationBar setBackgroundImage:nil
                                                 forBarMetrics:UIBarMetricsDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.user?self.user.name:[SWConfigManager sharedInstance].user.name
-                                                                color:[UIColor colorWithRGBHex:0x191d28]];
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
 }
 
 - (void)didReceiveMemoryWarning {

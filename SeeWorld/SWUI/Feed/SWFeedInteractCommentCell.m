@@ -80,7 +80,7 @@
     _lblComment = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     _lblComment.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     _lblComment.delegate = self;
-    _lblComment.textColor = [UIColor colorWithRGBHex:0x191d28];
+    _lblComment.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
     _lblComment.font = [UIFont systemFontOfSize:12];
     _lblComment.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
     _lblComment.lineBreakMode = NSLineBreakByCharWrapping;
@@ -199,7 +199,7 @@ didLongPressLinkWithURL:(NSURL *)url
     NSString *comment = [[commentItem.text safeJsonDicFromJsonString] safeStringObjectForKey:@"text"];
     NSAttributedString *content = [[NSAttributedString alloc] initWithString:comment
                                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
-                                                                               NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x191d28]}];
+                                                                               NSForegroundColorAttributeName:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]}];
     CGSize contentSize = [TTTAttributedLabel sizeThatFitsAttributedString:content
                                                           withConstraints:CGSizeMake(UIScreenWidth-75, 1000)
                                                    limitedToNumberOfLines:50];

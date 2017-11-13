@@ -49,7 +49,7 @@ SWHomeFeedCellDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerD
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringExplore
-                                                                color:[UIColor colorWithRGBHex:0x191d28]
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                              fontSize:18];
   self.view.backgroundColor = [UIColor whiteColor];
   [self uiInitialize];

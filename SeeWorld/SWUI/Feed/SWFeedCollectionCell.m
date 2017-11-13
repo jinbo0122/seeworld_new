@@ -48,7 +48,7 @@ UITableViewDelegate,UITableViewDataSource,SWFeedInteractCommentCellDelegate>
     _lblContent = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     _lblContent.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     _lblContent.delegate = self;
-    _lblContent.textColor = [UIColor colorWithRGBHex:0x191d28];
+    _lblContent.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
     _lblContent.font = [UIFont systemFontOfSize:16];
     _lblContent.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
     _lblContent.lineBreakMode = NSLineBreakByCharWrapping;
@@ -152,7 +152,7 @@ didLongPressLinkWithURL:(NSURL *)url
   [_headerView refresshWithFeed:feed];
   NSAttributedString *content = [[NSAttributedString alloc] initWithString:feed.feed.content
                                                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],
-                                                                             NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x191d28]}];
+                                                                             NSForegroundColorAttributeName:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]}];
   CGSize contentSize = [TTTAttributedLabel sizeThatFitsAttributedString:content
                                                         withConstraints:CGSizeMake(UIScreenWidth-30, 1000)
                                                  limitedToNumberOfLines:50];

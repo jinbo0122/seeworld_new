@@ -40,7 +40,7 @@
                                                                                   font:[UIFont systemFontOfSize:18]
                                                                                 target:self
                                                                                 action:@selector(onSave)];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯大頭照" color:[UIColor colorWithRGBHex:0x191d28]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯大頭照" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
   _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(0, (UIScreenHeight-UIScreenWidth)/2.0, UIScreenWidth, UIScreenWidth)];
   [_avatarView sd_setImageWithURL:[NSURL URLWithString:[SWConfigManager sharedInstance].user.picUrl]];

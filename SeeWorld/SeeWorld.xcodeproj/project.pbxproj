@@ -3361,7 +3361,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ALExtension/3rd/FacebookSDK",
 					"$(PROJECT_DIR)/ALExtension/3rd/FacebookSDK",
-					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
 					"$(PROJECT_DIR)/SWUI/Login/SMS_SDK",
 					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/CallLib",
 					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
@@ -3408,7 +3407,6 @@
 					"$(PROJECT_DIR)/ALExtension/3rd/libWeiboSDK",
 					"$(PROJECT_DIR)/ALExtension/3rd/WeChatSDK_1.4.2.1",
 					"$(PROJECT_DIR)/ALExtension/3rd/GETUI",
-					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
 					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seeworldplus.SeeWorldPlus;
@@ -3436,7 +3434,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ALExtension/3rd/FacebookSDK",
 					"$(PROJECT_DIR)/ALExtension/3rd/FacebookSDK",
-					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
 					"$(PROJECT_DIR)/SWUI/Login/SMS_SDK",
 					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/CallLib",
 					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
@@ -3483,7 +3480,6 @@
 					"$(PROJECT_DIR)/ALExtension/3rd/libWeiboSDK",
 					"$(PROJECT_DIR)/ALExtension/3rd/WeChatSDK_1.4.2.1",
 					"$(PROJECT_DIR)/ALExtension/3rd/GETUI",
-					"$(PROJECT_DIR)/Rong_Cloud_iOS_SDK_v2_4_2_stable",
 					"$(PROJECT_DIR)/Framework/Vender/Rong_Cloud_iOS_SDK/IMLib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seeworldplus.SeeWorldPlus;

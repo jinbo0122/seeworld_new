@@ -25,7 +25,7 @@
     
     _lblName    = [UILabel initWithFrame:CGRectZero
                                  bgColor:[UIColor clearColor]
-                               textColor:[UIColor colorWithRGBHex:0x191d28]
+                               textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                     text:@""
                            textAlignment:NSTextAlignmentLeft
                                     font:[UIFont systemFontOfSize:16.2]];

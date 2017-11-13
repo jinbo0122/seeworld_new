@@ -9,13 +9,31 @@
 #import "SWChatListVC.h"
 #import "TabViewController.h"
 #import "SWChatCell.h"
-@interface SWChatListVC ()
+@interface SWChatListVC ()<SWChatModelDelegate>
 
 @end
 
 @implementation SWChatListVC{
   BOOL _pushing;
+  BOOL _isChatConnected;
+  UIImageView *_emptyChatView;
 }
+- (id)init{
+  if (self = [super init]) {
+    [SWChatModel sharedInstance].delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"RCIMConnected" object:nil queue:[NSOperationQueue mainQueue]
+                                                  usingBlock:^(NSNotification * _Nonnull note) {
+                                                    _isChatConnected = YES;
+                                                  }];
+  }
+  return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+  [super viewWillAppear:animated];
+  [self reloadChats];
+}
+
 - (void)reloadChats{
   _pushing = NO;
   [self refreshConversationTableViewIfNeeded];
@@ -23,7 +41,7 @@
 - (void)viewDidLoad {
   //重写显示相关的接口，必须先调用super，否则会屏蔽SDK默认的处理
   [super viewDidLoad];
-  
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"消息" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   //设置需要显示哪些类型的会话
   [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                       @(ConversationType_DISCUSSION),
@@ -31,13 +49,35 @@
                                       @(ConversationType_SYSTEM)]];
   [self setCollectionConversationType:@[]];
   [self setConversationAvatarStyle:RC_USER_AVATAR_CYCLE];
-  self.conversationListTableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 1) colorHex:0x1a2531];
+  self.conversationListTableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 1) colorHex:0x9B9B9B alpha:0.5];
   self.conversationListTableView.separatorInset = UIEdgeInsetsZero;
-  self.conversationListTableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  self.conversationListTableView.separatorColor = [UIColor colorWithRGBHex:0x9B9B9B alpha:0.5];
   self.conversationListTableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
-  self.conversationListTableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.conversationListTableView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self setConversationPortraitSize:CGSizeMake(40, 40)];
-  [self setCellBackgroundColor:[UIColor colorWithRGBHex:0x1a2531]];
+  [self setCellBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
+  
+  __weak typeof(self)wSelf = self;
+  [[NSNotificationCenter defaultCenter] addObserverForName:@"RCIMConnected" object:nil queue:[NSOperationQueue mainQueue]
+                                                usingBlock:^(NSNotification * _Nonnull note) {
+                                                  [wSelf initChatVC];
+                                                }];
+  
+  if (_isChatConnected) {
+    [self initChatVC];
+  }
+  
+  UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"notice_btn_chat"]
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self action:@selector(onNewChatClicked)];
+  self.navigationItem.rightBarButtonItem = rightBar;
+}
+
+- (void)initChatVC{
+  _emptyChatView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.width + (self.view.width-144)/2.0,iOSNavHeight+50, 144, 144)];
+  _emptyChatView.image = [UIImage imageNamed:@"no_message"];
+  _emptyChatView.tag = 1001;
+  [self.view addSubview:_emptyChatView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,9 +85,12 @@
   // Dispose of any resources that can be recreated.
 }
 
-//- (UIColor *)cellBackgroundColor{
-//  return [UIColor colorWithRGBHex:0x1a2531];
-//}
+- (void)onNewChatClicked{
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC startChat];
+  }
+}
 
 //重写RCConversationListViewController的onSelectedTableRow事件
 - (void)onSelectedTableRow:(RCConversationModelType)conversationModelType
@@ -58,10 +101,8 @@
   vc.targetId = model.targetId;
   vc.title = model.conversationTitle;
   vc.hidesBottomBarWhenPushed = YES;
-  if (self.delegate && [self.delegate respondsToSelector:@selector(chatListDidPressWithVC:)]) {
-    _pushing = YES;
-    [self.delegate chatListDidPressWithVC:vc];
-  }
+  _pushing = YES;
+  [self.navigationController pushViewControllerWithCustomAnimation:vc];
 }
 #pragma mark - 收到消息监听
 -(void)didReceiveMessageNotification:(NSNotification *)notification{
@@ -113,7 +154,7 @@
 - (void)willDisplayConversationTableCell:(RCConversationBaseCell *)cell
                              atIndexPath:(NSIndexPath *)indexPath{
   cell.selectionStyle = UITableViewCellSelectionStyleNone;
-  cell.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  cell.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   UILabel *lblTime = [cell performSelector:@selector(messageCreatedTimeLabel)];
   if (lblTime) {
     lblTime.font = [UIFont systemFontOfSize:9];
@@ -131,7 +172,7 @@
   UILabel *lblContent = [cell performSelector:@selector(messageContentLabel)];
   if (lblContent) {
     lblContent.font = [UIFont systemFontOfSize:12];
-    lblContent.textColor = [UIColor colorWithRGBHex:0xfbfcfc];
+    lblContent.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
     CGSize contentSize = [lblContent.text sizeWithAttributes:@{NSFontAttributeName:lblContent.font}
                                            constrainedToSize:CGSizeMake(UIScreenWidth-60, 16)];
     lblContent.width = contentSize.width;
@@ -145,7 +186,11 @@
 
 - (void)showEmptyConversationView{
   self.emptyConversationView = [[UIView alloc] initWithFrame:self.view.bounds];
-  self.emptyConversationView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.emptyConversationView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self.view addSubview:self.emptyConversationView];
+}
+
+- (void)chatModelDidLoadChats:(SWChatModel *)model{
+  
 }
 @end

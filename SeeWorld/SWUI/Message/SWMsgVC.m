@@ -33,8 +33,7 @@
   [self.chatSessionInputBarControl.pluginBoardView updateItemAtIndex:4 image:[UIImage imageNamed:@"actionbar_video_icon"] title:@""];
   self.chatSessionInputBarControl.pluginBoardView.backgroundColor = [UIColor colorWithRGBHex:0xe5e7eb];
   
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"chat_btn_setting"]
-                                                                                   imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_btn_setting"]
                                                                             style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(onRightBtnClicked)];

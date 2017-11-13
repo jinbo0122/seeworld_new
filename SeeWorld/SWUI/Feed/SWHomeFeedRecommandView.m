@@ -76,7 +76,7 @@
     
     _lblTitle = [UILabel initWithFrame:CGRectMake(14, 0, self.width-28, 40)
                                bgColor:[UIColor clearColor]
-                             textColor:[UIColor colorWithRGBHex:0x191d28]
+                             textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                   text:@"推薦關注"
                          textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14]];
     [self addSubview:_lblTitle];
