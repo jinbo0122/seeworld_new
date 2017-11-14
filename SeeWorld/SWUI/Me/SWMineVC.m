@@ -33,7 +33,10 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
 @property(nonatomic, strong)SWHomeHeaderView          *postView;
 @end
 
-@implementation SWMineVC
+@implementation SWMineVC{
+  BOOL _isNavRefreshed;
+  BOOL _isNavRecovered;
+}
 - (id)init{
   if (self = [super init]) {
     self.model = [[SWTagFeedsModel alloc] init];
@@ -54,7 +57,7 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
   _tableView.dataSource = self;
   _tableView.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  _tableView.contentInset = UIEdgeInsetsMake(-iOSNavHeight, 0, 49+iphoneXBottomAreaHeight, 0);
+  _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49+iphoneXBottomAreaHeight, 0);
   _tableView.estimatedRowHeight = 0;
   _tableView.estimatedSectionFooterHeight = 0;
   _tableView.estimatedSectionHeaderHeight = 0;
@@ -138,6 +141,11 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
 }
 
 - (void)refreshNavLine{
+  if (_isNavRefreshed) {
+    return;
+  }
+  _isNavRefreshed = YES;
+  _isNavRecovered = NO;
   self.navigationController.navigationBar.translucent = YES;
   [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
   self.navigationController.navigationBar.tintColor = [UIColor clearColor];
@@ -151,6 +159,11 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
 }
 
 - (void)recoverNavLine{
+  if (_isNavRecovered) {
+    return;
+  }
+  _isNavRecovered = YES;
+  _isNavRefreshed = NO;
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   self.navigationController.navigationBar.translucent = YES;
   self.navigationController.navigationBar.tintColor = [UIColor colorWithRGBHex:0xffffff];

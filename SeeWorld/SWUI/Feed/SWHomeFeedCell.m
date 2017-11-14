@@ -55,6 +55,9 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
     [_bgView addSubview:_feedImageView];
     
     _interactView  = [[SWFeedInteractView alloc] initWithFrame:CGRectMake(0, _feedImageView.bottom, UIScreenWidth, 40)];
+    [_interactView.btnLike addTarget:self action:@selector(onLikeClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_interactView.btnReply addTarget:self action:@selector(onReplyClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_interactView.btnShare addTarget:self action:@selector(onShareClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_bgView addSubview:_interactView];
     
     _likesView = [[SWFeedLikeMemberView alloc] initWithFrame:CGRectZero];
@@ -62,7 +65,12 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
     
     _commentView = [[SWFeedCommentView alloc] initWithFrame:CGRectZero];
     [_bgView addSubview:_commentView];
+    self.selectionStyle = UITableViewCellSeparatorStyleNone;
+    _feedImageView.delegate = self;
+    _likesView.delegate = self;
+    _commentView.delegate = self;
     
+    [_headerView addTarget:self action:@selector(onHeaderClicked:) forControlEvents:UIControlEventTouchUpInside];
   }
   return self;
 }
@@ -78,12 +86,10 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
 }
 
 - (void)refreshHomeFeed:(SWFeedItem *)feed row:(NSInteger)row{
-  self.selectionStyle = UITableViewCellSeparatorStyleNone;
   self.feedItem = feed;
   self.row      = row;
   _bgView.frame = CGRectMake(0, 7, UIScreenWidth, [SWHomeFeedCell heightByFeed:feed]-7);
   [_headerView refresshWithFeed:feed];
-  [_headerView addTarget:self action:@selector(onHeaderClicked:) forControlEvents:UIControlEventTouchUpInside];
 
   NSAttributedString *content = [[NSAttributedString alloc] initWithString:feed.feed.content
                                                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],
@@ -97,19 +103,12 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
   [_feedImageView refreshWithFeed:feed];
   _feedImageView.top = feed.feed.content.length?(_lblContent.bottom+10):55;
   _feedImageView.height = [feed.feed.imageHeight integerValue];
-  _feedImageView.delegate = self;
   
   [_interactView refreshWithFeed:feed];
-  [_interactView.btnLike addTarget:self action:@selector(onLikeClicked:) forControlEvents:UIControlEventTouchUpInside];
-  [_interactView.btnReply addTarget:self action:@selector(onReplyClicked:) forControlEvents:UIControlEventTouchUpInside];
-  [_interactView.btnShare addTarget:self action:@selector(onShareClicked:) forControlEvents:UIControlEventTouchUpInside];
-  
   _interactView.top = _feedImageView.bottom;
   [_likesView refreshWithFeedLikes:feed.likes count:[feed.likeCount integerValue]];
-  _likesView.delegate = self;
   _likesView.top = _interactView.bottom+ELEMENT_GAP_HEIGHT;
   [_commentView refreshWithFeedComments:feed.comments];
-  _commentView.delegate = self;
   _commentView.top = MAX(_likesView.bottom+ELEMENT_GAP_HEIGHT, _interactView.bottom+ELEMENT_GAP_HEIGHT);
 }
 
