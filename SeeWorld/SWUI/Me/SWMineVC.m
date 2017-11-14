@@ -15,15 +15,22 @@
 #import "SWEditProfileVC.h"
 #import "RelationshipViewController.h"
 #import "SWFeedCell.h"
-#import "SWFeedBigCell.h"
+#import "SWHomeFeedCell.h"
 #import "GetUserInfoApi.h"
 #import "RefreshRelationshipAPI.h"
 #import "SWHomeFeedReportView.h"
+#import "SWAgreementVC.h"
+#import "SWHomeFeedShareView.h"
+#import "SWFeedTagButton.h"
+#import "SWHomeHeaderView.h"
 @interface SWMineVC ()<SWMineHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,
-SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
+SWTagFeedsModelDelegate,SWHomeFeedCellDelegate,UIDocumentInteractionControllerDelegate,
+SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
 @property(nonatomic, strong)SWMineHeaderView  *headerView;
 @property(nonatomic, strong)UITableView       *tableView;
 @property(nonatomic, strong)SWTagFeedsModel   *model;
+@property(nonatomic, strong)UIDocumentInteractionController *documentController;
+@property(nonatomic, strong)SWHomeHeaderView          *postView;
 @end
 
 @implementation SWMineVC
@@ -47,14 +54,18 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   _tableView.dataSource = self;
   _tableView.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  _tableView.contentInset = UIEdgeInsetsMake(-iOSNavHeight, 0, 0, 0);
+  _tableView.contentInset = UIEdgeInsetsMake(-iOSNavHeight, 0, 49+iphoneXBottomAreaHeight, 0);
   _tableView.estimatedRowHeight = 0;
   _tableView.estimatedSectionFooterHeight = 0;
   _tableView.estimatedSectionHeaderHeight = 0;
   [self.view addSubview:_tableView];
+  if (@available(iOS 11.0, *)) {
+    _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+  }
   
   _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 258.5+iOSTopHeight)];
-  _headerView.isEditMode = NO;_headerView.delegate = self;
+  _headerView.isEditMode = NO;
+  _headerView.delegate = self;
   if (self.user) {
     SWFeedUserItem *user = [[SWConfigManager sharedInstance] userByUId:self.user.uId];
     if (user) {
@@ -65,6 +76,10 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
     }
   }else{
     [_headerView refreshWithUser:[SWConfigManager sharedInstance].user];
+    _postView = [[SWHomeHeaderView alloc] initWithFrame:CGRectMake(0, _headerView.bottom, self.view.width, 110)];
+    _postView.delegate = self;
+    [_headerView addSubview:_postView];
+    _headerView.height += _postView.height;
   }
   _tableView.tableHeaderView = _headerView;
   _model.userId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
@@ -108,6 +123,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   [super viewDidAppear:animated];
   [self refreshNavLine];
   [self refreshUserInfo];
+  [self refresh];
   [_tableView reloadData];
 }
 
@@ -131,7 +147,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   self.navigationItem.titleView = nil;
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
   [_tableView reloadData];
-  [self rightBar];
+  [self rightBarNeedPost:NO];
 }
 
 - (void)recoverNavLine{
@@ -146,6 +162,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
                                                 forBarMetrics:UIBarMetricsDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.user?self.user.name:[SWConfigManager sharedInstance].user.name
                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
+  [self rightBarNeedPost:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,16 +175,27 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
 }
 
 - (void)rightBar{
+  [self rightBarNeedPost:NO];
+}
+
+- (void)rightBarNeedPost:(BOOL)needPost{
   if ([self.user.uId isEqualToNumber:[SWConfigManager sharedInstance].user.uId]||!self.user) {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"profile_btn_setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(onSettingClicked)];
+    if (needPost) {
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"home_post"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                                                style:UIBarButtonItemStylePlain
+                                                                               target:self
+                                                                               action:@selector(onPostClicked)];
+
+    }else{
+      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"profile_btn_setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                                                style:UIBarButtonItemStylePlain
+                                                                               target:self
+                                                                               action:@selector(onSettingClicked)];
+    }
   }else{
     SWUserRelationType relation = [self.user.relation integerValue];
     BOOL hasFollow = (relation==SWUserRelationTypeFollowing||relation==SWUserRelationTypeInterFollow);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:hasFollow?@"profile_btn_unfollw":@"profile_btn_follw"]
-                                                                                     imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:hasFollow?@"profile_btn_unfollw":@"profile_btn_follw"]
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(onFollowClick)];
@@ -195,6 +223,10 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   } failure:^(YTKBaseRequest *request) {
     [wSelf refreshUserInfo];
   }];
+}
+
+- (void)onPostClicked{
+  [self homeHeaderViewDidPressPost:_postView];
 }
 
 - (void)onSettingClicked{
@@ -277,23 +309,22 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   [action show];
 }
 
-#pragma mark Table View
+#pragma mark Table View Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-  return self.model.feeds.count;
+  return [self.model.feeds count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  return [SWFeedBigCell height];
+  return [SWHomeFeedCell heightByFeed:[self.model.feeds safeObjectAtIndex:indexPath.row]];
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  static NSString *identifier = @"big";
-  SWFeedBigCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+  static NSString *identifier = @"feed";
+  SWHomeFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
   if (!cell) {
-    cell = [[SWFeedBigCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    cell = [[SWHomeFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
   }
-  [cell refreshThumbCell:[self.model.feeds safeObjectAtIndex:indexPath.row] row:indexPath.row];
+  [cell refreshHomeFeed:[self.model.feeds safeObjectAtIndex:indexPath.row] row:indexPath.row];
   cell.delegate = self;
   return cell;
 }
@@ -315,13 +346,201 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   }
 }
 
+#pragma mark Header View Delegate
+- (void)homeHeaderViewDidPressPost:(SWHomeHeaderView *)headerView{
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
+}
+
+- (void)homeHeaderViewDidPressCamera:(SWHomeHeaderView *)headerView{
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
+}
+
+- (void)homeHeaderViewDidPressAlbum:(SWHomeHeaderView *)headerView{
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
+}
+
+- (void)homeHeaderViewDidPressLBS:(SWHomeHeaderView *)headerView{
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
+}
+
 #pragma mark Cell Delegate
-- (void)feedCellDidPressThumb:(SWFeedItem *)feedItem index:(NSInteger)index{
+- (void)homeFeedCellDidPressUser:(SWFeedUserItem *)userItem{
+  [SWFeedUserItem pushUserVC:userItem nav:self.navigationController];
+}
+
+- (void)homeFeedCellDidPressLike:(SWFeedItem *)feedItem row:(NSInteger)row{
+  [self.model likeClickedByRow:row];
+}
+
+- (void)homeFeedCellDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row enableKeyboard:(BOOL)enableKeyboard{
   SWFeedDetailScrollVC *vc = [[SWFeedDetailScrollVC alloc] init];
-  vc.model = self.model;
-  vc.currentIndex = index;
+  vc.model = _model;
+  vc.currentIndex = row;
+  vc.hidesBottomBarWhenPushed = YES;
+  vc.needEnableKeyboardOnLoad = enableKeyboard;
+  [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeFeedCellDidPressUrl:(NSURL *)url row:(NSInteger)row{
+  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeFeedCellDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row{
+  SWFeedItem *feed = [_model.feeds safeObjectAtIndex:row];
+  if ([imageHeight isEqualToNumber:feed.feed.imageHeight]) {
+    return;
+  }
+  feed.feed.imageHeight = imageHeight;
+  __weak typeof(self)wSelf = self;
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if ([wSelf.tableView numberOfRowsInSection:0]>row) {
+      [wSelf.tableView beginUpdates];
+      [wSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
+                             withRowAnimation:UITableViewRowAnimationFade];
+      [wSelf.tableView endUpdates];
+    }
+  });
+}
+
+- (void)homeFeedCellDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row{
+  SWHomeFeedShareView *shareView = [[SWHomeFeedShareView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  [shareView show];
+  
+  SWHomeFeedCell *cell = (SWHomeFeedCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+  
+  for (SWFeedTagButton *button in [cell.feedImageView subviews]) {
+    if ([button isKindOfClass:[SWFeedTagButton class]]) {
+      button.tagHoverImageView.hidden = YES;
+      button.tagHoverImageView2.hidden = YES;
+    }
+  }
+  
+  UIImage *shareImage = [UIImage imageWithView:cell.feedImageView];
+  shareView.shareImage = shareImage;
+  
+  for (SWFeedTagButton *button in [cell.feedImageView subviews]) {
+    if ([button isKindOfClass:[SWFeedTagButton class]]) {
+      button.tagHoverImageView.hidden = NO;
+      button.tagHoverImageView2.hidden = NO;
+    }
+  }
+  
+  __weak typeof(feedItem)wFeed = feedItem;
+  shareView.reportBlock = ^{
+    SWHomeFeedReportView *reportView = [[SWHomeFeedReportView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    __strong typeof(wFeed)sFeed = wFeed;
+    reportView.feedItem = sFeed;
+    [reportView show];
+  };
+  
+  __weak typeof(self)wSelf = self;
+  __weak typeof(shareView)wShareView = shareView;
+  shareView.instaBlock = ^(UIImage *image){
+    NSURL *instagramURL = [NSURL URLWithString:@"instagram://app"];
+    if([[UIApplication sharedApplication] canOpenURL:instagramURL]) //check for App is install or not
+    {
+      NSData *imageData = UIImagePNGRepresentation(image); //convert image into .png format.
+      NSFileManager *fileManager = [NSFileManager defaultManager];//create instance of NSFileManager
+      NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES); //create an array and store result of our search for the documents directory in it
+      NSString *documentsDirectory = [paths objectAtIndex:0]; //create NSString object, that holds our exact path to the documents directory
+      NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"insta.igo"]]; //add our image to the path
+      [fileManager createFileAtPath:fullPath contents:imageData attributes:nil]; //finally save the path (image)
+      CGRect rect = CGRectMake(0 ,0 , 0, 0);
+      UIGraphicsBeginImageContextWithOptions(wSelf.view.bounds.size, wSelf.view.opaque, 0.0);
+      [wSelf.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+      UIGraphicsEndImageContext();
+      NSString *fileNameToSave = [NSString stringWithFormat:@"Documents/insta.igo"];
+      NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:fileNameToSave];
+      NSString *newJpgPath = [NSString stringWithFormat:@"file://%@",jpgPath];
+      NSURL *igImageHookFile = [NSURL URLWithString:newJpgPath];
+      wSelf.documentController.UTI = @"com.instagram.exclusivegram";
+      wSelf.documentController = [wSelf setupControllerWithURL:igImageHookFile usingDelegate:wSelf];
+      wSelf.documentController=[UIDocumentInteractionController interactionControllerWithURL:igImageHookFile];
+      NSString *caption = @"#Your Text"; //settext as Default Caption
+      wSelf.documentController.annotation=[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",caption],@"InstagramCaption", nil];
+      [wSelf.documentController presentOpenInMenuFromRect:rect inView: wSelf.view animated:YES];
+      [wShareView dismiss];
+    }
+    else{
+      [MBProgressHUD showTip:@"未安装Instagram"];
+    }
+  };
+  
+  shareView.fbBlock = ^(UIImage *image){
+    FBSDKSharePhoto *photo = [[FBSDKSharePhoto alloc] init];
+    photo.image = image;
+    photo.userGenerated = YES;
+    FBSDKSharePhotoContent *content = [[FBSDKSharePhotoContent alloc] init];
+    content.photos = @[photo];
+    [FBSDKShareDialog showFromViewController:wSelf
+                                 withContent:content
+                                    delegate:nil];
+    
+  };
+}
+
+- (UIDocumentInteractionController *) setupControllerWithURL: (NSURL*) fileURL usingDelegate: (id <UIDocumentInteractionControllerDelegate>) interactionDelegate {
+  NSLog(@"file url %@",fileURL);
+  UIDocumentInteractionController *interactionController = [UIDocumentInteractionController interactionControllerWithURL: fileURL];
+  interactionController.delegate = interactionDelegate;
+  
+  return interactionController;
+}
+
+- (void)homeFeedCellDidPressLikeList:(SWFeedItem *)feedItem row:(NSInteger)row{
+  SWFeedInteractVC *vc = [[SWFeedInteractVC alloc] init];
+  vc.delegate = self;
+  vc.defaultIndex = SWFeedInteractIndexLikes;
+  vc.feedRow  = row;
+  vc.isModal  = YES;
+  vc.model.feedItem  = feedItem;
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+  [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)homeFeedCellDidPressTag:(SWFeedTagItem *)tagItem{
+  SWTagFeedsVC *vc = [[SWTagFeedsVC alloc] init];
+  vc.model.tagItem = tagItem;
+  vc.hidesBottomBarWhenPushed = YES;
+  [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeFeedCellDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect{
+  ALPhotoListFullView *view = [[ALPhotoListFullView alloc] initWithFrames:@[[NSValue valueWithCGRect:rect]]
+                                                                photoList:@[[feedItem.feed.picUrl stringByAppendingString:FEED_SMALL]]
+                                                                    index:0];
+  [view setFeedItem:feedItem];
+  [[UIApplication sharedApplication].delegate.window addSubview:view];
+}
+
+#pragma mark Feed Interact VC Delegate
+- (void)feedInteractVCDidDismiss:(SWFeedInteractVC *)vc row:(NSInteger)row likes:(NSMutableArray *)likes comments:(NSMutableArray *)comments{
+  __weak typeof(self)wSelf = self;
+  [wSelf dismissViewControllerAnimated:YES completion:^{
+    SWFeedItem *feedItem = [wSelf.model.feeds safeObjectAtIndex:row];
+    feedItem.likeCount = [NSNumber numberWithInteger:likes.count];
+    feedItem.commentCount = [NSNumber numberWithInteger:comments.count];
+    feedItem.likes = likes;
+    feedItem.comments = comments;
+    
+    [wSelf.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
+                           withRowAnimation:UITableViewRowAnimationNone];
+  }];
 }
 
 #pragma mark Model Delegate
