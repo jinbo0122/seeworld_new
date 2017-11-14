@@ -709,6 +709,7 @@
 		4B33A4071BA7CDBA001DB3BE /* SWNearbyAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWNearbyAPI.m; sourceTree = "<group>"; };
 		4B33A4091BA7D02D001DB3BE /* SWLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWLocationManager.h; sourceTree = "<group>"; };
 		4B33A40A1BA7D02D001DB3BE /* SWLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWLocationManager.m; sourceTree = "<group>"; };
+		4B4303DB1FBAB84F0020573D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
 		4B442D3D1C52285B0065AC78 /* SWReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWReportView.h; sourceTree = "<group>"; };
 		4B442D3E1C52285B0065AC78 /* SWReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWReportView.m; sourceTree = "<group>"; };
 		4B4A668E1B97166500F56B78 /* SWCommentTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCommentTextField.h; sourceTree = "<group>"; };
@@ -3234,6 +3235,7 @@
 			children = (
 				4B7716E11FB98F410006B814 /* zh-Hans */,
 				4B7716F41FB9B1320006B814 /* zh-Hant */,
+				4B4303DB1FBAB84F0020573D /* en */,
 			);
 			name = RongCloudKit.strings;
 			sourceTree = "<group>";

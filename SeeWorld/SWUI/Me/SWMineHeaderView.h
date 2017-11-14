@@ -22,7 +22,6 @@
 @property(nonatomic, strong)UIButton *btnFollowing;
 @property(nonatomic, strong)UIButton *btnFollower;
 @property(nonatomic, strong)UIButton *btnEdit;
-@property(nonatomic, strong)UIButton *btnMode;
 @property(nonatomic, strong)UIButton *btnMore;
 @property(nonatomic, strong)UIButton *btnChat;
 

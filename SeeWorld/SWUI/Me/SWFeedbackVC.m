@@ -25,12 +25,12 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xebedf3];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"回報問題" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
 
   _bgView = [[UIView alloc] initWithFrame:CGRectMake(26, iOSNavHeight+26, UIScreenWidth-52, UIScreenHeight==480?200:300)];
-  _bgView.backgroundColor = [UIColor colorWithRGBHex:0x314153];
+  _bgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self.view addSubview:_bgView];
   
   _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((_bgView.width-78)/2.0, 46, 78, 78)];
@@ -53,7 +53,7 @@
   [_bgView addSubview:_lblWordCount];
   
   _txtView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10, _bgView.width-20, _bgView.height-50)];
-  _txtView.textColor = [UIColor whiteColor];
+  _txtView.textColor = [UIColor colorWithRGBHex:0x93a0ab];
   _txtView.font = [UIFont systemFontOfSize:16];
   [_bgView addSubview:_txtView];
   _txtView.delegate = self;
@@ -61,16 +61,16 @@
   
   _txtContact = [[UITextField alloc] initWithFrame:CGRectMake(26, _bgView.bottom+20, _bgView.width, 30)];
   _txtContact.attributedPlaceholder =  [[NSAttributedString alloc] initWithString:@"是否介意留下您的手機或郵箱"
-                                                                       attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRGBHex:0x596d80]}];
-  _txtContact.textColor = [UIColor whiteColor];
+                                                                       attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRGBHex:0x93a0ab]}];
+  _txtContact.textColor = [UIColor colorWithRGBHex:0x93a0ab];
   _txtContact.font = [UIFont systemFontOfSize:12];
   [_txtContact addSubview:[ALLineView lineWithFrame:CGRectMake(0, _txtContact.height-0.5, _txtContact.width, 0.5)
-                                           colorHex:0x7c8794]];
+                                           colorHex:0x93a0ab]];
   _txtContact.delegate = self;
   _btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(26, _txtContact.bottom+50, _bgView.width, 48)];
-  [_btnSubmit setBackgroundColor:[UIColor colorWithRGBHex:0x1f6b86]];
+  [_btnSubmit setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
-  [_btnSubmit setTitleColor:[UIColor colorWithRGBHex:0xfbfcfc] forState:UIControlStateNormal];
+  [_btnSubmit setTitleColor:[UIColor colorWithRGBHex:0xffffff] forState:UIControlStateNormal];
   [_btnSubmit.titleLabel setFont:[UIFont systemFontOfSize:16]];
   [self.view addSubview:_btnSubmit];
   [self.view addSubview:_txtContact];

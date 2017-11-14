@@ -37,7 +37,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   [self refreshNavLine];
   
   _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width,
@@ -45,7 +45,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
                                             style:UITableViewStylePlain];
   _tableView.delegate = self;
   _tableView.dataSource = self;
-  _tableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  _tableView.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   _tableView.contentInset = UIEdgeInsetsMake(-iOSNavHeight, 0, 0, 0);
   _tableView.estimatedRowHeight = 0;
@@ -53,7 +53,7 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
   _tableView.estimatedSectionHeaderHeight = 0;
   [self.view addSubview:_tableView];
   
-  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 246)];
+  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 258.5+iOSTopHeight)];
   _headerView.isEditMode = NO;_headerView.delegate = self;
   if (self.user) {
     SWFeedUserItem *user = [[SWConfigManager sharedInstance] userByUId:self.user.uId];
@@ -129,11 +129,13 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
                                                 forBarMetrics:UIBarMetricsDefault];
   self.navigationController.navigationBar.shadowImage = [UIImage new];
   self.navigationItem.titleView = nil;
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
   [_tableView reloadData];
   [self rightBar];
 }
 
 - (void)recoverNavLine{
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   self.navigationController.navigationBar.translucent = YES;
   self.navigationController.navigationBar.tintColor = [UIColor colorWithRGBHex:0xffffff];
   [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0xffffff]];
@@ -277,45 +279,23 @@ SWFeedCellDelegate,SWTagFeedsModelDelegate,SWFeedBigCellDelegate>
 
 #pragma mark Table View
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-  NSInteger row = (self.model.feeds.count/2)+(self.model.feeds.count%2==0?0:1);
-  return _headerView.btnMode.tag?row:self.model.feeds.count;
+  return self.model.feeds.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  return _headerView.btnMode.tag?[SWFeedCell height]:[SWFeedBigCell height];
+  return [SWFeedBigCell height];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  if (_headerView.btnMode.tag) {
-    static NSString *identifier = @"feed";
-    SWFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-      cell = [[SWFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    
-    NSInteger location = indexPath.row*2;
-    NSInteger length = indexPath.row*2+2>=self.model.feeds.count?
-    (self.model.feeds.count-indexPath.row*2):2;
-    
-    if (self.model.feeds.count==0) {
-      [cell refreshThumbCell:@[] row:indexPath.row];
-    }else{
-      [cell refreshThumbCell:[self.model.feeds subarrayWithRange:NSMakeRange(location, length)] row:indexPath.row];
-    }
-    cell.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-    cell.delegate = self;
-    return cell;
-  }else{
-    static NSString *identifier = @"big";
-    SWFeedBigCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-      cell = [[SWFeedBigCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-    }
-    [cell refreshThumbCell:[self.model.feeds safeObjectAtIndex:indexPath.row] row:indexPath.row];
-    cell.delegate = self;
-    return cell;
+  static NSString *identifier = @"big";
+  SWFeedBigCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+  if (!cell) {
+    cell = [[SWFeedBigCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
   }
+  [cell refreshThumbCell:[self.model.feeds safeObjectAtIndex:indexPath.row] row:indexPath.row];
+  cell.delegate = self;
+  return cell;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

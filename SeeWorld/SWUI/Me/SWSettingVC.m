@@ -32,20 +32,22 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"設定" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
   _tableView.dataSource = self;
   _tableView.delegate = self;
-  _tableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  _tableView.backgroundColor = [UIColor colorWithRGBHex:0xebedf3];
   _tableView.separatorInset = UIEdgeInsetsZero;
-  _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+  _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+  _tableView.separatorColor = [UIColor colorWithRGBHex:0xe8edf3];
   
   _footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 128)];
   _tableView.tableFooterView = _footer;
   _btnLogout = [[UIButton alloc] initWithFrame:CGRectMake(29, 35, UIScreenWidth-58, 48)];
-  [_btnLogout setBackgroundColor:[UIColor colorWithRGBHex:0x2d435b]];
+  [_btnLogout setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
   [_btnLogout setTitle:@"登出" forState:UIControlStateNormal];
+  [_btnLogout setTitleColor:[UIColor colorWithRGBHex:0xff3b30] forState:UIControlStateNormal];
   [_btnLogout setTintColor:[UIColor colorWithRGBHex:0xfbfcfc]];
   [_btnLogout.titleLabel setFont:[UIFont systemFontOfSize:16]];
   [_btnLogout addTarget:self action:@selector(onLogoutClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -90,7 +92,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
   UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, section<2?16:(section==2?50:30))];
-  view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  view.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   
   if (section==2) {
     UILabel *label = [UILabel initWithFrame:CGRectMake(10, 10, UIScreenWidth-20, 25)

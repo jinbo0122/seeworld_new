@@ -43,7 +43,7 @@ SWNoticeCellDelegate,SWNoticeModelDelegate>
 
 #pragma mark Custom
 - (void)uiInitialize{
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"動態"
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"通知"
                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
 
   self.tbVCNotices = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
