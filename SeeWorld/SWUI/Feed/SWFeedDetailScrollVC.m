@@ -58,7 +58,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   
   
   self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"照片"
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"詳情"
                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                              fontSize:18];
   

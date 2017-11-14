@@ -79,10 +79,6 @@ SWNoticeCellDelegate,SWNoticeModelDelegate>
   [self reloadModelData];
 }
 
-- (void)onChatsRefreshed{
-  [[SWChatModel sharedInstance] getChats];
-}
-
 - (void)onNoticesRefreshed{
   [[SWNoticeModel sharedInstance] getLatestNotices];
 }

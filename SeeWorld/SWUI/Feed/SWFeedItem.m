@@ -69,6 +69,7 @@
   feed.content = [self.content copy];
   feed.time = [self.time copy];
   feed.tags = [NSMutableArray array];
+  feed.imageHeight = [self.imageHeight copy];
   for (NSInteger j=0; j<[self.tags count]; j++) {
     SWFeedTagItem *tag = [self.tags safeObjectAtIndex:j];
     [feed.tags safeAddObject:[tag copy]];
