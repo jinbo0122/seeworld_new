@@ -37,11 +37,11 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                              fontSize:19];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:SWStringCancel
-                                                                                    color:[UIColor colorWithRGBHex:0x8b9cad]
+                                                                                    color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                                      font:[UIFont systemFontOfSize:15]
                                                                                    target:self action:@selector(cancel)];
   self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:SWStringOkay
-                                                                                 color:[UIColor colorWithRGBHex:0x8b9cad]
+                                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                                   font:[UIFont systemFontOfSize:15]
                                                                                 target:self action:@selector(startChat)];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
@@ -61,7 +61,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
   [self reloadSelectView];
   
   _line = [[UIView alloc] initWithFrame:CGRectMake(0, _selectView.bottom, self.view.width, 1)];
-  _line.backgroundColor = [UIColor colorWithRGBHex:0x2a3a4b];
+  _line.backgroundColor = [UIColor colorWithRGBHex:0xcccccc];
   [self.view addSubview:_line];
   _line.hidden = YES;
   

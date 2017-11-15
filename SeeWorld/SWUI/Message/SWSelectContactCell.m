@@ -16,7 +16,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     
     _iconSelect = [[UIImageView alloc] initWithFrame:CGRectMake(15, 20, 20, 20)];
     _iconSelect.layer.masksToBounds = YES;
