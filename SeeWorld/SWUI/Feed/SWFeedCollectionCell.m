@@ -161,9 +161,8 @@ didLongPressLinkWithURL:(NSURL *)url
   [_headerView addTarget:self action:@selector(onHeaderClicked:) forControlEvents:UIControlEventTouchUpInside];
   [_feedImageView refreshWithFeed:feed];
   _feedImageView.delegate = self;
-  _feedImageView.height = [feed.feed.imageHeight integerValue];
-  
   _feedImageView.top = feed.feed.content.length?(_lblContent.bottom+10):55;
+  
   [_interactView refreshWithFeed:feed];
   _interactView.top = _feedImageView.bottom;
   
@@ -195,8 +194,11 @@ didLongPressLinkWithURL:(NSURL *)url
 + (CGFloat)heightByFeed:(SWFeedItem *)feed{
   CGSize contentSize = [feed.feed.content sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
                                            constrainedToSize:CGSizeMake(UIScreenWidth-30, 1000)];
-  NSInteger imageHeight = [feed.feed.imageHeight integerValue];
+  CGFloat iHeight = [feed.feed.imageHeight integerValue];
+  CGFloat iWidth  = [feed.feed.imageWidth integerValue];
   
+  NSInteger imageHeight = UIScreenWidth *iHeight/iWidth;
+
   return 10/*间隙*/+ 55/*头部*/ + imageHeight + 40 /*按钮*/
   + (feed.feed.content.length>0?(contentSize.height+15):0)
   + (feed.likes.count>0?30:0) /*赞成员*/ + ((feed.feed.content.length>0||feed.likes.count>0||feed.comments.count>0)?15:0);
@@ -269,12 +271,6 @@ didLongPressLinkWithURL:(NSURL *)url
     if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressImage:rect:)]) {
       [self.delegate feedDetailViewDidPressImage:feedItem rect:rect];
     }
-  }
-}
-
-- (void)feedImageViewDidNeedReloadCell:(NSNumber *)imageHeight{
-  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidNeedReload:row:)]) {
-    [self.delegate feedDetailViewDidNeedReload:imageHeight row:self.row];
   }
 }
 

@@ -270,18 +270,6 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   [[UIApplication sharedApplication].delegate.window addSubview:view];
 }
 
-- (void)feedDetailViewDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row{
-  SWFeedItem *feed = [_model.feeds safeObjectAtIndex:row];
-  if ([imageHeight isEqualToNumber:feed.feed.imageHeight]) {
-    return;
-  }
-  feed.feed.imageHeight = imageHeight;
-  __weak typeof(self)wSelf = self;
-  dispatch_async(dispatch_get_main_queue(), ^{
-    [wSelf.collectionView reloadDataAtIndex:row];
-  });
-}
-
 - (void)feedDetailViewDidNeedOpenImagePicker:(SWFeedCollectionCell *)cell{
   UIImagePickerController *picker = [[UIImagePickerController alloc] init];
   picker.navigationBar.tintColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];

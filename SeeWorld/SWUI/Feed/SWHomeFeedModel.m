@@ -19,10 +19,14 @@
 - (id)init{
   if (self = [super init]) {
     self.feeds = [NSMutableArray array];
-    NSDictionary *feeds = [NSDictionary readFromPlistFile:@"HomeFeedData"];
+    NSDictionary *feeds = [NSDictionary readFromPlistFile:@"HomeFeedData_1_4_0"];
     if (feeds) {
       SWHomeFeedItem *homeFeedItem = [SWHomeFeedItem homeFeedItemFromDic:feeds];
-      [self.feeds addObjectsFromArray:homeFeedItem.feeds];
+      for (SWFeedItem *feed in homeFeedItem.feeds) {
+        if ([feed.feed.imageWidth integerValue]) {
+          [self.feeds addObject:feed];
+        }
+      }
     }
   }
   return self;
@@ -50,26 +54,29 @@
   SWHomeFeedAPI *homeFeedAPI = [[SWHomeFeedAPI alloc] init];
   homeFeedAPI.lastFeedId = feedId;
   [homeFeedAPI startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-    NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
-    
-    SWHomeFeedItem *homeFeedItem = [SWHomeFeedItem homeFeedItemFromDic:[dic safeDicObjectForKey:@"data"]];
-    wSelf.hasMore = [homeFeedItem.hasMore boolValue];
-    wSelf.lastFeedId = homeFeedItem.lastFeedID;
-    
-    if ([feedId integerValue]==0) {
-      [wSelf.feeds removeAllObjects];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
       
-      [[dic safeDicObjectForKey:@"data"] writeToPlistFile:@"HomeFeedData"];
-    }
-    
-    [wSelf.feeds addObjectsFromArray:homeFeedItem.feeds];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-      wSelf.isLoading = NO;
+      SWHomeFeedItem *homeFeedItem = [SWHomeFeedItem homeFeedItemFromDic:[dic safeDicObjectForKey:@"data"] prefetch:YES];
+      wSelf.hasMore = [homeFeedItem.hasMore boolValue];
+      wSelf.lastFeedId = homeFeedItem.lastFeedID;
+      
+      if ([feedId integerValue]==0) {
+        [wSelf.feeds removeAllObjects];
+        [[dic safeDicObjectForKey:@"data"] writeToPlistFile:@"HomeFeedData_1_4_0"];
+      }
+      
+      [wSelf.feeds addObjectsFromArray:homeFeedItem.feeds];
+      
+      dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+          wSelf.isLoading = NO;
+        });
+        if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(homeFeedModelDidLoadContents:)]) {
+          [wSelf.delegate homeFeedModelDidLoadContents:wSelf];
+        }
+      });
     });
-    if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(homeFeedModelDidLoadContents:)]) {
-      [wSelf.delegate homeFeedModelDidLoadContents:wSelf];
-    }
   } failure:^(YTKBaseRequest *request) {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
       wSelf.isLoading = NO;

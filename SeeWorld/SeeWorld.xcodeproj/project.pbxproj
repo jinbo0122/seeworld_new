@@ -139,7 +139,6 @@
 		4B109C691D0464DC003EC5A2 /* SWFindPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B109C681D0464DC003EC5A2 /* SWFindPwdVC.m */; };
 		4B109C6D1D046A1F003EC5A2 /* SWResetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B109C6C1D046A1F003EC5A2 /* SWResetPwdVC.m */; };
 		4B1666FC1B9FF3E800590D06 /* SWExploreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1666FB1B9FF3E800590D06 /* SWExploreVC.m */; };
-		4B1667001B9FF4D500590D06 /* SWExploreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1666FF1B9FF4D500590D06 /* SWExploreModel.m */; };
 		4B1667041B9FFAB000590D06 /* SWSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1667031B9FFAB000590D06 /* SWSearchVC.m */; };
 		4B1667071B9FFB9C00590D06 /* SWSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1667061B9FFB9C00590D06 /* SWSearchModel.m */; };
 		4B16670A1B9FFFF900590D06 /* SWSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1667091B9FFFF900590D06 /* SWSearchBar.m */; };
@@ -349,7 +348,6 @@
 		4BED70F81C29393E001A759F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BED70F71C29393E001A759F /* libxml2.tbd */; };
 		4BED710F1C2942A3001A759F /* SWChatListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED710E1C2942A3001A759F /* SWChatListVC.m */; };
 		4BED71121C29678B001A759F /* SWMsgVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BED71111C29678B001A759F /* SWMsgVC.m */; };
-		4BF3B34F1BA2B24400FC0F6F /* SWExploreFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF3B34E1BA2B24400FC0F6F /* SWExploreFeedItemView.m */; };
 		4BF403CD1BB57A3F0076BE2C /* SWFeedSingleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF403CC1BB57A3F0076BE2C /* SWFeedSingleAPI.m */; };
 		4BF403D71BB599BE0076BE2C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF403D61BB599BE0076BE2C /* libz.tbd */; };
 		4BF403D91BB599CA0076BE2C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF403D81BB599CA0076BE2C /* libsqlite3.tbd */; };
@@ -658,8 +656,6 @@
 		4B109C6C1D046A1F003EC5A2 /* SWResetPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWResetPwdVC.m; sourceTree = "<group>"; };
 		4B1666FA1B9FF3E800590D06 /* SWExploreVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWExploreVC.h; sourceTree = "<group>"; };
 		4B1666FB1B9FF3E800590D06 /* SWExploreVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWExploreVC.m; sourceTree = "<group>"; };
-		4B1666FE1B9FF4D500590D06 /* SWExploreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWExploreModel.h; sourceTree = "<group>"; };
-		4B1666FF1B9FF4D500590D06 /* SWExploreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWExploreModel.m; sourceTree = "<group>"; };
 		4B1667021B9FFAB000590D06 /* SWSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSearchVC.h; sourceTree = "<group>"; };
 		4B1667031B9FFAB000590D06 /* SWSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSearchVC.m; sourceTree = "<group>"; };
 		4B1667051B9FFB9C00590D06 /* SWSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSearchModel.h; sourceTree = "<group>"; };
@@ -1053,8 +1049,6 @@
 		4BED710E1C2942A3001A759F /* SWChatListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWChatListVC.m; sourceTree = "<group>"; };
 		4BED71101C29678B001A759F /* SWMsgVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWMsgVC.h; sourceTree = "<group>"; };
 		4BED71111C29678B001A759F /* SWMsgVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWMsgVC.m; sourceTree = "<group>"; };
-		4BF3B34D1BA2B24400FC0F6F /* SWExploreFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWExploreFeedItemView.h; sourceTree = "<group>"; };
-		4BF3B34E1BA2B24400FC0F6F /* SWExploreFeedItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWExploreFeedItemView.m; sourceTree = "<group>"; };
 		4BF403CB1BB57A3F0076BE2C /* SWFeedSingleAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFeedSingleAPI.h; sourceTree = "<group>"; };
 		4BF403CC1BB57A3F0076BE2C /* SWFeedSingleAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFeedSingleAPI.m; sourceTree = "<group>"; };
 		4BF403D61BB599BE0076BE2C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -1593,12 +1587,8 @@
 				4B1666FB1B9FF3E800590D06 /* SWExploreVC.m */,
 				4B1728CF1D0426B4000E5270 /* SWExploreSegView.h */,
 				4B1728D01D0426B4000E5270 /* SWExploreSegView.m */,
-				4B1666FE1B9FF4D500590D06 /* SWExploreModel.h */,
-				4B1666FF1B9FF4D500590D06 /* SWExploreModel.m */,
 				4B33A4091BA7D02D001DB3BE /* SWLocationManager.h */,
 				4B33A40A1BA7D02D001DB3BE /* SWLocationManager.m */,
-				4BF3B34D1BA2B24400FC0F6F /* SWExploreFeedItemView.h */,
-				4BF3B34E1BA2B24400FC0F6F /* SWExploreFeedItemView.m */,
 				4B1667011B9FFA9A00590D06 /* Search */,
 			);
 			path = Discover;
@@ -3002,7 +2992,6 @@
 				493D44E11B777C8A00C406A1 /* MBProgressHUD+Add.m in Sources */,
 				4BC0FE5D1B943B4F003F4723 /* NSString+ALExtension.m in Sources */,
 				49AD7C1B1BA76748000405F4 /* GetQiniuTokenResponse.m in Sources */,
-				4BF3B34F1BA2B24400FC0F6F /* SWExploreFeedItemView.m in Sources */,
 				4BCCC6321C3E2FB70056EC83 /* SWChatSettingCell.m in Sources */,
 				4B442D3F1C52285B0065AC78 /* SWReportView.m in Sources */,
 				493D44E61B777C8A00C406A1 /* MJPhotoProgressView.m in Sources */,
@@ -3049,7 +3038,6 @@
 				490DB22C1B79065600A22C68 /* CommonResponse.m in Sources */,
 				4BC0FEC01B9450DE003F4723 /* SWHomeFeedCell.m in Sources */,
 				493D44E71B777C8A00C406A1 /* MJPhotoToolbar.m in Sources */,
-				4B1667001B9FF4D500590D06 /* SWExploreModel.m in Sources */,
 				493D44D81B777C8A00C406A1 /* HPGrowingTextView.m in Sources */,
 				4BC0FE5C1B943B4F003F4723 /* NSDictionary+ALExtension.m in Sources */,
 				493D450B1B777C8A00C406A1 /* QBImagePickerGroupCell.m in Sources */,

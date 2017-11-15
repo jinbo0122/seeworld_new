@@ -30,6 +30,7 @@
 @property (nonatomic, strong)NSString       *content;
 @property (nonatomic, strong)NSNumber       *time;
 @property (nonatomic, strong)NSMutableArray *tags;
+@property (nonatomic, strong)NSNumber       *imageWidth;
 @property (nonatomic, strong)NSNumber       *imageHeight;
 + (SWFeedInfoItem *)feedInfoItemByDic:(NSDictionary *)feedInfoDic;
 - (SWFeedInfoItem *)copy;

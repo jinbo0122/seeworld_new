@@ -14,4 +14,5 @@
 @property (nonatomic, strong)NSMutableArray  *feeds;
 
 + (SWHomeFeedItem *)homeFeedItemFromDic:(NSDictionary *)dic;
++ (SWHomeFeedItem *)homeFeedItemFromDic:(NSDictionary *)dic prefetch:(BOOL)needPrefetch;
 @end

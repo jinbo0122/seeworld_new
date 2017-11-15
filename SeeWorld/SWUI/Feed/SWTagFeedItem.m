@@ -9,12 +9,12 @@
 #import "SWTagFeedItem.h"
 
 @implementation SWTagFeedItem
-+ (SWTagFeedItem *)tagFeedItemByDic:(NSDictionary *)dic{
++ (SWTagFeedItem *)tagFeedItemByDic:(NSDictionary *)dic prefetch:(BOOL)prefetch{
   SWTagFeedItem *feedItem = [[SWTagFeedItem alloc] init];
   feedItem.tag = [SWTagInfoItem tagInfoItemByDic:[dic safeDicObjectForKey:@"tag"]];
   feedItem.feedList = [SWHomeFeedItem homeFeedItemFromDic:[dic safeDicObjectForKey:@"feedList"]];
   if (feedItem.tag.tagId.integerValue == 0) {
-      feedItem.feedList = [SWHomeFeedItem homeFeedItemFromDic:dic];
+      feedItem.feedList = [SWHomeFeedItem homeFeedItemFromDic:dic prefetch:prefetch];
   }
   return feedItem;
 }

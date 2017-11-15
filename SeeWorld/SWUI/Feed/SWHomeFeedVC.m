@@ -315,23 +315,6 @@ SWHomeHeaderViewDelegate>
   [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)homeFeedCellDidNeedReload:(NSNumber *)imageHeight row:(NSInteger)row{
-  SWFeedItem *feed = [_model.feeds safeObjectAtIndex:row];
-  if ([imageHeight isEqualToNumber:feed.feed.imageHeight]) {
-    return;
-  }
-  feed.feed.imageHeight = imageHeight;
-  __weak typeof(self)wSelf = self;
-  dispatch_async(dispatch_get_main_queue(), ^{
-    if ([wSelf.tbVC.tableView numberOfRowsInSection:0]>row) {
-      [wSelf.tbVC.tableView beginUpdates];
-      [wSelf.tbVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]]
-                                  withRowAnimation:UITableViewRowAnimationFade];
-      [wSelf.tbVC.tableView endUpdates];
-    }
-  });
-}
-
 - (void)homeFeedCellDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row{
   SWHomeFeedShareView *shareView = [[SWHomeFeedShareView alloc] initWithFrame:[UIScreen mainScreen].bounds];
   [shareView show];

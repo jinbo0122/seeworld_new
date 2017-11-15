@@ -58,7 +58,8 @@
     NSDictionary *tagDic = [tagsArray safeDicObjectAtIndex:j];
     [feed.tags safeAddObject:[SWFeedTagItem feedTagItemByDic:tagDic]];
   }
-  feed.imageHeight = @(UIScreenWidth);
+  feed.imageHeight = [feedInfoDic safeNumberObjectForKey:@"height"];
+  feed.imageWidth = [feedInfoDic safeNumberObjectForKey:@"width"];
   return feed;
 }
 
@@ -70,6 +71,7 @@
   feed.time = [self.time copy];
   feed.tags = [NSMutableArray array];
   feed.imageHeight = [self.imageHeight copy];
+  feed.imageWidth = [self.imageWidth copy];
   for (NSInteger j=0; j<[self.tags count]; j++) {
     SWFeedTagItem *tag = [self.tags safeObjectAtIndex:j];
     [feed.tags safeAddObject:[tag copy]];

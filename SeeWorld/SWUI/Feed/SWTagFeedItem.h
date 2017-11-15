@@ -12,7 +12,7 @@
 @interface SWTagFeedItem : NSObject
 @property (nonatomic, strong)SWTagInfoItem  *tag;
 @property (nonatomic, strong)SWHomeFeedItem *feedList;
-+ (SWTagFeedItem *)tagFeedItemByDic:(NSDictionary *)dic;
++ (SWTagFeedItem *)tagFeedItemByDic:(NSDictionary *)dic prefetch:(BOOL)prefetch;
 @end
 
 @interface SWTagInfoItem : NSObject

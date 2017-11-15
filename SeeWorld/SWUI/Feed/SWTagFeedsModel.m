@@ -42,7 +42,7 @@
   NSString *path = paths.count > 0? [paths objectAtIndex:0]:@"";
   NSString *fullPath = [path stringByAppendingPathComponent:[@"user_feed_cache_" stringByAppendingString:self.userId]];
   NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:fullPath];
-  SWTagFeedItem *tagFeedItem = [SWTagFeedItem tagFeedItemByDic:[dic safeDicObjectForKey:@"data"]];
+  SWTagFeedItem *tagFeedItem = [SWTagFeedItem tagFeedItemByDic:[dic safeDicObjectForKey:@"data"] prefetch:NO];
   self.hasMore = [tagFeedItem.feedList.hasMore boolValue];
   self.lastFeedId = tagFeedItem.feedList.lastFeedID;
   if ([tagFeedItem.tag.feedCount integerValue]>0) {
@@ -50,7 +50,11 @@
   }
   
   if ([tagFeedItem.feedList.feeds count]>0) {
-    [self.feeds addObjectsFromArray:tagFeedItem.feedList.feeds];
+    for (SWFeedItem *feed in tagFeedItem.feedList.feeds) {
+      if ([feed.feed.imageWidth integerValue]) {
+        [self.feeds addObject:feed];
+      }
+    }
     if (self.delegate && [self.delegate respondsToSelector:@selector(tagFeedModelDidLoadContents:)]) {
       [self.delegate tagFeedModelDidLoadContents:self];
     }
@@ -81,37 +85,40 @@
   api.tagId = self.tagItem.tagId;
   api.userId = self.userId;
   [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
-    NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
-    
-    SWTagFeedItem *tagFeedItem = [SWTagFeedItem tagFeedItemByDic:[dic safeDicObjectForKey:@"data"]];
-    wSelf.hasMore = [tagFeedItem.feedList.hasMore boolValue];
-    wSelf.lastFeedId = tagFeedItem.feedList.lastFeedID;
-    
-    if ([feedId integerValue]==0) {
-      [wSelf.feeds removeAllObjects];
-    }
-    
-    if ([tagFeedItem.tag.feedCount integerValue]>0) {
-      wSelf.feedCount = tagFeedItem.tag.feedCount;
-    }
-    
-    [wSelf.feeds addObjectsFromArray:tagFeedItem.feedList.feeds];
-    
-    if ([feedId integerValue] == 0 && wSelf.userId) {
-      NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-      NSString *path = paths.count > 0? [paths objectAtIndex:0]:@"";
-      NSString *fullPath = [path stringByAppendingPathComponent:[@"user_feed_cache_" stringByAppendingString:wSelf.userId]];
-      BOOL Succ = [dic writeToFile:fullPath
-                        atomically:YES];
-      NSLog(@"save succ %d",Succ?1:0);
-    }
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-      wSelf.isLoading = NO;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
+      
+      SWTagFeedItem *tagFeedItem = [SWTagFeedItem tagFeedItemByDic:[dic safeDicObjectForKey:@"data"] prefetch:YES];
+      wSelf.hasMore = [tagFeedItem.feedList.hasMore boolValue];
+      wSelf.lastFeedId = tagFeedItem.feedList.lastFeedID;
+      
+      if ([feedId integerValue]==0) {
+        [wSelf.feeds removeAllObjects];
+      }
+      
+      if ([tagFeedItem.tag.feedCount integerValue]>0) {
+        wSelf.feedCount = tagFeedItem.tag.feedCount;
+      }
+      
+      [wSelf.feeds addObjectsFromArray:tagFeedItem.feedList.feeds];
+      
+      if ([feedId integerValue] == 0 && wSelf.userId) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *path = paths.count > 0? [paths objectAtIndex:0]:@"";
+        NSString *fullPath = [path stringByAppendingPathComponent:[@"user_feed_cache_" stringByAppendingString:wSelf.userId]];
+        BOOL Succ = [dic writeToFile:fullPath
+                          atomically:YES];
+        NSLog(@"save succ %d",Succ?1:0);
+      }
+      dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+          wSelf.isLoading = NO;
+        });
+        if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(tagFeedModelDidLoadContents:)]) {
+          [wSelf.delegate tagFeedModelDidLoadContents:wSelf];
+        }
+      });
     });
-    if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(tagFeedModelDidLoadContents:)]) {
-      [wSelf.delegate tagFeedModelDidLoadContents:wSelf];
-    }
   } failure:^(YTKBaseRequest *request) {
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

@@ -43,27 +43,17 @@
 }
 
 - (void)refreshWithFeed:(SWFeedItem *)feedItem showTag:(BOOL)showTag{
+  CGFloat imageHeight = [feedItem.feed.imageHeight integerValue];
+  CGFloat imageWidth  = [feedItem.feed.imageWidth integerValue];
+  
+  self.height = UIScreenWidth *imageHeight/imageWidth;
+
+  _tagView.frame = self.bounds;
+  [_tagView reloadData];
+  
   _feedItem = feedItem;
   [self.tagView reloadData];
-  __weak typeof(self)wSelf = self;
-  [_tagView.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:[feedItem.feed.picUrl stringByAppendingString:FEED_SMALL]]
-                                  placeholderImage:nil
-                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                           if (image.size.width>image.size.height) {
-                                             CGFloat height = image.size.height * UIScreenWidth/image.size.width;
-                                             wSelf.tagView.frame = CGRectMake(0, 0, wSelf.width, height);
-                                           }else if (image.size.width<image.size.height){
-                                             CGFloat width = image.size.width * UIScreenWidth/image.size.height;
-                                             wSelf.tagView.frame = CGRectMake((wSelf.width-width)/2.0, 0, width, wSelf.height);
-                                           }else{
-                                             wSelf.tagView.frame = wSelf.bounds;
-                                           }
-                                           if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(feedImageViewDidNeedReloadCell:)]) {
-                                             [wSelf.delegate feedImageViewDidNeedReloadCell:@(wSelf.tagView.height)];
-                                           }
-                                           [wSelf.tagView reloadData];
-                                         }
-   ];
+  [_tagView.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:[feedItem.feed.picUrl stringByAppendingString:FEED_SMALL]]];
   self.backgroundColor = [UIColor whiteColor];
 }
 
