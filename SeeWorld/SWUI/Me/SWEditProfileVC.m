@@ -92,8 +92,8 @@
   [_editView addSubview:_txtName];
   
   _btnGender = [[UIButton alloc] initWithFrame:CGRectMake(90, _lblGender.top, UIScreenWidth-120, 16)];
-  _btnGender.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnGender.width-20, 0, 11.5, 20)];
-  _btnGender.customImageView.image = [UIImage imageNamed:@"setting_btn_enter"];
+  _btnGender.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnGender.width-20, 4, 12, 12)];
+  _btnGender.customImageView.image = [UIImage imageNamed:@"home_post_arrow"];
   [_editView addSubview:_btnGender];
   [_btnGender addSubview:_btnGender.customImageView];
   _btnGender.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, 100, 16)
