@@ -3261,8 +3261,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hsueh Kai Lin (9C8HHWCFE6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hsueh Kai Lin (9C8HHWCFE6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Hsueh Kai Lin (BYWGU5GY9C)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Hsueh Kai Lin (BYWGU5GY9C)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3285,7 +3285,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "8fdfea4e-6ea1-4481-96c5-63828d926049";
+				PROVISIONING_PROFILE = "2bef3f7e-090a-4971-8e1a-0e7c28c6becf";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3317,8 +3317,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hsueh Kai Lin (9C8HHWCFE6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hsueh Kai Lin (9C8HHWCFE6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: See World Technology Inc. (9C8HHWCFE6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: See World Technology Inc. (9C8HHWCFE6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3333,7 +3333,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8fdfea4e-6ea1-4481-96c5-63828d926049";
+				PROVISIONING_PROFILE = "c5651029-5ba6-4cc8-bd14-ac0559d59d9d";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3420,8 +3420,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = SeeWorld.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hsueh Kai Lin (9C8HHWCFE6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hsueh Kai Lin (9C8HHWCFE6)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: See World Technology Inc. (9C8HHWCFE6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: See World Technology Inc. (9C8HHWCFE6)";
 				DEVELOPMENT_TEAM = 9C8HHWCFE6;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3478,8 +3478,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.seeworldplus.SeeWorldPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77a5a0fd-112e-437f-ac0e-206be9040264";
-				PROVISIONING_PROFILE_SPECIFIER = sw_adhoc_171016;
+				PROVISIONING_PROFILE = "bcad90e5-4032-4369-bf00-f74851684601";
+				PROVISIONING_PROFILE_SPECIFIER = sw_adhoc_171116;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "../**";
 				VALID_ARCHS = "arm64 armv7 armv7s";
