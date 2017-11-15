@@ -255,6 +255,13 @@
   _lblName.hidden = _lblPost.hidden = _btnFollowing.hidden = _btnFollower.hidden = _btnChat.hidden = _btnEdit.hidden = _btnSetting.hidden = _btnPost.hidden = _btnMore.hidden = _btnFollow.hidden = isEditMode;
   _btnEditAvatar.hidden = _btnEditCover.hidden = !isEditMode;
   _btnEdit.hidden = isEditMode;
+  if (isEditMode) {
+    _btnAvatar.top = 60;
+    _btnAvatar.right = UIScreenWidth - 20;
+    _btnEditAvatar.top = _btnAvatar.bottom;
+    [_bgInfo removeFromSuperview];
+    self.height = _btnCover.height;
+  }
 }
 
 - (void)onEditCoverClicked{

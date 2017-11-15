@@ -32,12 +32,12 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0xffffff]];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:@"取消"
-                                                                                    color:[UIColor whiteColor]
+                                                                                    color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                                      font:[UIFont systemFontOfSize:18]
                                                                                    target:self
                                                                                    action:@selector(onDismiss)];
   self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:@"儲存"
-                                                                                 color:[UIColor colorWithRGBHex:0x00f8ff]
+                                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                                                                   font:[UIFont systemFontOfSize:18]
                                                                                 target:self
                                                                                 action:@selector(onSave)];
@@ -58,15 +58,15 @@
   _avatarCoverView.center = CGPointMake(UIScreenWidth/2.0, UIScreenHeight/2.0);
   _avatarCoverView.alpha = 0.5;
   
-  _toolView = [[UIView alloc] initWithFrame:CGRectMake(0, UIScreenHeight-48, UIScreenWidth, 48)];
+  _toolView = [[UIView alloc] initWithFrame:CGRectMake(0, UIScreenHeight-48-iphoneXBottomAreaHeight, UIScreenWidth, 48+iphoneXBottomAreaHeight)];
   _toolView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
   [self.view addSubview:_toolView];
   
-  _btnLibrary = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, _toolView.height)];
+  _btnLibrary = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, _toolView.height-iphoneXBottomAreaHeight)];
   [_btnLibrary setImage:[UIImage imageNamed:@"profile_btn_img"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnLibrary];
   
-  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-60, 0, 60, _toolView.height)];
+  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-60, 0, 60, _toolView.height-iphoneXBottomAreaHeight)];
   [_btnCamera setImage:[UIImage imageNamed:@"profile_btn_shooting"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnCamera];
   
