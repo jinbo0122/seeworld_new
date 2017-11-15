@@ -27,7 +27,7 @@
 
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]){
-    self.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     _selectView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.width, 60)];
     _selectView.alwaysBounceHorizontal = YES;
     _selectView.contentInset = UIEdgeInsetsZero;
@@ -141,7 +141,7 @@ SWChatSettingHeaderViewDelegate>
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xE8EDF3];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:SWStringChatDetail color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   self.automaticallyAdjustsScrollViewInsets = NO;
   self.headerView = [[SWChatSettingHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 60)];
@@ -150,12 +150,11 @@ SWChatSettingHeaderViewDelegate>
   
   self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.bottom, self.view.width, self.view.height-self.headerView.bottom)
                                                 style:UITableViewStylePlain];
-  self.tableView.backgroundColor = [UIColor colorWithRGBHex:0xf5f4f9];
+  self.tableView.backgroundColor = [UIColor colorWithRGBHex:0xE8EDF3];
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.tableView.rowHeight = 45;
-  self.tableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  self.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a536e];
+  self.tableView.separatorColor = [UIColor colorWithRGBHex:0xE8EDF3];
   self.tableView.separatorInset = UIEdgeInsetsZero;
   self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
   [self.view addSubview:self.tableView];
@@ -176,7 +175,7 @@ SWChatSettingHeaderViewDelegate>
                                            
                                          }];
   }else{
-    self.tableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, self.view.width, 0.5) colorHex:0x1a2531];
+    self.tableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, self.view.width, 0.5) colorHex:0xE8EDF3];
     self.chat = [[RCIMClient sharedRCIMClient] getConversation:ConversationType_PRIVATE
                                                       targetId:self.targetId];
     [self.headerView refreshUser:@[self.targetId]];
@@ -311,8 +310,8 @@ SWChatSettingHeaderViewDelegate>
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
   UIView *view =[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 20)];
-  [view addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, self.view.width, 0.5) colorHex:0x2a536e]];
-  [view addSubview:[ALLineView lineWithFrame:CGRectMake(0, 19.5, self.view.width, 0.5) colorHex:0x2a536e]];
+  [view addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, self.view.width, 0.5) colorHex:0xffffff]];
+  [view addSubview:[ALLineView lineWithFrame:CGRectMake(0, 19.5, self.view.width, 0.5) colorHex:0xffffff]];
   return view;
 }
 
@@ -321,7 +320,7 @@ SWChatSettingHeaderViewDelegate>
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-  return [ALLineView lineWithFrame:CGRectMake(0, 0, self.view.width, 0.5) colorHex:0x2a536e];
+  return [ALLineView lineWithFrame:CGRectMake(0, 0, self.view.width, 0.5) colorHex:0xffffff];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

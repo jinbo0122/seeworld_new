@@ -79,6 +79,7 @@
   {
     [[SWChatModel sharedInstance] connect];
     TabViewController *tabVC = [[TabViewController alloc] init];
+    tabVC.selectedIndex = 4;
     self.window.rootViewController = tabVC;
   }
   else

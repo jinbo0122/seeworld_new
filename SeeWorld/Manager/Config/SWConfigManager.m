@@ -14,8 +14,9 @@ DEF_SINGLETON;
 - (id)init{
   if (self = [super init]) {
     NSString *uId = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"];
-    self.user = [SWFeedUserItem feedUserItemByDic:[[NSUserDefaults standardUserDefaults] safeDicObjectForKey:@"userInfo"]];
+    self.user = [SWFeedUserItem feedUserItemBySelfDic:[[NSUserDefaults standardUserDefaults] safeDicObjectForKey:@"userInfo"]];
     if (uId.length>0) {
+      self.user.uId = [uId numberValue];
       __weak typeof(self)wSelf = self;
       [self getUser:uId completionBlock:^(SWFeedUserItem *user){
         wSelf.user = user;

@@ -18,33 +18,30 @@
 - (id)initWithFrame:(CGRect)frame title:(NSString *)title content:(NSString *)content{
   if (self = [super initWithFrame:frame]) {
     self.backgroundColor = [UIColor colorWithRGBHex:0x000000 alpha:0.44];
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width,title?151:100.5)];
-    _bgView.backgroundColor = [UIColor colorWithRGBHex:0x203647];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width,(title?150:100) + iphoneXBottomAreaHeight)];
+    _bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_bgView];
     
-    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50, self.width, 50)];
-    [_btnCancel setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGBHex:0x1a2537] size:_btnCancel.size] forState:UIControlStateNormal];
-    [_btnCancel setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGBHex:0x2d516d] size:_btnCancel.size] forState:UIControlStateHighlighted];
+    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50-iphoneXBottomAreaHeight, self.width, 50)];
     [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
-    [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0xcacaca] forState:UIControlStateNormal];
+    [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0x8A9BAC] forState:UIControlStateNormal];
     [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_bgView addSubview:_btnCancel];
     [_btnCancel addTarget:self action:@selector(onCancelClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnCancel addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, self.width, 0.5) colorHex:0xcccccc]];
     
-    _btnConfirm = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnCancel.top-50.5, self.width, 50)];
-    [_btnConfirm setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGBHex:0x1a2537] size:_btnConfirm.size] forState:UIControlStateNormal];
-    [_btnConfirm setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGBHex:0x2d516d] size:_btnConfirm.size] forState:UIControlStateHighlighted];
+    _btnConfirm = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnCancel.top-50, self.width, 50)];
     [_btnConfirm setTitle:content forState:UIControlStateNormal];
-    [_btnConfirm setTitleColor:[UIColor colorWithRGBHex:0xffffff] forState:UIControlStateNormal];
+    [_btnConfirm setTitleColor:[UIColor colorWithRGBHex:0x8A9BAC] forState:UIControlStateNormal];
     [_btnConfirm.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_bgView addSubview:_btnConfirm];
     [_btnConfirm addTarget:self action:@selector(onConfirmClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_btnConfirm addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, self.width, 0.5) colorHex:0xcccccc]];
+
     if (title) {
-      _btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnConfirm.top-50.5, self.width, 50)];
-      [_btnTitle setBackgroundColor:[UIColor colorWithRGBHex:0x1a2537]];
+      _btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnConfirm.top-50, self.width, 50)];
       [_btnTitle setTitle:title forState:UIControlStateNormal];
-      [_btnTitle setTitleColor:[UIColor colorWithRGBHex:0xffffff] forState:UIControlStateNormal];
+      [_btnTitle setTitleColor:[UIColor colorWithRGBHex:0x34414e] forState:UIControlStateNormal];
       [_btnTitle.titleLabel setFont:[UIFont systemFontOfSize:16]];
       [_bgView addSubview:_btnTitle];
     }

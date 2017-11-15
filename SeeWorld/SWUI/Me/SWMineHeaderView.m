@@ -8,10 +8,7 @@
 
 #import "SWMineHeaderView.h"
 
-@implementation SWMineHeaderView{
-  UIImageView *_iconStatus;
-  UILabel     *_lblStatus;
-  
+@implementation SWMineHeaderView{  
   UIView      *_bgInfo;
 }
 - (id)initWithFrame:(CGRect)frame{
@@ -31,6 +28,7 @@
     _btnAvatar.customImageView.layer.cornerRadius = _btnAvatar.customImageView.width/2.0;
     _btnAvatar.customImageView.layer.borderWidth = 3.0;
     _btnAvatar.customImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _btnAvatar.customImageView.backgroundColor = [UIColor whiteColor];
     [_btnAvatar addSubview:_btnAvatar.customImageView];
     
     
@@ -65,33 +63,14 @@
                         textAlignment:NSTextAlignmentLeft
                                  font:[UIFont systemFontOfSize:18]];
     
-    _bgInfo = [[UIView alloc] initWithFrame:CGRectMake(0, _btnCover.bottom, self.width, 75.5)];
+    _bgInfo = [[UIView alloc] initWithFrame:CGRectMake(0, _btnCover.bottom, self.width, 135.5)];
     _bgInfo.backgroundColor = [UIColor whiteColor];
     [self addSubview:_bgInfo];
-    
-    _lblIntro = [UILabel initWithFrame:CGRectMake(30, _lblName.bottom+10, UIScreenWidth-155, 13)
-                               bgColor:[UIColor clearColor]
-                             textColor:[UIColor colorWithRGBHex:0xffffff]
-                                  text:@""
-                         textAlignment:NSTextAlignmentLeft
-                                  font:[UIFont systemFontOfSize:11]];
-    
-    _iconStatus = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [self addSubview:_iconStatus];
-    
-    _lblStatus = [UILabel initWithFrame:CGRectZero
-                                bgColor:[UIColor clearColor]
-                              textColor:[UIColor colorWithRGBHex:0xffffff]
-                                   text:@""
-                          textAlignment:NSTextAlignmentLeft
-                                   font:[UIFont systemFontOfSize:11]];
-    [self addSubview:_lblStatus];
     
     [self addSubview:_btnCover];
     [self addSubview:_btnAvatar];
     [self addSubview:_btnEditCover];
     [self addSubview:_btnEditAvatar];
-    [self addSubview:_lblIntro];
     [self addSubview:_lblName];
     
     [_btnCover addTarget:self action:@selector(onEditCoverClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -126,24 +105,43 @@
     [_bgInfo addSubview:_btnFollower];
     
     
-    CGFloat width = UIScreenWidth==320?30:46;
+
+    [_bgInfo addSubview:[ALLineView lineWithFrame:CGRectMake(0, 60.5, self.width, 0.5) colorHex:0xe9ebee]];
     
-    _btnMore = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-5-width, 0, width, _bgInfo.height)];
-    [_btnMore setImage:[UIImage imageNamed:@"profile_btn_other"] forState:UIControlStateNormal];
-    [_bgInfo addSubview:_btnMore];
+    _btnPost = [[UIButton alloc] initWithFrame:CGRectMake(0, 60.5, self.width/3.0, 73)];
+    [_bgInfo addSubview:_btnPost];
     
-    _btnEdit = [[UIButton alloc] initWithFrame:CGRectMake(_btnMore.left-width, _btnMore.top, width, _btnMore.height)];
-    [_btnEdit setImage:[UIImage imageNamed:@"profile_btn_edit"] forState:UIControlStateNormal];
+    _btnEdit = [[UIButton alloc] initWithFrame:CGRectMake(_btnPost.right, _btnPost.top, _btnPost.width, _btnPost.height)];
     [_bgInfo addSubview:_btnEdit];
     
-    _btnChat = [[UIButton alloc] initWithFrame:CGRectMake(_btnMore.left-width, _btnMore.top, width, _btnMore.height)];
-    [_btnChat setImage:[UIImage imageNamed:@"profile_btn_chat"] forState:UIControlStateNormal];
+    _btnSetting = [[UIButton alloc] initWithFrame:CGRectMake(_btnEdit.right, _btnPost.top, _btnPost.width, _btnPost.height)];
+    [_bgInfo addSubview:_btnSetting];
+    
+    _btnChat = [[UIButton alloc] initWithFrame:_btnPost.frame];
     [_bgInfo addSubview:_btnChat];
     
-    [_btnEdit addTarget:self action:@selector(onEdit) forControlEvents:UIControlEventTouchUpInside];
-    [_btnChat addTarget:self action:@selector(onChat) forControlEvents:UIControlEventTouchUpInside];
-    [_btnMore addTarget:self action:@selector(onMore) forControlEvents:UIControlEventTouchUpInside];
+    _btnFollow = [[UIButton alloc] initWithFrame:CGRectMake(_btnPost.right, _btnPost.top, _btnPost.width, _btnPost.height)];
+    [_bgInfo addSubview:_btnFollow];
     
+    _btnMore = [[UIButton alloc] initWithFrame:CGRectMake(_btnEdit.right, _btnPost.top, _btnPost.width, _btnPost.height)];
+    [_bgInfo addSubview:_btnMore];
+    
+    [self setImageName:@"mine_chat" text:@"發消息" button:_btnChat];
+    [self setImageName:@"mine_more" text:@"更多" button:_btnMore];
+    [self setImageName:@"mine_post" text:@"發帖" button:_btnPost];
+    [self setImageName:@"mine_edit" text:@"編輯資料" button:_btnEdit];
+    [self setImageName:@"mine_settings" text:@"設置" button:_btnSetting];
+    
+    [_btnChat addTarget:self action:@selector(onChat) forControlEvents:UIControlEventTouchUpInside];
+    [_btnFollow addTarget:self action:@selector(onFollow) forControlEvents:UIControlEventTouchUpInside];
+    [_btnMore addTarget:self action:@selector(onMore) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    [_btnPost addTarget:self action:@selector(onPost) forControlEvents:UIControlEventTouchUpInside];
+    [_btnEdit addTarget:self action:@selector(onEdit) forControlEvents:UIControlEventTouchUpInside];
+    [_btnSetting addTarget:self action:@selector(onSetting) forControlEvents:UIControlEventTouchUpInside];
+
+
     
     _privateView = [[UIView alloc] initWithFrame:CGRectMake((UIScreenWidth-120)/2.0, self.height+62, 120, 113)];
     [self addSubview:_privateView];
@@ -163,6 +161,16 @@
   return self;
 }
 
+- (void)setImageName:(NSString *)imageName text:(NSString *)text button:(UIButton *)button{
+  [button setImage:[UIImage imageNamed:imageName] text:text textColorHex:0x626870 fontSize:13];
+  [button.customImageView sizeToFit];
+  button.customImageView.top = 12.5; button.customImageView.left = (button.width-button.customImageView.width)/2.0;
+  [button.lblCustom sizeToFit];
+  button.lblCustom.top = button.customImageView.bottom + 2;
+  button.lblCustom.height = 18.5;
+  button.lblCustom.left = (button.width - button.lblCustom.width)/2.0;
+}
+
 - (void)refreshWithUser:(SWFeedUserItem *)user{
   
   if (user.bghead.length>0) {
@@ -174,7 +182,6 @@
   [_btnAvatar.customImageView sd_setImageWithURL:[NSURL URLWithString:[user.picUrl stringByAppendingString:@"-avatar210"]]];
   
   _lblName.text = user.name;
-  _lblIntro.text = user.intro;
   [_lblName sizeToFit];
   
   NSMutableAttributedString *mutPost = [[NSMutableAttributedString alloc]
@@ -188,7 +195,7 @@
   
   _lblPost.attributedText = mutPost;
   [_lblPost sizeToFit];
-  _lblPost.top = (_bgInfo.height - _lblPost.height)/2.0;
+  _lblPost.top = 27;
   
   
   NSMutableAttributedString *mutFollowing = [[NSMutableAttributedString alloc]
@@ -202,7 +209,7 @@
   
   _btnFollowing.lblCustom.attributedText = mutFollowing;
   [_btnFollowing.lblCustom sizeToFit];
-  _btnFollowing.frame = CGRectMake(_lblPost.right+16, 0, _btnFollowing.lblCustom.width, _bgInfo.height);
+  _btnFollowing.frame = CGRectMake(_lblPost.right+16, 0, _btnFollowing.lblCustom.width, 73);
   _btnFollowing.lblCustom.top = (_btnFollowing.height - _btnFollowing.lblCustom.height)/2.0;
   [_btnFollowing addTarget:self action:@selector(onFollowingClick) forControlEvents:UIControlEventTouchUpInside];
 
@@ -216,39 +223,21 @@
   [mutFollower addAttribute:NSFontAttributeName
                        value:[UIFont systemFontOfSize:13] range:[mutFollower.string rangeOfString:@"粉絲 "]];
   
-  _btnFollower.lblCustom.attributedText = mutFollowing;
+  _btnFollower.lblCustom.attributedText = mutFollower;
   [_btnFollower.lblCustom sizeToFit];
-  _btnFollower.frame = CGRectMake(_btnFollowing.right+16, 0, _btnFollower.lblCustom.width, _bgInfo.height);
+  _btnFollower.frame = CGRectMake(_btnFollowing.right+16, 0, _btnFollower.lblCustom.width, _btnFollowing.height);
   _btnFollower.lblCustom.top = (_btnFollower.height - _btnFollower.lblCustom.height)/2.0;
   [_btnFollower addTarget:self action:@selector(onFollowerClick) forControlEvents:UIControlEventTouchUpInside];
   
+  BOOL isSelf = [user.uId integerValue] == [[SWFeedUserItem myself].uId integerValue];
+  _btnMore.hidden = _btnChat.hidden = _btnFollow.hidden = isSelf;
+  _btnPost.hidden = _btnEdit.hidden = _btnSetting.hidden = !isSelf;
+
+  SWUserRelationType relation = [user.relation integerValue];
+  NSString *resource = relation==SWUserRelationTypeFollowing?@"mine_followed":(relation==SWUserRelationTypeInterFollow?@"mine_followeeachother":@"mine_follow");
+  NSString *status = relation==SWUserRelationTypeFollowing?@"追蹤中":(relation==SWUserRelationTypeInterFollow?@"互相追蹤":@"追蹤");
+  [self setImageName:resource text:status button:_btnFollow];
   
-  if ([user.uId integerValue] == [[SWFeedUserItem myself].uId integerValue]) {
-    _btnMore.hidden = YES;
-    _btnChat.hidden = YES;
-    _btnEdit.hidden = NO;
-    _iconStatus.hidden = _lblStatus.hidden = YES;
-  }else{
-    _btnMore.hidden = NO;
-    _btnChat.hidden = NO;
-    _btnEdit.hidden = YES;
-    _iconStatus.hidden = _lblStatus.hidden = NO;
-    
-    SWUserRelationType relation = [user.relation integerValue];
-    NSString *resource = relation==SWUserRelationTypeFollowing?@"profile_status_follwing":(relation==SWUserRelationTypeInterFollow?@"profile_status_mutual_follwing":@"");
-    NSString *status = relation==SWUserRelationTypeFollowing?@"追蹤中":(relation==SWUserRelationTypeInterFollow?@"互相追蹤":@"");
-    _iconStatus.image = [UIImage imageNamed:resource];
-    _lblStatus.text = status;
-    
-    _iconStatus.frame = CGRectMake(_lblName.right+8, _lblName.top+5, 0, 0);
-    [_iconStatus sizeToFit];
-    
-    [_lblStatus sizeToFit];
-    _lblStatus.left = _iconStatus.right+4;
-    _lblStatus.top = _iconStatus.top;
-    [self bringSubviewToFront:_iconStatus];
-    [self bringSubviewToFront:_lblStatus];
-  }
   
   if ([user.relation integerValue] != SWUserRelationTypeInterFollow &&
       [user.relation integerValue] != SWUserRelationTypeSelf &&
@@ -263,7 +252,7 @@
 
 - (void)setIsEditMode:(BOOL)isEditMode{
   _isEditMode = isEditMode;
-  _lblIntro.hidden = _lblName.hidden = _lblPost.hidden = _btnFollowing.hidden = _btnFollower.hidden = _btnChat.hidden = _btnEdit.hidden = isEditMode;
+  _lblName.hidden = _lblPost.hidden = _btnFollowing.hidden = _btnFollower.hidden = _btnChat.hidden = _btnEdit.hidden = _btnSetting.hidden = _btnPost.hidden = _btnMore.hidden = _btnFollow.hidden = isEditMode;
   _btnEditAvatar.hidden = _btnEditCover.hidden = !isEditMode;
   _btnEdit.hidden = isEditMode;
 }
@@ -307,6 +296,24 @@
 - (void)onChat{
   if (self.delegate && [self.delegate respondsToSelector:@selector(mineHeaderDidPressChat:)]) {
     [self.delegate mineHeaderDidPressChat:self];
+  }
+}
+
+- (void)onPost{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(mineHeaderDidPressPost:)]) {
+    [self.delegate mineHeaderDidPressPost:self];
+  }
+}
+
+- (void)onFollow{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(mineHeaderDidPressFollow:)]) {
+    [self.delegate mineHeaderDidPressFollow:self];
+  }
+}
+
+- (void)onSetting{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(mineHeaderDidPressSetting:)]) {
+    [self.delegate mineHeaderDidPressSetting:self];
   }
 }
 @end

@@ -56,6 +56,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong)NSString       *bghead;
 @property (nonatomic, strong)NSNumber       *issecret;
 + (SWFeedUserItem *)feedUserItemByDic:(NSDictionary *)feedUserDic;
++ (SWFeedUserItem *)feedUserItemBySelfDic:(NSDictionary *)feedUserDic;
 + (SWFeedUserItem *)myself;
 - (SWFeedUserItem *)copy;
 + (void)pushUserVC:(SWFeedUserItem *)user nav:(UINavigationController *)nav;

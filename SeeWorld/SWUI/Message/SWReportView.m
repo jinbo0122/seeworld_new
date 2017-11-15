@@ -16,15 +16,15 @@
 - (id)initWithTitle:(NSString *)title{
   if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
     self.backgroundColor = [UIColor colorWithRGBHex:0x000000 alpha:0.44];
-    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 103)];
-    _bgView.backgroundColor = [UIColor colorWithRGBHex:0xe7e7ee];
+    _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, self.height, self.width, 103+iphoneXBottomAreaHeight)];
+    _bgView.backgroundColor = [UIColor whiteColor];
     [self addSubview:_bgView];
     
     UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     gesture.delegate = self;
     [self addGestureRecognizer:gesture];
     
-    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50, self.width, 50)];
+    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, _bgView.height-50-iphoneXBottomAreaHeight, self.width, 50)];
     [_btnCancel setBackgroundColor:[UIColor whiteColor]];
     [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
     [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0x494949] forState:UIControlStateNormal];

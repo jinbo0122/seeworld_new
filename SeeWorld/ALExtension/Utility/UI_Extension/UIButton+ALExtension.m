@@ -66,6 +66,8 @@ static char UIButtonALExtensionCustomTitleLabel;
 }
 
 - (void)setImage:(UIImage *)image text:(NSString *)text textColorHex:(UInt32)textColorHex fontSize:(NSInteger)fontSize{
+  [self.customImageView removeFromSuperview];
+  [self.lblCustom removeFromSuperview];
   self.customImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
   self.customImageView.image = image;
   [self addSubview:self.customImageView];

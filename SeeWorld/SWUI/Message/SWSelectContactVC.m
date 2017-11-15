@@ -44,7 +44,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                                  color:[UIColor colorWithRGBHex:0x8b9cad]
                                                                                   font:[UIFont systemFontOfSize:15]
                                                                                 target:self action:@selector(startChat)];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   self.automaticallyAdjustsScrollViewInsets = NO;
   _selectView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 104)];
   _selectView.alwaysBounceHorizontal = YES;
@@ -56,6 +56,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
   _searchBar.showsCancelButton = NO;
   _searchBar.placeholder = SWStringSearch;
   _searchBar.delegate = self;
+  _searchBar.layer.borderColor = [UIColor clearColor].CGColor;
   
   [self reloadSelectView];
   
@@ -69,8 +70,8 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
   _contactTableView.dataSource = self;
   _contactTableView.delegate   = self;
   _contactTableView.rowHeight  = 60.0;
-  _contactTableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  _contactTableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  _contactTableView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
+  _contactTableView.separatorColor = [UIColor colorWithRGBHex:0xcccccc];
   _contactTableView.separatorInset = UIEdgeInsetsZero;
   _contactTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
   _contactTableView.tableFooterView = [UIView new];
@@ -253,7 +254,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
   if (_model.selectedContacts.count==0) {    
     UILabel *label = [UILabel initWithFrame:CGRectMake(15, 54, self.view.width-30, 40)
                                     bgColor:[UIColor clearColor]
-                                  textColor:[UIColor colorWithRGBHex:0x535962]
+                                  textColor:[UIColor colorWithRGBHex:0x191d28]
                                        text:@"直接添加或搜尋好友"
                               textAlignment:NSTextAlignmentLeft
                                        font:[UIFont systemFontOfSize:16]];

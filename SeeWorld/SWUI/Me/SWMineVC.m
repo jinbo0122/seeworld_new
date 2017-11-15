@@ -13,7 +13,6 @@
 #import "SWEditCoverVC.h"
 #import "SWActionSheetView.h"
 #import "SWEditProfileVC.h"
-#import "RelationshipViewController.h"
 #import "SWFeedCell.h"
 #import "SWHomeFeedCell.h"
 #import "GetUserInfoApi.h"
@@ -22,15 +21,14 @@
 #import "SWAgreementVC.h"
 #import "SWHomeFeedShareView.h"
 #import "SWFeedTagButton.h"
-#import "SWHomeHeaderView.h"
+#import "SWUserListVC.h"
 @interface SWMineVC ()<SWMineHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,
 SWTagFeedsModelDelegate,SWHomeFeedCellDelegate,UIDocumentInteractionControllerDelegate,
-SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
+SWFeedInteractVCDelegate>
 @property(nonatomic, strong)SWMineHeaderView  *headerView;
 @property(nonatomic, strong)UITableView       *tableView;
 @property(nonatomic, strong)SWTagFeedsModel   *model;
 @property(nonatomic, strong)UIDocumentInteractionController *documentController;
-@property(nonatomic, strong)SWHomeHeaderView          *postView;
 @end
 
 @implementation SWMineVC{
@@ -66,7 +64,7 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
     _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
   
-  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 258.5+iOSTopHeight)];
+  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 318.5+iOSTopHeight)];
   _headerView.isEditMode = NO;
   _headerView.delegate = self;
   if (self.user) {
@@ -79,10 +77,6 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
     }
   }else{
     [_headerView refreshWithUser:[SWConfigManager sharedInstance].user];
-    _postView = [[SWHomeHeaderView alloc] initWithFrame:CGRectMake(0, _headerView.bottom, self.view.width, 110)];
-    _postView.delegate = self;
-    [_headerView addSubview:_postView];
-    _headerView.height += _postView.height;
   }
   _tableView.tableHeaderView = _headerView;
   _model.userId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
@@ -155,7 +149,7 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
   self.navigationItem.titleView = nil;
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
   [_tableView reloadData];
-  [self rightBarNeedPost:NO];
+  [self rightBarNeedSetting:NO];
 }
 
 - (void)recoverNavLine{
@@ -175,7 +169,7 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
                                                 forBarMetrics:UIBarMetricsDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.user?self.user.name:[SWConfigManager sharedInstance].user.name
                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
-  [self rightBarNeedPost:YES];
+  [self rightBarNeedSetting:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -188,31 +182,22 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
 }
 
 - (void)rightBar{
-  [self rightBarNeedPost:NO];
+  [self rightBarNeedSetting:NO];
 }
 
-- (void)rightBarNeedPost:(BOOL)needPost{
+- (void)rightBarNeedSetting:(BOOL)needSetting{
   if ([self.user.uId isEqualToNumber:[SWConfigManager sharedInstance].user.uId]||!self.user) {
-    if (needPost) {
-      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"home_post"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
-                                                                                style:UIBarButtonItemStylePlain
-                                                                               target:self
-                                                                               action:@selector(onPostClicked)];
-
-    }else{
+    if (needSetting) {
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"profile_btn_setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                                 style:UIBarButtonItemStylePlain
                                                                                target:self
                                                                                action:@selector(onSettingClicked)];
+
+    }else{
+      self.navigationItem.rightBarButtonItem = nil;
     }
   }else{
-    SWUserRelationType relation = [self.user.relation integerValue];
-    BOOL hasFollow = (relation==SWUserRelationTypeFollowing||relation==SWUserRelationTypeInterFollow);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:hasFollow?@"profile_btn_unfollw":@"profile_btn_follw"]
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(onFollowClick)];
-    
+    self.navigationItem.rightBarButtonItem = nil;
   }
 }
 
@@ -224,7 +209,7 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
   NSString *action = hasFollow?@"unfollow":@"follow";
   api.action = action;
   self.user.relation = @(hasFollow?SWUserRelationTypeUnrelated:SWUserRelationTypeFollowing);
-  [self rightBar];
+  [_headerView refreshWithUser:self.user];
   __weak typeof(self)wSelf = self;
   [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     [wSelf refreshUserInfo];
@@ -236,10 +221,6 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
   } failure:^(YTKBaseRequest *request) {
     [wSelf refreshUserInfo];
   }];
-}
-
-- (void)onPostClicked{
-  [self homeHeaderViewDidPressPost:_postView];
 }
 
 - (void)onSettingClicked{
@@ -275,19 +256,19 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
 }
 
 - (void)mineHeaderDidNeedGoFollowing:(SWMineHeaderView *)header{
-  UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
-  RelationshipViewController *vc = [sb instantiateViewControllerWithIdentifier:@"RelationshipViewController"];
-  vc.userId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
-  vc.type = eRelationshipTypeFollows;
+  SWUserListVC *vc = [[SWUserListVC alloc] init];
+  vc.model.uId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
+  vc.model.title = @"追蹤列表";
+  vc.model.type = SWUserListAPITypeGetFollowing;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)mineHeaderDidNeedGoFollower:(SWMineHeaderView *)header{
-  UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
-  RelationshipViewController *vc = [sb instantiateViewControllerWithIdentifier:@"RelationshipViewController"];
-  vc.userId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
-  vc.type = eRelationshipTypeFollowers;
+  SWUserListVC *vc = [[SWUserListVC alloc] init];
+  vc.model.uId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
+  vc.model.title = @"粉絲列表";
+  vc.model.type = SWUserListAPITypeGetFollower;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
 }
@@ -307,10 +288,6 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
   [self.navigationController pushViewController:chat animated:YES];
 }
 
-- (void)mineHeaderDidPressMode:(SWMineHeaderView *)header{
-  [_tableView reloadData];
-}
-
 - (void)mineHeaderDidPressMore:(SWMineHeaderView *)header{
   __weak typeof(self)wSelf = self;
   SWActionSheetView *action = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds title:nil content:@"舉報"];
@@ -320,6 +297,21 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
     [reportView show];
   };
   [action show];
+}
+
+- (void)mineHeaderDidPressPost:(SWMineHeaderView *)header{
+  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+  if ([tabVC isKindOfClass:[TabViewController class]]) {
+    [tabVC compose];
+  }
+}
+
+- (void)mineHeaderDidPressFollow:(SWMineHeaderView *)header{
+  [self onFollowClick];
+}
+
+- (void)mineHeaderDidPressSetting:(SWMineHeaderView *)header{
+  [self onSettingClicked];
 }
 
 #pragma mark Table View Delegate
@@ -356,35 +348,6 @@ SWFeedInteractVCDelegate,SWHomeHeaderViewDelegate>
     [self recoverNavLine];
   }else{
     [self refreshNavLine];
-  }
-}
-
-#pragma mark Header View Delegate
-- (void)homeHeaderViewDidPressPost:(SWHomeHeaderView *)headerView{
-  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-  if ([tabVC isKindOfClass:[TabViewController class]]) {
-    [tabVC compose];
-  }
-}
-
-- (void)homeHeaderViewDidPressCamera:(SWHomeHeaderView *)headerView{
-  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-  if ([tabVC isKindOfClass:[TabViewController class]]) {
-    [tabVC compose];
-  }
-}
-
-- (void)homeHeaderViewDidPressAlbum:(SWHomeHeaderView *)headerView{
-  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-  if ([tabVC isKindOfClass:[TabViewController class]]) {
-    [tabVC compose];
-  }
-}
-
-- (void)homeHeaderViewDidPressLBS:(SWHomeHeaderView *)headerView{
-  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-  if ([tabVC isKindOfClass:[TabViewController class]]) {
-    [tabVC compose];
   }
 }
 

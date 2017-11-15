@@ -21,7 +21,7 @@
 #import "SWAgreementVC.h"
 #import "SWSearchVC.h"
 #import "SWHomeHeaderView.h"
-#import "RelationshipViewController.h"
+#import "SWUserListVC.h"
 @interface SWHomeFeedVC ()<UITableViewDataSource,UITableViewDelegate,SWHomeFeedModelDelegate,
 SWHomeFeedCellDelegate,SWHomeFeedRecommandViewDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,
 SWHomeHeaderViewDelegate>
@@ -281,11 +281,11 @@ SWHomeHeaderViewDelegate>
   [self.model addFollowUser:user];
 }
 
-- (void)feedRecommandDidPressMore:(SWHomeFeedRecommandView *)view{
-  UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Me" bundle:nil];
-  RelationshipViewController *vc = [sb instantiateViewControllerWithIdentifier:@"RelationshipViewController"];
-  vc.userId = [[SWConfigManager sharedInstance].user.uId stringValue];
-  vc.type = eRelationshipTypeRecommand;
+- (void)feedRecommandDidPressMore:(SWHomeFeedRecommandView *)view{  
+  SWUserListVC *vc = [[SWUserListVC alloc] init];
+  vc.model.uId = [[SWConfigManager sharedInstance].user.uId stringValue];
+  vc.model.title = @"推薦列表";
+  vc.model.type = SWUserListAPITypeGetRecommand;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
 }

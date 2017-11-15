@@ -7,7 +7,6 @@
 //
 
 #import "SWAboutVC.h"
-#import "WebViewController.h"
 #import "SWAgreementVC.h"
 @interface SWAboutVC ()
 

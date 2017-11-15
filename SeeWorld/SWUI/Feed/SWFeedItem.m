@@ -116,6 +116,23 @@
   return user;
 }
 
++ (SWFeedUserItem *)feedUserItemBySelfDic:(NSDictionary *)feedUserDic{
+  SWFeedUserItem *user = [[SWFeedUserItem alloc] init];
+  user.uId = [feedUserDic safeNumberObjectForKey:@"uId"];
+  user.name = [feedUserDic safeStringObjectForKey:@"name"];
+  user.picUrl = [feedUserDic safeStringObjectForKey:@"picUrl"];
+  user.intro = [feedUserDic safeStringObjectForKey:@"intro"];
+  user.gender = [feedUserDic safeNumberObjectForKey:@"gender"];
+  user.relation = [feedUserDic safeNumberObjectForKey:@"relation"];
+  user.feedCount = [feedUserDic safeNumberObjectForKey:@"feedCount"];
+  user.followerCount = [feedUserDic safeNumberObjectForKey:@"followerCount"];
+  user.followedCount = [feedUserDic safeNumberObjectForKey:@"followedCount"];
+  user.bghead = [feedUserDic safeStringObjectForKey:@"bghead"];
+  user.issecret = [feedUserDic safeNumberObjectForKey:@"issecret"];
+  
+  return user;
+}
+
 - (SWFeedUserItem *)copy{
   SWFeedUserItem *user = [[SWFeedUserItem alloc] init];
   user.uId = [self.uId copy];
