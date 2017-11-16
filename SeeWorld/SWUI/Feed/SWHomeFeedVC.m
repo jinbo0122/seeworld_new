@@ -178,7 +178,7 @@ SWHomeHeaderViewDelegate>
 }
 
 - (void)forceRefresh{
-  [self.tbVC.tableView setContentOffset:CGPointMake(0, -64-64) animated:NO];
+  [self.tbVC.tableView setContentOffset:CGPointMake(0, -64-64-iOSTopHeight) animated:NO];
   [self.tbVC.refreshControl beginRefreshing];
   [self onHomeRefreshed];
 }

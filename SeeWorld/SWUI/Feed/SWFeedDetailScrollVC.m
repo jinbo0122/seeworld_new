@@ -147,6 +147,9 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 
 - (void)feedDetailViewDidPressLike:(SWFeedItem *)feedItem row:(NSInteger)row{
   [self.model likeClickedByRow:row];
+  
+  SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+  [cell refreshFeedView:[self.model.feeds safeObjectAtIndex:row] row:row];
 }
 
 - (void)feedDetailViewDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row{

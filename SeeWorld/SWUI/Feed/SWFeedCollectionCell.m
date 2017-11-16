@@ -213,9 +213,23 @@ didLongPressLinkWithURL:(NSURL *)url
 
 - (void)onLikeClicked:(UIButton *)button{
   [self dismissKeyboard];
-  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressLike:row:)]) {
-    [self.delegate feedDetailViewDidPressLike:self.feedItem row:self.row];
-  }
+  __weak typeof(button)wButton = button;
+  __weak typeof(self)wSelf = self;
+  
+  [UIView animateWithDuration:0.15
+                   animations:^{
+                     wButton.customImageView.transform = CGAffineTransformScale(wButton.transform, 1.5, 1.5);
+                   } completion:^(BOOL finished) {
+                     [UIView animateWithDuration:0.15
+                                      animations:^{
+                                        wButton.customImageView.transform = CGAffineTransformIdentity;
+                                      }
+                                      completion:^(BOOL finished) {
+                                        if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(feedDetailViewDidPressLike:row:)]) {
+                                          [wSelf.delegate feedDetailViewDidPressLike:wSelf.feedItem row:wSelf.row];
+                                        }
+                                      }];
+                   }];
 }
 
 - (void)onReplyClicked:(UIButton *)button{
