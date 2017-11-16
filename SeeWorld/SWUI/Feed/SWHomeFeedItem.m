@@ -26,15 +26,22 @@
   if (needPrefetch) {
     for (SWFeedItem *feed in homeFeedItem.feeds) {
       if (![feed.feed.imageHeight integerValue]) {
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[feed.feed.picUrl stringByAppendingString:FEED_SMALL]]];
-        UIImage *image = [UIImage imageWithData:data];
-        if ([image isKindOfClass:[UIImage class]]) {
-          [[SDImageCache sharedImageCache] storeImageDataToDisk:data forKey:feed.feed.picUrl];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:[feed.feed.picUrl stringByAppendingString:FEED_SMALL]];
+        if (image) {
           feed.feed.imageWidth = @(image.size.width);
           feed.feed.imageHeight = @(image.size.height);
+          
         }else{
-          feed.feed.imageWidth = @(UIScreenWidth);
-          feed.feed.imageHeight = @(UIScreenWidth);
+          NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[feed.feed.picUrl stringByAppendingString:FEED_SMALL]]];
+          image = [UIImage imageWithData:data];
+          if ([image isKindOfClass:[UIImage class]]) {
+            [[SDImageCache sharedImageCache] storeImageDataToDisk:data forKey:feed.feed.picUrl];
+            feed.feed.imageWidth = @(image.size.width);
+            feed.feed.imageHeight = @(image.size.height);
+          }else{
+            feed.feed.imageWidth = @(UIScreenWidth);
+            feed.feed.imageHeight = @(UIScreenWidth);
+          }
         }
       }
     }
