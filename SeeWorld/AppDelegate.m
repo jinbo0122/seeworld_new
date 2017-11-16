@@ -37,7 +37,7 @@
                                                     NSForegroundColorAttributeName:[UIColor whiteColor]};
   }
   [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
-   setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
+   setDefaultTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX],
                               NSFontAttributeName:[UIFont systemFontOfSize:16]}];
   [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
    setBackgroundColor:[UIColor clearColor]];

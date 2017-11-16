@@ -34,19 +34,19 @@ SWExploreSegViewDelegate,SWSearchModelDelegate,SWFeedInteractLikeCellDelegate>
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x283748];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self.navigationController setNavigationBarHidden:YES];
   
-  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 20, self.view.width, 44)];
+  self.searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 20+iOSTopHeight, self.view.width, 44)];
   self.searchBar.delegate = self;
   [self.searchBar becomeFirstResponder];
+  _searchBar.backgroundColor = [UIColor whiteColor];
+  _searchBar.layer.borderColor = [UIColor clearColor].CGColor;
+  _searchBar.tintColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
+  _searchBar.barTintColor  = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
   [self.view addSubview:self.searchBar];
-  
-  UIView *lineA = [[UIView alloc] initWithFrame:CGRectMake(0, self.searchBar.bottom, self.view.width, 0.5)];
-  lineA.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  [self.view addSubview:lineA];
-  
-  self.segView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, lineA.bottom, self.view.width, 38)
+
+  self.segView = [[SWExploreSegView alloc] initWithFrame:CGRectMake(0, self.searchBar.bottom, self.view.width, 38)
                                                    items:@[@"",@""]
                                                   images:@[@"search_btn_penson",@"search_btn_tag"]];
   self.segView.delegate = self;
@@ -59,7 +59,7 @@ SWExploreSegViewDelegate,SWSearchModelDelegate,SWFeedInteractLikeCellDelegate>
   self.tableView.dataSource = self;
   self.tableView.tableFooterView = [UIView new];
   self.tableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
-  self.tableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  self.tableView.backgroundColor = [UIColor colorWithRGBHex:0xE8EDF3];
   self.tableView.separatorInset = UIEdgeInsetsZero;
   [self.view addSubview:self.tableView];
 }

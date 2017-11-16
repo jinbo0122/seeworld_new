@@ -15,12 +15,12 @@
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
     _lblTag = [UILabel initWithFrame:CGRectZero
                              bgColor:[UIColor clearColor]
-                           textColor:[UIColor whiteColor]
+                           textColor:[UIColor colorWithRGBHex:0x4a4a4a]
                                 text:@""
                        textAlignment:NSTextAlignmentLeft
                                 font:[UIFont systemFontOfSize:16]];
     [self.contentView addSubview:_lblTag];
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   }
   return self;
 }

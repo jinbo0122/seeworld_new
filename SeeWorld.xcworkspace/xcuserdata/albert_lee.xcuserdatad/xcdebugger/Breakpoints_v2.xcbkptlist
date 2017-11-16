@@ -74,7 +74,7 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532506691.392566"
+                  timestampString = "532510904.936228"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -89,7 +89,7 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532506691.394174"
+                  timestampString = "532510904.937953"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -180,7 +180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/AppDelegate.m"
-            timestampString = "532502856.153677"
+            timestampString = "532510904.811562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"
@@ -212,23 +212,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Message/SWContactModel.m"
-            timestampString = "532422994.763143"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-getContacts"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Message/SWContactModel.m"
-            timestampString = "532422995.987022"
+            timestampString = "532509111.536402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"

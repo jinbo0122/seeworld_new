@@ -88,7 +88,7 @@
 
   
   _btnName = [[UIButton alloc] initWithFrame:CGRectMake(_lblName.right, 0, UIScreenWidth-_lblName.right, 45)];
-  _btnName.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnName.width-25, (_btnName.height-16)/2.0, 10, 16)];
+  _btnName.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnName.width-25, (_btnName.height-18)/2.0, 20, 18)];
   _btnName.customImageView.image = [UIImage imageNamed:@"gray_arrow"];
   [_editView addSubview:_btnName];
   [_btnName addSubview:_btnName.customImageView];

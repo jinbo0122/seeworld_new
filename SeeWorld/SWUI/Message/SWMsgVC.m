@@ -12,7 +12,7 @@
 #import "MJPhoto.h"
 #import "MJPhotoView.h"
 @interface SWMsgVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-
+@property(nonatomic, strong)NSString *name;
 @end
 
 @implementation SWMsgVC{
@@ -33,14 +33,13 @@
   [self.chatSessionInputBarControl.pluginBoardView updateItemAtIndex:4 image:[UIImage imageNamed:@"actionbar_video_icon"] title:@""];
   self.chatSessionInputBarControl.pluginBoardView.backgroundColor = [UIColor colorWithRGBHex:0xe5e7eb];
   
-  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"chat_btn_setting"]
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"profile_btn_setting"]
                                                                             style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(onRightBtnClicked)];
-  
+  self.name = self.title;
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.title
-                                                                color:[UIColor colorWithRGBHex:0x838cda]
-                                                             fontSize:16];
+                                                                color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   self.title = @"";
   
   _libraryPicker = [[UIImagePickerController alloc] init];
@@ -67,8 +66,8 @@
     [[RCIMClient sharedRCIMClient] getDiscussion:self.targetId
                                          success:^(RCDiscussion *discussion) {
                                            wSelf.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:discussion.discussionName
-                                                                                                          color:[UIColor colorWithRGBHex:0x838cda]
-                                                                                                       fontSize:16];
+                                                                                                          color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
+                                           wSelf.name = discussion.discussionName;
                                            wSelf.title = @"";
                                          } error:^(RCErrorCode status) {
                                            
@@ -81,6 +80,7 @@
   vc.cType = self.conversationType;
   vc.targetId = self.targetId;
   vc.messages = self.conversationDataRepository;
+  vc.name = self.name;
   [self.navigationController pushViewController:vc animated:YES];
 }
 

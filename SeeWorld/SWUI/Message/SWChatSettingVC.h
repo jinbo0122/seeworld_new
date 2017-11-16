@@ -13,4 +13,5 @@
 @property(nonatomic, strong)NSString           *targetId;
 @property(nonatomic, strong)NSMutableArray     *userIds;
 @property(nonatomic, weak)NSMutableArray *messages;
+@property(nonatomic, strong)NSString           *name;
 @end

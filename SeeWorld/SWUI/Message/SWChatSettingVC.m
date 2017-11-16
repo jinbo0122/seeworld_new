@@ -42,10 +42,10 @@
       [view removeFromSuperview];
     }
   }
-  
+  NSInteger userCount = users.count;
   for (NSInteger i=0; i<=users.count; i++) {
     if (i==users.count) {
-      UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5+60*i, 0, 60, 60)];
+      UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((userCount==1?5:20)+60*i, 0, 60, 60)];
       UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
       avatar.layer.masksToBounds = YES;
       avatar.layer.cornerRadius  = avatar.width/2.0;
@@ -64,7 +64,7 @@
      getUserInfoWithUserId:userId
      completion:^(RCUserInfo *userInfo) {
        dispatch_async(dispatch_get_main_queue(), ^{
-         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(5+60*i, 0, 60, 60)];
+         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake((userCount==1?5:20)+60*i, 0, 60, 60)];
          [selectView addSubview:button];
          
          UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 40, 40)];
@@ -112,8 +112,7 @@
 
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]){
-    self.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-    [self addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, self.width, 0.4) colorHex:0x2a536e]];
+    self.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
     self.btnQuit = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, self.width-20, 44)];
     [self.btnQuit setBackgroundColor:[UIColor colorWithRGBHex:0xec5050]];
     [self.btnQuit setTitle:SWStringDeleteQuit forState:UIControlStateNormal];
@@ -257,7 +256,7 @@ SWChatSettingHeaderViewDelegate>
   vc.isFromAdd = YES;
   vc.discussionId = (self.cType==ConversationType_DISCUSSION)?self.discussion.discussionId:nil;
   if (self.chat) {
-    vc.singleChatName = self.cType==ConversationType_PRIVATE?[[self.chat.jsonDict safeDicObjectForKey:@"user"] safeStringObjectForKey:@"name"]:@"";
+    vc.singleChatName = _name?_name:@"";
   }
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
   [self presentViewController:nav animated:YES completion:nil];

@@ -40,7 +40,7 @@
     _btnOther = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnCancel.top-50, self.width, 50)];
     [_btnOther setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
     [_btnOther setTitle:SWStringOther forState:UIControlStateNormal];
-    [_btnOther setTitleColor:[UIColor colorWithRGBHex:0xFF3B30] forState:UIControlStateNormal];
+    [_btnOther setTitleColor:[UIColor colorWithRGBHex:0x34414e] forState:UIControlStateNormal];
     [_btnOther.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_bgView addSubview:_btnOther];
     _btnOther.tag = SWFeedReportTypeOther;
@@ -50,7 +50,7 @@
     _btnViolence = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnOther.top-50, self.width, 50)];
     [_btnViolence setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
     [_btnViolence setTitle:SWStringViolent forState:UIControlStateNormal];
-    [_btnViolence setTitleColor:[UIColor colorWithRGBHex:0xFF3B30] forState:UIControlStateNormal];
+    [_btnViolence setTitleColor:[UIColor colorWithRGBHex:0x34414e] forState:UIControlStateNormal];
     [_btnViolence.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_bgView addSubview:_btnViolence];
     _btnViolence.tag = SWFeedReportTypeViolence;

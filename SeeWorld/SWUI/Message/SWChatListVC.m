@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
   //重写显示相关的接口，必须先调用super，否则会屏蔽SDK默认的处理
   [super viewDidLoad];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"消息" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"聊天" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   //设置需要显示哪些类型的会话
   [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                       @(ConversationType_DISCUSSION),
@@ -50,11 +50,11 @@
   [self setCollectionConversationType:@[]];
   [self setConversationAvatarStyle:RC_USER_AVATAR_CYCLE];
   self.conversationListTableView.tableFooterView = [ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 1) colorHex:0xE8EDF3];
-  self.conversationListTableView.separatorInset = UIEdgeInsetsZero;
-  self.conversationListTableView.separatorColor = [UIColor colorWithRGBHex:0xE8EDF3];
+  self.conversationListTableView.separatorInset = UIEdgeInsetsMake(0, 71, 0, 0);
+  self.conversationListTableView.separatorColor = [UIColor colorWithRGBHex:0xcccccc];
   self.conversationListTableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
   self.conversationListTableView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
-  [self setConversationPortraitSize:CGSizeMake(40, 40)];
+  [self setConversationPortraitSize:CGSizeMake(50, 50)];
   [self setCellBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
   
   __weak typeof(self)wSelf = self;
@@ -157,13 +157,13 @@
   cell.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   UILabel *lblTime = [cell performSelector:@selector(messageCreatedTimeLabel)];
   if (lblTime) {
-    lblTime.font = [UIFont systemFontOfSize:9];
-    lblTime.textColor = [UIColor colorWithRGBHex:0x8b9cad];
+    lblTime.font = [UIFont systemFontOfSize:13];
+    lblTime.textColor = [UIColor colorWithRGBHex:0x8e8e8e];
   }
   UILabel *lblTitle = [cell performSelector:@selector(conversationTitle)];
   if (lblTitle) {
-    lblTitle.font = [UIFont systemFontOfSize:14];
-    lblTitle.textColor = [UIColor colorWithRGBHex:0x838cda];
+    lblTitle.font = [UIFont systemFontOfSize:16];
+    lblTitle.textColor = [UIColor colorWithRGBHex:0x3414e];
     CGSize titleSize = [lblTitle.text sizeWithAttributes:@{NSFontAttributeName:lblTitle.font}
                                        constrainedToSize:CGSizeMake(lblTime.left-60, 16)];
     lblTitle.width = titleSize.width;
@@ -171,17 +171,17 @@
   
   UILabel *lblContent = [cell performSelector:@selector(messageContentLabel)];
   if (lblContent) {
-    lblContent.font = [UIFont systemFontOfSize:12];
-    lblContent.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
+    lblContent.font = [UIFont systemFontOfSize:16];
+    lblContent.textColor = [UIColor colorWithRGBHex:0x8e8e8e];
     CGSize contentSize = [lblContent.text sizeWithAttributes:@{NSFontAttributeName:lblContent.font}
                                            constrainedToSize:CGSizeMake(UIScreenWidth-60, 16)];
     lblContent.width = contentSize.width;
   }
-  cell.layoutMargins = UIEdgeInsetsZero;
+  cell.layoutMargins = UIEdgeInsetsMake(0, 71, 0, 0);
 }
 
 - (CGFloat)rcConversationListTableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  return 66;
+  return 70;
 }
 
 - (void)showEmptyConversationView{

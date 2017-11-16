@@ -15,11 +15,9 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 @end
 
 @implementation SWSelectContactVC{
-  UIScrollView     *_selectView;
   UITableView      *_contactTableView;
   SWContactModel   *_model;
   UIView           *_emptyView;
-  UIView           *_line;
   SWSearchBar      *_searchBar;
 }
 
@@ -41,35 +39,28 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                                      font:[UIFont systemFontOfSize:15]
                                                                                    target:self action:@selector(cancel)];
   self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:SWStringOkay
-                                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
+                                                                                 color:[UIColor colorWithRGBHex:0x8b9cad]
                                                                                   font:[UIFont systemFontOfSize:15]
                                                                                 target:self action:@selector(startChat)];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   self.automaticallyAdjustsScrollViewInsets = NO;
-  _selectView  = [[UIScrollView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 104)];
-  _selectView.alwaysBounceHorizontal = YES;
-  _selectView.contentInset = UIEdgeInsetsZero;
-  [self.view addSubview:_selectView];
   
-  _searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 44)];
-  [_selectView addSubview:_searchBar];
+  _searchBar = [[SWSearchBar alloc] initWithFrame:CGRectMake(0, iOSNavHeight, self.view.width, 54)];
+  [self.view addSubview:_searchBar];
   _searchBar.showsCancelButton = NO;
   _searchBar.placeholder = SWStringSearch;
   _searchBar.delegate = self;
   _searchBar.layer.borderColor = [UIColor clearColor].CGColor;
-  
+  _searchBar.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _searchBar.layer.borderColor = [UIColor colorWithRGBHex:0xcccccc].CGColor;
+  [_searchBar setSearchFieldBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] size:_searchBar.size] forState:UIControlStateNormal];
   [self reloadSelectView];
   
-  _line = [[UIView alloc] initWithFrame:CGRectMake(0, _selectView.bottom, self.view.width, 1)];
-  _line.backgroundColor = [UIColor colorWithRGBHex:0xcccccc];
-  [self.view addSubview:_line];
-  _line.hidden = YES;
-  
-  _contactTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _line.bottom, self.view.width, self.view.height-_line.bottom)
+  _contactTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _searchBar.bottom, self.view.width, self.view.height-_searchBar.bottom)
                                                    style:UITableViewStylePlain];
   _contactTableView.dataSource = self;
   _contactTableView.delegate   = self;
-  _contactTableView.rowHeight  = 60.0;
+  _contactTableView.rowHeight  = 70;
   _contactTableView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   _contactTableView.separatorColor = [UIColor colorWithRGBHex:0xcccccc];
   _contactTableView.separatorInset = UIEdgeInsetsZero;
@@ -156,6 +147,9 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
       NSString *name = @"";
       for (NSString *uId in self.userIds) {
         [userIdList safeAddObject:uId];
+        if (!self.singleChatName) {
+          continue;
+        }
         name = [name stringByAppendingString:[self.singleChatName stringByAppendingString:@"、"]];
       }
       
@@ -244,43 +238,9 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
   
 }
 
-- (void)reloadSelectView{
-  for (UIImageView *avatar in [_selectView subviews]) {
-    if (avatar.tag==100) {
-      [avatar removeFromSuperview];
-    }
-  }
-  
-  if (_model.selectedContacts.count==0) {    
-    UILabel *label = [UILabel initWithFrame:CGRectMake(15, 54, self.view.width-30, 40)
-                                    bgColor:[UIColor clearColor]
-                                  textColor:[UIColor colorWithRGBHex:0x191d28]
-                                       text:@"直接添加或搜尋好友"
-                              textAlignment:NSTextAlignmentLeft
-                                       font:[UIFont systemFontOfSize:16]];
-    label.tag = 100;
-    [_selectView addSubview:label];
-  }else{
-    for (NSInteger i=0; i<_model.selectedContacts.count; i++) {
-      SWFeedUserItem *user = [_model.selectedContacts safeObjectAtIndex:i];
-      UIImageView *avatar = [[UIImageView alloc] initWithFrame:CGRectMake(15+50*i,44+ 10, 40, 40)];
-      avatar.layer.masksToBounds = YES;
-      avatar.layer.cornerRadius  = 20;
-      [avatar sd_setImageWithURL:[NSURL URLWithString:user.picUrl]];
-      avatar.layer.borderColor = [UIColor whiteColor].CGColor;
-      avatar.layer.borderWidth = 1.0;
-      avatar.tag = 100;
-      [_selectView addSubview:avatar];
-    }
-  }
-  
-  _selectView.contentSize = CGSizeMake(MAX(_selectView.width, 15+50*_model.selectedContacts.count+10), _selectView.height);
-  if (_selectView.contentSize.width>_selectView.width) {
-    [_selectView setContentOffset:CGPointMake(_selectView.contentSize.width-_selectView.width, 0)];
-  }
-  
+- (void)reloadSelectView{  
   self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:_model.selectedContacts.count>0?[NSString stringWithFormat:@"%@(%d)",SWStringOkay,(int)_model.selectedContacts.count]:SWStringOkay
-                                                                                 color:[UIColor colorWithRGBHex:_model.selectedContacts.count>0?0x28e4f2:0x8b9cad]
+                                                                                 color:[UIColor colorWithRGBHex:_model.selectedContacts.count>0?0x55acef:0x8b9cad]
                                                                                   font:[UIFont systemFontOfSize:15]
                                                                                 target:self action:@selector(startChat)];
 }
@@ -324,7 +284,6 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
 - (void)contactModelDidLoadContacts:(SWContactModel *)model{
   [_contactTableView reloadData];
   _emptyView.hidden = model.contacts.count;
-  _line.hidden = !model.contacts.count;
 }
 
 - (void)contactModelDidSearchContacts:(SWContactModel *)model{

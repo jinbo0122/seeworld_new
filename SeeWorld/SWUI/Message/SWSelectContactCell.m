@@ -18,30 +18,24 @@
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
     self.contentView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     
-    _iconSelect = [[UIImageView alloc] initWithFrame:CGRectMake(15, 20, 20, 20)];
+    _iconSelect = [[UIImageView alloc] initWithFrame:CGRectMake(30, 25, 20, 20)];
     _iconSelect.layer.masksToBounds = YES;
     _iconSelect.layer.cornerRadius  = 10.0;
     _iconSelect.layer.borderWidth   = 0.5;
     _iconSelect.layer.borderColor   = [[UIColor colorWithRGBHex:0xa2a2a2] CGColor];
     [self.contentView addSubview:_iconSelect];
     
-    _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(_iconSelect.right+15, 10, 40, 40)];
-    _iconAvatar.layer.cornerRadius = _iconAvatar.width/2.0;
+    _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(_iconSelect.right+10, 15, 40, 40)];
+    _iconAvatar.layer.cornerRadius = 6.0;
     _iconAvatar.layer.masksToBounds = YES;
-    _iconAvatar.layer.borderColor = [UIColor whiteColor].CGColor;
-    _iconAvatar.layer.borderWidth = 1.0;
     [self.contentView addSubview:_iconAvatar];
     
-    _lblName = [UILabel initWithFrame:CGRectMake(_iconAvatar.right+10, 0, UIScreenWidth-120, 60)
+    _lblName = [UILabel initWithFrame:CGRectMake(_iconAvatar.right+10, 0, UIScreenWidth-_iconAvatar.right-10, 70)
                               bgColor:[UIColor clearColor]
-                            textColor:[UIColor colorWithRGBHex:0x838cda]
+                            textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
                                  text:@""
                         textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:14]];
     [self.contentView addSubview:_lblName];
-    
-    _btnChat = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-55, 20, 30, 30)];
-    [_btnChat setImage:[UIImage imageNamed:@"chat_btn_chat"] forState:UIControlStateNormal];
-    [self.contentView addSubview:_btnChat];
   }
   return self;
 }
@@ -73,8 +67,7 @@
       break;
     }
   }
-  
-  _iconSelect.image = [UIImage imageNamed:selected?@"chat_btn_select":@""];
+  _iconSelect.backgroundColor = [UIColor colorWithRGBHex:selected?0xa2a2a2:0xffffff];
 }
 
 @end
