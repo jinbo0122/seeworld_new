@@ -116,11 +116,11 @@
   [_btnGender addTarget:self action:@selector(onGenderClick) forControlEvents:UIControlEventTouchUpInside];
   
   _btnIntro = [[UIButton alloc] initWithFrame:CGRectMake(_lblIntro.right, 90, UIScreenWidth-_lblIntro.right, 45)];
-  _btnIntro.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnIntro.width-30, (_btnGender.height-_btnName.customImageView.height)/2.0, _btnName.customImageView.width, _btnName.customImageView.height)];
+  _btnIntro.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnIntro.width-25, (_btnGender.height-_btnName.customImageView.height)/2.0, _btnName.customImageView.width, _btnName.customImageView.height)];
   _btnIntro.customImageView.image = [UIImage imageNamed:@"gray_arrow"];
   [_editView addSubview:_btnIntro];
   [_btnIntro addSubview:_btnIntro.customImageView];
-  _btnIntro.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, _btnIntro.width-25, _btnIntro.height)
+  _btnIntro.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, _btnIntro.width-30, _btnIntro.height)
                                         bgColor:[UIColor clearColor]
                                       textColor:[UIColor colorWithRGBHex:0x8e8e8e]
                                            text:[SWConfigManager sharedInstance].user.intro
