@@ -9,5 +9,5 @@
 #import "ALBaseVC.h"
 
 @interface SWPostVC : ALBaseVC
-
+@property(nonatomic, strong)NSMutableArray *images;
 @end

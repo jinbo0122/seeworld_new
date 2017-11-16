@@ -251,8 +251,8 @@
   [self updateLocation];
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
-  photoPicker.maximumNumberOfSelectionVideo = 0;
-  photoPicker.maximumNumberOfSelectionPhoto = 1;
+  photoPicker.maximumNumberOfSelectionVideo = 1;
+  photoPicker.maximumNumberOfSelectionPhoto = 9;
   _photoPicker = photoPicker;
   [self presentViewController:photoPicker animated:YES completion:^{
   }];
@@ -281,19 +281,17 @@
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
   [assets enumerateObjectsUsingBlock:^(ALAsset *asset, NSUInteger idx, BOOL *stop) {
+    NSMutableArray *imageArray = [NSMutableArray array];
     struct CGImage *fullScreenImage = asset.defaultRepresentation.fullScreenImage;
     UIImage *image = [UIImage imageWithCGImage:fullScreenImage];
-    if (image)
-    {
-      UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Publish" bundle:nil];
-      AddTagViewController *vc = [sb instantiateViewControllerWithIdentifier:@"AddTagViewController"];
-      vc.photoImage = image;
-      [self dismissViewControllerAnimated:NO completion:^{
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self presentViewController:nav animated:NO
-                         completion:nil];
-      }];
+    if (image && [image isKindOfClass:[UIImage class]]){
+      [imageArray addObject:image];
     }
+    
+    SWPostVC *vc = [[SWPostVC alloc] init];
+    vc.images = [imageArray mutableCopy];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
   }];
 }
 

@@ -8,7 +8,10 @@
 
 #import "SWPostVC.h"
 #import "SWSelectLocationVC.h"
-@interface SWPostVC ()<SWSelectLocationVCDelegate>
+@interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate>
+@property (strong, nonatomic) UITextView  *txtContent;
+@property (strong, nonatomic) UILabel     *lblLength;
+@property (strong, nonatomic) UIView      *toolView;
 
 @end
 
@@ -18,10 +21,12 @@
   UIImageView *_iconLBS;
   UILabel     *_lblLBS;
   
-  UIView      *_toolView;
+  UILabel     *_lblPlaceHolder;
+  
   UIButton    *_btnCamera;
   UIButton    *_btnAlbum;
   UIButton    *_btnLBS;
+  
 }
 
 - (void)viewDidLoad {
@@ -55,24 +60,71 @@
   
   _lbsView.hidden = YES;
   
+  
+  _txtContent = [[UITextView alloc] initWithFrame:CGRectMake(15, _avatarView.bottom+15, UIScreenWidth-30, 50)];
+  [self.view addSubview:_txtContent];
+  _txtContent.textColor = [UIColor colorWithRGBHex:0x191d28];
+  _txtContent.font = [UIFont systemFontOfSize:18];
+  _txtContent.tintColor = [UIColor colorWithRGBHex:0x191d28];
+  _txtContent.delegate = self;
+  _txtContent.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
+  [_txtContent becomeFirstResponder];
+  
+  _lblPlaceHolder = [UILabel initWithFrame:CGRectMake(25, _txtContent.top + 7, 0, 0)
+                                   bgColor:[UIColor clearColor]
+                                 textColor:[UIColor colorWithRGBHex:0x667887 alpha:0.7]
+                                      text:@"這一刻的想法..."
+                             textAlignment:NSTextAlignmentLeft
+                                      font:[UIFont systemFontOfSize:18]];
+  [_lblPlaceHolder sizeToFit];
+  [self.view addSubview:_lblPlaceHolder];
+  
+  _lblLength = [UILabel initWithFrame:CGRectMake(0, _txtContent.bottom+5, _txtContent.width, 19)
+                              bgColor:[UIColor clearColor]
+                            textColor:[UIColor colorWithRGBHex:0x8b9cad]
+                                 text:@"0/2000"
+                        textAlignment:NSTextAlignmentRight font:[UIFont systemFontOfSize:14]];
+  [self.view addSubview:_lblLength];
+  
+  [[NSNotificationCenter defaultCenter]
+   addObserver:self
+   selector:@selector(keyboardWillShow:)
+   name:UIKeyboardWillShowNotification
+   object:self.view.window];
+  
+  [[NSNotificationCenter defaultCenter]
+   addObserver:self
+   selector:@selector(keyboardWillHide:)
+   name:UIKeyboardWillHideNotification
+   object:self.view.window];
+  
+  UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onNothing)];
+  [self.view addGestureRecognizer:tapGesture];
+  
+  
   _toolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height-64-iphoneXBottomAreaHeight, self.view.width, 64+iphoneXBottomAreaHeight)];
   _toolView.backgroundColor = [UIColor whiteColor];
   [self.view addSubview:_toolView];
   [_toolView addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, _toolView.width, 0.5) colorHex:0xe7e6e6]];
   
-  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(3 , 0, 48, _toolView.height)];
+  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(3 , 0, 48, _toolView.height-iphoneXBottomAreaHeight)];
   [_btnCamera setImage:[UIImage imageNamed:@"send_camera_export"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnCamera];
   
-  _btnAlbum = [[UIButton alloc] initWithFrame:CGRectMake(_btnCamera.right, 0, 48, _toolView.height)];
-  [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
+  _btnAlbum = [[UIButton alloc] initWithFrame:CGRectMake(_btnCamera.right, 0, 48, _btnCamera.height)];
   [_toolView addSubview:_btnAlbum];
   
-  _btnLBS = [[UIButton alloc] initWithFrame:CGRectMake(_btnAlbum.right, 0, 48, _toolView.height)];
+  _btnLBS = [[UIButton alloc] initWithFrame:CGRectMake(_btnAlbum.right, 0, 48, _btnCamera.height)];
   [_btnLBS setImage:[UIImage imageNamed:@"send_location_export"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnLBS];
   
   [_btnLBS addTarget:self action:@selector(onLBSClicked) forControlEvents:UIControlEventTouchUpInside];
+  
+  if (_images.count) {
+    [_btnAlbum setImage:[UIImage imageNamed:@"send_image"] forState:UIControlStateNormal];
+  }else{
+    [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,7 +151,7 @@
 }
 
 - (void)onNothing{
-  
+  [self.view endEditing:YES];
 }
 
 - (void)onPost{
@@ -138,4 +190,45 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark Text
+- (void)dealloc{
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+//键盘升起时动画
+- (void)keyboardWillShow:(NSNotification*)notif{
+  CGRect keyboardEndFrameWindow;
+  [[notif.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardEndFrameWindow];
+  CATransition* animation = [CATransition animation];
+  animation.type = kCATransitionFade;
+  animation.duration = 0.25;
+  __weak typeof(self)wSelf = self;
+  [UIView animateWithDuration:0.25 animations:^{
+    wSelf.toolView.bottom = CGRectGetMinY(keyboardEndFrameWindow)+iphoneXBottomAreaHeight;
+  } completion:nil];
+}
+
+//键盘关闭时动画
+- (void)keyboardWillHide:(NSNotification*)notif{
+  CATransition* animation = [CATransition animation];
+  animation.type = kCATransitionFade;
+  animation.duration = 0.25;
+  __weak typeof(self)wSelf = self;
+  [UIView animateWithDuration:0.25 animations:^{
+    wSelf.toolView.bottom = wSelf.view.height;
+  } completion:nil];
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+  _lblPlaceHolder.hidden = textView.text.length;
+  _lblLength.text = [NSString stringWithFormat:@"%lu/2000", (unsigned long)textView.text.length];
+  //根据大小改变颜色
+  NSInteger num = 2000 - textView.text.length;
+  if (num < 0){
+    _lblLength.textColor = [UIColor hexChangeFloat:@"F4453C"];
+  }else {
+    _lblLength.textColor = [UIColor hexChangeFloat:@"8b9cad"];
+  }
+}
 @end

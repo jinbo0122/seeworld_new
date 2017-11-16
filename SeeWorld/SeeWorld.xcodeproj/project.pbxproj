@@ -14,7 +14,6 @@
 		490DB2301B79073500A22C68 /* ModelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB22F1B79073500A22C68 /* ModelMessage.m */; };
 		490DB2341B79091B00A22C68 /* SWModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB2331B79091B00A22C68 /* SWModel.m */; };
 		490DB23A1B7913FE00A22C68 /* SWRequestApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB2391B7913FE00A22C68 /* SWRequestApi.m */; };
-		4938A1111BA30E1A003F2E65 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1101BA30E1A003F2E65 /* PublishViewController.m */; };
 		4938A11E1BA356D7003F2E65 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A11D1BA356D7003F2E65 /* AddTagViewController.m */; };
 		4938A1211BA35DEA003F2E65 /* AddTagSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1201BA35DEA003F2E65 /* AddTagSearchViewController.m */; };
 		4938A1241BA36213003F2E65 /* AddTagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4938A1231BA36213003F2E65 /* AddTagCell.m */; };
@@ -414,8 +413,6 @@
 		4938A0E41BA2A3BA003F2E65 /* libPods-SeeWorld-UIView+FDCollapsibleConstraints.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SeeWorld-UIView+FDCollapsibleConstraints.a"; path = "/Users/liufz/SeeWorld/iOS/seeworld/Pods/../build/Debug-iphoneos/libPods-SeeWorld-UIView+FDCollapsibleConstraints.a"; sourceTree = "<absolute>"; };
 		4938A0E51BA2A3BA003F2E65 /* libPods-SeeWorld-UzysAssetsPickerController.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SeeWorld-UzysAssetsPickerController.a"; path = "/Users/liufz/SeeWorld/iOS/seeworld/Pods/../build/Debug-iphoneos/libPods-SeeWorld-UzysAssetsPickerController.a"; sourceTree = "<absolute>"; };
 		4938A0E61BA2A3BA003F2E65 /* libPods-SeeWorld-YTKNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SeeWorld-YTKNetwork.a"; path = "/Users/liufz/SeeWorld/iOS/seeworld/Pods/../build/Debug-iphoneos/libPods-SeeWorld-YTKNetwork.a"; sourceTree = "<absolute>"; };
-		4938A10F1BA30E1A003F2E65 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
-		4938A1101BA30E1A003F2E65 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		4938A1161BA3438E003F2E65 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		4938A11C1BA356D7003F2E65 /* AddTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagViewController.h; sourceTree = "<group>"; };
 		4938A11D1BA356D7003F2E65 /* AddTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagViewController.m; sourceTree = "<group>"; };
@@ -1685,8 +1682,6 @@
 			children = (
 				4B06D0FD1D202C6900AA4F84 /* API */,
 				493D45441B77A2B300C406A1 /* Publish.storyboard */,
-				4938A10F1BA30E1A003F2E65 /* PublishViewController.h */,
-				4938A1101BA30E1A003F2E65 /* PublishViewController.m */,
 				4938A11C1BA356D7003F2E65 /* AddTagViewController.h */,
 				4938A11D1BA356D7003F2E65 /* AddTagViewController.m */,
 				4938A11F1BA35DEA003F2E65 /* AddTagSearchViewController.h */,
@@ -2954,7 +2949,6 @@
 				4BD3AAE11D54A4170010FA84 /* View+MASAdditions.m in Sources */,
 				4BC0FE651B943B4F003F4723 /* UINavigationController+ALExtension.m in Sources */,
 				4B25342B1B9562E900B7F68B /* SWFeedInteractView.m in Sources */,
-				4938A1111BA30E1A003F2E65 /* PublishViewController.m in Sources */,
 				4BE63A171BB549DB00CDAD35 /* SWNoticeCell.m in Sources */,
 				4B8ECA941BB28FAD00C8BE9C /* SWNoticeVC.m in Sources */,
 				4B4A669B1B972FBA00F56B78 /* SWHomeAddFriendVC.m in Sources */,

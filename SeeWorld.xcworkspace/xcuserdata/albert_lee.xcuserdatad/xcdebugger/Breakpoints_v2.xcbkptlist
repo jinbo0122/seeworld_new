@@ -74,7 +74,7 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532546554.926789"
+                  timestampString = "532547833.83815"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -89,7 +89,7 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532546554.928401"
+                  timestampString = "532547833.840191"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
@@ -234,6 +234,38 @@
             startingLineNumber = "134"
             endingLineNumber = "134"
             landmarkName = "-likeClickedByRow:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/TabBar/TabViewController.m"
+            timestampString = "532547833.7171"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "TabViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
+            timestampString = "532546845.646917"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "555"
+            endingLineNumber = "555"
+            landmarkName = "-showNoAssetsIfNeeded"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
