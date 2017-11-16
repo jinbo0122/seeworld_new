@@ -32,6 +32,9 @@
           [[SDImageCache sharedImageCache] storeImageDataToDisk:data forKey:feed.feed.picUrl];
           feed.feed.imageWidth = @(image.size.width);
           feed.feed.imageHeight = @(image.size.height);
+        }else{
+          feed.feed.imageWidth = @(UIScreenWidth);
+          feed.feed.imageHeight = @(UIScreenWidth);
         }
       }
     }
