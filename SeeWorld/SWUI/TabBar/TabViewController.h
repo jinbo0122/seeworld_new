@@ -14,4 +14,6 @@
 - (void)pushChat:(UIViewController *)vc;
 - (void)popChatSetting;
 - (void)compose;
+- (void)composeWithCamera;
+- (void)composeWithAlbum;
 @end

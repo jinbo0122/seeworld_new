@@ -15,7 +15,7 @@
 #import "SWPostEnterView.h"
 #import "SWMineVC.h"
 #import "SWChatListVC.h"
-
+#import "SWPostVC.h"
 #define kTag_TabBar_Base 0
 #define kTag_TabBar_FeedList kTag_TabBar_Base + 1
 #define kTag_TabBar_Discovertory kTag_TabBar_Base + 2
@@ -240,8 +240,25 @@
   [SWPostEnterView showWithDelegate:self];
 }
 
-- (void)compose
-{
+- (void)compose{
+  [self updateLocation];
+  SWPostVC *vc = [[SWPostVC alloc] init];
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+  [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)composeWithAlbum{
+  [self updateLocation];
+  UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
+  photoPicker.delegate = self;
+  photoPicker.maximumNumberOfSelectionVideo = 0;
+  photoPicker.maximumNumberOfSelectionPhoto = 1;
+  _photoPicker = photoPicker;
+  [self presentViewController:photoPicker animated:YES completion:^{
+  }];
+}
+
+- (void)composeWithCamera{
   [self updateLocation];
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;

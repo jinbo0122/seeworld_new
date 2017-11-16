@@ -199,14 +199,14 @@ SWHomeHeaderViewDelegate>
 - (void)homeHeaderViewDidPressCamera:(SWHomeHeaderView *)headerView{
   TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
   if ([tabVC isKindOfClass:[TabViewController class]]) {
-    [tabVC compose];
+    [tabVC composeWithCamera];
   }
 }
 
 - (void)homeHeaderViewDidPressAlbum:(SWHomeHeaderView *)headerView{
   TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
   if ([tabVC isKindOfClass:[TabViewController class]]) {
-    [tabVC compose];
+    [tabVC composeWithAlbum];
   }
 }
 
