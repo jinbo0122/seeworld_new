@@ -28,27 +28,27 @@
   self.view.backgroundColor = [UIColor colorWithRGBHex:0xebedf3];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"回報問題" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
-
-  _bgView = [[UIView alloc] initWithFrame:CGRectMake(26, iOSNavHeight+26, UIScreenWidth-52, UIScreenHeight==480?200:300)];
+  
+  _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, iOSNavHeight+20, UIScreenWidth, UIScreenHeight==480?200:UIScreenWidth)];
   _bgView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self.view addSubview:_bgView];
   
-  _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((_bgView.width-78)/2.0, 46, 78, 78)];
+  _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((_bgView.width-85)/2.0, 85, 85, 85)];
   _imageView.image = [UIImage imageNamed:@"setting_img"];
   [_bgView addSubview:_imageView];
   
-  _lblPlaceHolder = [UILabel initWithFrame:CGRectMake(10, _imageView.bottom+25, _bgView.width-20, 35)
+  _lblPlaceHolder = [UILabel initWithFrame:CGRectMake(10, _imageView.bottom+18, _bgView.width-20, 40)
                                    bgColor:[UIColor clearColor]
-                                 textColor:[UIColor colorWithRGBHex:0x6f8399]
+                                 textColor:[UIColor colorWithRGBHex:0xbbdef9]
                                       text:@"請在這裡填寫您對SeeWorld的意見\r我們將不斷地改進  感謝支持"
-                             textAlignment:NSTextAlignmentCenter font:[UIFont systemFontOfSize:12] numberOfLines:2];
+                             textAlignment:NSTextAlignmentCenter font:[UIFont systemFontOfSize:14] numberOfLines:2];
   [_bgView addSubview:_lblPlaceHolder];
   
   _lblWordCount = [UILabel initWithFrame:CGRectMake(15, _bgView.height-27, _bgView.width-30, 12)
-                                   bgColor:[UIColor clearColor]
-                                 textColor:[UIColor colorWithRGBHex:0x6f8399]
-                                      text:@""
-                             textAlignment:NSTextAlignmentRight
+                                 bgColor:[UIColor clearColor]
+                               textColor:[UIColor colorWithRGBHex:0x6f8399]
+                                    text:@""
+                           textAlignment:NSTextAlignmentRight
                                     font:[UIFont systemFontOfSize:12]];
   [_bgView addSubview:_lblWordCount];
   
@@ -59,19 +59,30 @@
   _txtView.delegate = self;
   _txtView.backgroundColor = [UIColor clearColor];
   
-  _txtContact = [[UITextField alloc] initWithFrame:CGRectMake(26, _bgView.bottom+20, _bgView.width, 30)];
+  _txtContact = [[UITextField alloc] initWithFrame:CGRectMake(0, _bgView.bottom+20, _bgView.width, 45)];
+  _txtContact.backgroundColor = [UIColor whiteColor];
+  
+  
+  NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+  style.alignment = NSTextAlignmentCenter;
   _txtContact.attributedPlaceholder =  [[NSAttributedString alloc] initWithString:@"是否介意留下您的手機或郵箱"
-                                                                       attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRGBHex:0x93a0ab]}];
+                                                                       attributes:@{NSForegroundColorAttributeName: [UIColor colorWithRGBHex:0x93a0ab],
+                                                                                    NSFontAttributeName:[UIFont systemFontOfSize:14],
+                                                                                    NSParagraphStyleAttributeName:style}];
   _txtContact.textColor = [UIColor colorWithRGBHex:0x93a0ab];
-  _txtContact.font = [UIFont systemFontOfSize:12];
+  _txtContact.font = [UIFont systemFontOfSize:14];
   [_txtContact addSubview:[ALLineView lineWithFrame:CGRectMake(0, _txtContact.height-0.5, _txtContact.width, 0.5)
-                                           colorHex:0x93a0ab]];
+                                           colorHex:0xc8c7cc]];
+  [_txtContact addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0.5, _txtContact.width, 0.5)
+                                           colorHex:0xc8c7cc]];
   _txtContact.delegate = self;
-  _btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(26, _txtContact.bottom+50, _bgView.width, 48)];
+  _btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(10, _txtContact.bottom+47.5, _bgView.width-30, 50)];
   [_btnSubmit setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
   [_btnSubmit setTitleColor:[UIColor colorWithRGBHex:0xffffff] forState:UIControlStateNormal];
   [_btnSubmit.titleLabel setFont:[UIFont systemFontOfSize:16]];
+  _btnSubmit.layer.masksToBounds = YES;
+  _btnSubmit.layer.cornerRadius  = 3.0;
   [self.view addSubview:_btnSubmit];
   [self.view addSubview:_txtContact];
   
@@ -79,6 +90,15 @@
   [self.view addGestureRecognizer:gesture];
   
   [_btnSubmit addTarget:self action:@selector(onSubmitClick) forControlEvents:UIControlEventTouchUpInside];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardWillShow:)
+                                               name:UIKeyboardWillShowNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardWillBeHidden:)
+                                               name:UIKeyboardWillHideNotification
+                                             object:nil];
 }
 
 - (void)dismiss{
@@ -115,6 +135,39 @@
   return YES;
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification{
+  NSDictionary* keyboardInfo  = [notification userInfo];
+  NSNumber    * duration      = [keyboardInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+  NSNumber    * curve         = [keyboardInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+  CGRect keyboadFrame          = [[keyboardInfo valueForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+  
+  if ([_txtContact isFirstResponder]) {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    _txtContact.bottom = CGRectGetMinY(keyboadFrame);
+    [UIView commitAnimations];
+  }
+}
+
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification{
+  NSDictionary* keyboardInfo  = [notification userInfo];
+  NSNumber    * duration      = [keyboardInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+  NSNumber    * curve         = [keyboardInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+  if ([_txtContact isFirstResponder]) {
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:[duration doubleValue]];
+    [UIView setAnimationCurve:[curve intValue]];
+    _txtContact.top = _bgView.bottom+20;
+    [UIView commitAnimations];
+  }
+}
+
+
 - (void)onSubmitClick{
   if ([NSString convertToInt:_txtView.text]>200) {
     [MBProgressHUD showTip:@"不得超過200字"];
@@ -138,6 +191,10 @@
       [SWHUD showCommonToast:(message.message.length == 0? @"意见反馈失败":message.message)];
     }
   }];
+}
+
+- (void)dealloc{
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 /*
  #pragma mark - Navigation

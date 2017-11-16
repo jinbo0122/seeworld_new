@@ -302,6 +302,7 @@
 		4BC809971D0E736D005F0D50 /* SWChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC809961D0E736D005F0D50 /* SWChatCell.m */; };
 		4BC8099B1D0E7A02005F0D50 /* SWChatItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8099A1D0E7A02005F0D50 /* SWChatItemModel.m */; };
 		4BC809A01D0E8130005F0D50 /* SWEditCoverAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8099F1D0E8130005F0D50 /* SWEditCoverAPI.m */; };
+		4BCC582C1FBD62DD00E39805 /* SWEditInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCC582B1FBD62DD00E39805 /* SWEditInfoVC.m */; };
 		4BCCC62E1C3E29470056EC83 /* SWChatSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCC62D1C3E29470056EC83 /* SWChatSettingVC.m */; };
 		4BCCC6321C3E2FB70056EC83 /* SWChatSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCC6311C3E2FB70056EC83 /* SWChatSettingCell.m */; };
 		4BCCC6361C3E409E0056EC83 /* ALLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCC6351C3E409E0056EC83 /* ALLineView.m */; };
@@ -958,6 +959,8 @@
 		4BC8099A1D0E7A02005F0D50 /* SWChatItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWChatItemModel.m; sourceTree = "<group>"; };
 		4BC8099E1D0E8130005F0D50 /* SWEditCoverAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWEditCoverAPI.h; sourceTree = "<group>"; };
 		4BC8099F1D0E8130005F0D50 /* SWEditCoverAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWEditCoverAPI.m; sourceTree = "<group>"; };
+		4BCC582A1FBD62DD00E39805 /* SWEditInfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWEditInfoVC.h; sourceTree = "<group>"; };
+		4BCC582B1FBD62DD00E39805 /* SWEditInfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWEditInfoVC.m; sourceTree = "<group>"; };
 		4BCCC62C1C3E29470056EC83 /* SWChatSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWChatSettingVC.h; sourceTree = "<group>"; };
 		4BCCC62D1C3E29470056EC83 /* SWChatSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWChatSettingVC.m; sourceTree = "<group>"; };
 		4BCCC6301C3E2FB70056EC83 /* SWChatSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWChatSettingCell.h; sourceTree = "<group>"; };
@@ -1604,6 +1607,8 @@
 				4BB3F0FB1CE9CF090065CFBC /* SWEditCoverVC.m */,
 				4BB3F0F01CE9B3010065CFBC /* SWEditProfileVC.h */,
 				4BB3F0F11CE9B3010065CFBC /* SWEditProfileVC.m */,
+				4BCC582A1FBD62DD00E39805 /* SWEditInfoVC.h */,
+				4BCC582B1FBD62DD00E39805 /* SWEditInfoVC.m */,
 				4BE5A4931CF2C9FA00DA8E34 /* SWFeedBigCell.h */,
 				4BE5A4941CF2C9FA00DA8E34 /* SWFeedBigCell.m */,
 				4BE5A48F1CF2C7ED00DA8E34 /* SWFeedCell.h */,
@@ -2972,6 +2977,7 @@
 				49AD7C291BA77861000405F4 /* FeedData.m in Sources */,
 				4BC0FE681B943B4F003F4723 /* UIView+ALExtension.m in Sources */,
 				4BC0FEB71B944D27003F4723 /* SWHomeFeedRecommandView.m in Sources */,
+				4BCC582C1FBD62DD00E39805 /* SWEditInfoVC.m in Sources */,
 				4BC0FE571B943B4F003F4723 /* ALReceiveHitTestSubView.m in Sources */,
 				493D44311B7732A800C406A1 /* SWOperationQueue.m in Sources */,
 				4BEB6A3C1D365D59000EA0F5 /* UzysWrapperPickerController.m in Sources */,

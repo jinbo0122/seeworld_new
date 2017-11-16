@@ -55,4 +55,6 @@
 #define SWStringReply           @"回覆"
 #define SWStringAddComment      @"添加評論..."
 #define SWStringMsgPic          @"[圖片]"
+#define SWStringAboutMe         @"關於我"
+#define SWStringNickName        @"暱稱"
 #endif /* SWString_h */

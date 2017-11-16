@@ -32,28 +32,28 @@
     [_btnAvatar addSubview:_btnAvatar.customImageView];
     
     
-    _btnEditCover = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 53)];
-    _btnEditCover.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 15, 22, 22)];
+    _btnEditCover = [[UIButton alloc] initWithFrame:CGRectMake(0, _btnCover.bottom-42, 150, 42)];
+    _btnEditCover.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 11, 20, 20)];
     _btnEditCover.customImageView.image = [UIImage imageNamed:@"profile_btn_edit"];
     [_btnEditCover addSubview:_btnEditCover.customImageView];
-    _btnEditCover.lblCustom = [UILabel initWithFrame:CGRectMake(_btnEditCover.customImageView.right+4, 18, 55, 16)
+    _btnEditCover.lblCustom = [UILabel initWithFrame:CGRectMake(_btnEditCover.customImageView.right+4, 11, 105, 20)
                                              bgColor:[UIColor clearColor]
                                            textColor:[UIColor colorWithRGBHex:0xfbfcfc]
                                                 text:@"編輯封面"
                                        textAlignment:NSTextAlignmentLeft
-                                                font:[UIFont systemFontOfSize:12]];
+                                                font:[UIFont systemFontOfSize:17]];
     [_btnEditCover addSubview:_btnEditCover.lblCustom];
     
-    _btnEditAvatar = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-100-30, _btnAvatar.bottom, 100, 33)];
-    _btnEditAvatar.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 15, 22, 22)];
-    _btnEditAvatar.customImageView.image = [UIImage imageNamed:@"profile_btn_edit"];
+    _btnEditAvatar = [[UIButton alloc] initWithFrame:CGRectMake(_btnAvatar.center.x-70, _btnAvatar.bottom, 140, 36)];
+    _btnEditAvatar.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 8, 20, 20)];
+    _btnEditAvatar.customImageView.image = [UIImage imageNamed:@"profile_avatar_edit"];
     [_btnEditAvatar addSubview:_btnEditAvatar.customImageView];
-    _btnEditAvatar.lblCustom = [UILabel initWithFrame:CGRectMake(_btnEditAvatar.customImageView.right+4, 18, 65, 16)
+    _btnEditAvatar.lblCustom = [UILabel initWithFrame:CGRectMake(_btnEditAvatar.customImageView.right+4, 8, 100, 20)
                                               bgColor:[UIColor clearColor]
-                                            textColor:[UIColor colorWithRGBHex:0xfbfcfc]
+                                            textColor:[UIColor colorWithRGBHex:0x34414e]
                                                  text:@"編輯大頭照"
                                         textAlignment:NSTextAlignmentLeft
-                                                 font:[UIFont systemFontOfSize:12]];
+                                                 font:[UIFont systemFontOfSize:17]];
     [_btnEditAvatar addSubview:_btnEditAvatar.lblCustom];
     
     _lblName = [UILabel initWithFrame:CGRectMake(15, _btnAvatar.top, UIScreenWidth-_btnAvatar.left-10-15, 25)
@@ -255,12 +255,9 @@
   _lblName.hidden = _lblPost.hidden = _btnFollowing.hidden = _btnFollower.hidden = _btnChat.hidden = _btnEdit.hidden = _btnSetting.hidden = _btnPost.hidden = _btnMore.hidden = _btnFollow.hidden = isEditMode;
   _btnEditAvatar.hidden = _btnEditCover.hidden = !isEditMode;
   _btnEdit.hidden = isEditMode;
+  
   if (isEditMode) {
-    _btnAvatar.top = 60;
-    _btnAvatar.right = UIScreenWidth - 20;
-    _btnEditAvatar.top = _btnAvatar.bottom;
     [_bgInfo removeFromSuperview];
-    self.height = _btnCover.height;
   }
 }
 

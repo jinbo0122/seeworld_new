@@ -12,6 +12,7 @@
 #import "SWEditAvatarVC.h"
 #import "SWEditCoverVC.h"
 #import "SWActionSheetView.h"
+#import "SWEditInfoVC.h"
 @interface SWEditProfileVC ()<UITextFieldDelegate,SWMineHeaderViewDelegate>
 @property(nonatomic, strong)SWMineHeaderView *header;
 
@@ -19,9 +20,11 @@
 
 @property(nonatomic, strong)UILabel *lblName;
 @property(nonatomic, strong)UILabel *lblGender;
+@property(nonatomic, strong)UILabel *lblIntro;
 
-@property(nonatomic, strong)UITextField *txtName;
 @property(nonatomic, strong)UIButton    *btnGender;
+@property(nonatomic, strong)UIButton    *btnName;
+@property(nonatomic, strong)UIButton    *btnIntro;
 
 @property(nonatomic, strong)UIButton    *btnDone;
 
@@ -33,6 +36,9 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [_header refreshWithUser:[SWConfigManager sharedInstance].user];
   _header.isEditMode = YES;
+  
+  _btnName.lblCustom.text = [SWConfigManager sharedInstance].user.name;
+  _btnIntro.lblCustom.text = [SWConfigManager sharedInstance].user.intro;
 }
 
 - (void)viewDidLoad {
@@ -41,24 +47,25 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯個人資料" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
-  _editView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)];
-  [self.view addSubview:_editView];
-    
-  _header = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 183)];
+  _header = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 288.5)];
   [self.view addSubview:_header];
   [_header refreshWithUser:[SWConfigManager sharedInstance].user];
   _header.isEditMode = YES;
   _header.delegate = self;
   
-  _lblName = [UILabel initWithFrame:CGRectMake(32, 330, 45, 16)
+  _editView = [[UIView alloc] initWithFrame:CGRectMake(0, _header.bottom+30, UIScreenWidth, 45*3)];
+  _editView.backgroundColor = [UIColor whiteColor];
+  [self.view addSubview:_editView];
+  
+  _lblName = [UILabel initWithFrame:CGRectMake(15, 0, 50, 45)
                             bgColor:[UIColor clearColor]
                           textColor:[UIColor colorWithRGBHex:0x191d28]
-                               text:@"姓名"
+                               text:SWStringNickName
                       textAlignment:NSTextAlignmentLeft
                                font:[UIFont systemFontOfSize:16]];
   [_editView addSubview:_lblName];
   
-  _lblGender = [UILabel initWithFrame:CGRectMake(32, _lblName.bottom+50, 45, 16)
+  _lblGender = [UILabel initWithFrame:CGRectMake(15, 45, 50, 45)
                               bgColor:[UIColor clearColor]
                             textColor:[UIColor colorWithRGBHex:0x191d28]
                                  text:@"性別"
@@ -66,77 +73,94 @@
                                  font:[UIFont systemFontOfSize:16]];
   [_editView addSubview:_lblGender];
   
+  _lblIntro = [UILabel initWithFrame:CGRectMake(15, 90, 50, 45)
+                              bgColor:[UIColor clearColor]
+                            textColor:[UIColor colorWithRGBHex:0x191d28]
+                                 text:SWStringAboutMe
+                        textAlignment:NSTextAlignmentLeft
+                                 font:[UIFont systemFontOfSize:16]];
+  [_editView addSubview:_lblIntro];
   
-  [_editView addSubview:[ALLineView lineWithFrame:CGRectMake(32, _lblName.bottom+10, UIScreenWidth-64, 0.5) colorHex:0x7c8794]];
-  [_editView addSubview:[ALLineView lineWithFrame:CGRectMake(32, _lblGender.bottom+10, UIScreenWidth-64, 0.5) colorHex:0x7c8794]];
+  [_editView addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 0.5) colorHex:0xc8c7cc]];
+  [_editView addSubview:[ALLineView lineWithFrame:CGRectMake(0, 45, UIScreenWidth, 0.5) colorHex:0xc8c7cc]];
+  [_editView addSubview:[ALLineView lineWithFrame:CGRectMake(0, 90, UIScreenWidth, 0.5) colorHex:0xc8c7cc]];
+  [_editView addSubview:[ALLineView lineWithFrame:CGRectMake(0, _editView.height-0.5, UIScreenWidth, 0.5) colorHex:0xc8c7cc]];
+
   
-  if (UIScreenHeight==480) {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"完成"
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:self
-                                                                             action:@selector(onDoneClick)];
-  }else{
-    _btnDone = [[UIButton alloc] initWithFrame:CGRectMake(30, UIScreenHeight-48-(UIScreenHeight==568?22:52), UIScreenWidth-60, 48)];
-    [_btnDone setBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
-    [_btnDone setTitle:@"完成" forState:UIControlStateNormal];
-    [_btnDone setTitleColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX] forState:UIControlStateNormal];
-    [_btnDone.titleLabel setFont:[UIFont systemFontOfSize:16]];
-    [_editView addSubview:_btnDone];
-    [_btnDone addTarget:self action:@selector(onDoneClick) forControlEvents:UIControlEventTouchUpInside];
-  }
+  _btnName = [[UIButton alloc] initWithFrame:CGRectMake(_lblName.right, 0, UIScreenWidth-_lblName.right, 45)];
+  _btnName.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnName.width-25, (_btnName.height-16)/2.0, 10, 16)];
+  _btnName.customImageView.image = [UIImage imageNamed:@"gray_arrow"];
+  [_editView addSubview:_btnName];
+  [_btnName addSubview:_btnName.customImageView];
+  _btnName.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, _btnName.width-30, _btnName.height)
+                                        bgColor:[UIColor clearColor]
+                                      textColor:[UIColor colorWithRGBHex:0x8e8e8e]
+                                           text:[SWConfigManager sharedInstance].user.name
+                                  textAlignment:NSTextAlignmentRight
+                                           font:[UIFont systemFontOfSize:17]];
+  [_btnName addSubview:_btnName.lblCustom];
+  [_btnName addTarget:self action:@selector(onNameClick) forControlEvents:UIControlEventTouchUpInside];
   
-  _txtName = [[UITextField alloc] initWithFrame:CGRectMake(90, _lblName.top, UIScreenWidth-120, 16)];
-  _txtName.font = [UIFont systemFontOfSize:16];
-  _txtName.textColor = [UIColor colorWithRGBHex:0x191d28];
-  _txtName.text = [SWConfigManager sharedInstance].user.name;
-  [_editView addSubview:_txtName];
-  
-  _btnGender = [[UIButton alloc] initWithFrame:CGRectMake(90, _lblGender.top, UIScreenWidth-120, 16)];
-  _btnGender.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnGender.width-20, 4, 12, 12)];
-  _btnGender.customImageView.image = [UIImage imageNamed:@"home_post_arrow"];
+  _btnGender = [[UIButton alloc] initWithFrame:CGRectMake(_lblGender.right, 45, UIScreenWidth-_lblGender.right, 45)];
+  _btnGender.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnGender.width-25, (_btnGender.height-_btnName.customImageView.height)/2.0, _btnName.customImageView.width, _btnName.customImageView.height)];
+  _btnGender.customImageView.image = [UIImage imageNamed:@"gray_arrow"];
   [_editView addSubview:_btnGender];
   [_btnGender addSubview:_btnGender.customImageView];
-  _btnGender.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, 100, 16)
+  _btnGender.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, _btnGender.width-30, _btnGender.height)
                                         bgColor:[UIColor clearColor]
-                                      textColor:[UIColor colorWithRGBHex:0x191d28]
+                                      textColor:[UIColor colorWithRGBHex:0x8e8e8e]
                                            text:[[SWConfigManager sharedInstance].user.gender integerValue]==2?@"男":@"女"
-                                  textAlignment:NSTextAlignmentLeft
-                                           font:[UIFont systemFontOfSize:16]];
+                                  textAlignment:NSTextAlignmentRight
+                                           font:[UIFont systemFontOfSize:17]];
   [_btnGender addSubview:_btnGender.lblCustom];
   [_btnGender addTarget:self action:@selector(onGenderClick) forControlEvents:UIControlEventTouchUpInside];
+  
+  _btnIntro = [[UIButton alloc] initWithFrame:CGRectMake(_lblIntro.right, 90, UIScreenWidth-_lblIntro.right, 45)];
+  _btnIntro.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_btnIntro.width-30, (_btnGender.height-_btnName.customImageView.height)/2.0, _btnName.customImageView.width, _btnName.customImageView.height)];
+  _btnIntro.customImageView.image = [UIImage imageNamed:@"gray_arrow"];
+  [_editView addSubview:_btnIntro];
+  [_btnIntro addSubview:_btnIntro.customImageView];
+  _btnIntro.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, _btnIntro.width-25, _btnIntro.height)
+                                        bgColor:[UIColor clearColor]
+                                      textColor:[UIColor colorWithRGBHex:0x8e8e8e]
+                                           text:[SWConfigManager sharedInstance].user.intro
+                                  textAlignment:NSTextAlignmentRight
+                                           font:[UIFont systemFontOfSize:17]];
+  [_btnIntro addSubview:_btnIntro.lblCustom];
+  [_btnGender addTarget:self action:@selector(onIntroClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-  if ([string isEqualToString:@"\n"]) {
-    //request feedback
-    [textField resignFirstResponder];
-    return NO;
-  }
-  return YES;
+
+
+- (void)onNameClick{
+  SWEditInfoVC *vc = [[SWEditInfoVC alloc] init];
+  vc.titleText = SWStringNickName;
+  [self.navigationController pushViewControllerWithCustomAnimation:vc];
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-  return YES;
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-  return YES;
+- (void)onIntroClicked{
+  SWEditInfoVC *vc = [[SWEditInfoVC alloc] init];
+  vc.titleText = SWStringAboutMe;
+  [self.navigationController pushViewControllerWithCustomAnimation:vc];
 }
 
 - (void)onGenderClick{
   __weak typeof(_btnGender)btnGender = _btnGender;
+  __weak typeof(self)wSelf = self;
   SWActionSheetView *action = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                                  title:nil
                                                                content:@"男"];
   action.completeBlock = ^{
     btnGender.lblCustom.text = @"男";
+    [wSelf onDoneClick];
   };
   action.cancelBlock = ^{
     btnGender.lblCustom.text = @"女";
+    [wSelf onDoneClick];
   };
   [action.btnCancel setTitle:@"女" forState:UIControlStateNormal];
   [action show];
@@ -156,10 +180,10 @@
 
 - (void)onDoneClick{
   ModifyUserInfoApi *api = [[ModifyUserInfoApi alloc] init];
-  api.name = _txtName.text;
+  api.name = [SWConfigManager sharedInstance].user.name;
   api.gender = [_btnGender.lblCustom.text isEqualToString:@"男"]? 2:1;
   api.head = [SWConfigManager sharedInstance].user.picUrl;
-  api.intro = @"";
+  api.intro = [SWConfigManager sharedInstance].user.intro;
   __weak typeof(self)wSelf = self;
   [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     SWFeedUserItem *user = [SWFeedUserItem feedUserItemByDic:[[request.responseString safeJsonDicFromJsonString] safeDicObjectForKey:@"data"]];

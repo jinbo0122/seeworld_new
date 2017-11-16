@@ -45,6 +45,9 @@
       [_btnTitle.titleLabel setFont:[UIFont systemFontOfSize:16]];
       [_bgView addSubview:_btnTitle];
     }
+    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    [self addGestureRecognizer:gesture];
   }
   return self;
 }

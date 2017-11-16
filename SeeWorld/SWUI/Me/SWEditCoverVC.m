@@ -28,16 +28,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x000000];
+  self.view.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0xffffff]];
   self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:@"取消"
-                                                                                    color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
+                                                                                    color:[UIColor colorWithRGBHex:0x55acef]
                                                                                      font:[UIFont systemFontOfSize:18]
                                                                                    target:self
                                                                                    action:@selector(onDismiss)];
   self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:@"儲存"
-                                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
+                                                                                 color:[UIColor colorWithRGBHex:0x55acef]
                                                                                   font:[UIFont systemFontOfSize:18]
                                                                                 target:self
                                                                                 action:@selector(onSave)];
@@ -52,22 +52,17 @@
   _avatarView.contentMode = UIViewContentModeScaleAspectFit;
   [self.view addSubview:_avatarView];
   
-  _avatarCoverView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile_pic_mask_1"]];
-  _avatarCoverView.frame = CGRectMake(0, 0, UIScreenWidth, 1110*UIScreenWidth/750);
-  [self.view addSubview:_avatarCoverView];
-  _avatarCoverView.center = CGPointMake(UIScreenWidth/2.0, UIScreenHeight/2.0);
-  _avatarCoverView.alpha = 0.5;
-  
-  _toolView = [[UIView alloc] initWithFrame:CGRectMake(0, UIScreenHeight-48-iphoneXBottomAreaHeight, UIScreenWidth, 48+iphoneXBottomAreaHeight)];
-  _toolView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+  _toolView = [[UIView alloc] initWithFrame:CGRectMake(0, UIScreenHeight-64-iphoneXBottomAreaHeight, UIScreenWidth, 64+iphoneXBottomAreaHeight)];
+  _toolView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
+  [_toolView addSubview:[ALLineView lineWithFrame:CGRectMake(0, 0, _toolView.width, 0.5) colorHex:0xe7e6e6]];
   [self.view addSubview:_toolView];
   
-  _btnLibrary = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, _toolView.height-iphoneXBottomAreaHeight)];
-  [_btnLibrary setImage:[UIImage imageNamed:@"profile_btn_img"] forState:UIControlStateNormal];
+  _btnLibrary = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _toolView.width/2.0, 64)];
+  [_btnLibrary setImage:[UIImage imageNamed:@"send_image"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnLibrary];
   
-  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-60, 0, 60, _toolView.height-iphoneXBottomAreaHeight)];
-  [_btnCamera setImage:[UIImage imageNamed:@"profile_btn_shooting"] forState:UIControlStateNormal];
+  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(_btnLibrary.right, 0, _btnLibrary.width, _btnLibrary.height)];
+  [_btnCamera setImage:[UIImage imageNamed:@"send_camera"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnCamera];
   
   _libraryPicker = [[UIImagePickerController alloc] init];

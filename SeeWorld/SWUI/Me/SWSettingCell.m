@@ -39,12 +39,12 @@
                                bgColor:[UIColor clearColor]
                              textColor:[UIColor colorWithRGBHex:0x191d28]
                                   text:@""
-                         textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:16]];
+                         textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:17]];
     [self.contentView addSubview:_lblTitle];
     
     _lblContent = [UILabel initWithFrame:CGRectMake(UIScreenWidth-24-100, 21, 100, 16)
                                  bgColor:[UIColor clearColor]
-                               textColor:[UIColor colorWithRGBHex:0x191d28]
+                               textColor:[UIColor colorWithRGBHex:0x8a9bac]
                                     text:@""
                            textAlignment:NSTextAlignmentRight
                                     font:[UIFont systemFontOfSize:14]];
@@ -73,17 +73,11 @@
 }
 
 - (UIEdgeInsets)layoutMargins{
-  return UIEdgeInsetsZero;
+  return UIEdgeInsetsMake(0, 15, 0, 0);
 }
 
 - (void)refreshWithIndexPath:(NSIndexPath *)indexPath{
   _indexPath = indexPath;
-  if (indexPath.row>0) {
-    [_divideLine removeFromSuperview];
-    _divideLine = [ALLineView lineWithFrame:CGRectMake(0, 0, UIScreenWidth, 0.5) colorHex:0x2a536e];
-    [self.contentView addSubview:_divideLine];
-  }
-  
   self.selectionStyle = UITableViewCellSelectionStyleNone;
   if (indexPath.section==0) {
     _avatarView.hidden = NO;
