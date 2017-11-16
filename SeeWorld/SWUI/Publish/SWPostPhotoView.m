@@ -42,6 +42,7 @@ static char UIButtonUserProfilePhotoIndex;
         _btnPhotos[index].customImageView.clipsToBounds = YES;
         _btnPhotos[index].customImageView.layer.masksToBounds = YES;
         _btnPhotos[index].customImageView.layer.borderColor = [UIColor colorWithRGBHex:0xc1c0c0].CGColor;
+        _btnPhotos[index].customImageView.layer.borderWidth = 0;
         [_btnPhotos[index] addSubview:_btnPhotos[index].customImageView];
         [self addSubview:_btnPhotos[index]];
       }
