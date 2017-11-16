@@ -77,7 +77,7 @@ static char UIButtonUserProfilePhotoIndex;
         }
         _btnPhotos[index].photoIndex = @0;
       }
-      _btnPhotos[index].customImageView.backgroundColor = [UIColor colorWithRGBHex:0xdedede];
+      _btnPhotos[index].customImageView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
       _btnPhotos[index].tag = index;
       [_btnPhotos[index] addTarget:self action:@selector(onPhotoClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
