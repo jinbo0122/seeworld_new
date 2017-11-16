@@ -7,12 +7,13 @@
 //
 
 #import "SWPostVC.h"
+#import "SWPostPhotoView.h"
 #import "SWSelectLocationVC.h"
 @interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate>
 @property (strong, nonatomic) UITextView  *txtContent;
 @property (strong, nonatomic) UILabel     *lblLength;
 @property (strong, nonatomic) UIView      *toolView;
-
+@property (nonatomic, strong) SWPostPhotoView *photoView;
 @end
 
 @implementation SWPostVC{
@@ -122,6 +123,7 @@
   
   if (_images.count) {
     [_btnAlbum setImage:[UIImage imageNamed:@"send_image"] forState:UIControlStateNormal];
+    [self initImages];
   }else{
     [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
   }
@@ -169,8 +171,10 @@
   [self presentViewController:nav animated:YES completion:nil];
 }
 
-- (void)refreshLBS{
-  
+- (void)initImages{
+  _photoView = [[SWPostPhotoView alloc] initWithFrame:CGRectMake(0, _txtContent.bottom+20, self.view.width, 260)];
+  [_photoView refreshWithPhotos:_images];
+  [self.view addSubview:_photoView];
 }
 
 #pragma mark Location Delegate

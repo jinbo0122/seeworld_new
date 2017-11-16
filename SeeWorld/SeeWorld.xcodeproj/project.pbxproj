@@ -195,6 +195,7 @@
 		4B7B27111FBDF4CD00F413C7 /* SWPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B27101FBDF4CD00F413C7 /* SWPostVC.m */; };
 		4B7B27151FBDFDA500F413C7 /* SWSelectLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B27141FBDFDA500F413C7 /* SWSelectLocationVC.m */; };
 		4B7B27181FBDFF7500F413C7 /* SWSelectLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B27171FBDFF7500F413C7 /* SWSelectLocationCell.m */; };
+		4B7B271D1FBE099E00F413C7 /* SWPostPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7B271C1FBE099E00F413C7 /* SWPostPhotoView.m */; };
 		4B8C3BC91BA2D283008B2664 /* SWTagResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C3BC81BA2D283008B2664 /* SWTagResultCell.m */; };
 		4B8ECA941BB28FAD00C8BE9C /* SWNoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8ECA931BB28FAD00C8BE9C /* SWNoticeVC.m */; };
 		4B8ECA981BB291C900C8BE9C /* SWNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8ECA971BB291C900C8BE9C /* SWNoticeModel.m */; };
@@ -767,6 +768,8 @@
 		4B7B27141FBDFDA500F413C7 /* SWSelectLocationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWSelectLocationVC.m; sourceTree = "<group>"; };
 		4B7B27161FBDFF7500F413C7 /* SWSelectLocationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWSelectLocationCell.h; sourceTree = "<group>"; };
 		4B7B27171FBDFF7500F413C7 /* SWSelectLocationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWSelectLocationCell.m; sourceTree = "<group>"; };
+		4B7B271B1FBE099E00F413C7 /* SWPostPhotoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWPostPhotoView.h; sourceTree = "<group>"; };
+		4B7B271C1FBE099E00F413C7 /* SWPostPhotoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWPostPhotoView.m; sourceTree = "<group>"; };
 		4B8C3BC71BA2D283008B2664 /* SWTagResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTagResultCell.h; sourceTree = "<group>"; };
 		4B8C3BC81BA2D283008B2664 /* SWTagResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTagResultCell.m; sourceTree = "<group>"; };
 		4B8ECA921BB28FAD00C8BE9C /* SWNoticeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWNoticeVC.h; sourceTree = "<group>"; };
@@ -1694,6 +1697,8 @@
 				49FD6D8D1BA718C700748E9E /* FeedTagEditView.m */,
 				4B7B270F1FBDF4CD00F413C7 /* SWPostVC.h */,
 				4B7B27101FBDF4CD00F413C7 /* SWPostVC.m */,
+				4B7B271B1FBE099E00F413C7 /* SWPostPhotoView.h */,
+				4B7B271C1FBE099E00F413C7 /* SWPostPhotoView.m */,
 				4B7B27191FBDFF7D00F413C7 /* LBS */,
 			);
 			path = Publish;
@@ -3047,6 +3052,7 @@
 				4BEB6A371D365D59000EA0F5 /* UzysAssetsPickerController.m in Sources */,
 				4BEB6A3A1D365D59000EA0F5 /* UzysGroupPickerView.m in Sources */,
 				4BC175A91C511E2F002ACE2F /* SWReportUserAPI.m in Sources */,
+				4B7B271D1FBE099E00F413C7 /* SWPostPhotoView.m in Sources */,
 				4BD3AAE71D54A4170010FA84 /* WTTagViewMItem.m in Sources */,
 				4B8ECA981BB291C900C8BE9C /* SWNoticeModel.m in Sources */,
 				4BB3F0E51CE991DC0065CFBC /* SWAboutVC.m in Sources */,

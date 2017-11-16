@@ -278,20 +278,24 @@
 
 
 #pragma mark - UzysAssetsPickerControllerDelegate
-- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
-{
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+  NSMutableArray *imageArray = [NSMutableArray array];
   [assets enumerateObjectsUsingBlock:^(ALAsset *asset, NSUInteger idx, BOOL *stop) {
-    NSMutableArray *imageArray = [NSMutableArray array];
     struct CGImage *fullScreenImage = asset.defaultRepresentation.fullScreenImage;
     UIImage *image = [UIImage imageWithCGImage:fullScreenImage];
     if (image && [image isKindOfClass:[UIImage class]]){
       [imageArray addObject:image];
     }
     
-    SWPostVC *vc = [[SWPostVC alloc] init];
-    vc.images = [imageArray mutableCopy];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nav animated:YES completion:nil];
+    if (idx == assets.count-1) {
+      [self dismissViewControllerAnimated:NO
+                               completion:^{
+                                 SWPostVC *vc = [[SWPostVC alloc] init];
+                                 vc.images = [imageArray mutableCopy];
+                                 UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                                 [self presentViewController:nav animated:YES completion:nil];
+                               }];
+    }
   }];
 }
 
