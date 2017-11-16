@@ -58,7 +58,7 @@
 
     
     _slider = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-2, self.width/2.0, 2)];
-    _slider.backgroundColor = [UIColor colorWithRGBHex:0x596d80];
+    _slider.backgroundColor = [UIColor colorWithRGBHex:0x55acef];
     [self addSubview:_slider];
     
     _slider.hidden = YES;
