@@ -236,12 +236,6 @@
 }
 
 - (void)onNext{
-  SWResetPwdVC *vc = [[SWResetPwdVC alloc] init];
-  vc.type = 0;
-  vc.account = @"+18618601032090";
-  vc.secret = @"123456";
-  [self.navigationController pushViewController:vc animated:YES];
-  return;
   BOOL isEmail = [self isValidEmail:_txtEmail.text];
   BOOL isPhone = [self isValidPhone:_txtEmail.text];
   if (isEmail&&_txtCode.text.length) {

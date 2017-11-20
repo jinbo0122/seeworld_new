@@ -206,6 +206,7 @@
 		4BA4DA021D0548B0009521B0 /* SWAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4DA011D0548B0009521B0 /* SWAlertView.m */; };
 		4BA4DAE21FB5CDD2000A1290 /* PDProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4DAE11FB5CDD2000A1290 /* PDProgressHUD.m */; };
 		4BA4DAE51FB5CE15000A1290 /* PDProgressHUD+ALExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA4DAE41FB5CE15000A1290 /* PDProgressHUD+ALExtension.m */; };
+		4BA6293E1FC3592D00F3B71D /* SWPostCheckLinkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA6293D1FC3592D00F3B71D /* SWPostCheckLinkAPI.m */; };
 		4BA809651C50647700726FF1 /* SWContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA809641C50647700726FF1 /* SWContactAPI.m */; };
 		4BB3F0D51CE9710C0065CFBC /* SWMineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB3F0D41CE9710C0065CFBC /* SWMineVC.m */; };
 		4BB3F0DB1CE977AA0065CFBC /* SWSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BB3F0DA1CE977AA0065CFBC /* SWSettingVC.m */; };
@@ -791,6 +792,8 @@
 		4BA4DAE11FB5CDD2000A1290 /* PDProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PDProgressHUD.m; path = Common/PDProgressHUD.m; sourceTree = "<group>"; };
 		4BA4DAE31FB5CE15000A1290 /* PDProgressHUD+ALExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PDProgressHUD+ALExtension.h"; path = "Common/PDProgressHUD+ALExtension.h"; sourceTree = "<group>"; };
 		4BA4DAE41FB5CE15000A1290 /* PDProgressHUD+ALExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PDProgressHUD+ALExtension.m"; path = "Common/PDProgressHUD+ALExtension.m"; sourceTree = "<group>"; };
+		4BA6293C1FC3592D00F3B71D /* SWPostCheckLinkAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SWPostCheckLinkAPI.h; path = API/SWPostCheckLinkAPI.h; sourceTree = "<group>"; };
+		4BA6293D1FC3592D00F3B71D /* SWPostCheckLinkAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SWPostCheckLinkAPI.m; path = API/SWPostCheckLinkAPI.m; sourceTree = "<group>"; };
 		4BA809631C50647700726FF1 /* SWContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWContactAPI.h; sourceTree = "<group>"; };
 		4BA809641C50647700726FF1 /* SWContactAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWContactAPI.m; sourceTree = "<group>"; };
 		4BAC2A921FB6191700FBEE97 /* SWFeedModelProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWFeedModelProtocol.h; sourceTree = "<group>"; };
@@ -1870,6 +1873,8 @@
 			children = (
 				4B06D0FF1D202C8000AA4F84 /* SWHotTagsAPI.h */,
 				4B06D1001D202C8000AA4F84 /* SWHotTagsAPI.m */,
+				4BA6293C1FC3592D00F3B71D /* SWPostCheckLinkAPI.h */,
+				4BA6293D1FC3592D00F3B71D /* SWPostCheckLinkAPI.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -3039,6 +3044,7 @@
 				493D44F31B777C8A00C406A1 /* MJRefreshLegendHeader.m in Sources */,
 				4BB3F0EB1CE996E30065CFBC /* ALWebVC.m in Sources */,
 				493D44FE1B777C8A00C406A1 /* OHAttributedLabel.m in Sources */,
+				4BA6293E1FC3592D00F3B71D /* SWPostCheckLinkAPI.m in Sources */,
 				4BB4226E1B96AA3000022D63 /* SWFeedLikeAPI.m in Sources */,
 				4BA809651C50647700726FF1 /* SWContactAPI.m in Sources */,
 				4BCCC62E1C3E29470056EC83 /* SWChatSettingVC.m in Sources */,

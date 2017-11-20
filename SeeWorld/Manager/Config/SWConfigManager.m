@@ -20,6 +20,7 @@ DEF_SINGLETON;
       __weak typeof(self)wSelf = self;
       [self getUser:uId completionBlock:^(SWFeedUserItem *user){
         wSelf.user = user;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SWNotificationUserUpdated" object:nil];
         [[NSUserDefaults standardUserDefaults] setObject:[user dicValue] forKey:@"userInfo"];
         [[NSUserDefaults standardUserDefaults] synchronize];
       } failedBlock:^{

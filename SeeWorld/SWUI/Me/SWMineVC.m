@@ -186,7 +186,7 @@ SWFeedInteractVCDelegate>
 }
 
 - (void)rightBarNeedSetting:(BOOL)needSetting{
-  if ([self.user.uId isEqualToNumber:[SWConfigManager sharedInstance].user.uId]||!self.user) {
+  if ([SWConfigManager sharedInstance].user&& ([self.user.uId isEqualToNumber:[SWConfigManager sharedInstance].user.uId]||!self.user)) {
     if (needSetting) {
       self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"profile_btn_setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                                 style:UIBarButtonItemStylePlain

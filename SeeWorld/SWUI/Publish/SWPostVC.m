@@ -9,11 +9,17 @@
 #import "SWPostVC.h"
 #import "SWPostPhotoView.h"
 #import "SWSelectLocationVC.h"
-@interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate>
+#import "SWPostCheckLinkAPI.h"
+#import "UzysAssetsPickerController.h"
+@interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate,UzysAssetsPickerControllerDelegate,
+SWPostPhotoViewDelagate>
 @property (strong, nonatomic) UITextView  *txtContent;
 @property (strong, nonatomic) UILabel     *lblLength;
 @property (strong, nonatomic) UIView      *toolView;
 @property (nonatomic, strong) SWPostPhotoView *photoView;
+@property (nonatomic, assign)BOOL         isPickerChooseForChangeSinglePic;
+@property (nonatomic, assign)NSInteger    pickerChooseForChangeSingleIndex;
+
 @end
 
 @implementation SWPostVC{
@@ -113,6 +119,7 @@
   [_toolView addSubview:_btnCamera];
   
   _btnAlbum = [[UIButton alloc] initWithFrame:CGRectMake(_btnCamera.right, 0, 48, _btnCamera.height)];
+  [_btnAlbum addTarget:self action:@selector(onAlbumClicked) forControlEvents:UIControlEventTouchUpInside];
   [_toolView addSubview:_btnAlbum];
   
   _btnLBS = [[UIButton alloc] initWithFrame:CGRectMake(_btnAlbum.right, 0, 48, _btnCamera.height)];
@@ -123,10 +130,12 @@
   
   if (_images.count) {
     [_btnAlbum setImage:[UIImage imageNamed:@"send_image"] forState:UIControlStateNormal];
-    [self initImages];
+    _btnAlbum.tag = 1;
   }else{
+    _images = [NSMutableArray array];
     [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
   }
+  [self initImages];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -172,9 +181,95 @@
 }
 
 - (void)initImages{
-  _photoView = [[SWPostPhotoView alloc] initWithFrame:CGRectMake(0, _txtContent.bottom+20, self.view.width, 260)];
+  if (!_photoView) {
+    _photoView = [[SWPostPhotoView alloc] initWithFrame:CGRectMake(0, _txtContent.bottom+20, self.view.width, 260)];
+    _photoView.delegate = self;
+    [self.view addSubview:_photoView];
+  }
+  [self refreshImages];
+  [self.view bringSubviewToFront:_toolView];
+}
+
+- (void)refreshImages{
   [_photoView refreshWithPhotos:_images];
-  [self.view addSubview:_photoView];
+  _btnAlbum.tag = _images.count>0?1:0;
+  [_btnAlbum setImage:[UIImage imageNamed:_btnAlbum.tag?@"send_image":@"send_image_export"] forState:UIControlStateNormal];
+
+}
+
+- (void)checkLink{
+  PDProgressHUD *hud = [PDProgressHUD showLoadingInView:self.view];
+  SWPostCheckLinkAPI *api = [[SWPostCheckLinkAPI alloc] init];
+  api.link = _txtContent.text;
+  [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+    [hud removeFromSuperview];
+    NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
+    if ([dic safeDicObjectForKey:@"data"]) {
+      
+    }
+  } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+    [hud removeFromSuperview];
+  }];
+}
+
+- (void)onAlbumClicked{
+  if (_images.count == 9) {
+    [PDProgressHUD showTip:@"至多上傳9張圖片"];
+    return;
+  }
+  
+  UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
+  photoPicker.delegate = self;
+  photoPicker.maximumNumberOfSelectionPhoto = 9-_images.count;
+  _isPickerChooseForChangeSinglePic = NO;
+  [self presentViewController:photoPicker animated:YES completion:^{
+  }];
+}
+
+#pragma mark Post Photo View
+- (void)postPhotoViewDidNeedDelete:(NSInteger)tag{
+  [_images removeObjectAtIndex:tag];
+  [self refreshImages];
+  
+  if (_images.count == 0) {
+    [self textViewDidChange:_txtContent];
+  }
+}
+
+- (void)postPhotoViewDidNeedChoose:(NSInteger)tag{
+  UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
+  photoPicker.delegate = self;
+  photoPicker.maximumNumberOfSelectionPhoto = tag<0?(9-_images.count):1;
+  _isPickerChooseForChangeSinglePic = YES;
+  _pickerChooseForChangeSingleIndex = tag;
+  [self presentViewController:photoPicker animated:YES completion:^{
+  }];
+}
+
+#pragma mark Image Picker Delegate
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+  NSMutableArray *imageArray = [NSMutableArray array];
+  __weak typeof(self)wSelf = self;
+  [assets enumerateObjectsUsingBlock:^(ALAsset *asset, NSUInteger idx, BOOL *stop) {
+    struct CGImage *fullScreenImage = asset.defaultRepresentation.fullScreenImage;
+    UIImage *image = [UIImage imageWithCGImage:fullScreenImage];
+    if (image && [image isKindOfClass:[UIImage class]]){
+      [imageArray addObject:image];
+    }
+    
+    if (idx == assets.count-1) {
+      [wSelf dismissViewControllerAnimated:NO
+                                completion:^{
+                                  if (wSelf.isPickerChooseForChangeSinglePic&& wSelf.pickerChooseForChangeSingleIndex >=0) {
+                                    [wSelf.images replaceObjectAtIndex:wSelf.pickerChooseForChangeSingleIndex withObject:[imageArray safeObjectAtIndex:0]];
+                                    [wSelf refreshImages];
+                                  }else{
+                                    [wSelf.images addObjectsFromArray:imageArray];
+                                    [wSelf initImages];
+                                  }
+                                }];
+    }
+  }];
 }
 
 #pragma mark Location Delegate
@@ -223,6 +318,31 @@
   } completion:nil];
 }
 
+- (NSString *)urlString:(NSString *)urlString{
+  NSURL *url = [NSURL URLWithString:urlString];
+  NSArray * components = [urlString componentsSeparatedByString:@"."];
+  if (url && url.scheme && url.host && (components.count == 3 || components.count == 4)){
+    return urlString;
+  }else{
+    if (components.count == 3 || components.count == 4) {
+      BOOL valid = YES;
+      NSCharacterSet *alphaSet = [NSCharacterSet alphanumericCharacterSet];
+      for (NSString * string in components) {
+        valid = [[string stringByTrimmingCharactersInSet:alphaSet] isEqualToString:@""];
+        if (!valid) {
+          return nil;
+        }
+      }
+      NSString *urlStringNew = [@"http://" stringByAppendingString:urlString];
+      NSURL *urlNew = [NSURL URLWithString:urlStringNew];
+      if (urlNew && urlNew.scheme && urlNew.host && [urlString componentsSeparatedByString:@"."].count == 3){
+        return urlStringNew;
+      }
+    }
+    return nil;
+  }
+}
+
 - (void)textViewDidChange:(UITextView *)textView
 {
   _lblPlaceHolder.hidden = textView.text.length;
@@ -233,6 +353,10 @@
     _lblLength.textColor = [UIColor hexChangeFloat:@"F4453C"];
   }else {
     _lblLength.textColor = [UIColor hexChangeFloat:@"8b9cad"];
+  }
+  
+  if ([self urlString:textView.text] && !_btnCamera.tag && !_btnAlbum.tag) {
+    [self checkLink];
   }
 }
 @end

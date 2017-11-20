@@ -44,6 +44,7 @@ static char UIButtonUserProfilePhotoIndex;
         _btnPhotos[index].customImageView.layer.borderColor = [UIColor colorWithRGBHex:0xc1c0c0].CGColor;
         _btnPhotos[index].customImageView.layer.borderWidth = 0;
         [_btnPhotos[index] addSubview:_btnPhotos[index].customImageView];
+        [_btnPhotos[index] addTarget:self action:@selector(onPhotoClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_btnPhotos[index]];
       }
     }
@@ -59,7 +60,7 @@ static char UIButtonUserProfilePhotoIndex;
         break;
       }
       NSInteger index = i*4+j;
-
+      
       UIImage *image = [array safeObjectAtIndex:index];
       _btnPhotos[index].tagString = nil;
       _btnPhotos[index].tag = 0;
@@ -68,6 +69,7 @@ static char UIButtonUserProfilePhotoIndex;
         [_btnPhotos[index].customImageView setImage:image];
         _btnPhotos[index].customImageView.contentMode = UIViewContentModeScaleAspectFill;
         _btnPhotos[index].customImageView.layer.borderWidth = 0;
+        _btnPhotos[index].photoIndex = @(index);
       }else{
         [_btnPhotos[index].customImageView setImage:[UIImage imageNamed:@""]];
         _btnPhotos[index].customImageView.contentMode = UIViewContentModeCenter;
@@ -75,17 +77,34 @@ static char UIButtonUserProfilePhotoIndex;
         if (index>0 && !_btnPhotos[index-1].customImageView.image) {
           _btnPhotos[index].hidden = YES;
         }
-        _btnPhotos[index].photoIndex = @0;
+        _btnPhotos[index].photoIndex = nil;
       }
       _btnPhotos[index].customImageView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
       _btnPhotos[index].tag = index;
-      [_btnPhotos[index] addTarget:self action:@selector(onPhotoClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
   }
 }
 
 - (void)onPhotoClicked:(UIButton *)button{
-  
+  if (!button.photoIndex) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(postPhotoViewDidNeedChoose:)]) {
+      [self.delegate postPhotoViewDidNeedChoose:-1];
+    }
+  }else{
+    __weak typeof(self)wSelf = self;
+    [[[UIActionSheet alloc] initWithTitle:nil
+                         cancelButtonItem:[RIButtonItem itemWithLabel:SWStringCancel]
+                    destructiveButtonItem:nil
+                         otherButtonItems:[RIButtonItem itemWithLabel:@"重新選擇" action:^{
+      if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postPhotoViewDidNeedChoose:)]) {
+        [wSelf.delegate postPhotoViewDidNeedChoose:[button.photoIndex integerValue]];
+      }
+    }], [RIButtonItem itemWithLabel:@"刪除" action:^{
+      if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postPhotoViewDidNeedDelete:)]) {
+        [wSelf.delegate postPhotoViewDidNeedDelete:[button.photoIndex integerValue]];
+      }
+    }],nil] showInView:((ALBaseVC *)self.delegate).view];
+  }
 }
 
 @end

@@ -73,13 +73,13 @@
                   symbolName = "-[UzysAssetsPickerController imagePickerController:didFinishPickingMediaWithInfo:]"
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532883827.480962"
+                  urlString = "file:///Users/albert_lee/Documents/swp/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
+                  timestampString = "532899342.680129"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
                   endingLineNumber = "1110"
-                  offsetFromSymbolStart = "859">
+                  offsetFromSymbolStart = "716">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -88,13 +88,13 @@
                   symbolName = "-[UzysAssetsPickerController imagePickerController:didFinishPickingMediaWithInfo:]"
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532883827.484274"
+                  urlString = "file:///Users/albert_lee/Documents/swp/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
+                  timestampString = "532899342.681311"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
                   endingLineNumber = "1110"
-                  offsetFromSymbolStart = "1636">
+                  offsetFromSymbolStart = "1340">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532883827.361525"
+            timestampString = "532899342.569529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "364"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532883827.361602"
+            timestampString = "532899342.569581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532883827.36166"
+            timestampString = "532899342.569615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "379"
@@ -228,7 +228,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Feed/SWTagFeedsModel.m"
-            timestampString = "532511668.559127"
+            timestampString = "532896472.713511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
@@ -244,7 +244,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/TabBar/TabViewController.m"
-            timestampString = "532549334.309604"
+            timestampString = "532897940.202714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"

@@ -227,6 +227,7 @@
   if ([textField isEqual:_txtPwd]) {
     _iconCheckPwd.image = nil;
   }
+  _txtPwd.textColor = [UIColor colorWithRGBHex:0x34414e];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -317,7 +318,6 @@
         [[SWChatModel sharedInstance] connect];
       }else{
         iconPwd.image = [UIImage imageNamed:@"signin_register_icon_error"];
-        txtPwd.textColor = [UIColor colorWithRGBHex:0xf63e47];
         [PDProgressHUD showTip:@"您的密碼輸入有誤"];
         if (isPhoneLogin) {
           SWRegisterCheckPhoneAPI *api = [[SWRegisterCheckPhoneAPI alloc] init];

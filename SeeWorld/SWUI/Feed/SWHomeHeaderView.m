@@ -62,8 +62,18 @@
     [_bgView addSubview:[ALLineView lineWithFrame:CGRectMake(self.width/3.0, _btnPost.bottom+5.5, 0.5, 25) colorHex:0xe9ebee]];
     [_bgView addSubview:[ALLineView lineWithFrame:CGRectMake(2*self.width/3.0, _btnPost.bottom+5.5, 0.5, 25) colorHex:0xe9ebee]];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"SWNotificationUserUpdated" object:nil];
   }
   return self;
+}
+
+- (void)refresh{
+  SWFeedUserItem *user = [SWConfigManager sharedInstance].user;
+  [_btnPost.customImageView sd_setImageWithURL:[NSURL URLWithString:[user.picUrl stringByAppendingString:@"-avatar210"]]];
+}
+
+- (void)dealloc{
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)onPostClicked{

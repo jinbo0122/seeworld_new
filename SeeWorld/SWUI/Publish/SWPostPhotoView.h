@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol SWPostPhotoViewDelagate;
 @interface SWPostPhotoView : UIView
+@property (nonatomic,   weak)id<SWPostPhotoViewDelagate>delegate;
 - (void)refreshWithPhotos:(NSArray *)array;
 @end
 
 @interface UIButton (UserProfilePhotoList)
 @property (nonatomic, strong)NSNumber *photoIndex;
+@end
+
+
+@protocol SWPostPhotoViewDelagate<NSObject>
+- (void)postPhotoViewDidNeedDelete:(NSInteger)tag;
+- (void)postPhotoViewDidNeedChoose:(NSInteger)tag;
 @end
