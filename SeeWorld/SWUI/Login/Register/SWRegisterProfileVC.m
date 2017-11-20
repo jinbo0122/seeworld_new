@@ -27,11 +27,8 @@ UITextFieldDelegate>
 
 @property(nonatomic, strong)UIButton    *btnNext;
 
-@property(nonatomic, strong)UIButton    *btnLibrary;
-@property(nonatomic, strong)UIButton    *btnCamera;
 
-@property(nonatomic, strong)UIView      *avatarBgView;
-@property(nonatomic, strong)UIImageView *avatarView;
+@property(nonatomic, strong)UIButton                *btnAvatar;
 @property(nonatomic, strong)UIImagePickerController *libraryPicker;
 @property(nonatomic, strong)UIImagePickerController *cameraPicker;
 
@@ -40,41 +37,32 @@ UITextFieldDelegate>
 
 @end
 
-@implementation SWRegisterProfileVC{
-  UIImageView *_bgView;
-}
-
+@implementation SWRegisterProfileVC
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"個人資料" color:[UIColor whiteColor]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"個人資料" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
-  _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-  _bgView.image = [UIImage imageNamed:@"first_profile_bg"];
-  _bgView.contentMode = UIViewContentModeScaleAspectFill;
-  [self.view addSubview:_bgView];
-  
-  
-  _lblName = [UILabel initWithFrame:CGRectMake(32, 264, 40, 16)
+  _lblName = [UILabel initWithFrame:CGRectMake(32, 274+iOSTopHeight, 40, 18)
                             bgColor:[UIColor clearColor]
-                          textColor:[UIColor colorWithRGBHex:0xfbfcfc]
-                               text:@"姓名"
+                          textColor:[UIColor colorWithRGBHex:0x34414e]
+                               text:@"暱稱"
                       textAlignment:NSTextAlignmentLeft
-                               font:[UIFont systemFontOfSize:16]];
+                               font:[UIFont systemFontOfSize:18]];
   [self.view addSubview:_lblName];
   
-  _lblGender = [UILabel initWithFrame:CGRectMake(32, _lblName.bottom+50, 40, 16)
+  _lblGender = [UILabel initWithFrame:CGRectMake(32, _lblName.bottom+50, 40, 18)
                               bgColor:[UIColor clearColor]
-                            textColor:[UIColor colorWithRGBHex:0xfbfcfc]
+                            textColor:[UIColor colorWithRGBHex:0x34414e]
                                  text:@"性別"
                         textAlignment:NSTextAlignmentLeft
-                                 font:[UIFont systemFontOfSize:16]];
+                                 font:[UIFont systemFontOfSize:18]];
   [self.view addSubview:_lblGender];
   
   _txtName = [[UITextField alloc] initWithFrame:CGRectMake(90, _lblName.top, UIScreenWidth-120, 16)];
   _txtName.font = [UIFont systemFontOfSize:16];
-  _txtName.textColor = [UIColor whiteColor];
+  _txtName.textColor = [UIColor colorWithRGBHex:0x34414e];
   _txtName.text = [SWConfigManager sharedInstance].user.name;
-  _txtName.tintColor = [UIColor whiteColor];
+  _txtName.tintColor = [UIColor colorWithRGBHex:0x34414e];
   _txtName.returnKeyType = UIReturnKeyDone;
   _txtName.delegate = self;
   [self.view addSubview:_txtName];
@@ -87,19 +75,19 @@ UITextFieldDelegate>
   [_btnGender addSubview:_btnGender.customImageView];
   _btnGender.lblCustom = [UILabel initWithFrame:CGRectMake(0, 0, 100, 16)
                                         bgColor:[UIColor clearColor]
-                                      textColor:[UIColor whiteColor]
+                                      textColor:[UIColor colorWithRGBHex:0x34414e]
                                            text:@""
                                   textAlignment:NSTextAlignmentLeft
                                            font:[UIFont systemFontOfSize:16]];
   [_btnGender addSubview:_btnGender.lblCustom];
   [_btnGender addTarget:self action:@selector(onGenderClick) forControlEvents:UIControlEventTouchUpInside];
   
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(32, _lblName.bottom+10, UIScreenWidth-64, 1.0) colorHex:0xffffff]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(32, _lblGender.bottom+10, UIScreenWidth-64, 1.0) colorHex:0xffffff]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(32, _lblName.bottom+10, UIScreenWidth-64, 2.0) colorHex:0x494949]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(32, _lblGender.bottom+10, UIScreenWidth-64, 2.0) colorHex:0x494949]];
   
-  _btnNext = [[UIButton alloc] initWithFrame:CGRectMake(30, 437, self.view.width-60, 48)];
-  [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:0x75bad1]];
-  [_btnNext setTitle:@"下一步" forState:UIControlStateNormal];
+  _btnNext = [[UIButton alloc] initWithFrame:CGRectMake(30, _lblGender.bottom+10+59, self.view.width-60, 48)];
+  [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
+  [_btnNext setTitle:@"登入" forState:UIControlStateNormal];
   [_btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [_btnNext.titleLabel setFont:[UIFont systemFontOfSize:16]];
   [self.view addSubview:_btnNext];
@@ -108,26 +96,20 @@ UITextFieldDelegate>
   _btnNext.layer.cornerRadius = 2.0;
   
   
-  _btnLibrary = [[UIButton alloc] initWithFrame:CGRectMake((self.view.width-199)/2.0, 147, 48, 40)];
-  [_btnLibrary setImage:[UIImage imageNamed:@"profile_btn_img"] forState:UIControlStateNormal];
-  [self.view addSubview:_btnLibrary];
+  _btnAvatar = [[UIButton alloc] initWithFrame:CGRectMake((self.view.width-123)/2.0, 30+iOSNavHeight, 123, 123)];
+  _btnAvatar.layer.masksToBounds = YES;
+  _btnAvatar.layer.cornerRadius = _btnAvatar.width/2.0;
+  _btnAvatar.customImageView = [[UIImageView alloc] initWithFrame:_btnAvatar.bounds];
+  [_btnAvatar addSubview:_btnAvatar.customImageView];
+  [_btnAvatar setImage:[UIImage imageNamed:@"login_addpic"] forState:UIControlStateNormal];
+  [self.view addSubview:_btnAvatar];
   
-  _avatarBgView = [[UIView alloc] initWithFrame:CGRectMake(_btnLibrary.right, 110, 111, 111)];
-  _avatarBgView.layer.masksToBounds = YES;
-  _avatarBgView.layer.cornerRadius = _avatarBgView.width/2.0;
-  _avatarBgView.layer.borderWidth = 1.0;
-  _avatarBgView.layer.borderColor = [UIColor whiteColor].CGColor;
-  [self.view addSubview:_avatarBgView];
-  
-  _avatarView = [[UIImageView alloc] initWithFrame:CGRectMake(18, 18, _avatarBgView.width-36, _avatarBgView.width-36)];
-  _avatarView.layer.masksToBounds = YES;
-  _avatarView.layer.cornerRadius = _avatarView.width/2.0;
-  _avatarView.backgroundColor = [UIColor colorWithRGBHex:0xa0d9e4];
-  [_avatarBgView addSubview:_avatarView];
-  
-  _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(_avatarBgView.right, _btnLibrary.top, 48, 40)];
-  [_btnCamera setImage:[UIImage imageNamed:@"profile_btn_shooting"] forState:UIControlStateNormal];
-  [self.view addSubview:_btnCamera];
+  UILabel *intro = [UILabel initWithFrame:CGRectMake(0, _btnAvatar.bottom+13, self.view.width, 24)
+                                  bgColor:[UIColor whiteColor]
+                                textColor:[UIColor colorWithRGBHex:0x55acef] text:@"添加大頭照"
+                            textAlignment:NSTextAlignmentCenter
+                                     font:[UIFont systemFontOfSize:17]];
+  [self.view addSubview:intro];
   
   _libraryPicker = [[UIImagePickerController alloc] init];
   _libraryPicker.navigationBar.tintColor = [UIColor whiteColor];
@@ -145,15 +127,12 @@ UITextFieldDelegate>
     _cameraPicker.delegate = self;
   }
   
+  [_btnAvatar addTarget:self action:@selector(onAvatarClicked) forControlEvents:UIControlEventTouchUpInside];
   
-  [_btnCamera addTarget:self action:@selector(onCamera) forControlEvents:UIControlEventTouchUpInside];
-  [_btnLibrary addTarget:self action:@selector(onLibrary) forControlEvents:UIControlEventTouchUpInside];
-  
-  
-  _btnAgreement = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.height-51, self.view.width, 51)];
+  _btnAgreement = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.height-51-iphoneXBottomAreaHeight, self.view.width, 51)];
   _btnAgreement.lblCustom = [UILabel initWithFrame:CGRectMake(0, 22, _btnAgreement.width, 9)
                                            bgColor:[UIColor clearColor]
-                                         textColor:[UIColor whiteColor]
+                                         textColor:[UIColor colorWithRGBHex:0x8e8e8e]
                                               text:@"使用See World＋ 即表示您同意See World＋的隱私條款  "
                                      textAlignment:NSTextAlignmentCenter
                                               font:[UIFont systemFontOfSize:9]];
@@ -198,12 +177,26 @@ UITextFieldDelegate>
     [wSelf checkInfoValid];
   };
   [action.btnCancel setTitle:@"女" forState:UIControlStateNormal];
-  [action.btnCancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [action show];
+}
+
+- (void)onAvatarClicked{
+  __weak typeof(self)wSelf = self;
+  SWActionSheetView *action = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                                 title:nil
+                                                               content:@"相機"];
+  action.completeBlock = ^{
+    [wSelf onCamera];
+  };
+  action.cancelBlock = ^{
+    [wSelf onLibrary];
+  };
+  [action.btnCancel setTitle:@"相簿" forState:UIControlStateNormal];
   [action show];
 }
 
 - (BOOL)checkInfoValid{
-  BOOL isValid = _btnGender.lblCustom.text.length>0 && _txtName.text.length>0 && _avatarView.image;
+  BOOL isValid = _btnGender.lblCustom.text.length>0 && _txtName.text.length>0 && _btnAvatar.customImageView.image;
   [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:isValid?0x45d9e9:0x75bad1]];
   return isValid;
 }
@@ -213,12 +206,12 @@ UITextFieldDelegate>
     [MBProgressHUD showTip:@"您的昵稱还没有填寫"];
   }else if (!_btnGender.lblCustom.text.length) {
     [MBProgressHUD showTip:@"您的性別還沒有選擇"];
-  }else if (!_avatarView.image) {
+  }else if (!_btnAvatar.customImageView.image) {
     [MBProgressHUD showTip:@"您的大頭照還沒有上傳"];
   }
   if ([self checkInfoValid]) {
     GetQiniuTokenApi *api = [[GetQiniuTokenApi alloc] init];
-    UIImage *avatar = _avatarView.image;
+    UIImage *avatar = _btnAvatar.customImageView.image;
     NSString *phone = _phone;
     NSString *pwd = self.pwd;
     NSString *name = _txtName.text;
@@ -306,7 +299,7 @@ UITextFieldDelegate>
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
   [self dismissViewControllerAnimated:YES completion:nil];
-  _avatarView.image = [info objectForKey:UIImagePickerControllerEditedImage];
+  _btnAvatar.customImageView.image = [info objectForKey:UIImagePickerControllerEditedImage];
   [self checkInfoValid];
 }
 

@@ -19,7 +19,6 @@
 @end
 
 @implementation SWFindPwdVC{
-  UIImageView *_bgView;
   UIImageView *_iconMail;
   UIImageView *_iconCode;
   
@@ -37,29 +36,24 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"找回密碼" color:[UIColor whiteColor]];
-  
-  _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-  _bgView.image = [UIImage imageNamed:@"signin_bg"];
-  _bgView.contentMode = UIViewContentModeScaleAspectFill;
-  [self.view addSubview:_bgView];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"找回密碼" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
   _btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(30, 20+iOSNavHeight, self.view.width-60, 35)];
   _btnPhone.lblCustom = [UILabel initWithFrame:_btnPhone.bounds
                                        bgColor:[UIColor clearColor]
-                                     textColor:[UIColor whiteColor]
+                                     textColor:[UIColor colorWithRGBHex:0x34414e]
                                           text:DEFAULT_AREACODE_STR
                                  textAlignment:NSTextAlignmentLeft
                                           font:[UIFont systemFontOfSize:16]];
   [_btnPhone addSubview:_btnPhone.lblCustom];
   [self.view addSubview:_btnPhone];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _btnPhone.bottom, self.view.width-60, 2) colorHex:0xfffffff]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _btnPhone.bottom, self.view.width-60, 2) colorHex:0x494949]];
   
   _areaCode = DEFAULT_AREACODE;
   [_btnPhone addTarget:self action:@selector(onSelectCountry) forControlEvents:UIControlEventTouchUpInside];
 
   
-  _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, 141, 18, 29)];
+  _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, 141, 22, 22)];
   _iconMail.image = [UIImage imageNamed:@"signin_register_icon_phone"];
   [self.view addSubview:_iconMail];
   
@@ -67,16 +61,16 @@
   _iconCode.image = [UIImage imageNamed:@"forgetpassworld_icon"];
   [self.view addSubview:_iconCode];
   
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconMail.bottom+9, self.view.width-60, 2) colorHex:0xfffffff]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconCode.bottom+9, self.view.width-60, 2) colorHex:0xfffffff]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconMail.bottom+9, self.view.width-60, 2) colorHex:0x494949]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconCode.bottom+9, self.view.width-60, 2) colorHex:0x494949]];
   
   
-  _txtEmail = [[UITextField alloc] initWithFrame:CGRectMake(79, _iconMail.top+9, UIScreenWidth-109, 20)];
+  _txtEmail = [[UITextField alloc] initWithFrame:CGRectMake(79, _iconMail.top+1, UIScreenWidth-109, 20)];
   _txtEmail.font = [UIFont systemFontOfSize:16];
   _txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"請輸入手機號碼或信箱"
-                                                                    attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
-  _txtEmail.tintColor = [UIColor whiteColor];
-  _txtEmail.textColor = [UIColor whiteColor];
+                                                                    attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x8a9bac]}] ;
+  _txtEmail.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _txtEmail.textColor = [UIColor colorWithRGBHex:0x34414e];
   _txtEmail.autocapitalizationType = UITextAutocapitalizationTypeNone;
   [self.view addSubview:_txtEmail];
   
@@ -88,9 +82,9 @@
   _txtCode.secureTextEntry = YES;
   _txtCode.font = [UIFont systemFontOfSize:16];
   _txtCode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"請輸入您的驗證碼"
-                                                                   attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
-  _txtCode.tintColor = [UIColor whiteColor];
-  _txtCode.textColor = [UIColor whiteColor];
+                                                                   attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x8a9bac]}] ;
+  _txtCode.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _txtCode.textColor = [UIColor colorWithRGBHex:0x34414e];
   [self.view addSubview:_txtCode];
   
   _txtEmail.returnKeyType = UIReturnKeyDone;
@@ -104,7 +98,7 @@
   
   
   _btnGetCode = [[UIButton alloc] initWithFrame:CGRectMake(30, _iconMail.bottom+40, self.view.width-60, 48)];
-  [_btnGetCode setBackgroundColor:[UIColor colorWithRGBHex:0x8ca4fa]];
+  [_btnGetCode setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnGetCode setTitle:@"獲取驗證碼" forState:UIControlStateNormal];
   [_btnGetCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [_btnGetCode.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -115,7 +109,7 @@
   _btnGetCode.layer.cornerRadius = 2.0;
 
   _btnNext = [[UIButton alloc] initWithFrame:CGRectMake(30, _iconCode.bottom+40, self.view.width-60, 48)];
-  [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:0x88bdd0]];
+  [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnNext setTitle:@"下一步" forState:UIControlStateNormal];
   [_btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [_btnNext.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -242,6 +236,12 @@
 }
 
 - (void)onNext{
+  SWResetPwdVC *vc = [[SWResetPwdVC alloc] init];
+  vc.type = 0;
+  vc.account = @"+18618601032090";
+  vc.secret = @"123456";
+  [self.navigationController pushViewController:vc animated:YES];
+  return;
   BOOL isEmail = [self isValidEmail:_txtEmail.text];
   BOOL isPhone = [self isValidPhone:_txtEmail.text];
   if (isEmail&&_txtCode.text.length) {

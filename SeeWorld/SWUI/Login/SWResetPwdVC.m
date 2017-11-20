@@ -14,7 +14,6 @@
 @end
 
 @implementation SWResetPwdVC{
-  UIImageView *_bgView;
   UIImageView *_iconMail;
   UIImageView *_iconPwd;
   
@@ -29,12 +28,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"重置密碼" color:[UIColor whiteColor]];
-  
-  _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-  _bgView.image = [UIImage imageNamed:@"signin_bg"];
-  _bgView.contentMode = UIViewContentModeScaleAspectFill;
-  [self.view addSubview:_bgView];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"重置密碼" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
   _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, 146, 21, 24)];
   _iconMail.image = [UIImage imageNamed:@"signin_register_icon_password"];
@@ -44,17 +38,17 @@
   _iconPwd.image = [UIImage imageNamed:@"signin_register_icon_password"];
   [self.view addSubview:_iconPwd];
   
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconMail.bottom+9, self.view.width-60, 2) colorHex:0xfffffff]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconPwd.bottom+9, self.view.width-60, 2) colorHex:0xfffffff]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconMail.bottom+9, self.view.width-60, 2) colorHex:0x494949]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _iconPwd.bottom+9, self.view.width-60, 2) colorHex:0x494949]];
   
   
   _txtNewPwd = [[UITextField alloc] initWithFrame:CGRectMake(79, _iconMail.top, UIScreenWidth-109, 20)];
   _txtNewPwd.font = [UIFont systemFontOfSize:16];
   _txtNewPwd.secureTextEntry = YES;
   _txtNewPwd.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"請輸入您的新密碼"
-                                                                    attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
-  _txtNewPwd.tintColor = [UIColor whiteColor];
-  _txtNewPwd.textColor = [UIColor whiteColor];
+                                                                    attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x8a9bac]}] ;
+  _txtNewPwd.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _txtNewPwd.textColor = [UIColor colorWithRGBHex:0x34414e];
   [self.view addSubview:_txtNewPwd];
   
   
@@ -62,9 +56,9 @@
   _txtPwd.secureTextEntry = YES;
   _txtPwd.font = [UIFont systemFontOfSize:16];
   _txtPwd.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"請確認您的新密碼"
-                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
-  _txtPwd.tintColor = [UIColor whiteColor];
-  _txtPwd.textColor = [UIColor whiteColor];
+                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x8a9bac]}] ;
+  _txtPwd.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _txtPwd.textColor = [UIColor colorWithRGBHex:0x34414e];
   [self.view addSubview:_txtPwd];
   
   _iconCheckEmail = [[UIImageView alloc] initWithFrame:CGRectMake(UIScreenWidth-30-18, _iconMail.bottom-15, 18, 18)];
@@ -83,7 +77,7 @@
   [_txtPwd addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
   
   _btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(30, _iconPwd.bottom+72, self.view.width-60, 48)];
-  [_btnLogin setBackgroundColor:[UIColor colorWithRGBHex:0x75bad1]];
+  [_btnLogin setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnLogin setTitle:@"登入" forState:UIControlStateNormal];
   [_btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [_btnLogin.titleLabel setFont:[UIFont systemFontOfSize:16]];

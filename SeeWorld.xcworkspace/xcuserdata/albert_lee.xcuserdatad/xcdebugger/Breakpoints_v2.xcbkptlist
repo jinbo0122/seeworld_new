@@ -74,12 +74,12 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532549334.95535"
+                  timestampString = "532883827.480962"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
                   endingLineNumber = "1110"
-                  offsetFromSymbolStart = "716">
+                  offsetFromSymbolStart = "859">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -89,12 +89,12 @@
                   moduleName = "SeeWorld"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
-                  timestampString = "532549334.969335"
+                  timestampString = "532883827.484274"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1110"
                   endingLineNumber = "1110"
-                  offsetFromSymbolStart = "1340">
+                  offsetFromSymbolStart = "1636">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532022931.622911"
+            timestampString = "532883827.361525"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "382"
-            endingLineNumber = "382"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "-onFB"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532022931.623156"
+            timestampString = "532883827.361602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "-onFB"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Login/SWLoginDetailVC.m"
-            timestampString = "532022931.623193"
+            timestampString = "532883827.36166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "-onFB"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,7 +180,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/AppDelegate.m"
-            timestampString = "532513091.150274"
+            timestampString = "532875208.254975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "286"

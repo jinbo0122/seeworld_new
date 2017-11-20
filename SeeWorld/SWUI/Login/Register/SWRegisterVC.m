@@ -20,8 +20,6 @@
 @end
 
 @implementation SWRegisterVC{
-  UIImageView *_bgView;
-
   UIButton    *_btnPhone;
   UITextField *_txtPhone;
   UITextField *_txtPwd;
@@ -38,17 +36,16 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"註冊" color:[UIColor whiteColor]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"註冊" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
-  _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-  _bgView.image = [UIImage imageNamed:@"register_bg"];
-  _bgView.contentMode = UIViewContentModeScaleAspectFill;
-  [self.view addSubview:_bgView];
-  
-  _btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(30, 60+iOSNavHeight, self.view.width-60, 55)];
-  _btnPhone.lblCustom = [UILabel initWithFrame:_btnPhone.bounds
+  _btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(30, 30+iOSNavHeight, self.view.width-60, 35)];
+  _btnPhone.customImageView = [[UIImageView alloc] initWithFrame:CGRectMake(7, 6, 22, 22)];
+  _btnPhone.customImageView.image = [UIImage imageNamed:@"country"];
+  [_btnPhone addSubview:_btnPhone.customImageView];
+  _btnPhone.lblCustom = [UILabel initWithFrame:CGRectMake(_btnPhone.customImageView.right + 13, 0,
+                                                          _btnPhone.width-_btnPhone.customImageView.right, _btnPhone.height)
                                        bgColor:[UIColor clearColor]
-                                     textColor:[UIColor whiteColor]
+                                     textColor:[UIColor colorWithRGBHex:0x34414e]
                                           text:DEFAULT_AREACODE_STR
                                  textAlignment:NSTextAlignmentLeft
                                           font:[UIFont systemFontOfSize:18]];
@@ -58,20 +55,20 @@
   _areaCode = DEFAULT_AREACODE;
   [_btnPhone addTarget:self action:@selector(onSelectCountry) forControlEvents:UIControlEventTouchUpInside];
   
-  _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, _btnPhone.bottom+55-40, 18, 29)];
+  _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, _btnPhone.bottom+55-30, 22, 22)];
   _iconMail.image = [UIImage imageNamed:@"signin_register_icon_phone"];
   [self.view addSubview:_iconMail];
   
-  _iconPwd = [[UIImageView alloc] initWithFrame:CGRectMake(37, _btnPhone.bottom+55*2-24-10, 21, 24)];
+  _iconPwd = [[UIImageView alloc] initWithFrame:CGRectMake(37, _btnPhone.bottom+55*2-30, 22, 22)];
   _iconPwd.image = [UIImage imageNamed:@"signin_register_icon_password"];
   [self.view addSubview:_iconPwd];
   
-  _txtPhone = [[UITextField alloc] initWithFrame:CGRectMake(79, _btnPhone.bottom+5, UIScreenWidth-109, 55)];
+  _txtPhone = [[UITextField alloc] initWithFrame:CGRectMake(73, _btnPhone.bottom+10, UIScreenWidth-109, 55)];
   _txtPhone.font = [UIFont systemFontOfSize:18];
   _txtPhone.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"輸入手機號碼"
-                                                                   attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
-  _txtPhone.tintColor = [UIColor whiteColor];
-  _txtPhone.textColor = [UIColor whiteColor];
+                                                                   attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x8a9bac]}] ;
+  _txtPhone.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _txtPhone.textColor = [UIColor colorWithRGBHex:0x34414e];
   _txtPhone.autocapitalizationType = UITextAutocapitalizationTypeNone;
   _txtPhone.keyboardType = UIKeyboardTypePhonePad;
   [self.view addSubview:_txtPhone];
@@ -81,14 +78,14 @@
   _txtPwd.secureTextEntry = YES;
   _txtPwd.font = [UIFont systemFontOfSize:18];
   _txtPwd.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"輸入密碼，長度不小於6位"
-                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}] ;
-  _txtPwd.tintColor = [UIColor whiteColor];
-  _txtPwd.textColor = [UIColor whiteColor];
+                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x8a9bac]}] ;
+  _txtPwd.tintColor = [UIColor colorWithRGBHex:0x34414e];
+  _txtPwd.textColor = [UIColor colorWithRGBHex:0x34414e];
   [self.view addSubview:_txtPwd];
   
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30,_btnPhone.bottom-2, self.view.width-60, 2) colorHex:0xfffffff]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _txtPhone.bottom-2, self.view.width-60, 2) colorHex:0xfffffff]];
-  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _txtPwd.bottom-2, self.view.width-60, 2) colorHex:0xfffffff]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30,_btnPhone.bottom-2, self.view.width-60, 2) colorHex:0x494949]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _txtPhone.bottom-2, self.view.width-60, 2) colorHex:0x494949]];
+  [self.view addSubview:[ALLineView lineWithFrame:CGRectMake(30, _txtPwd.bottom-2, self.view.width-60, 2) colorHex:0x494949]];
 
   
   _iconCheckPhone = [[UIImageView alloc] initWithFrame:CGRectMake(UIScreenWidth-30-18, _btnPhone.bottom+(55-18)/2.0, 18, 18)];
@@ -107,16 +104,18 @@
   [_txtPwd addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
   
   _btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(30, 346, self.view.width-60, 48)];
-  [_btnLogin setBackgroundColor:[UIColor colorWithRGBHex:0x75bad1]];
+  [_btnLogin setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnLogin setTitle:@"下一步" forState:UIControlStateNormal];
   [_btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [_btnLogin.titleLabel setFont:[UIFont systemFontOfSize:16]];
+  _btnLogin.layer.masksToBounds = YES;
+  _btnLogin.layer.cornerRadius = 2.5;
   [self.view addSubview:_btnLogin];
   [_btnLogin addTarget:self action:@selector(onRegister) forControlEvents:UIControlEventTouchUpInside];
   
-  UILabel *lblTermTitle = [UILabel initWithFrame:CGRectMake(10, self.view.height-40, UIScreenWidth-20, 12)
+  UILabel *lblTermTitle = [UILabel initWithFrame:CGRectMake(10, self.view.height-40-iphoneXBottomAreaHeight, UIScreenWidth-20, 12)
                                          bgColor:[UIColor clearColor]
-                                       textColor:[UIColor whiteColor]
+                                       textColor:[UIColor colorWithRGBHex:0x8e8e8e]
                                             text:@"使用SeeWorld+，即表示你同意SeeWorld+的"
                                    textAlignment:NSTextAlignmentCenter
                                             font:[UIFont systemFontOfSize:12]];
@@ -126,7 +125,7 @@
   
   UILabel *lblTerm = [UILabel initWithFrame:CGRectMake(10, 7, UIScreenWidth-20, 12)
                                          bgColor:[UIColor clearColor]
-                                       textColor:[UIColor whiteColor]
+                                       textColor:[UIColor colorWithRGBHex:0x8e8e8e]
                                             text:@"使用條款和隱私策略"
                                    textAlignment:NSTextAlignmentCenter
                                             font:[UIFont systemFontOfSize:12]];
@@ -179,7 +178,12 @@
       vc.pwd    = _txtPwd.text;
       [wSelf.navigationController pushViewController:vc animated:YES];
     }else{
-      [MBProgressHUD showTip:@"手機號已註冊"];
+      __weak typeof(self)wSelf = self;
+      [[[UIAlertView alloc] initWithTitle:@"該手機號碼已註冊，是否前去登錄？" message:nil
+                         cancelButtonItem:[RIButtonItem itemWithLabel:SWStringCancel]
+                         otherButtonItems:[RIButtonItem itemWithLabel:@"去登陸" action:^{
+        [wSelf.navigationController popViewControllerAnimated:YES];
+      }], nil] show];
     }
   } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
     [MBProgressHUD showTip:@"請求失敗"];
@@ -206,7 +210,6 @@
   if ([textField isEqual:_txtPwd]) {
     _iconCheckPwd.image = _txtPwd.text.length>6?[UIImage imageNamed:@"signin_register_icon_correct"]:nil;
   }
-  [_btnLogin setBackgroundColor:[UIColor colorWithRGBHex:(_txtPwd.text.length>=6&&isPhone)?0x45d9e9:0x75bad1]];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{

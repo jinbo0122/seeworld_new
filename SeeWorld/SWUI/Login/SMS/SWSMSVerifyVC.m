@@ -29,16 +29,11 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"輸入驗證碼" color:[UIColor whiteColor]];
-  
-  _bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-  _bgView.image = [UIImage imageNamed:@"register_bg"];
-  _bgView.contentMode = UIViewContentModeScaleAspectFill;
-  [self.view addSubview:_bgView];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"輸入驗證碼" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
   _lblTitle = [UILabel initWithFrame:CGRectMake(0, iOSNavHeight+30, self.view.width, 13)
                              bgColor:[UIColor clearColor]
-                           textColor:[UIColor whiteColor]
+                           textColor:[UIColor colorWithRGBHex:0x8a9bac]
                                 text:@"正在發送驗證碼，請稍等"
                        textAlignment:NSTextAlignmentCenter
                                 font:[UIFont systemFontOfSize:13]];
@@ -46,7 +41,7 @@
   
   _lblPhone = [UILabel initWithFrame:CGRectMake(0, _lblTitle.bottom+10, self.view.width, 30)
                              bgColor:[UIColor clearColor]
-                           textColor:[UIColor whiteColor]
+                           textColor:[UIColor colorWithRGBHex:0x494949]
                                 text:[NSString stringWithFormat:@"+%@ %@",_prefix,_phone]
                        textAlignment:NSTextAlignmentCenter
                                 font:[UIFont systemFontOfSize:21]];
@@ -72,11 +67,17 @@
                                    text:@""
                           textAlignment:NSTextAlignmentCenter
                                    font:[UIFont systemFontOfSize:30]];
+    _lblCode[i].layer.masksToBounds = YES;
+    _lblCode[i].layer.cornerRadius  = 4;
+    _lblCode[i].layer.borderWidth = 0.5;
+    _lblCode[i].layer.borderColor = [UIColor colorWithRGBHex:0x555555 alpha:0.5].CGColor;
+    _lblCode[i].layer.shadowColor = [UIColor colorWithRGBHex:0x555555 alpha:0.5].CGColor;
+    _lblCode[i].layer.shadowOffset = CGSizeMake(0, 1);
     [self.view addSubview:_lblCode[i]];
   }
   
   _btnNext = [[UIButton alloc] initWithFrame:CGRectMake(30, _lblCode[0].bottom+50, self.view.width-60, 50)];
-  [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:0x45D9E9]];
+  [_btnNext setBackgroundColor:[UIColor colorWithRGBHex:0x55acef]];
   [_btnNext setTitle:@"下一步" forState:UIControlStateNormal];
   [_btnNext setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
   [_btnNext.titleLabel setFont:[UIFont systemFontOfSize:18]];
@@ -85,7 +86,7 @@
   
   _btnResend = [[UIButton alloc] initWithFrame:CGRectMake(50, _btnNext.bottom, self.view.width-100, 40)];
   [_btnResend setTitle:@"重新獲取" forState:UIControlStateNormal];
-  [_btnResend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+  [_btnResend setTitleColor:[UIColor colorWithRGBHex:0x55acef] forState:UIControlStateNormal];
   [_btnResend.titleLabel setFont:[UIFont systemFontOfSize:13]];
   [self.view addSubview:_btnResend];
   [_btnResend addTarget:self action:@selector(onSendClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -163,7 +164,7 @@
   SWRegisterProfileVC *vc = [[SWRegisterProfileVC alloc] init];
   vc.phone = [_prefix stringByAppendingString:_phone];
   vc.pwd = _pwd;
-  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0x65a3b5]];
+  [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRGBHex:0xffffff]];
   [self.navigationController pushViewController:vc animated:YES];
   
 }
