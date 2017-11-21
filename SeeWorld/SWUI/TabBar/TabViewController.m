@@ -189,17 +189,14 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   [self.noticeNav popViewControllerAnimated:NO];
 }
 
-- (void)hidePickerController
-{
+- (void)hidePickerController{
   WS(weakSelf);
-  [self.photoPicker dismissViewControllerAnimated:NO completion:^{
-    [weakSelf.photoPicker dismissViewControllerAnimated:NO completion:^{
-      UINavigationController *nav = weakSelf.viewControllers.firstObject;
-      SWHomeFeedVC *vc = [nav.viewControllers safeObjectAtIndex:0];
-      [vc forceRefresh];
-      weakSelf.selectedIndex = 0;
-      [weakSelf.mineVC refresh];
-    }];
+  [self dismissViewControllerAnimated:YES completion:^{
+    UINavigationController *nav = weakSelf.viewControllers.firstObject;
+    SWHomeFeedVC *vc = [nav.viewControllers safeObjectAtIndex:0];
+    [vc forceRefresh];
+    weakSelf.selectedIndex = 0;
+    [weakSelf.mineVC refresh];
   }];
 }
 

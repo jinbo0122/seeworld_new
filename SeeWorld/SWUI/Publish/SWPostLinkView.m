@@ -9,7 +9,6 @@
 #import "SWPostLinkView.h"
 
 @implementation SWPostLinkView{
-  UIImageView *_imageView;
   UILabel *_lblTitle;
 }
 

@@ -157,6 +157,7 @@
 		4B33A4081BA7CDBA001DB3BE /* SWNearbyAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B33A4071BA7CDBA001DB3BE /* SWNearbyAPI.m */; };
 		4B33A40B1BA7D02D001DB3BE /* SWLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B33A40A1BA7D02D001DB3BE /* SWLocationManager.m */; };
 		4B442D3F1C52285B0065AC78 /* SWReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B442D3E1C52285B0065AC78 /* SWReportView.m */; };
+		4B49809A1FC460FD003F88EF /* SWPostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4980991FC460FD003F88EF /* SWPostModel.m */; };
 		4B4A66901B97166500F56B78 /* SWCommentTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A668F1B97166500F56B78 /* SWCommentTextField.m */; };
 		4B4A66941B97256100F56B78 /* SWHomeFeedShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A66931B97256100F56B78 /* SWHomeFeedShareView.m */; };
 		4B4A66971B97256E00F56B78 /* SWHomeFeedReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A66961B97256E00F56B78 /* SWHomeFeedReportView.m */; };
@@ -746,6 +747,8 @@
 		4B4303DB1FBAB84F0020573D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/RongCloudKit.strings; sourceTree = "<group>"; };
 		4B442D3D1C52285B0065AC78 /* SWReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWReportView.h; sourceTree = "<group>"; };
 		4B442D3E1C52285B0065AC78 /* SWReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWReportView.m; sourceTree = "<group>"; };
+		4B4980981FC460FD003F88EF /* SWPostModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWPostModel.h; sourceTree = "<group>"; };
+		4B4980991FC460FD003F88EF /* SWPostModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWPostModel.m; sourceTree = "<group>"; };
 		4B4A668E1B97166500F56B78 /* SWCommentTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCommentTextField.h; sourceTree = "<group>"; };
 		4B4A668F1B97166500F56B78 /* SWCommentTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWCommentTextField.m; sourceTree = "<group>"; };
 		4B4A66921B97256100F56B78 /* SWHomeFeedShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWHomeFeedShareView.h; sourceTree = "<group>"; };
@@ -1841,6 +1844,8 @@
 				49FD6D891BA70A9800748E9E /* ComposeViewController.m */,
 				4B7B270F1FBDF4CD00F413C7 /* SWPostVC.h */,
 				4B7B27101FBDF4CD00F413C7 /* SWPostVC.m */,
+				4B4980981FC460FD003F88EF /* SWPostModel.h */,
+				4B4980991FC460FD003F88EF /* SWPostModel.m */,
 				4B7B271B1FBE099E00F413C7 /* SWPostPhotoView.h */,
 				4B7B271C1FBE099E00F413C7 /* SWPostPhotoView.m */,
 				4B5E9C0A1FC3FB83005F5852 /* SWPostLinkView.h */,
@@ -3443,6 +3448,7 @@
 				493D450C1B777C8A00C406A1 /* QBImagePickerThumbnailView.m in Sources */,
 				49DE01151BC95D0800B4A1FE /* ResetPasswordsApi.m in Sources */,
 				493D44491B777C3900C406A1 /* SWHUD.m in Sources */,
+				4B49809A1FC460FD003F88EF /* SWPostModel.m in Sources */,
 				493D45051B777C8A00C406A1 /* QBAssetsCollectionFooterView.m in Sources */,
 				493D44DE1B777C8A00C406A1 /* UIImage+ImageEffects.m in Sources */,
 				4B0FD6791DAF3E6200F11FCE /* PDSMSCodeCell.m in Sources */,

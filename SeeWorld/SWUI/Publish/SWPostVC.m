@@ -16,8 +16,9 @@
 #import "SWPostPreviewVC.h"
 #import <AVKit/AVKit.h>
 #import "AVAsset+VideoOrientation.h"
+#import "SWPostModel.h"
 @interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate,UzysAssetsPickerControllerDelegate,
-SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
+SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,SWPostModelDelegate>
 @property (nonatomic, strong)UITextView  *txtContent;
 @property (nonatomic, strong)UILabel     *lblLength;
 @property (nonatomic, strong)UIView      *toolView;
@@ -48,7 +49,15 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
   UIButton    *_btnAlbum;
   UIButton    *_btnLBS;
   
-  
+  SWPostModel *_model;
+}
+
+- (id)init{
+  if (self = [super init]) {
+    _model = [[SWPostModel alloc] init];
+    _model.delegate = self;
+  }
+  return self;
 }
 
 - (void)viewDidLoad {
@@ -133,11 +142,11 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
   [_btnCamera setImage:[UIImage imageNamed:@"send_camera_export"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnCamera];
   [_btnCamera addTarget:self action:@selector(onCameraClicked) forControlEvents:UIControlEventTouchUpInside];
-  [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
 
   _btnAlbum = [[UIButton alloc] initWithFrame:CGRectMake(_btnCamera.right, 0, 48, _btnCamera.height)];
   [_btnAlbum addTarget:self action:@selector(onAlbumClicked) forControlEvents:UIControlEventTouchUpInside];
   [_toolView addSubview:_btnAlbum];
+  [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
   
   _btnLBS = [[UIButton alloc] initWithFrame:CGRectMake(_btnAlbum.right, 0, 48, _btnCamera.height)];
   [_btnLBS setImage:[UIImage imageNamed:@"send_location_export"] forState:UIControlStateNormal];
@@ -197,13 +206,17 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
                                 }] show];
     return;
   }
-  
+  self.view.userInteractionEnabled = NO;
   if ([self isPostingLink]) {
-    
+    [_model postLink:_postingLink content:_txtContent.text];
   }else if ([self isPostingVideo]){
-    
+    if (_videoAsset) {
+      [_model postVideoWithAsset:_videoAsset thumbImage:_videoThumbImage content:_txtContent.text];
+    }else if (_videoURLAsset){
+      [_model postVideo:_videoURLAsset.URL thumbImage:_videoThumbImage content:_txtContent.text];
+    }
   }else if (_images.count){
-    
+    [_model postPhoto:_images tags:_tags content:_txtContent.text];
   }
 }
 
@@ -316,6 +329,15 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
   }else{
     _videoView.hidden = YES;
   }
+}
+
+#pragma mark Model
+- (void)postModelDidPostFeed:(SWPostModel *)model{
+  self.view.userInteractionEnabled = YES;
+}
+
+- (void)postModelDidPostFeedFailed:(SWPostModel *)model{
+  self.view.userInteractionEnabled = YES;
 }
 
 #pragma mark Camera
@@ -560,7 +582,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
   __weak typeof(self)wSelf = self;
   [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
     NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
-    if ([[[dic safeDicObjectForKey:@"data"] safeStringObjectForKey:@"title"] length]>0 && !wSelf.isPostingLink) {
+    if ([[[	dic safeDicObjectForKey:@"data"] safeStringObjectForKey:@"title"] length]>0 && !wSelf.isPostingLink) {
       wSelf.isPostingLink = YES;
       wSelf.postingLink = string;
       wSelf.postingLinkTitle = [[dic safeDicObjectForKey:@"data"] safeStringObjectForKey:@"title"];

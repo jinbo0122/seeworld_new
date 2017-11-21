@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SWPostLinkView : UIView
+@property(nonatomic, strong)UIImageView *imageView;
 - (void)refreshWithTitle:(NSString *)title image:(NSString *)imageUrl;
 @end

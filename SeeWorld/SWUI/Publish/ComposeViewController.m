@@ -122,7 +122,7 @@
         if (info.ok && resp[@"key"]){
           NSString *imageURL = [NSString stringWithFormat:@"http:/7xlsvh.com1.z0.glb.clouddn.com/%@",[resp valueForKey:@"key"]];
           SWFeedComposeAPI *api = [[SWFeedComposeAPI alloc] init];
-          api.photoUrl = imageURL;
+//          api.photoUrl = imageURL;
           api.tags = self.tags;
           api.feedDescription = self.txtContent.text;
           api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"latitude"]).floatValue;
