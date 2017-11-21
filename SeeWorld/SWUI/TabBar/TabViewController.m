@@ -17,6 +17,8 @@
 #import "SWChatListVC.h"
 #import "SWPostVC.h"
 #import "SWPostPreviewVC.h"
+#import <AVKit/AVKit.h>
+#import "AVAsset+VideoOrientation.h"
 #define kTag_TabBar_Base 0
 #define kTag_TabBar_FeedList kTag_TabBar_Base + 1
 #define kTag_TabBar_Discovertory kTag_TabBar_Base + 2
@@ -25,7 +27,7 @@
 #define kTag_TabBar_Me kTag_TabBar_Base + 5
 
 @interface TabViewController ()<UITabBarControllerDelegate,UzysAssetsPickerControllerDelegate,
-SWPostEnterViewDelegate,SWPostPreviewVCDelegate>{
+SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   UIViewController *_tuPFEditEntryController;
 }
 
@@ -263,14 +265,11 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate>{
 }
 
 - (void)composeWithCamera{
-  [self updateLocation];
-  UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
-  photoPicker.delegate = self;
-  photoPicker.maximumNumberOfSelectionVideo = 0;
-  photoPicker.maximumNumberOfSelectionPhoto = 1;
-  _photoPicker = photoPicker;
-  [self presentViewController:photoPicker animated:YES completion:^{
-  }];
+  PDVideoWhisperRecordVC *vc = [[PDVideoWhisperRecordVC alloc] init];
+  vc.delegate = self;
+  vc.startIndex = 1000;
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+  [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)startChat{
@@ -280,6 +279,25 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate>{
                    completion:nil];
 }
 
+#pragma mark Camera
+- (void)videoWhisperRecordVCDidReturnVideoUrl:(NSURL *)videoUrl{
+  AVURLAsset *asset = [AVURLAsset assetWithURL:videoUrl];
+  CGSize videoSize = [[[asset tracksWithMediaType:AVMediaTypeVideo] safeObjectAtIndex:0] naturalSize];
+  LBVideoOrientation orientation = [asset videoOrientation];
+  if (orientation == LBVideoOrientationUp ||
+      orientation == LBVideoOrientationDown) {
+    videoSize = CGSizeMake(videoSize.height, videoSize.width);
+  }
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+  [self dismissViewControllerAnimated:NO
+                           completion:^{
+                             SWPostVC *vc = [[SWPostVC alloc] init];
+                             vc.videoURLAsset = asset;
+                             vc.videoThumbImage = [asset.URL.absoluteString getThumnailImageWithURL:videoSize.width height:videoSize.height];
+                             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                             [self presentViewController:nav animated:YES completion:nil];
+                           }];
+}
 
 #pragma mark - UzysAssetsPickerControllerDelegate
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets preview:(BOOL)preview{

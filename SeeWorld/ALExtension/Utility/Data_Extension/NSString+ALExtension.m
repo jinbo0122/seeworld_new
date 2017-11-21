@@ -7,6 +7,7 @@
 //
 
 #import "NSString+ALExtension.h"
+#import <AVKit/AVKit.h>
 @implementation NSString (ALExtension)
 + (NSString*)timeString:(NSTimeInterval)time{
   [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehaviorDefault];
@@ -326,5 +327,31 @@
   return [self boundingRectWithSize:size
                             options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
                          attributes:attrs context:nil].size;
+}
+
+- (NSData *)getThumnailWithURL:(int)width height:(int)height{
+  NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+  NSURL *url=[[NSURL alloc]initWithString:self];
+  AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];
+  AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];
+  generator.appliesPreferredTrackTransform = YES;
+  generator.maximumSize = CGSizeMake(width, height);
+  NSError *error = nil;
+  CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(25, 25) actualTime:NULL error:&error]; // 截图第一秒视频帧
+  UIImage *image = [UIImage imageWithCGImage: img];
+  return UIImageJPEGRepresentation(image,1.0);;
+}
+
+- (UIImage *)getThumnailImageWithURL:(int)width height:(int)height{
+  NSDictionary *opts = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:AVURLAssetPreferPreciseDurationAndTimingKey];
+  NSURL *url=[[NSURL alloc]initWithString:self];
+  AVURLAsset *urlAsset = [AVURLAsset URLAssetWithURL:url options:opts];
+  AVAssetImageGenerator *generator = [AVAssetImageGenerator assetImageGeneratorWithAsset:urlAsset];
+  generator.appliesPreferredTrackTransform = YES;
+  generator.maximumSize = CGSizeMake(width, height);
+  NSError *error = nil;
+  CGImageRef img = [generator copyCGImageAtTime:CMTimeMake(25, 25) actualTime:NULL error:&error]; // 截图第一秒视频帧
+  UIImage *image = [UIImage imageWithCGImage: img];
+  return image;
 }
 @end

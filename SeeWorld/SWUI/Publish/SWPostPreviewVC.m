@@ -17,6 +17,9 @@ SWAddTagViewVCDelegate>
 @implementation SWPostPreviewVC{
   NSInteger _currentIndex;
   UIScrollView *_scrollView;
+  
+  UIButton *_btnCancel;
+  UIButton *_btnNext;
 }
 
 - (id)init{
@@ -65,6 +68,21 @@ SWAddTagViewVCDelegate>
                                                                                 action:@selector(onNextClicked)];
   
   _scrollView.contentSize = CGSizeMake(UIScreenWidth *_images.count, UIScreenHeight);
+  
+  
+  if (_isModal) {
+    _btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, iOSTopHeight+20, 56, 44)];
+    [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
+    [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [self.view addSubview:_btnCancel];
+    [_btnCancel addTarget:self action:@selector(onCancel) forControlEvents:UIControlEventTouchUpInside];
+    
+    _btnNext = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width-56, iOSTopHeight+20, 56, 44)];
+    [_btnNext setTitle:@"下一步" forState:UIControlStateNormal];
+    [_btnNext.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [self.view addSubview:_btnNext];
+    [_btnNext addTarget:self action:@selector(onNextClicked) forControlEvents:UIControlEventTouchUpInside];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,6 +93,10 @@ SWAddTagViewVCDelegate>
 - (void)titleView{
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:[NSString stringWithFormat:@"%@/%@",@(_currentIndex+1),@(_images.count)]
                                                                 color:[UIColor whiteColor]];
+}
+
+- (void)onCancel{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)onNextClicked{

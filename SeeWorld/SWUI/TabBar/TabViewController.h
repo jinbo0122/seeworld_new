@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <RongCallLib/RongCallLib.h>
+#import "PDVideoWhisperRecordVC.h"
 @interface TabViewController : UITabBarController
 + (void)dotAppearance;
 - (void)startChat;

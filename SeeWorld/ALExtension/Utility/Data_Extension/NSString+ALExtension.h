@@ -35,6 +35,8 @@
 #pragma mark MD5 Related
 - (NSString *)MD5;
 + (NSString *)lineStringByLength:(CGFloat)length font:(CGFloat)fontSize;
+- (NSData *)getThumnailWithURL:(int)width height:(int)height;
+- (UIImage *)getThumnailImageWithURL:(int)width height:(int)height;
 #pragma mark 字数判断
 + (int)convertToInt:(NSString*)strtemp;
 + (NSString *)stringWithLimitedChineseCharacter:(NSInteger)length string:(NSString*)strtemp;

@@ -7,11 +7,13 @@
 //
 
 #import "ALBaseVC.h"
-
+#import <AVKit/AVKit.h>
 @interface SWPostVC : ALBaseVC
 @property(nonatomic, strong)NSMutableArray *images;
 @property(nonatomic, strong)NSMutableArray *tags;
 
 @property(nonatomic, strong)UIImage        *videoThumbImage;
 @property(nonatomic, strong)ALAsset        *videoAsset;
+@property(nonatomic, strong)AVURLAsset     *videoURLAsset;
+
 @end

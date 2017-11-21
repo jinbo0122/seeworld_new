@@ -26,7 +26,7 @@
   return self;
 }
 
-- (void)refreshWithAsset:(ALAsset *)asset thumb:(UIImage *)thumbImage{
+- (void)refreshWithThumb:(UIImage *)thumbImage{
   _thumbImageView.image = thumbImage;
 }
 

@@ -13,6 +13,7 @@
 @property(nonatomic, weak)id<SWPostPreviewVCDelegate>delegate;
 @property(nonatomic, strong)NSMutableArray  *images;
 @property(nonatomic, assign)NSInteger startIndex;
+@property(nonatomic, assign)BOOL isModal;
 @end
 
 @protocol SWPostPreviewVCDelegate<NSObject>

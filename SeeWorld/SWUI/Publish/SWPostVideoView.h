@@ -12,7 +12,7 @@
 @protocol SWPostVideoViewDelegate;
 @interface SWPostVideoView : UIButton
 @property(nonatomic, weak)id<SWPostVideoViewDelegate>delegate;
-- (void)refreshWithAsset:(ALAsset *)asset thumb:(UIImage *)thumbImage;
+- (void)refreshWithThumb:(UIImage *)thumbImage;
 @end
 
 @protocol SWPostVideoViewDelegate<NSObject>

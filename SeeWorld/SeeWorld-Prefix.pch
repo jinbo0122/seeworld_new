@@ -11,6 +11,19 @@
 #import "ALExtension-Prefix.pch"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define PDResourceBtnVideoWhisperAlbum              @"icon_xiaosp_photo_upload"
+#define PDResourceBtnVideoWhisperDelete             @"icon_xiaosp_photo_delete_n"
+#define PDResourceBtnVideoWhisperFlipCamera         @"icon_xiaosp_photo_evert"
+#define PDResourceBtnVideoWhisperOkayDisable        @"icon_xiaosp_photo_ok_d"
+#define PDResourceBtnVideoWhisperOkay               @"icon_xiaosp_photo_ok_n"
+#define PDResourceIconVideoWhisperRecordLess3s      @"bg_xiaosp_record_warn_3s"
+#define PDResourceBtnVideoWhisperRecordClose        @"but_off_white_18"
+#define PDResourceBtnVideoWhisperFlashOff           @"icon_photoflash_off_24_d"
+#define PDResourceBtnVideoWhisperFlashOn            @"icon_photoflash_open_24_n"
+#define PDResourceBtnVideoWhisperRecording          @"shoot_camera_export"
+#define PDResourceBtnVideoWhisperRecordPress        @"shoot_camera_export"
+#define PDResourceIconVideoWhisperMusicSelect       @"icon_xiaosp_music_add_select"
+
 
 #define STRINGIFY(S) #S
 #define DEFER_STRINGIFY(S) STRINGIFY(S)

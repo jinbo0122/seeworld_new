@@ -15,8 +15,9 @@
 #import "SWPostVideoView.h"
 #import "SWPostPreviewVC.h"
 #import <AVKit/AVKit.h>
+#import "AVAsset+VideoOrientation.h"
 @interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate,UzysAssetsPickerControllerDelegate,
-SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
+SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>
 @property (nonatomic, strong)UITextView  *txtContent;
 @property (nonatomic, strong)UILabel     *lblLength;
 @property (nonatomic, strong)UIView      *toolView;
@@ -131,7 +132,9 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
   _btnCamera = [[UIButton alloc] initWithFrame:CGRectMake(3 , 0, 48, _toolView.height-iphoneXBottomAreaHeight)];
   [_btnCamera setImage:[UIImage imageNamed:@"send_camera_export"] forState:UIControlStateNormal];
   [_toolView addSubview:_btnCamera];
-  
+  [_btnCamera addTarget:self action:@selector(onCameraClicked) forControlEvents:UIControlEventTouchUpInside];
+  [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
+
   _btnAlbum = [[UIButton alloc] initWithFrame:CGRectMake(_btnCamera.right, 0, 48, _btnCamera.height)];
   [_btnAlbum addTarget:self action:@selector(onAlbumClicked) forControlEvents:UIControlEventTouchUpInside];
   [_toolView addSubview:_btnAlbum];
@@ -143,12 +146,10 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
   [_btnLBS addTarget:self action:@selector(onLBSClicked) forControlEvents:UIControlEventTouchUpInside];
   
   if (_images.count) {
-    [_btnAlbum setImage:[UIImage imageNamed:@"send_image"] forState:UIControlStateNormal];
     _btnAlbum.tag = 1;
   }else{
     _images = [NSMutableArray array];
     _tags = [NSMutableArray array];
-    [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
   }
   [self initImages];
   
@@ -185,7 +186,25 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
 }
 
 - (void)onPost{
+  if (self.txtContent.text.length > 2000){
+    [[[SWAlertView alloc] initWithTitle:@"發佈內容最大字數為2000字"
+                             cancelText:SWStringOkay
+                            cancelBlock:^{
+                              
+                            } okText:nil
+                                okBlock:^{
+                                  
+                                }] show];
+    return;
+  }
   
+  if ([self isPostingLink]) {
+    
+  }else if ([self isPostingVideo]){
+    
+  }else if (_images.count){
+    
+  }
 }
 
 - (void)onCancel{
@@ -218,14 +237,28 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
     }
   }else{
     _enableRightBarItem = YES;
+    _videoAsset = nil;
+    _videoURLAsset = nil;
+    _videoURLAsset = nil;
   }
   
   [self rightBar];
   
   [_photoView refreshWithPhotos:_images];
   _btnAlbum.tag = _images.count>0?1:0;
-  [_btnAlbum setImage:[UIImage imageNamed:_btnAlbum.tag?@"send_image":@"send_image_export"] forState:UIControlStateNormal];
-  
+}
+
+- (BOOL)isPostingVideo{
+  return ((_videoThumbImage && _videoAsset) || (_videoThumbImage && _videoURLAsset));
+}
+
+- (void)onCameraClicked{
+  PDVideoWhisperRecordVC *vc = [[PDVideoWhisperRecordVC alloc] init];
+  vc.delegate = self;
+  vc.startIndex = 1000+self.images.count;
+  vc.fromPostVC = YES;
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+  [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)onAlbumClicked{
@@ -239,7 +272,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
   
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
-  if (!(_videoThumbImage && _videoAsset)) {
+  if (![self isPostingVideo]) {
     photoPicker.maximumNumberOfSelectionPhoto = 9-_images.count;
   }
   if (_images.count == 0) {
@@ -256,7 +289,12 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
 
 - (void)onVideoClicked{
   AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
-  AVURLAsset *asset = [AVURLAsset assetWithURL:[[_videoAsset defaultRepresentation] url]];
+  AVURLAsset *asset;
+  if (_videoURLAsset) {
+    asset = _videoURLAsset;
+  }else if (_videoAsset){
+    asset = [AVURLAsset assetWithURL:[[_videoAsset defaultRepresentation] url]];
+  }
   AVPlayerItem *item = [AVPlayerItem playerItemWithAsset: asset];
   AVPlayer * player = [[AVPlayer alloc] initWithPlayerItem: item];
   vc.player = player;
@@ -267,15 +305,37 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
 }
 
 - (void)refreshVideo{
-  if (_videoAsset && _videoThumbImage) {
+  if ([self isPostingVideo]) {
     _photoView.hidden = YES;
     _videoView.hidden = NO;
-    [_videoView refreshWithAsset:_videoAsset thumb:_videoThumbImage];
+    [_videoView refreshWithThumb:_videoThumbImage];
     _enableRightBarItem = YES;
     [self rightBar];
+    [_images removeAllObjects];
+    [_tags removeAllObjects];
   }else{
     _videoView.hidden = YES;
   }
+}
+
+#pragma mark Camera
+- (void)videoWhisperRecordVCDidReturnVideoUrl:(NSURL *)videoUrl{
+  AVURLAsset *asset = [AVURLAsset assetWithURL:videoUrl];
+  CGSize videoSize = [[[asset tracksWithMediaType:AVMediaTypeVideo] safeObjectAtIndex:0] naturalSize];
+  LBVideoOrientation orientation = [asset videoOrientation];
+  if (orientation == LBVideoOrientationUp ||
+      orientation == LBVideoOrientationDown) {
+    videoSize = CGSizeMake(videoSize.height, videoSize.width);
+  }
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+  _videoURLAsset = asset;
+  _videoThumbImage = [asset.URL.absoluteString getThumnailImageWithURL:videoSize.width height:videoSize.height];
+  [self dismissViewControllerAnimated:YES completion:nil];
+  [self refreshVideo];
+}
+
+- (void)videoWhisperRecordVCDidReturnImages:(NSArray *)images tags:(NSArray *)tags{
+  [self postPreviewVCDidPressFinish:nil images:images tags:tags];
 }
 
 #pragma mark Post Photo View
@@ -482,7 +542,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
   
   if (textView.text.length == 0) {
     _isPostingLink = NO;
-    if (_videoAsset && _videoThumbImage) {
+    if ([self isPostingVideo]) {
       _videoView.hidden = NO;
       _photoView.hidden = YES;
       _linkView.hidden = YES;
@@ -525,6 +585,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
   [_linkView refreshWithTitle:_postingLinkTitle image:_postingLinkImageUrl];
   _photoView.hidden = YES;
   _videoView.hidden = YES;
+  
 }
 
 @end

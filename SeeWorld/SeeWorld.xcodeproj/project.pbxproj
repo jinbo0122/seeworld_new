@@ -380,6 +380,11 @@
 		4BE63A101BB542DD00CDAD35 /* SWNoticeMarkAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE63A0F1BB542DD00CDAD35 /* SWNoticeMarkAPI.m */; };
 		4BE63A141BB544B700CDAD35 /* SWNoticeMsgItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE63A131BB544B700CDAD35 /* SWNoticeMsgItem.m */; };
 		4BE63A171BB549DB00CDAD35 /* SWNoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE63A161BB549DB00CDAD35 /* SWNoticeCell.m */; };
+		4BE81C671FC4352300F31C83 /* PDVideoWhisperRecordBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE81C611FC4352300F31C83 /* PDVideoWhisperRecordBottomView.m */; };
+		4BE81C681FC4352300F31C83 /* PDVideoWhisperRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE81C621FC4352300F31C83 /* PDVideoWhisperRecordVC.m */; };
+		4BE81C691FC4352300F31C83 /* PDVideoWhisperRecordProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE81C631FC4352300F31C83 /* PDVideoWhisperRecordProgressView.m */; };
+		4BE81C6A1FC4352300F31C83 /* PDVideoWhisperRecordTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE81C651FC4352300F31C83 /* PDVideoWhisperRecordTopView.m */; };
+		4BE81C6D1FC4419A00F31C83 /* AVAsset+VideoOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE81C6B1FC4419A00F31C83 /* AVAsset+VideoOrientation.m */; };
 		4BEB6A341D365D59000EA0F5 /* UIImage+UzysExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6A241D365D59000EA0F5 /* UIImage+UzysExtension.m */; };
 		4BEB6A351D365D59000EA0F5 /* UzysAppearanceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BEB6A261D365D59000EA0F5 /* UzysAppearanceConfig.m */; };
 		4BEB6A361D365D59000EA0F5 /* UzysAssetPickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BEB6A271D365D59000EA0F5 /* UzysAssetPickerController.bundle */; };
@@ -1171,6 +1176,16 @@
 		4BE63A131BB544B700CDAD35 /* SWNoticeMsgItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWNoticeMsgItem.m; sourceTree = "<group>"; };
 		4BE63A151BB549DB00CDAD35 /* SWNoticeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWNoticeCell.h; sourceTree = "<group>"; };
 		4BE63A161BB549DB00CDAD35 /* SWNoticeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWNoticeCell.m; sourceTree = "<group>"; };
+		4BE81C5F1FC4352300F31C83 /* PDVideoWhisperRecordProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDVideoWhisperRecordProgressView.h; sourceTree = "<group>"; };
+		4BE81C601FC4352300F31C83 /* PDVideoWhisperRecordTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDVideoWhisperRecordTopView.h; sourceTree = "<group>"; };
+		4BE81C611FC4352300F31C83 /* PDVideoWhisperRecordBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDVideoWhisperRecordBottomView.m; sourceTree = "<group>"; };
+		4BE81C621FC4352300F31C83 /* PDVideoWhisperRecordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDVideoWhisperRecordVC.m; sourceTree = "<group>"; };
+		4BE81C631FC4352300F31C83 /* PDVideoWhisperRecordProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDVideoWhisperRecordProgressView.m; sourceTree = "<group>"; };
+		4BE81C641FC4352300F31C83 /* PDVideoWhisperRecordBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDVideoWhisperRecordBottomView.h; sourceTree = "<group>"; };
+		4BE81C651FC4352300F31C83 /* PDVideoWhisperRecordTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDVideoWhisperRecordTopView.m; sourceTree = "<group>"; };
+		4BE81C661FC4352300F31C83 /* PDVideoWhisperRecordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDVideoWhisperRecordVC.h; sourceTree = "<group>"; };
+		4BE81C6B1FC4419A00F31C83 /* AVAsset+VideoOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AVAsset+VideoOrientation.m"; sourceTree = "<group>"; };
+		4BE81C6C1FC4419A00F31C83 /* AVAsset+VideoOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AVAsset+VideoOrientation.h"; sourceTree = "<group>"; };
 		4BEB6A231D365D59000EA0F5 /* UIImage+UzysExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UzysExtension.h"; sourceTree = "<group>"; };
 		4BEB6A241D365D59000EA0F5 /* UIImage+UzysExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UzysExtension.m"; sourceTree = "<group>"; };
 		4BEB6A251D365D59000EA0F5 /* UzysAppearanceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysAppearanceConfig.h; sourceTree = "<group>"; };
@@ -1214,6 +1229,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC0FE871B943DA2003F4723 /* MobileCoreServices.framework in Frameworks */,
 				4BC0FE7D1B943D7F003F4723 /* MediaPlayer.framework in Frameworks */,
 				4B0FD68D1DAF4BB000F11FCE /* libicucore.tbd in Frameworks */,
 				4BF403D71BB599BE0076BE2C /* libz.tbd in Frameworks */,
@@ -1250,7 +1266,6 @@
 				4B7716E91FB98F410006B814 /* RongIMLib.framework in Frameworks */,
 				4B4A66D61B98A70B00F56B78 /* libWeChatSDK.a in Frameworks */,
 				4BC0FE8B1B943DB0003F4723 /* MapKit.framework in Frameworks */,
-				4BC0FE871B943DA2003F4723 /* MobileCoreServices.framework in Frameworks */,
 				4B4A66D41B98A70B00F56B78 /* libWeiboSDK.a in Frameworks */,
 				4B4A66E31B98B4F600F56B78 /* FBSDKLoginKit.framework in Frameworks */,
 				4BC0FE851B943D99003F4723 /* OpenGLES.framework in Frameworks */,
@@ -1821,16 +1836,9 @@
 			children = (
 				4B06D0FD1D202C6900AA4F84 /* API */,
 				493D45441B77A2B300C406A1 /* Publish.storyboard */,
-				4938A11C1BA356D7003F2E65 /* SWAddTagViewVC.h */,
-				4938A11D1BA356D7003F2E65 /* SWAddTagViewVC.m */,
-				4938A11F1BA35DEA003F2E65 /* AddTagSearchViewController.h */,
-				4938A1201BA35DEA003F2E65 /* AddTagSearchViewController.m */,
-				4938A1221BA36213003F2E65 /* AddTagCell.h */,
-				4938A1231BA36213003F2E65 /* AddTagCell.m */,
+				4BE81C5A1FC4343F00F31C83 /* AddTag */,
 				49FD6D881BA70A9800748E9E /* ComposeViewController.h */,
 				49FD6D891BA70A9800748E9E /* ComposeViewController.m */,
-				49FD6D8C1BA718C700748E9E /* FeedTagEditView.h */,
-				49FD6D8D1BA718C700748E9E /* FeedTagEditView.m */,
 				4B7B270F1FBDF4CD00F413C7 /* SWPostVC.h */,
 				4B7B27101FBDF4CD00F413C7 /* SWPostVC.m */,
 				4B7B271B1FBE099E00F413C7 /* SWPostPhotoView.h */,
@@ -1845,6 +1853,7 @@
 				4B5E9C161FC41394005F5852 /* SWPostPreview.m */,
 				4B5E9C181FC41591005F5852 /* SWPostPreviewToolView.h */,
 				4B5E9C191FC41591005F5852 /* SWPostPreviewToolView.m */,
+				4BE81C5E1FC4352300F31C83 /* Record */,
 				4B5E9C971FC42D9E005F5852 /* OpenGLES */,
 				4B5E9C321FC42D63005F5852 /* SCVideoRecorder */,
 				4B7B27191FBDFF7D00F413C7 /* LBS */,
@@ -2255,12 +2264,12 @@
 		4B5E9C321FC42D63005F5852 /* SCVideoRecorder */ = {
 			isa = PBXGroup;
 			children = (
-				4B5E9C331FC42D63005F5852 /* SCRecordSessionManager.h */,
 				4B5E9C341FC42D63005F5852 /* a_filter.cisf */,
-				4B5E9C351FC42D63005F5852 /* PDGLVideoBeautyRender.m */,
 				4B5E9C361FC42D63005F5852 /* Library */,
-				4B5E9C751FC42D63005F5852 /* SCRecordSessionManager.m */,
 				4B5E9C761FC42D63005F5852 /* PDGLVideoBeautyRender.h */,
+				4B5E9C351FC42D63005F5852 /* PDGLVideoBeautyRender.m */,
+				4B5E9C331FC42D63005F5852 /* SCRecordSessionManager.h */,
+				4B5E9C751FC42D63005F5852 /* SCRecordSessionManager.m */,
 			);
 			path = SCVideoRecorder;
 			sourceTree = "<group>";
@@ -2268,68 +2277,68 @@
 		4B5E9C361FC42D63005F5852 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				4B5E9C371FC42D63005F5852 /* SCAudioTools.h */,
-				4B5E9C381FC42D63005F5852 /* SCFilterImageView.h */,
-				4B5E9C391FC42D63005F5852 /* SCAudioVideoRecorder-Prefix.pch */,
-				4B5E9C3A1FC42D63005F5852 /* SCImageView.m */,
-				4B5E9C3B1FC42D63005F5852 /* SCSampleBufferHolder.m */,
-				4B5E9C3C1FC42D63005F5852 /* SCProcessingQueue.m */,
-				4B5E9C3D1FC42D63005F5852 /* SCPlayer.h */,
-				4B5E9C3E1FC42D63005F5852 /* SCRecorderToolsView.m */,
-				4B5E9C3F1FC42D63005F5852 /* SCRecorder.h */,
-				4B5E9C401FC42D63005F5852 /* SCSwipeableFilterView.h */,
-				4B5E9C411FC42D63005F5852 /* SCRecorderTools.m */,
-				4B5E9C421FC42D63005F5852 /* SCVideoConfiguration.h */,
-				4B5E9C431FC42D63005F5852 /* SCFilter.m */,
-				4B5E9C441FC42D63005F5852 /* SCRecordSession.m */,
-				4B5E9C451FC42D63005F5852 /* SCAssetExportSession.h */,
-				4B5E9C461FC42D63005F5852 /* SCFilter+UIImage.m */,
-				4B5E9C471FC42D63005F5852 /* SCVideoPlayerView.h */,
-				4B5E9C481FC42D63005F5852 /* SCRecorderFocusTargetView.m */,
-				4B5E9C491FC42D63005F5852 /* SCAudioConfiguration.m */,
-				4B5E9C4A1FC42D63005F5852 /* SCIOPixelBuffers.h */,
-				4B5E9C4B1FC42D63005F5852 /* NSURL+SCSaveToCameraRoll.m */,
-				4B5E9C4C1FC42D63005F5852 /* SCFilter+VideoComposition.h */,
-				4B5E9C4D1FC42D63005F5852 /* SCWeakSelectorTarget.m */,
-				4B5E9C4E1FC42D63005F5852 /* SCRecordSessionSegment.h */,
-				4B5E9C4F1FC42D63005F5852 /* SCContext.m */,
-				4B5E9C501FC42D63005F5852 /* SCMediaTypeConfiguration.m */,
-				4B5E9C511FC42D63005F5852 /* UIImage+SCSaveToCameraRoll.h */,
-				4B5E9C521FC42D63005F5852 /* SCFilterAnimation.h */,
-				4B5E9C531FC42D63005F5852 /* SCPhotoConfiguration.m */,
-				4B5E9C541FC42D63005F5852 /* SCSaveToCameraRollOperation.m */,
-				4B5E9C551FC42D63005F5852 /* SCImageView.h */,
-				4B5E9C561FC42D63005F5852 /* SCSampleBufferHolder.h */,
-				4B5E9C571FC42D63005F5852 /* SCFilterImageView.m */,
-				4B5E9C581FC42D63005F5852 /* SCAudioTools.m */,
-				4B5E9C591FC42D63005F5852 /* SCAssetExportSession.m */,
-				4B5E9C5A1FC42D63005F5852 /* SCRecordSession.h */,
-				4B5E9C5B1FC42D63005F5852 /* SCVideoConfiguration.m */,
-				4B5E9C5C1FC42D63005F5852 /* SCFilter.h */,
-				4B5E9C5D1FC42D63005F5852 /* SCRecorderTools.h */,
-				4B5E9C5E1FC42D63005F5852 /* SCSwipeableFilterView.m */,
-				4B5E9C5F1FC42D63005F5852 /* SCRecorderDelegate.h */,
-				4B5E9C601FC42D63005F5852 /* SCRecordSession_Internal.h */,
-				4B5E9C611FC42D63005F5852 /* SCRecorder.m */,
-				4B5E9C621FC42D63005F5852 /* SCPlayer.m */,
-				4B5E9C631FC42D63005F5852 /* SCRecorderToolsView.h */,
-				4B5E9C641FC42D63005F5852 /* SCProcessingQueue.h */,
 				4B5E9C651FC42D63005F5852 /* NSURL+SCSaveToCameraRoll.h */,
-				4B5E9C661FC42D63005F5852 /* SCIOPixelBuffers.m */,
+				4B5E9C4B1FC42D63005F5852 /* NSURL+SCSaveToCameraRoll.m */,
+				4B5E9C451FC42D63005F5852 /* SCAssetExportSession.h */,
+				4B5E9C591FC42D63005F5852 /* SCAssetExportSession.m */,
 				4B5E9C671FC42D63005F5852 /* SCAudioConfiguration.h */,
-				4B5E9C681FC42D63005F5852 /* SCRecorderHeader.h */,
-				4B5E9C691FC42D63005F5852 /* SCRecorderFocusTargetView.h */,
-				4B5E9C6A1FC42D63005F5852 /* SCVideoPlayerView.m */,
-				4B5E9C6B1FC42D63005F5852 /* SCFilter+UIImage.h */,
-				4B5E9C6C1FC42D63005F5852 /* SCSaveToCameraRollOperation.h */,
-				4B5E9C6D1FC42D63005F5852 /* SCPhotoConfiguration.h */,
-				4B5E9C6E1FC42D63005F5852 /* SCFilterAnimation.m */,
-				4B5E9C6F1FC42D63005F5852 /* SCMediaTypeConfiguration.h */,
-				4B5E9C701FC42D63005F5852 /* UIImage+SCSaveToCameraRoll.m */,
+				4B5E9C491FC42D63005F5852 /* SCAudioConfiguration.m */,
+				4B5E9C371FC42D63005F5852 /* SCAudioTools.h */,
+				4B5E9C581FC42D63005F5852 /* SCAudioTools.m */,
+				4B5E9C391FC42D63005F5852 /* SCAudioVideoRecorder-Prefix.pch */,
 				4B5E9C711FC42D63005F5852 /* SCContext.h */,
-				4B5E9C721FC42D63005F5852 /* SCWeakSelectorTarget.h */,
+				4B5E9C4F1FC42D63005F5852 /* SCContext.m */,
+				4B5E9C5C1FC42D63005F5852 /* SCFilter.h */,
+				4B5E9C431FC42D63005F5852 /* SCFilter.m */,
+				4B5E9C6B1FC42D63005F5852 /* SCFilter+UIImage.h */,
+				4B5E9C461FC42D63005F5852 /* SCFilter+UIImage.m */,
+				4B5E9C4C1FC42D63005F5852 /* SCFilter+VideoComposition.h */,
 				4B5E9C731FC42D63005F5852 /* SCFilter+VideoComposition.m */,
+				4B5E9C521FC42D63005F5852 /* SCFilterAnimation.h */,
+				4B5E9C6E1FC42D63005F5852 /* SCFilterAnimation.m */,
+				4B5E9C381FC42D63005F5852 /* SCFilterImageView.h */,
+				4B5E9C571FC42D63005F5852 /* SCFilterImageView.m */,
+				4B5E9C551FC42D63005F5852 /* SCImageView.h */,
+				4B5E9C3A1FC42D63005F5852 /* SCImageView.m */,
+				4B5E9C4A1FC42D63005F5852 /* SCIOPixelBuffers.h */,
+				4B5E9C661FC42D63005F5852 /* SCIOPixelBuffers.m */,
+				4B5E9C6F1FC42D63005F5852 /* SCMediaTypeConfiguration.h */,
+				4B5E9C501FC42D63005F5852 /* SCMediaTypeConfiguration.m */,
+				4B5E9C6D1FC42D63005F5852 /* SCPhotoConfiguration.h */,
+				4B5E9C531FC42D63005F5852 /* SCPhotoConfiguration.m */,
+				4B5E9C3D1FC42D63005F5852 /* SCPlayer.h */,
+				4B5E9C621FC42D63005F5852 /* SCPlayer.m */,
+				4B5E9C641FC42D63005F5852 /* SCProcessingQueue.h */,
+				4B5E9C3C1FC42D63005F5852 /* SCProcessingQueue.m */,
+				4B5E9C3F1FC42D63005F5852 /* SCRecorder.h */,
+				4B5E9C611FC42D63005F5852 /* SCRecorder.m */,
+				4B5E9C5F1FC42D63005F5852 /* SCRecorderDelegate.h */,
+				4B5E9C691FC42D63005F5852 /* SCRecorderFocusTargetView.h */,
+				4B5E9C481FC42D63005F5852 /* SCRecorderFocusTargetView.m */,
+				4B5E9C681FC42D63005F5852 /* SCRecorderHeader.h */,
+				4B5E9C5D1FC42D63005F5852 /* SCRecorderTools.h */,
+				4B5E9C411FC42D63005F5852 /* SCRecorderTools.m */,
+				4B5E9C631FC42D63005F5852 /* SCRecorderToolsView.h */,
+				4B5E9C3E1FC42D63005F5852 /* SCRecorderToolsView.m */,
+				4B5E9C601FC42D63005F5852 /* SCRecordSession_Internal.h */,
+				4B5E9C5A1FC42D63005F5852 /* SCRecordSession.h */,
+				4B5E9C441FC42D63005F5852 /* SCRecordSession.m */,
+				4B5E9C4E1FC42D63005F5852 /* SCRecordSessionSegment.h */,
 				4B5E9C741FC42D63005F5852 /* SCRecordSessionSegment.m */,
+				4B5E9C561FC42D63005F5852 /* SCSampleBufferHolder.h */,
+				4B5E9C3B1FC42D63005F5852 /* SCSampleBufferHolder.m */,
+				4B5E9C6C1FC42D63005F5852 /* SCSaveToCameraRollOperation.h */,
+				4B5E9C541FC42D63005F5852 /* SCSaveToCameraRollOperation.m */,
+				4B5E9C401FC42D63005F5852 /* SCSwipeableFilterView.h */,
+				4B5E9C5E1FC42D63005F5852 /* SCSwipeableFilterView.m */,
+				4B5E9C421FC42D63005F5852 /* SCVideoConfiguration.h */,
+				4B5E9C5B1FC42D63005F5852 /* SCVideoConfiguration.m */,
+				4B5E9C471FC42D63005F5852 /* SCVideoPlayerView.h */,
+				4B5E9C6A1FC42D63005F5852 /* SCVideoPlayerView.m */,
+				4B5E9C721FC42D63005F5852 /* SCWeakSelectorTarget.h */,
+				4B5E9C4D1FC42D63005F5852 /* SCWeakSelectorTarget.m */,
+				4B5E9C511FC42D63005F5852 /* UIImage+SCSaveToCameraRoll.h */,
+				4B5E9C701FC42D63005F5852 /* UIImage+SCSaveToCameraRoll.m */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -2900,6 +2909,38 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		4BE81C5A1FC4343F00F31C83 /* AddTag */ = {
+			isa = PBXGroup;
+			children = (
+				49FD6D8C1BA718C700748E9E /* FeedTagEditView.h */,
+				49FD6D8D1BA718C700748E9E /* FeedTagEditView.m */,
+				4938A11C1BA356D7003F2E65 /* SWAddTagViewVC.h */,
+				4938A11D1BA356D7003F2E65 /* SWAddTagViewVC.m */,
+				4938A11F1BA35DEA003F2E65 /* AddTagSearchViewController.h */,
+				4938A1201BA35DEA003F2E65 /* AddTagSearchViewController.m */,
+				4938A1221BA36213003F2E65 /* AddTagCell.h */,
+				4938A1231BA36213003F2E65 /* AddTagCell.m */,
+			);
+			path = AddTag;
+			sourceTree = "<group>";
+		};
+		4BE81C5E1FC4352300F31C83 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				4BE81C6C1FC4419A00F31C83 /* AVAsset+VideoOrientation.h */,
+				4BE81C6B1FC4419A00F31C83 /* AVAsset+VideoOrientation.m */,
+				4BE81C641FC4352300F31C83 /* PDVideoWhisperRecordBottomView.h */,
+				4BE81C611FC4352300F31C83 /* PDVideoWhisperRecordBottomView.m */,
+				4BE81C5F1FC4352300F31C83 /* PDVideoWhisperRecordProgressView.h */,
+				4BE81C631FC4352300F31C83 /* PDVideoWhisperRecordProgressView.m */,
+				4BE81C601FC4352300F31C83 /* PDVideoWhisperRecordTopView.h */,
+				4BE81C651FC4352300F31C83 /* PDVideoWhisperRecordTopView.m */,
+				4BE81C661FC4352300F31C83 /* PDVideoWhisperRecordVC.h */,
+				4BE81C621FC4352300F31C83 /* PDVideoWhisperRecordVC.m */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 		4BEB6A221D365D59000EA0F5 /* UzysAssetsPickerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -3259,6 +3300,7 @@
 				4BCCC6361C3E409E0056EC83 /* ALLineView.m in Sources */,
 				4BA4DAE21FB5CDD2000A1290 /* PDProgressHUD.m in Sources */,
 				49AD7C291BA77861000405F4 /* FeedData.m in Sources */,
+				4BE81C691FC4352300F31C83 /* PDVideoWhisperRecordProgressView.m in Sources */,
 				4BC0FE681B943B4F003F4723 /* UIView+ALExtension.m in Sources */,
 				4BC0FEB71B944D27003F4723 /* SWHomeFeedRecommandView.m in Sources */,
 				4BCC582C1FBD62DD00E39805 /* SWEditInfoVC.m in Sources */,
@@ -3337,7 +3379,9 @@
 				4B5E9C901FC42D64005F5852 /* SCIOPixelBuffers.m in Sources */,
 				4BB422831B96C5AF00022D63 /* SWFeedInteractLikeCell.m in Sources */,
 				4BC0FE561B943B4F003F4723 /* ALPhotoListFullView.m in Sources */,
+				4BE81C6D1FC4419A00F31C83 /* AVAsset+VideoOrientation.m in Sources */,
 				4BB3F0DB1CE977AA0065CFBC /* SWSettingVC.m in Sources */,
+				4BE81C671FC4352300F31C83 /* PDVideoWhisperRecordBottomView.m in Sources */,
 				493D45021B777C8A00C406A1 /* OHASBasicMarkupParser.m in Sources */,
 				4BC0FEC31B94553D003F4723 /* SWFeedUserInfoHeaderView.m in Sources */,
 				49D83AAF1BC9AB2100A5C26F /* PersonInfoData.m in Sources */,
@@ -3451,6 +3495,7 @@
 				49EBAAE91B794103009DB46F /* LoginResponse.m in Sources */,
 				49D83AAC1BC998A100A5C26F /* RefreshRelationshipAPI.m in Sources */,
 				4B5E9C8C1FC42D64005F5852 /* SCVideoConfiguration.m in Sources */,
+				4BE81C681FC4352300F31C83 /* PDVideoWhisperRecordVC.m in Sources */,
 				49D2FFE71B772CCF0083EE9B /* main.m in Sources */,
 				493D44E81B777C8A00C406A1 /* MJPhotoView.m in Sources */,
 				493D44D71B777C8A00C406A1 /* DWTagList.m in Sources */,
@@ -3501,6 +3546,7 @@
 				4BC809A01D0E8130005F0D50 /* SWEditCoverAPI.m in Sources */,
 				4BB422671B96A72400022D63 /* SWUserAddFollowAPI.m in Sources */,
 				4B0ACE171DA8D52500C2026A /* TTTAttributedLabel.m in Sources */,
+				4BE81C6A1FC4352300F31C83 /* PDVideoWhisperRecordTopView.m in Sources */,
 				493D440E1B772EC100C406A1 /* LoginManager.m in Sources */,
 				4B1F2AF91D0450440031F820 /* SWLoginVC.m in Sources */,
 				493D45121B777C8A00C406A1 /* UIImageEffects.m in Sources */,
