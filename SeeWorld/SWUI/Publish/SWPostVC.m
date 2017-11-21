@@ -11,14 +11,27 @@
 #import "SWSelectLocationVC.h"
 #import "SWPostCheckLinkAPI.h"
 #import "UzysAssetsPickerController.h"
+#import "SWPostLinkView.h"
+#import "SWPostVideoView.h"
+#import "SWPostPreviewVC.h"
+#import <AVKit/AVKit.h>
 @interface SWPostVC ()<SWSelectLocationVCDelegate,UITextViewDelegate,UzysAssetsPickerControllerDelegate,
-SWPostPhotoViewDelagate>
-@property (strong, nonatomic) UITextView  *txtContent;
-@property (strong, nonatomic) UILabel     *lblLength;
-@property (strong, nonatomic) UIView      *toolView;
-@property (nonatomic, strong) SWPostPhotoView *photoView;
+SWPostPhotoViewDelagate,SWPostPreviewVCDelegate>
+@property (nonatomic, strong)UITextView  *txtContent;
+@property (nonatomic, strong)UILabel     *lblLength;
+@property (nonatomic, strong)UIView      *toolView;
+@property (nonatomic, strong)SWPostPhotoView *photoView;
+@property (nonatomic, strong)SWPostLinkView  *linkView;
+@property (nonatomic, strong)SWPostVideoView *videoView;
 @property (nonatomic, assign)BOOL         isPickerChooseForChangeSinglePic;
 @property (nonatomic, assign)NSInteger    pickerChooseForChangeSingleIndex;
+
+@property (nonatomic, assign)BOOL         isPostingLink;
+@property (nonatomic, strong)NSString     *postingLink;
+@property (nonatomic, strong)NSString     *postingLinkTitle;
+@property (nonatomic, strong)NSString     *postingLinkImageUrl;
+@property (nonatomic, assign)BOOL         enableRightBarItem;
+
 
 @end
 
@@ -33,6 +46,7 @@ SWPostPhotoViewDelagate>
   UIButton    *_btnCamera;
   UIButton    *_btnAlbum;
   UIButton    *_btnLBS;
+  
   
 }
 
@@ -133,9 +147,15 @@ SWPostPhotoViewDelagate>
     _btnAlbum.tag = 1;
   }else{
     _images = [NSMutableArray array];
+    _tags = [NSMutableArray array];
     [_btnAlbum setImage:[UIImage imageNamed:@"send_image_export"] forState:UIControlStateNormal];
   }
   [self initImages];
+  
+  _videoView = [[SWPostVideoView alloc] initWithFrame:CGRectMake(12, _photoView.top+5, self.view.width-24, 169)];
+  [self.view addSubview:_videoView];
+  [_videoView addTarget:self action:@selector(onVideoClicked) forControlEvents:UIControlEventTouchUpInside];
+  [self refreshVideo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -145,8 +165,7 @@ SWPostPhotoViewDelagate>
 
 #pragma mark Custom
 - (void)rightBar{
-  BOOL enable = NO;
-  if (enable) {
+  if (_enableRightBarItem) {
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:@"發佈"
                                                                                    color:[UIColor colorWithRGBHex:0x69b4f4]
                                                                                     font:[UIFont systemFontOfSize:16]
@@ -191,39 +210,72 @@ SWPostPhotoViewDelagate>
 }
 
 - (void)refreshImages{
+  if (_images.count == 0) {
+    if (_isPostingLink) {
+      _enableRightBarItem = YES;
+    }else{
+      _enableRightBarItem = NO;
+    }
+  }else{
+    _enableRightBarItem = YES;
+  }
+  
+  [self rightBar];
+  
   [_photoView refreshWithPhotos:_images];
   _btnAlbum.tag = _images.count>0?1:0;
   [_btnAlbum setImage:[UIImage imageNamed:_btnAlbum.tag?@"send_image":@"send_image_export"] forState:UIControlStateNormal];
-
-}
-
-- (void)checkLink{
-  PDProgressHUD *hud = [PDProgressHUD showLoadingInView:self.view];
-  SWPostCheckLinkAPI *api = [[SWPostCheckLinkAPI alloc] init];
-  api.link = _txtContent.text;
-  [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-    [hud removeFromSuperview];
-    NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
-    if ([dic safeDicObjectForKey:@"data"]) {
-      
-    }
-  } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-    [hud removeFromSuperview];
-  }];
+  
 }
 
 - (void)onAlbumClicked{
   if (_images.count == 9) {
     [PDProgressHUD showTip:@"至多上傳9張圖片"];
     return;
+  }else if (_isPostingLink){
+    [PDProgressHUD showTip:@"正在發佈超鏈接"];
+    return;
   }
   
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
-  photoPicker.maximumNumberOfSelectionPhoto = 9-_images.count;
+  if (!(_videoThumbImage && _videoAsset)) {
+    photoPicker.maximumNumberOfSelectionPhoto = 9-_images.count;
+  }
+  if (_images.count == 0) {
+    photoPicker.maximumNumberOfSelectionVideo = 1;
+  }
   _isPickerChooseForChangeSinglePic = NO;
-  [self presentViewController:photoPicker animated:YES completion:^{
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoPicker];
+  [nav.navigationBar setBarTintColor:[UIColor blackColor]];
+  [nav setNavigationBarHidden:YES];
+
+  [self presentViewController:nav animated:YES completion:^{
   }];
+}
+
+- (void)onVideoClicked{
+  AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
+  AVURLAsset *asset = [AVURLAsset assetWithURL:[[_videoAsset defaultRepresentation] url]];
+  AVPlayerItem *item = [AVPlayerItem playerItemWithAsset: asset];
+  AVPlayer * player = [[AVPlayer alloc] initWithPlayerItem: item];
+  vc.player = player;
+  [vc.view setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+  vc.showsPlaybackControls = YES;
+  [self presentViewController:vc animated:YES completion:nil];
+  [player play];
+}
+
+- (void)refreshVideo{
+  if (_videoAsset && _videoThumbImage) {
+    _photoView.hidden = YES;
+    _videoView.hidden = NO;
+    [_videoView refreshWithAsset:_videoAsset thumb:_videoThumbImage];
+    _enableRightBarItem = YES;
+    [self rightBar];
+  }else{
+    _videoView.hidden = YES;
+  }
 }
 
 #pragma mark Post Photo View
@@ -240,36 +292,105 @@ SWPostPhotoViewDelagate>
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
   photoPicker.maximumNumberOfSelectionPhoto = tag<0?(9-_images.count):1;
+  if (_images.count == 0) {
+    photoPicker.maximumNumberOfSelectionVideo = 1;
+  }
+  
   _isPickerChooseForChangeSinglePic = YES;
   _pickerChooseForChangeSingleIndex = tag;
-  [self presentViewController:photoPicker animated:YES completion:^{
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoPicker];
+  [nav.navigationBar setBarTintColor:[UIColor blackColor]];
+  [nav setNavigationBarHidden:YES];
+
+  [self presentViewController:nav animated:YES completion:^{
   }];
 }
 
 #pragma mark Image Picker Delegate
-- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets preview:(BOOL)preview{
   NSMutableArray *imageArray = [NSMutableArray array];
   __weak typeof(self)wSelf = self;
   [assets enumerateObjectsUsingBlock:^(ALAsset *asset, NSUInteger idx, BOOL *stop) {
     struct CGImage *fullScreenImage = asset.defaultRepresentation.fullScreenImage;
     UIImage *image = [UIImage imageWithCGImage:fullScreenImage];
-    if (image && [image isKindOfClass:[UIImage class]]){
-      [imageArray addObject:image];
+    BOOL isVideo = NO;
+    if ([[asset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
+      isVideo = YES;
     }
     
-    if (idx == assets.count-1) {
+    if (isVideo) {
       [wSelf dismissViewControllerAnimated:NO
                                 completion:^{
-                                  if (wSelf.isPickerChooseForChangeSinglePic&& wSelf.pickerChooseForChangeSingleIndex >=0) {
-                                    [wSelf.images replaceObjectAtIndex:wSelf.pickerChooseForChangeSingleIndex withObject:[imageArray safeObjectAtIndex:0]];
-                                    [wSelf refreshImages];
-                                  }else{
-                                    [wSelf.images addObjectsFromArray:imageArray];
-                                    [wSelf initImages];
-                                  }
+                                  wSelf.videoAsset = asset;
+                                  wSelf.videoThumbImage = image;
+                                  [wSelf refreshVideo];
                                 }];
+    }else{
+      if (image && [image isKindOfClass:[UIImage class]]){
+        [imageArray addObject:image];
+      }
+      
+      if (idx == assets.count-1) {
+        if (preview) {
+          SWPostPreviewVC *vc = [[SWPostPreviewVC alloc] init];
+          vc.images = [imageArray mutableCopy];
+          vc.delegate = self;
+          vc.startIndex = 1000+wSelf.images.count;
+          [picker.navigationController setNavigationBarHidden:NO];
+          [picker.navigationController pushViewController:vc animated:YES];
+        }else{
+          [wSelf dismissViewControllerAnimated:NO
+                                    completion:^{
+                                      if (wSelf.isPickerChooseForChangeSinglePic&& wSelf.pickerChooseForChangeSingleIndex >=0) {
+                                        [wSelf.images replaceObjectAtIndex:wSelf.pickerChooseForChangeSingleIndex withObject:[imageArray safeObjectAtIndex:0]];
+                                        [wSelf refreshImages];
+                                      }else{
+                                        [wSelf.images addObjectsFromArray:imageArray];
+                                        [wSelf initImages];
+                                      }
+                                    }];
+          
+        }
+      }
     }
   }];
+}
+
+- (void)postPreviewVCDidPressFinish:(SWPostPreviewVC *)vc images:(NSArray *)images tags:(NSArray *)tags{
+  __weak typeof(self)wSelf = self;
+  [self dismissViewControllerAnimated:NO
+                            completion:^{
+                              if (wSelf.isPickerChooseForChangeSinglePic&& wSelf.pickerChooseForChangeSingleIndex >=0) {
+                                [wSelf.images replaceObjectAtIndex:wSelf.pickerChooseForChangeSingleIndex withObject:[images safeObjectAtIndex:0]];
+                                [wSelf refreshImages];
+                              }else{
+                                [wSelf.images addObjectsFromArray:images];
+                                [wSelf initImages];
+                              }
+                              
+                              for (NSInteger i=0; i<tags.count; i++) {
+                                NSArray *imageTags = [tags safeArrayObjectAtIndex:i];
+                                NSInteger localIndex = -1;
+
+                                for (NSInteger j=0; j<_tags.count; j++) {
+                                  NSArray *localImageTags = [_tags safeArrayObjectAtIndex:j];
+                                  if (localImageTags.count>0 &&
+                                      imageTags.count>0&&
+                                      [[localImageTags[0] safeNumberObjectForKey:@"imageId"] integerValue] ==
+                                      [[imageTags[0] safeNumberObjectForKey:@"imageId"] integerValue]) {
+                                    localIndex = j;
+                                    break;
+                                  }
+                                }
+                                
+                                if (localIndex>=0) {
+                                  [wSelf.tags replaceObjectAtIndex:localIndex withObject:imageTags];
+                                }else{
+                                  [wSelf.tags addObject:imageTags];
+                                }
+                              }
+                            }];
+
 }
 
 #pragma mark Location Delegate
@@ -355,8 +476,55 @@ SWPostPhotoViewDelagate>
     _lblLength.textColor = [UIColor hexChangeFloat:@"8b9cad"];
   }
   
-  if ([self urlString:textView.text] && !_btnCamera.tag && !_btnAlbum.tag) {
-    [self checkLink];
+  if ([self urlString:textView.text] && !_btnCamera.tag && !_btnAlbum.tag && !_isPostingLink) {
+    [self checkLinkWithString:[self urlString:textView.text]];
+  }
+  
+  if (textView.text.length == 0) {
+    _isPostingLink = NO;
+    if (_videoAsset && _videoThumbImage) {
+      _videoView.hidden = NO;
+      _photoView.hidden = YES;
+      _linkView.hidden = YES;
+    }else{
+      _videoView.hidden = YES;
+      _photoView.hidden = NO;
+      _linkView.hidden = YES;
+    }
   }
 }
+
+- (void)checkLinkWithString:(NSString *)string{
+  SWPostCheckLinkAPI *api = [[SWPostCheckLinkAPI alloc] init];
+  api.link = string;
+  __weak typeof(self)wSelf = self;
+  [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+    NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
+    if ([[[dic safeDicObjectForKey:@"data"] safeStringObjectForKey:@"title"] length]>0 && !wSelf.isPostingLink) {
+      wSelf.isPostingLink = YES;
+      wSelf.postingLink = string;
+      wSelf.postingLinkTitle = [[dic safeDicObjectForKey:@"data"] safeStringObjectForKey:@"title"];
+      wSelf.postingLinkImageUrl = [[dic safeDicObjectForKey:@"data"] safeStringObjectForKey:@"image"];
+      
+      [wSelf refreshUrl];
+    }
+  } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+    
+  }];
+}
+
+- (void)refreshUrl{
+  if (!_linkView) {
+    _linkView = [[SWPostLinkView alloc] initWithFrame:CGRectMake(12, _photoView.top+5, self.view.width-24, 62)];
+    [self.view addSubview:_linkView];
+    [self.view bringSubviewToFront:_toolView];
+  }
+  _enableRightBarItem = YES;
+  [self rightBar];
+  _txtContent.text = _postingLink;
+  [_linkView refreshWithTitle:_postingLinkTitle image:_postingLinkImageUrl];
+  _photoView.hidden = YES;
+  _videoView.hidden = YES;
+}
+
 @end

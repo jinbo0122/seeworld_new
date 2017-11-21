@@ -71,10 +71,11 @@ static char UIButtonUserProfilePhotoIndex;
         _btnPhotos[index].customImageView.layer.borderWidth = 0;
         _btnPhotos[index].photoIndex = @(index);
       }else{
-        [_btnPhotos[index].customImageView setImage:[UIImage imageNamed:@""]];
+        UIImage *addImage = [UIImage imageNamed:@"publish_addphoto"];
+        [_btnPhotos[index].customImageView setImage:addImage];
         _btnPhotos[index].customImageView.contentMode = UIViewContentModeCenter;
         _btnPhotos[index].customImageView.layer.borderWidth = 0.5;
-        if (index>0 && !_btnPhotos[index-1].customImageView.image) {
+        if (index>0 && [_btnPhotos[index-1].customImageView.image isEqual:addImage]) {
           _btnPhotos[index].hidden = YES;
         }
         _btnPhotos[index].photoIndex = nil;

@@ -1,19 +1,19 @@
 //
-//  AddTagViewController.m
+//  SWAddTagViewVC.m
 //  SeeWorld
 //
 //  Created by liufz on 15/9/12.
 //  Copyright (c) 2015年 SeeWorld. All rights reserved.
 //
 
-#import "AddTagViewController.h"
+#import "SWAddTagViewVC.h"
 #import "ComposeViewController.h"
 #import "WTTagView.h"
 #import "WTTagViewItem.h"
 #import "WTTag.h"
 #import "AddTagSearchViewController.h"
 
-@interface AddTagViewController ()<WTTagViewDataSouce, WTTagViewDelegate>
+@interface SWAddTagViewVC ()<WTTagViewDataSouce, WTTagViewDelegate>
 @property (nonatomic, strong) WTTagView *tagView;
 @property (nonatomic, strong) UILabel *lblAdd;
 @property (nonatomic, strong) UILabel *lblInfo;
@@ -24,7 +24,7 @@
 @property (nonatomic, assign) CGRect imageFrame;
 @end
 
-@implementation AddTagViewController
+@implementation SWAddTagViewVC
 
 - (NSMutableArray *)addedTags
 {
@@ -39,6 +39,7 @@
   [super viewDidLoad];
   [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
   [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+  self.view.backgroundColor = [UIColor whiteColor];
   _tagView = [[WTTagView alloc] initWithFrame:CGRectMake(0, 20 + iOSTopHeight, UIScreenWidth, UIScreenWidth)];
   [self.view addSubview:[ALLineView lineWithFrame:_tagView.frame colorHex:0xffffff]];
   [self.view addSubview:_tagView];
@@ -71,7 +72,7 @@
   
   _lblInfo = [UILabel initWithFrame:CGRectZero
                             bgColor:[UIColor clearColor]
-                          textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
+                          textColor:[UIColor colorWithRGBHex:0x4a9ced]
                                text:@"點擊圖片加入標籤"
                       textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:18]];
   [_lblInfo sizeToFit];
@@ -79,12 +80,12 @@
   
   _icon.left = (self.view.width-_icon.width-12-_lblInfo.width)/2.0;
   _lblInfo.left = _icon.right+12;
-  _icon.top = _lblInfo.top = self.view.height-51-42-45-18-18;
+  _icon.top = _lblInfo.top = self.view.height-51-42-45-18-18 - iphoneXBottomAreaHeight;
   _icon.top+=2;
   
-  _lblIntro = [UILabel initWithFrame:CGRectMake(0, self.view.height-51-42-18, self.view.width, 18)
+  _lblIntro = [UILabel initWithFrame:CGRectMake(0, _lblInfo.bottom+5, self.view.width, 18)
                              bgColor:[UIColor clearColor]
-                           textColor:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]
+                           textColor:[UIColor colorWithRGBHex:0x4a9ced]
                                 text:@"標記品牌、地點或者人物"
                        textAlignment:NSTextAlignmentCenter font:[UIFont systemFontOfSize:18]];
   [self.view addSubview:_lblIntro];
@@ -99,22 +100,38 @@
   _lblAdd.left = (self.view.width-_lblAdd.width)/2.0;
   [self.view addSubview:_lblAdd];
   
-  self.navigationItem.backBarButtonItem = nil;
+  self.navigationItem.leftBarButtonItem = [UIBarButtonItem loadLeftBarButtonItemWithTitle:SWStringCancel
+                                                                                    color:[UIColor colorWithRGBHex:0x55acef]
+                                                                                     font:[UIFont systemFontOfSize:16]
+                                                                                   target:self
+                                                                                   action:@selector(onCancel)];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"添加標籤" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
+  self.navigationItem.rightBarButtonItem = [UIBarButtonItem loadBarButtonItemWithTitle:SWStringOkay
+                                                                                 color:[UIColor colorWithRGBHex:0x55acef]
+                                                                                  font:[UIFont systemFontOfSize:16]
+                                                                                target:self
+                                                                                action:@selector(onOkay)];
   self.title = @" ";
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-  [super viewWillAppear:animated navigationBarHidden:YES tabBarHidden:YES];
+  [super viewWillAppear:animated navigationBarHidden:NO tabBarHidden:YES];
+}
+
+- (void)onOkay{
+  [self nextStepClick:nil];
+}
+
+- (void)onCancel{
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)backClick:(id)sender {
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)nextStepClick:(id)sender {
-  
-  if (self.addedTags.count == 0)
-  {
+  if (self.addedTags.count == 0){
     [[[SWAlertView alloc] initWithTitle:@"請至少添加一個標籤"
                              cancelText:SWStringOkay
                             cancelBlock:^{

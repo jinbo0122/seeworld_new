@@ -15,11 +15,11 @@
 @implementation AddTagCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
   if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-    self.contentView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     
     _hotTagLabelText = [UILabel initWithFrame:CGRectMake(15, 12, 0, 0)
                                       bgColor:[UIColor clearColor]
-                                    textColor:[UIColor colorWithRGBHex:0x8B9CAD]
+                                    textColor:[UIColor colorWithRGBHex:0x28323d]
                                          text:@""
                                 textAlignment:NSTextAlignmentLeft
                                          font:[UIFont systemFontOfSize:16]];

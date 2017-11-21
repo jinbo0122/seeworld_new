@@ -10,4 +10,8 @@
 
 @interface SWPostVC : ALBaseVC
 @property(nonatomic, strong)NSMutableArray *images;
+@property(nonatomic, strong)NSMutableArray *tags;
+
+@property(nonatomic, strong)UIImage        *videoThumbImage;
+@property(nonatomic, strong)ALAsset        *videoAsset;
 @end

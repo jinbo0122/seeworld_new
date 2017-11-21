@@ -10,12 +10,13 @@
 #import "AppDelegate.h"
 #import "UzysAssetsPickerController.h"
 #import "Macros.h"
-#import "AddTagViewController.h"
+#import "SWAddTagViewVC.h"
 #import <INTULocationManager/INTULocationManager.h>
 #import "SWPostEnterView.h"
 #import "SWMineVC.h"
 #import "SWChatListVC.h"
 #import "SWPostVC.h"
+#import "SWPostPreviewVC.h"
 #define kTag_TabBar_Base 0
 #define kTag_TabBar_FeedList kTag_TabBar_Base + 1
 #define kTag_TabBar_Discovertory kTag_TabBar_Base + 2
@@ -23,8 +24,8 @@
 #define kTag_TabBar_Message kTag_TabBar_Base + 3
 #define kTag_TabBar_Me kTag_TabBar_Base + 5
 
-@interface TabViewController ()<UITabBarControllerDelegate,UzysAssetsPickerControllerDelegate,SWPostEnterViewDelegate>
-{
+@interface TabViewController ()<UITabBarControllerDelegate,UzysAssetsPickerControllerDelegate,
+SWPostEnterViewDelegate,SWPostPreviewVCDelegate>{
   UIViewController *_tuPFEditEntryController;
 }
 
@@ -50,7 +51,7 @@
 - (void)initControllers
 {
   self.delegate = self;
-    
+  
   self.noticeVC = [[SWNoticeVC alloc] init];
   self.noticeNav = [[UINavigationController alloc] initWithRootViewController:self.noticeVC];
   
@@ -113,7 +114,7 @@
   [self setTabbarItemInset:meItem];
   meItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   
-  self.viewControllers = @[feedListViewCotroller, discovertoryCotroller, _msgNav, _noticeNav, _mineNav];  
+  self.viewControllers = @[feedListViewCotroller, discovertoryCotroller, _msgNav, _noticeNav, _mineNav];
 }
 
 - (void)viewDidLoad
@@ -146,11 +147,11 @@
     _msgDot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tab_pubup_notice"]];
     _msgDot.frame = CGRectMake(UIScreenWidth *5.1/10.0 + 15, -5, 26, 26);
     _lblMsgDot = [UILabel initWithFrame:CGRectMake(0, 0, _msgDot.width, 24)
-                             bgColor:[UIColor clearColor]
-                           textColor:[UIColor whiteColor]
-                                text:msgNum>99?@"...":[@(msgNum) stringValue]
-                       textAlignment:NSTextAlignmentCenter
-                                font:[UIFont systemFontOfSize:12]];
+                                bgColor:[UIColor clearColor]
+                              textColor:[UIColor whiteColor]
+                                   text:msgNum>99?@"...":[@(msgNum) stringValue]
+                          textAlignment:NSTextAlignmentCenter
+                                   font:[UIFont systemFontOfSize:12]];
     [_msgDot addSubview:_lblMsgDot];
     [self.tabBar addSubview:_msgDot];
     _msgDot.hidden = msgNum==0;
@@ -254,7 +255,10 @@
   photoPicker.maximumNumberOfSelectionVideo = 1;
   photoPicker.maximumNumberOfSelectionPhoto = 9;
   _photoPicker = photoPicker;
-  [self presentViewController:photoPicker animated:YES completion:^{
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoPicker];
+  [nav.navigationBar setBarTintColor:[UIColor blackColor]];
+  [nav setNavigationBarHidden:YES];
+  [self presentViewController:nav animated:YES completion:^{
   }];
 }
 
@@ -278,29 +282,66 @@
 
 
 #pragma mark - UzysAssetsPickerControllerDelegate
-- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets preview:(BOOL)preview{
   NSMutableArray *imageArray = [NSMutableArray array];
   [assets enumerateObjectsUsingBlock:^(ALAsset *asset, NSUInteger idx, BOOL *stop) {
     struct CGImage *fullScreenImage = asset.defaultRepresentation.fullScreenImage;
     UIImage *image = [UIImage imageWithCGImage:fullScreenImage];
-    if (image && [image isKindOfClass:[UIImage class]]){
-      [imageArray addObject:image];
+    BOOL isVideo = NO;
+    if ([[asset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
+      isVideo = YES;
     }
     
-    if (idx == assets.count-1) {
+    if (isVideo) {
       [self dismissViewControllerAnimated:NO
                                completion:^{
                                  SWPostVC *vc = [[SWPostVC alloc] init];
-                                 vc.images = [imageArray mutableCopy];
+                                 vc.videoAsset = asset;
+                                 vc.videoThumbImage = image;
                                  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
                                  [self presentViewController:nav animated:YES completion:nil];
                                }];
+    }else{
+      if (image && [image isKindOfClass:[UIImage class]]){
+        [imageArray addObject:image];
+      }
+      
+      if (idx == assets.count-1) {
+        if (preview) {
+          SWPostPreviewVC *vc = [[SWPostPreviewVC alloc] init];
+          vc.images = [imageArray mutableCopy];
+          vc.delegate = self;
+          vc.startIndex = 1000;
+          [picker.navigationController setNavigationBarHidden:NO];
+          [picker.navigationController pushViewController:vc animated:YES];
+        }else{
+          [self dismissViewControllerAnimated:NO
+                                   completion:^{
+                                     SWPostVC *vc = [[SWPostVC alloc] init];
+                                     vc.images = [imageArray mutableCopy];
+                                     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                                     [self presentViewController:nav animated:YES completion:nil];
+                                   }];
+        }
+      }
     }
   }];
 }
 
 - (void)uzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker{
   
+}
+
+- (void)postPreviewVCDidPressFinish:(SWPostPreviewVC *)previewVC images:(NSArray *)images tags:(NSArray *)tags{
+  __weak typeof(self)wSelf = self;
+  [self dismissViewControllerAnimated:YES
+                           completion:^{
+                             SWPostVC *vc = [[SWPostVC alloc] init];
+                             vc.images = [images mutableCopy];
+                             vc.tags = [tags mutableCopy];
+                             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                             [wSelf presentViewController:nav animated:YES completion:nil];
+                           }];
 }
 
 //保存图片

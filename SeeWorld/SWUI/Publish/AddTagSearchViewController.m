@@ -25,7 +25,7 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  self.view.backgroundColor = [UIColor colorWithRGBHex:0x1f2a38];
+  self.view.backgroundColor = [UIColor whiteColor];
   
   _tagSearchBgView = [[UIView alloc] initWithFrame:CGRectMake(0,20+ iOSTopHeight, self.view.width, 56)];
   [self.view addSubview:_tagSearchBgView];
@@ -37,6 +37,7 @@
   [_btnCancel setTitle:SWStringCancel forState:UIControlStateNormal];
   [_btnCancel addTarget:self action:@selector(cancelClick:) forControlEvents:UIControlEventTouchUpInside];
   [_tagSearchBgView addSubview:_btnCancel];
+  [_btnCancel setTitleColor:[UIColor colorWithRGBHex:0x677689] forState:UIControlStateNormal];
   [_btnCancel.titleLabel setFont:[UIFont systemFontOfSize:16]];
   
   [self.tagTextFeild addTarget:self action:@selector(textFieldEditingChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -45,12 +46,12 @@
   self.tagTextFeild.editingInsetPoint = CGPointMake(10, 0);
   self.tagTextFeild.textInsetPoint = CGPointMake(10, 0);
   
-  _tagTextFeild.textColor = [UIColor whiteColor];
-  _tagTextFeild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"標記品牌/地點/人物"
+  _tagTextFeild.textColor = [UIColor colorWithRGBHex:0x28323d];
+  _tagTextFeild.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"話題、地點、品牌、任務"
                                                                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],
-                                                                                     NSForegroundColorAttributeName:[UIColor whiteColor]}];
+                                                                                     NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x677689]}];
   _tagTextFeild.layer.masksToBounds = YES;
-  _tagTextFeild.layer.borderColor = [UIColor colorWithRGBHex:0x8b9cad].CGColor;
+  _tagTextFeild.layer.borderColor = [UIColor colorWithRGBHex:0x28323d].CGColor;
   _tagTextFeild.layer.borderWidth = 0.5;
   _tagTextFeild.layer.cornerRadius  = 4.0;
   
@@ -60,8 +61,8 @@
   _tagTableView.delegate = self;
   _tagTableView.rowHeight = 44;
   _tagTableView.separatorInset = UIEdgeInsetsZero;
-  _tagTableView.backgroundColor = [UIColor colorWithRGBHex:0x1a2531];
-  _tagTableView.separatorColor = [UIColor colorWithRGBHex:0x2a3847];
+  _tagTableView.backgroundColor = [UIColor whiteColor];
+  _tagTableView.separatorColor = [UIColor colorWithRGBHex:0xdbe0e5];
   [self.view addSubview:_tagTableView];
   
   _hotTags = [NSMutableArray array];

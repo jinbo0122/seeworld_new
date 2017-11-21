@@ -49,7 +49,7 @@
         <!--  -->
         <scene sceneID="kUi-qp-a8R">
             <objects>
-                <viewController storyboardIdentifier="AddTagViewController" title="  " id="akb-ss-Bsy" customClass="AddTagViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SWAddTagViewVC" title="  " id="akb-ss-Bsy" customClass="SWAddTagViewVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6wV-4h-ngK"/>
                         <viewControllerLayoutGuide type="bottom" id="82O-RE-ES5"/>

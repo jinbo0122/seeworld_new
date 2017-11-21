@@ -145,7 +145,7 @@
 - (void)setupLayout
 {
   UzysAppearanceConfig *appearanceConfig = [UzysAppearanceConfig sharedConfig];
-  [self.btnCamera setImage:[UIImage Uzys_imageNamed:appearanceConfig.cameraImageName] forState:UIControlStateNormal];
+  [self.btnCamera setTitle:@"預覽" forState:UIControlStateNormal];
   [self.btnClose setImage:[UIImage Uzys_imageNamed:appearanceConfig.closeImageName] forState:UIControlStateNormal];
   self.btnDone.layer.cornerRadius = 15;
   self.btnDone.clipsToBounds = YES;
@@ -633,22 +633,19 @@
 
 
 #pragma mark - Actions
+- (void)finishPickingAssets{
+  [self finishPickingAssetsWithPreview:NO];
+}
 
-- (void)finishPickingAssets
+- (void)finishPickingAssetsWithPreview:(BOOL)needPreview
 {
   NSMutableArray *assets = [[NSMutableArray alloc] initWithArray:self.orderedSelectedItem];
-  //
-  //    for (NSIndexPath *index in self.orderedSelectedItem)
-  //    {
-  //        [assets addObject:[self.assets objectAtIndex:index.item]];
-  //    }
-  //
   if([assets count]>0)
   {
     UzysAssetsPickerController *picker = (UzysAssetsPickerController *)self;
     
-    if([picker.delegate respondsToSelector:@selector(uzysAssetsPickerController:didFinishPickingAssets:)])
-      [picker.delegate uzysAssetsPickerController:picker didFinishPickingAssets:assets];
+    if([picker.delegate respondsToSelector:@selector(uzysAssetsPickerController:didFinishPickingAssets:preview:)])
+      [picker.delegate uzysAssetsPickerController:picker didFinishPickingAssets:assets preview:needPreview];
     
     [self.orderedSelectedItem removeAllObjects];
     [self setAssetsCountWithSelectedIndexPaths:self.collectionView.indexPathsForSelectedItems];
@@ -903,28 +900,7 @@
   switch (btn.tag) {
     case kTagButtonCamera:
     {
-      if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        NSString *title = NSLocalizedStringFromTable(@"Error", @"UzysAssetsPickerController", nil);
-        NSString *message = NSLocalizedStringFromTable(@"Device has no camera", @"UzysAssetsPickerController", nil);
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [myAlertView show];
-      }
-      else
-      {
-        __weak typeof(self) weakSelf = self;
-        [self presentViewController:self.picker animated:YES completion:^{
-          __strong typeof(self) strongSelf = weakSelf;
-          //카메라 화면으로 가면 강제로 카메라 롤로 변경.
-          NSString *curGroupName =[[strongSelf.assetsGroup valueForProperty:ALAssetsGroupPropertyURL] absoluteString];
-          NSString *cameraRollName = [[strongSelf.groups[0] valueForProperty:ALAssetsGroupPropertyURL] absoluteString];
-          
-          if(![curGroupName isEqualToString:cameraRollName] )
-          {
-            strongSelf.assetsGroup = strongSelf.groups[0];
-            [strongSelf changeGroup:0];
-          }
-        }];
-      }
+      [self finishPickingAssetsWithPreview:YES];
     }
       break;
     case kTagButtonClose:
@@ -963,6 +939,8 @@
   {
     [self changeAssetType:NO endBlock:nil];
   }
+  
+  self.btnCamera.hidden = selectedSegment==1;
 }
 - (void)saveAssetsAction:(NSURL *)assetURL error:(NSError *)error isPhoto:(BOOL)isPhoto {
   if(error)
