@@ -117,9 +117,9 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   self.mineNav.tabBarItem = meItem;
   
   [self setTabbarItemInset:feedListItem];
-  feedListItem.imageInsets = UIEdgeInsetsMake(6.5, 0, -6.5, 0);
+  feedListItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:discovertoryItem];
-  discovertoryItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+  discovertoryItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:messageItem];
   messageItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:noticeItem];

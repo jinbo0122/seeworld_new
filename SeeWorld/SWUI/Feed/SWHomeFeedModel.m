@@ -59,7 +59,7 @@
   __weak typeof(self)wSelf = self;
   SWHomeFeedAPI *homeFeedAPI = [[SWHomeFeedAPI alloc] init];
   homeFeedAPI.lastFeedId = feedId;
-  homeFeedAPI.isExplore = YES;
+  homeFeedAPI.isExplore = _isExplore;
   [homeFeedAPI startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
       NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];

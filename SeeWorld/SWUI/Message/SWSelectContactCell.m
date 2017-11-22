@@ -67,7 +67,7 @@
       break;
     }
   }
-  _iconSelect.backgroundColor = [UIColor colorWithRGBHex:selected?0xa2a2a2:0xffffff];
+  _iconSelect.image = selected?[UIImage imageNamed:@"chooseuser"]:nil;
 }
 
 @end
