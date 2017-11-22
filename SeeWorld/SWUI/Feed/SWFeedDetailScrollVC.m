@@ -265,10 +265,10 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect{
-  ALPhotoListFullView *view = [[ALPhotoListFullView alloc] initWithFrames:@[[NSValue valueWithCGRect:rect]]
+- (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rects:(NSArray *)rects atIndex:(NSInteger)index{
+  ALPhotoListFullView *view = [[ALPhotoListFullView alloc] initWithFrames:rects
                                                                 photoList:[feedItem.feed photoUrlsWithSuffix:FEED_SMALL]
-                                                                    index:0];
+                                                                    index:index];
   [view setFeedItem:feedItem];
   [[UIApplication sharedApplication].delegate.window addSubview:view];
 }

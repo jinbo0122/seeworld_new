@@ -303,8 +303,16 @@ didLongPressLinkWithURL:(NSURL *)url
   if (![self dismissKeyboard]) {
     CGRect rect = [_feedImageView convertRect:_feedImageView.bounds toView:[UIApplication sharedApplication].delegate.window];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressImage:rect:)]) {
-      [self.delegate feedDetailViewDidPressImage:feedItem rect:rect];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressImage:rects:atIndex:)]) {
+      [self.delegate feedDetailViewDidPressImage:feedItem rects:@[[NSValue valueWithCGRect:rect]] atIndex:0];
+    }
+  }
+}
+
+- (void)feedImageViewDidPressImage:(SWFeedItem *)feedItem buttonFrames:(NSArray *)buttonFrames atIndex:(NSInteger)index{
+  if (![self dismissKeyboard]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressImage:rects:atIndex:)]) {
+      [self.delegate feedDetailViewDidPressImage:feedItem rects:buttonFrames atIndex:index];
     }
   }
 }

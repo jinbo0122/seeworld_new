@@ -42,10 +42,11 @@
 @property(nonatomic, strong)NSArray         *originFrames;
 @property(nonatomic, strong)UIButton        *btnShowTag;
 @property(nonatomic, assign)CGSize          imageSize;
-@property(nonatomic, strong)WTTagView       *tagView;
 @end
 
-@implementation ALPhotoListFullView
+@implementation ALPhotoListFullView{
+  WTTagView *_tagView[9];
+}
 - (id)initWithFrames:(NSArray *)frames photoList:(NSArray *)photoList index:(NSInteger)index{
   if(self = [super initWithFrame:CGRectMake(0, 0, UIScreenWidth, UIScreenHeight)]) {
     self.backgroundColor = [UIColor colorWithRGBHex:0x282828 alpha:0.7];
@@ -71,7 +72,7 @@
     [self addSubview:_scrollView];
     [_scrollView setContentOffset:CGPointMake(UIScreenWidth*index, 0)];
     
-    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.height-50, UIScreenWidth, 50)];
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.height-20 - iphoneXBottomAreaHeight, UIScreenWidth, 20)];
     _pageControl.pageIndicatorTintColor = [UIColor colorWithRGBHex:0x323332];
     _pageControl.currentPageIndicatorTintColor = [UIColor colorWithRGBHex:0xffffff];
     _pageControl.numberOfPages = photoList.count;
@@ -79,14 +80,6 @@
     _pageControl.currentPage = index;
     _pageControl.backgroundColor = [UIColor clearColor];
     [self addSubview:_pageControl];
-    
-    _tagView = [[WTTagView alloc] initWithFrame:self.bounds];
-    _tagView.backgroundColor = [UIColor clearColor];
-    _tagView.dataSource = self;
-    _tagView.delegate = self;
-    _tagView.viewMode = WTTagViewModePreview;
-    [self addSubview:_tagView];
-    _tagView.userInteractionEnabled = NO;
     
     for (NSInteger i=0; i<photoList.count; i++) {
       CGRect frame = [[self.originFrames safeObjectAtIndex:i] CGRectValue];
@@ -100,13 +93,24 @@
       zoomImageView.minimumZoomScale = 1.0;
       zoomImageView.zoomScale = 1.0;
       __weak typeof(self)wSelf = self;
+      
+      _tagView[i] = [[WTTagView alloc] initWithFrame:self.bounds];
+      _tagView[i].backgroundColor = [UIColor clearColor];
+      _tagView[i].dataSource = self;
+      _tagView[i].delegate = self;
+      _tagView[i].viewMode = WTTagViewModePreview;
+      [self addSubview:_tagView[i]];
+      _tagView[i].userInteractionEnabled = NO;
+      _tagView[i].left = i*UIScreenWidth;
+      _tagView[i].tag = i;
+      __weak typeof(_tagView[i])tagView = _tagView[i];
       [zoomImageView.imageView sd_setImageWithURL:[NSURL URLWithString:[photoList safeStringObjectAtIndex:i]]
                                         completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                                           [hud hide:YES];
                                           wSelf.imageSize = image.size;
                                           CGFloat height = image.size.height * UIScreenWidth/image.size.width;
-                                          wSelf.tagView.frame = CGRectMake(0, (UIScreenHeight-height)/2.0, UIScreenWidth, height);
-                                          [wSelf.tagView reloadData];
+                                          tagView.frame = CGRectMake(0, (UIScreenHeight-height)/2.0, UIScreenWidth, height);
+                                          [tagView reloadData];
        }];
       __weak typeof(zoomImageView)wZoomImageView = zoomImageView;
       [UIView setAnimationsEnabled:YES];
@@ -129,54 +133,65 @@
 
 - (void)setFeedItem:(SWFeedItem *)feedItem{
   _feedItem = feedItem;
-  _btnShowTag = [[UIButton alloc] initWithFrame:CGRectMake((UIScreenWidth-60)/2.0, UIScreenHeight-80, 60, 60)];
+  _btnShowTag = [[UIButton alloc] initWithFrame:CGRectMake((UIScreenWidth-60)/2.0, UIScreenHeight-80 - iphoneXBottomAreaHeight, 60, 60)];
   [_btnShowTag setImage:[UIImage imageNamed:@"home_btn_tag_off"] forState:UIControlStateNormal];
   [_btnShowTag addTarget:self action:@selector(onShowTagClicked:) forControlEvents:UIControlEventTouchUpInside];
   [self addSubview:_btnShowTag];
   
-  [_tagView reloadData];
-  _tagView.hidden = YES;
+  for (NSInteger i=0; i<feedItem.feed.photos.count; i++) {
+    [_tagView[i] reloadData];
+    _tagView[i].hidden = YES;
+  }
 }
 
 - (void)onShowTagClicked:(UIButton *)button{
   if (button.tag==0) {
     button.tag = 1;
     [_btnShowTag setImage:[UIImage imageNamed:@"home_btn_tag_on"] forState:UIControlStateNormal];
-    _tagView.hidden = NO;
+    for (NSInteger i=0; i<_feedItem.feed.photos.count; i++) {
+      _tagView[i].hidden = NO;
+    }
   }else{
     button.tag = 0;
     [_btnShowTag setImage:[UIImage imageNamed:@"home_btn_tag_off"] forState:UIControlStateNormal];
-    _tagView.hidden = YES;
+    for (NSInteger i=0; i<_feedItem.feed.photos.count; i++) {
+      _tagView[i].hidden = YES;
+    }
   }
 }
 
 #pragma mark - WTTagView DataSource
-//TODO photo
-//- (NSInteger)numberOfTagViewItemsInTagView:(WTTagView *)tagView{
-//  return _feedItem.feed.tags.count;
-//}
-//
-//- (UIView<WTTagViewItemMethods> *)tagView:(WTTagView *)tagView tagViewItemAtIndex:(NSInteger)index
-//{
-//  SWFeedTagItem *tag = _feedItem.feed.tags[index];
-//  WTTagViewItem *tagViewItem = [[WTTagViewItem alloc] init];
-//  tagViewItem.titleText = tag.tagName;
-//  tagViewItem.tagViewItemDirection = 1- [tag.direction integerValue];
-//  tagViewItem.centerPointPercentage = CGPointMake([tag.coord.x floatValue], [tag.coord.y floatValue]);
-//  return tagViewItem;
-//}
-//
-//- (void)tagView:(WTTagView *)tagView didTappedTagViewItem:(UIView<WTTagViewItemMethods> *)tagViewItem atIndex:(NSInteger)index{
-//  [[NSNotificationCenter defaultCenter] postNotificationName:@"onHomeFeedTagClicked" object:nil userInfo:@{@"tag":_feedItem.feed.tags[index]}];
-//
-//  for (SWFeedTagButton *button in [self subviews]) {
-//    if ([button isKindOfClass:[SWFeedTagButton class]]) {
-//      [button removeFromSuperview];
-//    }
-//  }
-//
-//  [self dismissFullScreen];
-//}
+- (NSInteger)numberOfTagViewItemsInTagView:(WTTagView *)tagView{
+  NSInteger index= tagView.tag;
+  SWFeedImageItem *photoItem = [_feedItem.feed.photos safeObjectAtIndex:index];
+  return photoItem.tags.count;
+}
+
+- (UIView<WTTagViewItemMethods> *)tagView:(WTTagView *)tagView tagViewItemAtIndex:(NSInteger)index
+{
+  NSInteger tagViewIndex= tagView.tag;
+  SWFeedImageItem *photoItem = [_feedItem.feed.photos safeObjectAtIndex:tagViewIndex];
+  SWFeedTagItem *tag = photoItem.tags[index];
+  WTTagViewItem *tagViewItem = [[WTTagViewItem alloc] init];
+  tagViewItem.titleText = tag.tagName;
+  tagViewItem.tagViewItemDirection = 1- [tag.direction integerValue];
+  tagViewItem.centerPointPercentage = CGPointMake([tag.coord.x floatValue], [tag.coord.y floatValue]);
+  return tagViewItem;
+}
+
+- (void)tagView:(WTTagView *)tagView didTappedTagViewItem:(UIView<WTTagViewItemMethods> *)tagViewItem atIndex:(NSInteger)index{
+  NSInteger tagViewIndex= tagView.tag;
+  SWFeedImageItem *photoItem = [_feedItem.feed.photos safeObjectAtIndex:tagViewIndex];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"onHomeFeedTagClicked" object:nil userInfo:@{@"tag":photoItem.tags[index]}];
+
+  for (SWFeedTagButton *button in [self subviews]) {
+    if ([button isKindOfClass:[SWFeedTagButton class]]) {
+      [button removeFromSuperview];
+    }
+  }
+
+  [self dismissFullScreen];
+}
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view{
   _btnShowTag.tag = 1;

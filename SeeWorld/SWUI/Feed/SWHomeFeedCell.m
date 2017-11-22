@@ -137,7 +137,7 @@ didLongPressLinkWithURL:(NSURL *)url
   
   NSInteger contentHeight = 0;
   SWFeedType type = feed.feed.type;
-  if (type == SWFeedTypeLink) {
+  if (type == SWFeedTypeLink || [feed.feed.content isEqualToString:@"http://www.qq.com"]) {
     contentHeight = 62;
   }else if (type == SWFeedTypeVideo){
     SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
@@ -244,8 +244,14 @@ didLongPressLinkWithURL:(NSURL *)url
 - (void)feedImageViewDidPressImage:(SWFeedItem *)feedItem{
   CGRect rect = [_feedImageView convertRect:_feedImageView.bounds toView:[UIApplication sharedApplication].delegate.window];
   
-  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressImage:rect:)]) {
-    [self.delegate homeFeedCellDidPressImage:feedItem rect:rect];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressImage:rects:atIndex:)]) {
+    [self.delegate homeFeedCellDidPressImage:feedItem rects:@[[NSValue valueWithCGRect:rect]] atIndex:0];
+  }
+}
+
+- (void)feedImageViewDidPressImage:(SWFeedItem *)feedItem buttonFrames:(NSArray *)buttonFrames atIndex:(NSInteger)index{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressImage:rects:atIndex:)]) {
+    [self.delegate homeFeedCellDidPressImage:feedItem rects:buttonFrames atIndex:index];
   }
 }
 

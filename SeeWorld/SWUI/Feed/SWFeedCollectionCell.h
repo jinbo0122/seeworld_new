@@ -32,6 +32,6 @@
 - (void)feedDetailViewDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row;
 - (void)feedDetailViewDidPressLikeList:(SWFeedItem *)feedItem row:(NSInteger)row;
 - (void)feedDetailViewDidPressTag:(SWFeedTagItem *)tagItem;
-- (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect;
+- (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rects:(NSArray *)rects atIndex:(NSInteger)index;
 - (void)feedDetailViewDidNeedOpenImagePicker:(SWFeedCollectionCell *)cell;
 @end

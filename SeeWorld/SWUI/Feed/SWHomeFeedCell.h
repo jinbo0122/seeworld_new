@@ -27,5 +27,5 @@
 - (void)homeFeedCellDidPressShare:(SWFeedItem *)feedItem row:(NSInteger)row;
 - (void)homeFeedCellDidPressLikeList:(SWFeedItem *)feedItem row:(NSInteger)row;
 - (void)homeFeedCellDidPressTag:(SWFeedTagItem *)tagItem;
-- (void)homeFeedCellDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect;
+- (void)homeFeedCellDidPressImage:(SWFeedItem *)feedItem rects:(NSArray *)rects atIndex:(NSInteger)index;
 @end

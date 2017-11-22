@@ -223,6 +223,7 @@
 		4B5E9CAD1FC42D9E005F5852 /* LyGL2DTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E9CA41FC42D9E005F5852 /* LyGL2DTexture.m */; };
 		4B5E9CAE1FC42D9E005F5852 /* LyGLFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E9CA51FC42D9E005F5852 /* LyGLFrameBuffer.m */; };
 		4B6176D51BBA49FB00887BA2 /* SWPushSyncAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6176D41BBA49FB00887BA2 /* SWPushSyncAPI.m */; };
+		4B71F2951FC5881B00E2BB83 /* SWFeedLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */; };
 		4B7716E71FB98F410006B814 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D81FB98F410006B814 /* RongCallLib.framework */; };
 		4B7716E81FB98F410006B814 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */; };
 		4B7716E91FB98F410006B814 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716DB1FB98F410006B814 /* RongIMLib.framework */; };
@@ -886,6 +887,8 @@
 		4B606F211D93CDFE00B9F9E0 /* SeeWorld.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeeWorld.entitlements; sourceTree = SOURCE_ROOT; };
 		4B6176D31BBA49FB00887BA2 /* SWPushSyncAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPushSyncAPI.h; sourceTree = "<group>"; };
 		4B6176D41BBA49FB00887BA2 /* SWPushSyncAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPushSyncAPI.m; sourceTree = "<group>"; };
+		4B71F2931FC5881B00E2BB83 /* SWFeedLinkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWFeedLinkView.h; sourceTree = "<group>"; };
+		4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWFeedLinkView.m; sourceTree = "<group>"; };
 		4B7716D81FB98F410006B814 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 		4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		4B7716DB1FB98F410006B814 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
@@ -2774,6 +2777,8 @@
 				4BA4D9F71D05288F009521B0 /* SWFeedCommentView.m */,
 				4BC0FEC41B9461D5003F4723 /* SWFeedImageView.h */,
 				4BC0FEC51B9461D5003F4723 /* SWFeedImageView.m */,
+				4B71F2931FC5881B00E2BB83 /* SWFeedLinkView.h */,
+				4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */,
 				4B2534291B9562E900B7F68B /* SWFeedInteractView.h */,
 				4B25342A1B9562E900B7F68B /* SWFeedInteractView.m */,
 				4BC0FEC71B94645F003F4723 /* SWFeedLikeMemberView.h */,
@@ -3538,6 +3543,7 @@
 				4B0ACE171DA8D52500C2026A /* TTTAttributedLabel.m in Sources */,
 				4BE81C6A1FC4352300F31C83 /* PDVideoWhisperRecordTopView.m in Sources */,
 				493D440E1B772EC100C406A1 /* LoginManager.m in Sources */,
+				4B71F2951FC5881B00E2BB83 /* SWFeedLinkView.m in Sources */,
 				4B1F2AF91D0450440031F820 /* SWLoginVC.m in Sources */,
 				493D45121B777C8A00C406A1 /* UIImageEffects.m in Sources */,
 				4BEB6A351D365D59000EA0F5 /* UzysAppearanceConfig.m in Sources */,
