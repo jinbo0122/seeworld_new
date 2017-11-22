@@ -9,5 +9,6 @@
 #import "SWRequestApi.h"
 
 @interface SWHomeFeedAPI : SWRequestApi
+@property(nonatomic, assign)BOOL isExplore;
 @property(nonatomic, strong)NSNumber *lastFeedId;
 @end

@@ -82,7 +82,7 @@
     _lblComment.delegate = self;
     _lblComment.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
     _lblComment.font = [UIFont systemFontOfSize:12];
-    _lblComment.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
+    _lblComment.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x2782D7]};
     _lblComment.lineBreakMode = NSLineBreakByCharWrapping;
     _lblComment.numberOfLines = 0;
     [_bgView addSubview:_lblComment];

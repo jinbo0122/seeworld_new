@@ -16,6 +16,8 @@
 @property(nonatomic, strong)NSNumber       *lastFeedId;
 @property(nonatomic, assign)BOOL            hasMore;
 @property(nonatomic, assign)BOOL            isLoading;
+@property(nonatomic, assign)BOOL            isExplore;
+
 - (void)getLatestFeeds;
 - (void)loadMoreFeeds;
 

@@ -26,6 +26,7 @@
 @property (nonatomic, assign) NSInteger maximumNumberOfSelectionPhoto;
 //--------------------------------------------------------------------
 @property (nonatomic, assign) NSInteger maximumNumberOfSelectionMedia;
+@property (nonatomic, assign) NSInteger defaultSegIndex;
 
 @property (nonatomic, weak) id <UzysAssetsPickerControllerDelegate> delegate;
 + (ALAssetsLibrary *)defaultAssetsLibrary;

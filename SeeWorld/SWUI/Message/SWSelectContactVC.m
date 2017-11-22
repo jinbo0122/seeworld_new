@@ -134,7 +134,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                                  completion:^{
                                                                                    TabViewController *tab = (TabViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
                                                                                    if([tab isKindOfClass:[TabViewController class]]){
-                                                                                     [tab setSelectedIndex:3];
+                                                                                     [tab setSelectedIndex:SWTabIndexMsg];
                                                                                      [tab popChatSetting];
                                                                                    }
                                                                                  }];
@@ -177,7 +177,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                             completion:^{
                                                                               TabViewController *tab = (TabViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
                                                                               if([tab isKindOfClass:[TabViewController class]]){
-                                                                                [tab setSelectedIndex:3];
+                                                                                [tab setSelectedIndex:SWTabIndexMsg];
                                                                                 [tab pushChat:chat];
                                                                               }
                                                                             }];
@@ -199,7 +199,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                              completion:^{
                                TabViewController *tab = (TabViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
                                if([tab isKindOfClass:[TabViewController class]]){
-                                 [tab setSelectedIndex:3];
+                                 [tab setSelectedIndex:SWTabIndexMsg];
                                  [tab pushChat:chat];
                                }
                              }];
@@ -227,7 +227,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                                         completion:^{
                                                                           TabViewController *tab = (TabViewController*)[UIApplication sharedApplication].delegate.window.rootViewController;
                                                                           if([tab isKindOfClass:[TabViewController class]]){
-                                                                            [tab setSelectedIndex:3];
+                                                                            [tab setSelectedIndex:SWTabIndexMsg];
                                                                             [tab pushChat:chat];
                                                                           }
                                                                         }];

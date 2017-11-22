@@ -28,7 +28,7 @@
   self.lblCustom.text = [title stringByAppendingString:num>0?[[NSNumber numberWithInteger:num] stringValue]:@""];
   CGSize textSize = [self.lblCustom.text sizeWithAttributes:@{NSFontAttributeName:self.lblCustom.font}];
   UIImage *image = [UIImage imageNamed:imageName];
-  self.lblCustom.textColor = [UIColor colorWithRGBHex:[imageName isEqualToString:@"home_btn_like_press"]?0x00f8ff:0xffffff];
+  self.lblCustom.textColor = [UIColor colorWithRGBHex:[imageName isEqualToString:@"home_btn_like_press"]?0x55ACEF:0xffffff];
   self.customImageView.image = image;
   self.customImageView.frame = CGRectMake((self.width-image.size.width- (textSize.width>0?(3+textSize.width):0))/2.0,
                                           (self.height-image.size.height)/2.0,

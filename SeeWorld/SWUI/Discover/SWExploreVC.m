@@ -34,6 +34,7 @@ SWHomeFeedCellDelegate,SWFeedInteractVCDelegate,UIDocumentInteractionControllerD
   if (self) {
     self.model = [[SWHomeFeedModel alloc] init];
     self.model.delegate = self;
+    _model.isExplore = YES;
   }
   return self;
 }

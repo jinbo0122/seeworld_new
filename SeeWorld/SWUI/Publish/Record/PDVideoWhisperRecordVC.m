@@ -43,7 +43,7 @@ SWPostPreviewVCDelegate>
   [self.navigationController setNavigationBarHidden:YES];
   self.view.backgroundColor = [UIColor colorWithRGBHex:0x000000];
   [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
-  
+  [[UIApplication sharedApplication] setStatusBarHidden:YES];
   //Add Camera View
   BOOL iPhone4 = UIScreenHeight==480;
   _cameraPreview = [[UIView alloc] initWithFrame:CGRectMake(0, 22.5+iOSTopHeight, self.view.width, self.view.width*(iPhone4?1:(4/3.0)))];
@@ -122,11 +122,13 @@ SWPostPreviewVCDelegate>
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  [[UIApplication sharedApplication] setStatusBarHidden:YES];
   [self resetRecord];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
   [super viewDidDisappear:animated];
+  [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [_recorder stopRunning];
 }
 
@@ -178,6 +180,7 @@ SWPostPreviewVCDelegate>
 - (void)onCloseClicked:(UIButton *)button{
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
+  [[UIApplication sharedApplication] setStatusBarHidden:NO];
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -195,7 +198,8 @@ SWPostPreviewVCDelegate>
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
   photoPicker.maximumNumberOfSelectionVideo = 1;
-  photoPicker.maximumNumberOfSelectionPhoto = 9;
+  photoPicker.maximumNumberOfSelectionPhoto = 9 - (_startIndex-1000);
+  photoPicker.defaultSegIndex = 1;
   _photoPicker = photoPicker;
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoPicker];
   [nav.navigationBar setBarTintColor:[UIColor blackColor]];
@@ -542,9 +546,14 @@ SWPostPreviewVCDelegate>
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
-  
+  [[UIApplication sharedApplication] setStatusBarHidden:YES];
   [self prepareSession];
   
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+  [super viewWillDisappear:animated];
+  [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void) dealloc {

@@ -77,7 +77,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
   [self.view addSubview:_avatarView];
   
   _lbsView = [[UIView alloc] initWithFrame:CGRectMake(_avatarView.right+24, _avatarView.top, self.view.width-10-24-_avatarView.right, _avatarView.height)];
-  _iconLBS = [[UIImageView alloc] initWithFrame:CGRectMake(0, (_lbsView.height-14)/2.0, 12, 14)];
+  _iconLBS = [[UIImageView alloc] initWithFrame:CGRectMake(0, (_lbsView.height-24)/2.0, 26, 24)];
   _iconLBS.image = [UIImage imageNamed:@"send_location"];
   [_lbsView addSubview:_iconLBS];
   

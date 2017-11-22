@@ -127,7 +127,7 @@
                                   textAlignment:NSTextAlignmentRight
                                            font:[UIFont systemFontOfSize:17]];
   [_btnIntro addSubview:_btnIntro.lblCustom];
-  [_btnGender addTarget:self action:@selector(onIntroClicked) forControlEvents:UIControlEventTouchUpInside];
+  [_btnIntro addTarget:self action:@selector(onIntroClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {

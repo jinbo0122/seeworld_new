@@ -219,6 +219,10 @@
     {
       self.segmentedControl.hidden = NO;
       self.labelSelectedMedia.hidden = YES;
+      if (_defaultSegIndex) {
+        [self.segmentedControl setSelectedSegmentIndex:_defaultSegIndex];
+        [self changeAssetType:NO endBlock:nil];
+      }
     }
     
   }
@@ -609,9 +613,9 @@
 {
   BOOL didExceedMaximumNumberOfSelection = [collectionView indexPathsForSelectedItems].count >= self.maximumNumberOfSelection;
   if (didExceedMaximumNumberOfSelection) {
-    [self.orderedSelectedItem removeAllObjects];
     [self setAssetsCountWithSelectedIndexPaths:collectionView.indexPathsForSelectedItems];
-    [collectionView reloadData];
+    [PDProgressHUD showTip:[NSString stringWithFormat:@"最多可選擇%@張照片",@(self.maximumNumberOfSelection)]];
+    return NO;
   }
   return YES;
 }

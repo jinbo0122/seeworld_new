@@ -50,7 +50,7 @@ UITableViewDelegate,UITableViewDataSource,SWFeedInteractCommentCellDelegate>
     _lblContent.delegate = self;
     _lblContent.textColor = [UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX];
     _lblContent.font = [UIFont systemFontOfSize:16];
-    _lblContent.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x00f8ff]};
+    _lblContent.linkAttributes = @{NSForegroundColorAttributeName:[UIColor colorWithRGBHex:0x2782D7]};
     _lblContent.lineBreakMode = NSLineBreakByCharWrapping;
     _lblContent.numberOfLines = 0;
     [_bgHeaderView addSubview:_lblContent];

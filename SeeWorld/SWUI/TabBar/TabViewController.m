@@ -63,19 +63,31 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   SWHomeFeedVC *homeFeedVC = [[SWHomeFeedVC alloc] init];
   UINavigationController *feedListViewCotroller = [[UINavigationController alloc] initWithRootViewController:homeFeedVC];
   
+  UIImage *homeImage = [UIImage imageNamed:@"home"];
+//  UIImage *scaledHomeImage = [UIImage imageWithImage:homeImage scaledToSize:CGSizeMake(23.5, 23.5)];
+  
   UITabBarItem *feedListItem = [[UITabBarItem alloc] initWithTitle:@""
-                                                             image:[[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                             image:[homeImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                tag:kTag_TabBar_FeedList];
-  feedListItem.selectedImage = [[UIImage imageNamed:@"home_highlight"]
-                                imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+  UIImage *selectHomeImage = [UIImage imageNamed:@"home_highlight"];
+//  UIImage *scaledSelectHomeImage = [UIImage imageWithImage:selectHomeImage scaledToSize:CGSizeMake(23.5, 23.5)];
+
+  
+  feedListItem.selectedImage = [selectHomeImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   feedListViewCotroller.tabBarItem = feedListItem;
   
+  UIImage *exploreImage = [UIImage imageNamed:@"discover"];
+//  UIImage *scaledExploreImage = [UIImage imageWithImage:exploreImage scaledToSize:CGSizeMake(23, 23)];
+
   UITabBarItem *discovertoryItem = [[UITabBarItem alloc] initWithTitle:@""
-                                                                 image:[[UIImage imageNamed:@"discover"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
+                                                                 image:[exploreImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]
                                                                    tag:kTag_TabBar_Discovertory];
   SWExploreVC *discovertoryVC = [[SWExploreVC alloc] init];
   UINavigationController *discovertoryCotroller = [[UINavigationController alloc] initWithRootViewController:discovertoryVC];
-  discovertoryItem.selectedImage = [[UIImage imageNamed:@"discover_highlight"]
+  UIImage *selectExploreImage = [UIImage imageNamed:@"discover_highlight"];
+//  UIImage *scaledSelectExploreImage = [UIImage imageWithImage:selectExploreImage scaledToSize:CGSizeMake(23, 23)];
+
+  discovertoryItem.selectedImage = [selectExploreImage
                                     imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
   discovertoryCotroller.tabBarItem = discovertoryItem;
   
@@ -105,9 +117,9 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   self.mineNav.tabBarItem = meItem;
   
   [self setTabbarItemInset:feedListItem];
-  feedListItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+  feedListItem.imageInsets = UIEdgeInsetsMake(6.5, 0, -6.5, 0);
   [self setTabbarItemInset:discovertoryItem];
-  discovertoryItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
+  discovertoryItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
   [self setTabbarItemInset:messageItem];
   messageItem.imageInsets = UIEdgeInsetsMake(5, 0, -5, 0);
   [self setTabbarItemInset:noticeItem];

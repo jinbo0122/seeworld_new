@@ -10,7 +10,7 @@
 
 @implementation SWHomeFeedAPI
 - (NSString *)requestUrl{
-  return @"/feeds";
+  return _isExplore?@"/feeds/activity":@"/feeds";
 }
 
 - (YTKRequestMethod)requestMethod {
