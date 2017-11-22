@@ -123,6 +123,8 @@
 	<string>點擊同意以便SeeWolrd使用麥克風</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>點擊同意以便SeeWolrd使用相冊</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>允許SeeWolrd創建相冊</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
