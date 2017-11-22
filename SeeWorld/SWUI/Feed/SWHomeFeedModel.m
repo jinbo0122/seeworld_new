@@ -19,6 +19,13 @@
 - (id)init{
   if (self = [super init]) {
     self.feeds = [NSMutableArray array];
+  }
+  return self;
+}
+
+- (void)setIsExplore:(BOOL)isExplore{
+  _isExplore = isExplore;
+  if (!isExplore) {
     NSDictionary *feeds = [NSDictionary readFromPlistFile:@"HomeFeedData_1_4_0"];
     if (feeds) {
       SWHomeFeedItem *homeFeedItem = [SWHomeFeedItem homeFeedItemFromDic:feeds];
@@ -35,7 +42,6 @@
       }
     }
   }
-  return self;
 }
 
 - (void)getLatestFeeds{
@@ -70,7 +76,9 @@
       
       if ([feedId integerValue]==0) {
         [wSelf.feeds removeAllObjects];
-        [[dic safeDicObjectForKey:@"data"] writeToPlistFile:@"HomeFeedData_1_4_0"];
+        if (!wSelf.isExplore) {
+          [[dic safeDicObjectForKey:@"data"] writeToPlistFile:@"HomeFeedData_1_4_0"];
+        }
       }
       
       [wSelf.feeds addObjectsFromArray:homeFeedItem.feeds];

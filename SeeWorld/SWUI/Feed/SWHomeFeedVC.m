@@ -309,7 +309,7 @@ SWHomeHeaderViewDelegate>
 }
 
 - (void)homeFeedCellDidPressUrl:(NSURL *)url row:(NSInteger)row{
-  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  ALWebVC *vc = [[ALWebVC alloc] init];
   vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
@@ -424,6 +424,22 @@ SWHomeHeaderViewDelegate>
                                                                     index:index];
   [view setFeedItem:feedItem];
   [[UIApplication sharedApplication].delegate.window addSubview:view];
+}
+
+- (void)homeFeedCellDidPressUrl:(SWFeedItem *)feedItem{
+  ALWebVC *vc = [[ALWebVC alloc] init];
+  vc.url = feedItem.feed.link.linkUrl;
+  vc.hidesBottomBarWhenPushed = YES;
+  [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeFeedCellDidPressVideo:(SWFeedItem *)feedItem row:(NSInteger)row{
+  SWFeedDetailScrollVC *vc = [[SWFeedDetailScrollVC alloc] init];
+  vc.model = _model;
+  vc.currentIndex = row;
+  vc.hidesBottomBarWhenPushed = YES;
+  vc.needEnableKeyboardOnLoad = NO;
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark Feed Interact VC Delegate

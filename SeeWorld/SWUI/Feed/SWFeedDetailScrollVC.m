@@ -38,6 +38,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   if (isMenuVisible) {
     [[UIMenuController sharedMenuController] setMenuVisible:NO animated:NO];
   }
+  [self pauseVideo];
 }
 
 - (void)viewDidLoad {
@@ -107,6 +108,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
                                 [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
                                   [wSelf.model.feeds safeRemoveObjectAtIndex:wSelf.currentIndex];
                                   [wSelf.collectionView reloadData];
+                                  [wSelf pauseVideo];
                                   if (wSelf.model.feeds.count==0) {
                                     [wSelf.navigationController popViewControllerAnimated:YES];
                                   }
@@ -132,12 +134,27 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 - (void)horizontalScrollViewCell:(SWFeedCollectionCell *)cell cellAtIndexPath:(NSIndexPath *)indexPath{
   SWFeedItem *feedItem = [self.model.feeds safeObjectAtIndex:indexPath.row];
   cell.delegate = self;
-  [cell refreshFeedView:feedItem row:indexPath.row];
+  [cell refreshFeedView:feedItem row:indexPath.row currentIndex:_currentIndex];
 }
 
 
 - (void)horizontalScrollView:(SWFeedCollectionView *)hScrollView didScrollToIndex:(NSInteger)index{
   self.currentIndex = index;
+  [self resumeVideo];
+}
+
+- (void)horizontalScrollViewWillBeginDragging:(SWFeedCollectionView *)hScrollView{
+  [self pauseVideo];
+}
+
+- (void)pauseVideo{
+  SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+  [cell stopVideo];
+}
+
+- (void)resumeVideo{
+  SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_currentIndex inSection:0]];
+  [cell resumeVideo];
 }
 
 #pragma mark Cell Delegate
@@ -149,7 +166,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   [self.model likeClickedByRow:row];
   
   SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-  [cell refreshFeedView:[self.model.feeds safeObjectAtIndex:row] row:row];
+  [cell refreshFeedView:[self.model.feeds safeObjectAtIndex:row] row:row currentIndex:_currentIndex];
 }
 
 - (void)feedDetailViewDidPressReply:(SWFeedItem *)feedItem row:(NSInteger)row{
@@ -157,7 +174,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 }
 
 - (void)feedDetailViewDidPressUrl:(NSURL *)url row:(NSInteger)row{
-  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  ALWebVC *vc = [[ALWebVC alloc] init];
   vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
@@ -280,6 +297,17 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
   [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
   [picker setDelegate:self];
   [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)feedDetailViewDidPressVideo:(SWFeedItem *)feedItem{
+//  SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0]];
+//  [cell playVideo];
+}
+
+- (void)feedDetailViewDidPressUrl:(SWFeedItem *)feedItem{
+  ALWebVC *vc = [[ALWebVC alloc] init];
+  vc.url = feedItem.feed.link.linkUrl;
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark Photo Delegate

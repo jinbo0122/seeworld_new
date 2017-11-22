@@ -19,8 +19,12 @@
 @property(nonatomic, strong)SWFeedInteractModel       *interactModel;
 @property(nonatomic, strong)SWCommentInputView        *commentInputView;
 
-- (void)refreshFeedView:(SWFeedItem *)feed row:(NSInteger)row;
+- (void)refreshFeedView:(SWFeedItem *)feed row:(NSInteger)row currentIndex:(NSInteger)currentIndex;
 + (CGFloat)heightByFeed:(SWFeedItem *)feed;
+
+- (void)playVideo;
+- (void)stopVideo;
+- (void)resumeVideo;
 @end
 
 
@@ -34,4 +38,7 @@
 - (void)feedDetailViewDidPressTag:(SWFeedTagItem *)tagItem;
 - (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rects:(NSArray *)rects atIndex:(NSInteger)index;
 - (void)feedDetailViewDidNeedOpenImagePicker:(SWFeedCollectionCell *)cell;
+- (void)feedDetailViewDidPressVideo:(SWFeedItem *)feedItem;
+- (void)feedDetailViewDidPressUrl:(SWFeedItem *)feedItem;
+
 @end

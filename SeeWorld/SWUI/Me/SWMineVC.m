@@ -79,13 +79,14 @@ SWFeedInteractVCDelegate>
     [_headerView refreshWithUser:[SWConfigManager sharedInstance].user];
   }
   _tableView.tableHeaderView = _headerView;
-  _model.userId = self.user?[self.user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
   [_model loadCache];
   [_model getLatestTagFeeds];
-  
-  if (self.user) {
-    [self refreshUserInfo];
-  }
+}
+
+- (void)setUser:(SWFeedUserItem *)user{
+  _user = user;
+  _model.userId = _user?[_user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
+  [self refreshUserInfo];
 }
 
 - (void)refreshUserInfo{
@@ -370,7 +371,7 @@ SWFeedInteractVCDelegate>
 }
 
 - (void)homeFeedCellDidPressUrl:(NSURL *)url row:(NSInteger)row{
-  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  ALWebVC *vc = [[ALWebVC alloc] init];
   vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];
@@ -485,6 +486,22 @@ SWFeedInteractVCDelegate>
                                                                     index:index];
   [view setFeedItem:feedItem];
   [[UIApplication sharedApplication].delegate.window addSubview:view];
+}
+
+- (void)homeFeedCellDidPressUrl:(SWFeedItem *)feedItem{
+  ALWebVC *vc = [[ALWebVC alloc] init];
+  vc.url = feedItem.feed.link.linkUrl;
+  vc.hidesBottomBarWhenPushed = YES;
+  [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)homeFeedCellDidPressVideo:(SWFeedItem *)feedItem row:(NSInteger)row{
+  SWFeedDetailScrollVC *vc = [[SWFeedDetailScrollVC alloc] init];
+  vc.model = _model;
+  vc.currentIndex = row;
+  vc.hidesBottomBarWhenPushed = YES;
+  vc.needEnableKeyboardOnLoad = NO;
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark Feed Interact VC Delegate

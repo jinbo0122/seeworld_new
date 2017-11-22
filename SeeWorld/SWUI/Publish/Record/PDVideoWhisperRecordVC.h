@@ -12,6 +12,7 @@
 @property(nonatomic, weak)id<PDVideoWhisperRecordVCDelegate>delegate;
 @property(nonatomic, assign)NSInteger startIndex;
 @property(nonatomic, assign)BOOL fromPostVC;
+@property(nonatomic, assign)BOOL isPostingVideo;
 
 @end
 

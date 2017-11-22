@@ -354,6 +354,7 @@
 		4BCCC6321C3E2FB70056EC83 /* SWChatSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCC6311C3E2FB70056EC83 /* SWChatSettingCell.m */; };
 		4BCCC6361C3E409E0056EC83 /* ALLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCC6351C3E409E0056EC83 /* ALLineView.m */; };
 		4BCCC6391C3E501F0056EC83 /* SWEditDiscussionNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCC6381C3E501F0056EC83 /* SWEditDiscussionNameVC.m */; };
+		4BCF8FE51FC5DFAC00BFD993 /* SWVideoPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF8FE41FC5DFAC00BFD993 /* SWVideoPlayerManager.m */; };
 		4BD3AAD91D54A4170010FA84 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3AAB61D54A4170010FA84 /* MASCompositeConstraint.m */; };
 		4BD3AADA1D54A4170010FA84 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3AAB91D54A4170010FA84 /* MASConstraint.m */; };
 		4BD3AADB1D54A4170010FA84 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD3AABB1D54A4170010FA84 /* MASConstraintMaker.m */; };
@@ -1119,6 +1120,9 @@
 		4BCCC6351C3E409E0056EC83 /* ALLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALLineView.m; sourceTree = "<group>"; };
 		4BCCC6371C3E501F0056EC83 /* SWEditDiscussionNameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWEditDiscussionNameVC.h; sourceTree = "<group>"; };
 		4BCCC6381C3E501F0056EC83 /* SWEditDiscussionNameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWEditDiscussionNameVC.m; sourceTree = "<group>"; };
+		4BCF8FE01FC5DC6800BFD993 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		4BCF8FE31FC5DFAC00BFD993 /* SWVideoPlayerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWVideoPlayerManager.h; sourceTree = "<group>"; };
+		4BCF8FE41FC5DFAC00BFD993 /* SWVideoPlayerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWVideoPlayerManager.m; sourceTree = "<group>"; };
 		4BD3AAB51D54A4170010FA84 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		4BD3AAB61D54A4170010FA84 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		4BD3AAB71D54A4170010FA84 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -2754,6 +2758,8 @@
 		4BC0FEB01B94480F003F4723 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4BCF8FE31FC5DFAC00BFD993 /* SWVideoPlayerManager.h */,
+				4BCF8FE41FC5DFAC00BFD993 /* SWVideoPlayerManager.m */,
 				4BAC2A921FB6191700FBEE97 /* SWFeedModelProtocol.h */,
 				4BC0FEB21B944B59003F4723 /* SWHomeFeedModel.h */,
 				4BC0FEB31B944B59003F4723 /* SWHomeFeedModel.m */,
@@ -2994,6 +3000,7 @@
 		7556735221E06D1D32064C05 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4BCF8FE01FC5DC6800BFD993 /* SafariServices.framework */,
 				4B5E9C111FC4072A005F5852 /* AVKit.framework */,
 				4B0FD68C1DAF4BB000F11FCE /* libicucore.tbd */,
 				4B0FD68A1DAF4B7200F11FCE /* AddressBookUI.framework */,
@@ -3534,6 +3541,7 @@
 				4BB3F0E81CE991E70065CFBC /* SWFeedbackVC.m in Sources */,
 				493D45111B777C8A00C406A1 /* TLDisplayView.m in Sources */,
 				4B5E9C961FC42D64005F5852 /* SCRecordSessionManager.m in Sources */,
+				4BCF8FE51FC5DFAC00BFD993 /* SWVideoPlayerManager.m in Sources */,
 				493D44F11B777C8A00C406A1 /* MJRefreshHeader.m in Sources */,
 				493D44191B772F2400C406A1 /* SWManagerCenter.m in Sources */,
 				4BED71121C29678B001A759F /* SWMsgVC.m in Sources */,

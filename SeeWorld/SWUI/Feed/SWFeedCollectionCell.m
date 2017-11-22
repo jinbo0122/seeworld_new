@@ -145,7 +145,7 @@ didLongPressLinkWithURL:(NSURL *)url
   }
 }
 
-- (void)refreshFeedView:(SWFeedItem *)feed row:(NSInteger)row{
+- (void)refreshFeedView:(SWFeedItem *)feed row:(NSInteger)row currentIndex:(NSInteger)currentIndex{
   self.feedItem = feed;
   self.row      = row;
   _interactModel.feedItem = _feedItem;
@@ -162,6 +162,12 @@ didLongPressLinkWithURL:(NSURL *)url
   [_feedImageView refreshWithFeed:feed];
   _feedImageView.delegate = self;
   _feedImageView.top = feed.feed.content.length?(_lblContent.bottom+10):55;
+  if (feed.feed.type == SWFeedTypeVideo && row == currentIndex) {
+    [_feedImageView prepagePlay];
+  }else{
+    [_feedImageView videoPause];
+  }
+  
   
   [_interactView refreshWithFeed:feed];
   _interactView.top = _feedImageView.bottom;
@@ -317,6 +323,30 @@ didLongPressLinkWithURL:(NSURL *)url
   }
 }
 
+- (void)feedImageViewDidPressUrl:(SWFeedItem *)feedItem{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressUrl:)]) {
+    [self.delegate feedDetailViewDidPressUrl:feedItem];
+  }
+}
+
+- (void)feedImageViewDidPressVideo:(SWFeedItem *)feedItem{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressVideo:)]) {
+    [self.delegate feedDetailViewDidPressVideo:feedItem];
+  }
+}
+
+- (void)playVideo{
+  [_feedImageView prepagePlay];
+}
+
+- (void)stopVideo{
+  [_feedImageView videoPause];
+}
+
+- (void)resumeVideo{
+  [_feedImageView videoResume];
+}
+
 #pragma mark Table View Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
   [self dismissKeyboard];
@@ -364,7 +394,7 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 - (void)feedInteractCommentCellDidPressUrl:(NSURL *)url{
-  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  ALWebVC *vc = [[ALWebVC alloc] init];
   vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [((UIViewController *)self.delegate).navigationController pushViewController:vc animated:YES];

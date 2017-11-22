@@ -92,9 +92,6 @@ SWPostPreviewVCDelegate>
   [_bottomView.btnDelete addTarget:self action:@selector(onDeleteClicked:) forControlEvents:UIControlEventTouchUpInside];
   [_bottomView.btnFlipCamera addTarget:self action:@selector(onFlipCameraClicked:) forControlEvents:UIControlEventTouchUpInside];
   [_bottomView.btnOkay addTarget:self action:@selector(onOkayClicked:) forControlEvents:UIControlEventTouchUpInside];
-  if (_fromPostVC) {
-    _bottomView.btnAlbum.hidden = YES;
-  }
   [self refreshButttons];
   [self performSelector:@selector(initSCRecorder) withObject:nil afterDelay:0.1];
   [self.view bringSubviewToFront:_btnChangeMode];
@@ -153,9 +150,6 @@ SWPostPreviewVCDelegate>
   }else{
     _bottomView.btnDelete.hidden = _bottomView.btnOkay.hidden = YES;
     _bottomView.btnAlbum.hidden = _bottomView.btnFlipCamera.hidden = NO;
-    if (_fromPostVC) {
-      _bottomView.btnAlbum.hidden = YES;
-    }
     
     if (_bottomView.btnFlipCamera.tag) {
       _topView.btnFlash.enabled = NO;
@@ -198,7 +192,9 @@ SWPostPreviewVCDelegate>
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
   photoPicker.maximumNumberOfSelectionVideo = 1;
-  photoPicker.maximumNumberOfSelectionPhoto = 9 - (_startIndex-1000);
+  if (!_isPostingVideo) {
+    photoPicker.maximumNumberOfSelectionPhoto = 9 - (_startIndex-1000);
+  }
   photoPicker.defaultSegIndex = 1;
   _photoPicker = photoPicker;
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoPicker];
@@ -400,18 +396,29 @@ SWPostPreviewVCDelegate>
           [picker.navigationController setNavigationBarHidden:NO];
           [picker.navigationController pushViewController:vc animated:YES];
         }else{
-          [wSelf dismissViewControllerAnimated:NO
-                                    completion:^{
-                                      [wSelf dismissViewControllerAnimated:NO
-                                                                completion:^{
-                                                                  SWPostVC *vc = [[SWPostVC alloc] init];
-                                                                  vc.images = [imageArray mutableCopy];
-                                                                  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                                                                  TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-                                                                  [tabVC presentViewController:nav animated:YES completion:nil];
-                                                                }];
-                                      
-                                    }];
+          if (wSelf.fromPostVC){
+            [self dismissViewControllerAnimated:YES
+                                     completion:^{
+                                       if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(videoWhisperRecordVCDidReturnImages:tags:)]) {
+                                         [wSelf.delegate videoWhisperRecordVCDidReturnImages:imageArray tags:@[]];
+                                       }
+                                     }];
+          }
+          else{
+            [wSelf dismissViewControllerAnimated:NO
+                                      completion:^{
+                                        [wSelf dismissViewControllerAnimated:NO
+                                                                  completion:^{
+                                                                    SWPostVC *vc = [[SWPostVC alloc] init];
+                                                                    vc.images = [imageArray mutableCopy];
+                                                                    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                                                                    TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+                                                                    [tabVC presentViewController:nav animated:YES completion:nil];
+                                                                  }];
+                                        
+                                      }];
+            
+          }
           
         }
       }
@@ -432,44 +439,25 @@ SWPostPreviewVCDelegate>
                                  [wSelf.delegate videoWhisperRecordVCDidReturnImages:images tags:tags];
                                }
                              }];
+  }else{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                               [wSelf dismissViewControllerAnimated:YES
+                                                         completion:^{
+                                                           SWPostVC *vc = [[SWPostVC alloc] init];
+                                                           vc.images = [images mutableCopy];
+                                                           vc.tags = [tags mutableCopy];
+                                                           UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+                                                           TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+                                                           [tabVC presentViewController:nav animated:YES completion:nil];
+                                                         }];
+                               
+                             }];
+    
   }
-  [self dismissViewControllerAnimated:YES
-                           completion:^{
-                             [wSelf dismissViewControllerAnimated:YES
-                                                       completion:^{
-                                                         SWPostVC *vc = [[SWPostVC alloc] init];
-                                                         vc.images = [images mutableCopy];
-                                                         vc.tags = [tags mutableCopy];
-                                                         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-                                                         TabViewController *tabVC = (TabViewController *)[UIApplication sharedApplication].delegate.window.rootViewController;
-                                                         [tabVC presentViewController:nav animated:YES completion:nil];
-                                                       }];
-                             
-                           }];
 }
 
 #pragma mark - Video Picker
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-  [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-  NSURL *selectedVideoUrl = [info objectForKey:UIImagePickerControllerMediaURL];
-  AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:selectedVideoUrl options:nil];
-  NSTimeInterval duration = CMTimeGetSeconds(asset.duration);
-  if (duration<3.0) {
-    [PDProgressHUD showTip:@"視頻時長不能小於3秒"];
-    [picker popViewControllerAnimated:YES];
-  }else{
-    __weak typeof(self)wSelf = self;
-    [self dismissViewControllerAnimated:YES completion:^{
-      if ([wSelf.delegate respondsToSelector:@selector(videoWhisperRecordVCDidReturnVideoUrl:)]) {
-        [wSelf.delegate videoWhisperRecordVCDidReturnVideoUrl:asset.URL];
-      }
-    }];
-  }
-}
-
 -(void) initSCRecorder {
   _recorder = [SCRecorder recorder];
   //_recorder.captureSessionPreset = [SCRecorderTools bestCaptureSessionPresetCompatibleWithAllDevices];

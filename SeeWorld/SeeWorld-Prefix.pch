@@ -78,5 +78,6 @@ DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
 #import "SWDefine.h"
 #import "PDProgressHUD.h"
 #import "PDProgressHUD+ALExtension.h"
+#import <SafariServices/SafariServices.h>
 #define SWURLAgreement @"https://seeworldplus.com/user_terms";
 #endif

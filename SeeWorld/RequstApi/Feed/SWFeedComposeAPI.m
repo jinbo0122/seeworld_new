@@ -22,7 +22,7 @@
              @"type":@(SWFeedTypeLink)};
   }else if (_feedType == SWFeedTypeVideo){
     return @{@"jwt":[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"jwt"],
-             @"vedio":_videoUrl?_videoUrl:@"",
+             @"video":_videoUrl?_videoUrl:@"",
              @"photo":_photoJson?_photoJson:@"",
              @"longitude":@(self.longitude),
              @"latitude":@(self.latitude),

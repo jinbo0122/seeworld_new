@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 typedef void(^COMPLETION_BLOCK_WITH_USER)(SWFeedUserItem *user);
 @interface SWConfigManager : NSObject
-AS_SINGLETON;
+DEC_SINGLETON(SWConfigManager);
 @property(nonatomic, strong)SWFeedUserItem *user;
 - (void)getUser:(NSString *)uId completionBlock:(COMPLETION_BLOCK_WITH_USER)completionBlock failedBlock:(COMPLETION_BLOCK)failedBlock;
 - (void)saveUser:(SWFeedUserItem *)user;

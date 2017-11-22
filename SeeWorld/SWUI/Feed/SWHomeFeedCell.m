@@ -255,4 +255,16 @@ didLongPressLinkWithURL:(NSURL *)url
   }
 }
 
+- (void)feedImageViewDidPressUrl:(SWFeedItem *)feedItem{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressUrl:)]) {
+    [self.delegate homeFeedCellDidPressUrl:feedItem];
+  }
+}
+
+- (void)feedImageViewDidPressVideo:(SWFeedItem *)feedItem{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressVideo:row:)]) {
+    [self.delegate homeFeedCellDidPressVideo:feedItem row:_row];
+  }
+}
+
 @end

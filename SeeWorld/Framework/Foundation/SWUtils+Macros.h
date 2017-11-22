@@ -43,67 +43,67 @@
 
 
 //声明和定义单类宏
-#undef AS_SINGLETON
-#define AS_SINGLETON \
--(instancetype) sharedInstance; \
-+(instancetype) sharedInstance;
+//#undef AS_SINGLETON
+//#define AS_SINGLETON \
+//-(instancetype) sharedInstance; \
+//+(instancetype) sharedInstance;
 
-#undef DEF_SINGLETON
-#if __has_feature(objc_arc)
-#define DEF_SINGLETON \
-static id instance; \
-+ (instancetype)allocWithZone:(struct _NSZone *)zone { \
-static dispatch_once_t onceToken; \
-dispatch_once(&onceToken, ^{ \
-instance = [super allocWithZone:zone]; \
-}); \
-return instance; \
-} \
--(instancetype) sharedInstance  \
-{ \
-return [[self class] sharedInstance];\
-}\
-+ (instancetype)sharedInstance { \
-    static dispatch_once_t onceToken; \
-    dispatch_once(&onceToken, ^{ \
-        instance = [[self alloc] init]; \
-    }); \
-    return instance; \
-} \
-- (id)copyWithZone:(NSZone *)zone { \
-    return instance; \
-}
-#else
+//#undef DEF_SINGLETON
+//#if __has_feature(objc_arc)
+//#define DEF_SINGLETON \
+//static id instance; \
+//+ (instancetype)allocWithZone:(struct _NSZone *)zone { \
+//static dispatch_once_t onceToken; \
+//dispatch_once(&onceToken, ^{ \
+//instance = [super allocWithZone:zone]; \
+//}); \
+//return instance; \
+//} \
+//-(instancetype) sharedInstance  \
+//{ \
+//return [[self class] sharedInstance];\
+//}\
+//+ (instancetype)sharedInstance { \
+//    static dispatch_once_t onceToken; \
+//    dispatch_once(&onceToken, ^{ \
+//        instance = [[self alloc] init]; \
+//    }); \
+//    return instance; \
+//} \
+//- (id)copyWithZone:(NSZone *)zone { \
+//    return instance; \
+//}
+//#else
 
-#define DEF_SINGLETON(className) \
-static id instance; \
-+ (instancetype)allocWithZone:(struct _NSZone *)zone { \
-static dispatch_once_t onceToken; \
-dispatch_once(&onceToken, ^{ \
-instance = [super allocWithZone:zone]; \
-}); \
-return instance; \
-} \
--(instancetype) sharedInstance  \
-{ \
-return [[self class] sharedInstance];\
-}\
-+ (instancetype)sharedInstance { \
-static dispatch_once_t onceToken; \
-dispatch_once(&onceToken, ^{ \
-instance = [[self alloc] init]; \
-}); \
-return instance; \
-} \
-- (id)copyWithZone:(NSZone *)zone { \
-return instance; \
-} \
-- (oneway void)release {} \
-- (instancetype)retain {return instance;} \
-- (instancetype)autorelease {return instance;} \
-- (NSUInteger)retainCount {return ULONG_MAX;}
-
-#endif
+//#define DEF_SINGLETON(className) \
+//static id instance; \
+//+ (instancetype)allocWithZone:(struct _NSZone *)zone { \
+//static dispatch_once_t onceToken; \
+//dispatch_once(&onceToken, ^{ \
+//instance = [super allocWithZone:zone]; \
+//}); \
+//return instance; \
+//} \
+//-(instancetype) sharedInstance  \
+//{ \
+//return [[self class] sharedInstance];\
+//}\
+//+ (instancetype)sharedInstance { \
+//static dispatch_once_t onceToken; \
+//dispatch_once(&onceToken, ^{ \
+//instance = [[self alloc] init]; \
+//}); \
+//return instance; \
+//} \
+//- (id)copyWithZone:(NSZone *)zone { \
+//return instance; \
+//} \
+//- (oneway void)release {} \
+//- (instancetype)retain {return instance;} \
+//- (instancetype)autorelease {return instance;} \
+//- (NSUInteger)retainCount {return ULONG_MAX;}
+//
+//#endif
 
 
 

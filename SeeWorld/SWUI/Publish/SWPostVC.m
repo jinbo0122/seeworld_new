@@ -213,6 +213,11 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
     if (_videoAsset) {
       [_model postVideoWithAsset:_videoAsset thumbImage:_videoThumbImage content:_txtContent.text];
     }else if (_videoURLAsset){
+      NSTimeInterval duration = CMTimeGetSeconds(_videoURLAsset.duration);
+      if (duration > 180 && ![[SWConfigManager sharedInstance].user.admin boolValue]) {
+        [PDProgressHUD showTip:@"視頻不能超過三分鐘"];
+        return;
+      }
       [_model postVideo:_videoURLAsset.URL thumbImage:_videoThumbImage content:_txtContent.text];
     }
   }else if (_images.count){
@@ -273,6 +278,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
       vc.delegate = wSelf;
       vc.startIndex = 1000+wSelf.images.count;
       vc.fromPostVC = YES;
+      vc.isPostingVideo = [wSelf isPostingVideo];
       UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
       [wSelf presentViewController:nav animated:YES completion:nil];
     }];

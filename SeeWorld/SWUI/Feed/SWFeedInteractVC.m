@@ -264,7 +264,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 }
 
 - (void)feedInteractCommentCellDidPressUrl:(NSURL *)url{
-  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  ALWebVC *vc = [[ALWebVC alloc] init];
   vc.url = url.absoluteString;
   vc.hidesBottomBarWhenPushed = YES;
   [self.navigationController pushViewController:vc animated:YES];

@@ -151,7 +151,7 @@
 }
 
 - (void)onTermClicked{
-  SWAgreementVC *vc = [[SWAgreementVC alloc] init];
+  ALWebVC *vc = [[ALWebVC alloc] init];
   vc.url = SWURLAgreement;
   [self.navigationController pushViewController:vc animated:YES];
 }

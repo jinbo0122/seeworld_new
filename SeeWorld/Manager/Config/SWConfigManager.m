@@ -9,7 +9,7 @@
 #import "SWConfigManager.h"
 #import "GetUserInfoApi.h"
 @implementation SWConfigManager
-DEF_SINGLETON;
+DEF_SINGLETON(SWConfigManager);
 
 - (id)init{
   if (self = [super init]) {

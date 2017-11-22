@@ -10,7 +10,7 @@
 #import "LoginRequestApi.h"
 
 @implementation LoginManager
-DEF_SINGLETON;
+DEF_SINGLETON(LoginManager);
 - (void )loginWithUsername:(NSString *)username password:(NSString *)password
 {
     LoginRequestApi *api = [[LoginRequestApi alloc] initWithUsername:username password:password];

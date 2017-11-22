@@ -81,6 +81,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong)NSNumber       *followedCount;
 @property (nonatomic, strong)NSString       *bghead;
 @property (nonatomic, strong)NSNumber       *issecret;
+@property (nonatomic, strong)NSNumber       *admin;
 + (SWFeedUserItem *)feedUserItemByDic:(NSDictionary *)feedUserDic;
 + (SWFeedUserItem *)feedUserItemBySelfDic:(NSDictionary *)feedUserDic;
 + (SWFeedUserItem *)myself;

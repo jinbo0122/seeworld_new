@@ -15,10 +15,15 @@
 @property(nonatomic, strong)WTTagView *tagView;
 - (void)refreshWithFeed:(SWFeedItem *)feedItem;
 - (void)refreshWithFeed:(SWFeedItem *)feedItem showTag:(BOOL)showTag;
+- (void)prepagePlay;
+- (void)videoPause;
+- (void)videoResume;
 @end
 
 @protocol SWFeedImageViewDelegate <NSObject>
 - (void)feedImageViewDidPressTag:(SWFeedTagItem *)tagItem;
+- (void)feedImageViewDidPressVideo:(SWFeedItem *)feedItem;
+- (void)feedImageViewDidPressUrl:(SWFeedItem *)feedItem;
 - (void)feedImageViewDidPressImage:(SWFeedItem *)feedItem;
 - (void)feedImageViewDidPressImage:(SWFeedItem *)feedItem buttonFrames:(NSArray *)buttonFrames atIndex:(NSInteger)index;
 @end

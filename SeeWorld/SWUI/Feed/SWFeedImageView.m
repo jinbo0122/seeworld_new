@@ -12,7 +12,10 @@
 #import "WTTagViewItem.h"
 #import "SWFeedLinkView.h"
 #import "UIButton+WebCache.h"
+#import "SCRecorderHeader.h"
+#import "SWVideoPlayerManager.h"
 @interface SWFeedImageView()<WTTagViewDataSouce,WTTagViewDelegate>
+@property(nonatomic, strong)UIActivityIndicatorView *indicator;
 
 @end
 
@@ -22,6 +25,10 @@
   SWFeedLinkView         *_linkView;
   
   UIButton               *_btnImage[9];
+  SCPlayer          *_player;
+  SCVideoPlayerView *_playerView;
+
+  UIImageView *_iconPlay;
 }
 - (id)initWithFrame:(CGRect)frame{
   self = [super initWithFrame:frame];
@@ -49,6 +56,10 @@
       [_btnImage[i] addTarget:self action:@selector(onImageClicked:) forControlEvents:UIControlEventTouchUpInside];
       [self addSubview:_btnImage[i]];
     }
+    
+    _iconPlay = [[UIImageView alloc] initWithFrame:CGRectZero];
+    [self addSubview:_iconPlay];
+    _iconPlay.hidden = YES;
   }
   return self;
 }
@@ -67,6 +78,7 @@
     for (NSInteger i=0; i<9; i++) {
       _btnImage[i].hidden = YES;
     }
+    _iconPlay.hidden = YES;
     self.height = _linkView.height;
   }else if (type == SWFeedTypeVideo ||
             (type == SWFeedTypeImage && feedItem.feed.photos.count==1)){
@@ -87,7 +99,16 @@
     for (NSInteger i=0; i<9; i++) {
       _btnImage[i].hidden = YES;
     }
+    if (type == SWFeedTypeVideo) {
+      _iconPlay.hidden = NO;
+      _iconPlay.image = [UIImage imageNamed:@"PLAY"];
+      _iconPlay.frame = CGRectMake((self.width-40)/2.0, (self.height-40)/2.0, 40, 40);
+      _playerView.frame = self.bounds;
+    }else{
+      _iconPlay.hidden = YES;
+    }
   }else if (type == SWFeedTypeImage){
+    _iconPlay.hidden = YES;
     _linkView.hidden = YES;
     _tagView.hidden = YES;
     for (NSInteger i=0; i<9; i++) {
@@ -191,8 +212,75 @@
 }
 
 - (void)onImageTapped:(UITapGestureRecognizer *)gesture{
-  if (self.delegate && [self.delegate respondsToSelector:@selector(feedImageViewDidPressImage:)]) {
-    [self.delegate feedImageViewDidPressImage:_feedItem];
+  if (_feedItem.feed.type == SWFeedTypeVideo) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(feedImageViewDidPressVideo:)]) {
+      [self.delegate feedImageViewDidPressVideo:_feedItem];
+    }
+  }else if (_feedItem.feed.type == SWFeedTypeLink) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(feedImageViewDidPressUrl:)]) {
+      [self.delegate feedImageViewDidPressUrl:_feedItem];
+    }
+  }else{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(feedImageViewDidPressImage:)]) {
+      [self.delegate feedImageViewDidPressImage:_feedItem];
+    }
   }
+}
+
+
+#pragma mark - Video
+- (void)prepagePlay{
+  [self videoPause];
+  if (!_player) {
+    _player = [SCPlayer player];
+    _playerView = [[SCVideoPlayerView alloc] initWithPlayer:_player];
+    _playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    _playerView.frame = self.bounds;
+    [self addSubview:_playerView];
+    _player.loopEnabled = YES;
+  }
+  
+  __weak typeof(self)wSelf = self;
+  [_indicator removeFromSuperview];
+  _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+  _indicator.frame = CGRectMake(0, 0, 50, 50);
+  [_playerView addSubview:_indicator];
+  _indicator.center = CGPointMake(_playerView.width/2.0, _playerView.height/2.0);
+  [_indicator startAnimating];
+  _indicator.hidesWhenStopped = YES;
+  [[SWVideoPlayerManager sharedInstance]
+   getVideoFileWithFeed:_feedItem
+   completionBlock:^(NSURL *fileUrl) {
+     [wSelf.indicator stopAnimating];
+     [wSelf.indicator removeFromSuperview];
+     [wSelf playWithUrl:fileUrl];
+   } failedBlock:^{
+     [wSelf.indicator stopAnimating];
+     [wSelf.indicator removeFromSuperview];
+   }];
+}
+
+- (void)playWithUrl:(NSURL *)fileUrl{
+  [_player setItemByUrl:fileUrl];
+  [self videoResume];
+}
+
+- (void)videoResume{
+  if (![_player isPlaying]) {
+    [_player play];
+    
+  }
+}
+
+- (void)videoPause{
+  if ([_player isPlaying]) {
+    [_player pause];
+  }
+}
+
+- (void)dealloc{
+  [_player pause];
+  _player.loopEnabled = NO;
+  _player = nil;
 }
 @end

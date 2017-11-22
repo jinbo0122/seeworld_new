@@ -58,7 +58,7 @@
   }else if (feed.type == SWFeedTypeVideo){
     feed.photos = [SWFeedImageItem feedImagesByPhotos:[feedInfoDic safeStringObjectForKey:@"photo"]
                                                  tags:[feedInfoDic safeArrayObjectForKey:@"tags"]];
-    feed.videoUrl = [feedInfoDic safeStringObjectForKey:@"vedio"];
+    feed.videoUrl = [feedInfoDic safeStringObjectForKey:@"video"];
   }else if (feed.type == SWFeedTypeLink){
     feed.link = [SWFeedLinkItem feedLinkItem:[feedInfoDic safeStringObjectForKey:@"link"]];
   }
@@ -208,7 +208,7 @@
   user.followedCount = [feedUserDic safeNumberObjectForKey:@"followedCount"];
   user.bghead = [feedUserDic safeStringObjectForKey:@"bghead"];
   user.issecret = [feedUserDic safeNumberObjectForKey:@"issecret"];
-  
+  user.admin = [feedUserDic safeNumberObjectForKey:@"admin"];
   return user;
 }
 
@@ -225,7 +225,7 @@
   user.followedCount = [feedUserDic safeNumberObjectForKey:@"followedCount"];
   user.bghead = [feedUserDic safeStringObjectForKey:@"bghead"];
   user.issecret = [feedUserDic safeNumberObjectForKey:@"issecret"];
-  
+  user.admin = [feedUserDic safeNumberObjectForKey:@"admin"];
   return user;
 }
 
@@ -242,6 +242,7 @@
   user.followerCount = [self.followerCount copy];
   user.bghead = [self.bghead copy];
   user.issecret = [self.issecret copy];
+  user.admin = [self.admin copy];
   return user;
 }
 
@@ -278,7 +279,8 @@
            @"followedCount":self.followedCount?self.followedCount:@0,
            @"followerCount":self.followerCount?self.followerCount:@0,
            @"bghead":self.bghead?self.bghead:@"",
-           @"issecret":self.issecret?self.issecret:@""};
+           @"issecret":self.issecret?self.issecret:@"",
+           @"admin":self.admin?self.admin:@""};
 }
 
 - (NSDictionary *)dicValue{
@@ -293,7 +295,8 @@
            @"followedCount":self.followedCount?self.followedCount:@0,
            @"followerCount":self.followerCount?self.followerCount:@0,
            @"bghead":self.bghead?self.bghead:@"",
-           @"issecret":self.issecret?self.issecret:@""};
+           @"issecret":self.issecret?self.issecret:@"",
+           @"admin":self.admin?self.admin:@""};
 }
 @end
 

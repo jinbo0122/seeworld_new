@@ -11,7 +11,7 @@
 #import "SWFoundation.h"
 
 @interface LoginManager : SWManager<SWManager>
-AS_SINGLETON;
+DEC_SINGLETON(LoginManager);
 - (void )loginWithUsername:(NSString *)username password:(NSString *)password;
 - (void )registerWithUsername:(NSString *)username password:(NSString *)password;
 @end
