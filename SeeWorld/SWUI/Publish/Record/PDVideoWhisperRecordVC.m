@@ -252,18 +252,18 @@ SWPostPreviewVCDelegate>
 }
 
 - (void) saveVideoToAlbum:(NSURL*)videoURL{
-  if (videoURL == nil) {
-    return;
-  }
-  self.videoUrl = videoURL;
-  __weak typeof(self)wSelf = self;
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    __strong typeof(wSelf)sSelf = wSelf;
-    if (sSelf.videoUrl) {
-      ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-      [library saveVideo:sSelf.videoUrl toAlbum:@"SeeWorld+" completion:nil failure:nil];
-    }
-  });
+//  if (videoURL == nil) {
+//    return;
+//  }
+//  self.videoUrl = videoURL;
+//  __weak typeof(self)wSelf = self;
+//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    __strong typeof(wSelf)sSelf = wSelf;
+//    if (sSelf.videoUrl) {
+//      ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//      [library saveVideo:sSelf.videoUrl toAlbum:@"SeeWorld+" completion:nil failure:nil];
+//    }
+//  });
 }
 
 

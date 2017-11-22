@@ -11,7 +11,6 @@
 #import "UzysAssetsPickerController.h"
 #import "Macros.h"
 #import "SWAddTagViewVC.h"
-#import <INTULocationManager/INTULocationManager.h>
 #import "SWPostEnterView.h"
 #import "SWMineVC.h"
 #import "SWChatListVC.h"
@@ -213,42 +212,17 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   [self setSelectedIndex:selectedIndex];
 }
 
-
-- (void)updateLocation
-{
-  INTULocationManager *locMgr = [INTULocationManager sharedInstance];
-  [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
-                                     timeout:10.0
-                        delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
-                                       block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
-                                         if (status == INTULocationStatusSuccess) {
-                                           [[NSUserDefaults standardUserDefaults] setObject:@(currentLocation.coordinate.latitude) forKey:@"latitude"];
-                                           [[NSUserDefaults standardUserDefaults] setObject:@(currentLocation.coordinate.longitude) forKey:@"longitude"];
-                                         }
-                                         else if (status == INTULocationStatusTimedOut) {
-                                           // Wasn't able to locate the user with the requested accuracy within the timeout interval.
-                                           // However, currentLocation contains the best location available (if any) as of right now,
-                                           // and achievedAccuracy has info on the accuracy/recency of the location in currentLocation.
-                                         }
-                                         else {
-                                           // An error occurred, more info is available by looking at the specific status returned.
-                                         }
-                                       }];
-}
-
 - (void)showComposeView{
   [SWPostEnterView showWithDelegate:self];
 }
 
 - (void)compose{
-  [self updateLocation];
   SWPostVC *vc = [[SWPostVC alloc] init];
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
   [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (void)composeWithAlbum{
-  [self updateLocation];
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];
   photoPicker.delegate = self;
   photoPicker.maximumNumberOfSelectionVideo = 1;

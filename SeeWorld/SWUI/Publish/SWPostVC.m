@@ -484,6 +484,8 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
     _lblLBS.top = (_lbsView.height-_lblLBS.height)/2.0;
     _lbsView.hidden = NO;
     [_btnLBS setImage:[UIImage imageNamed:@"send_location"] forState:UIControlStateNormal];
+    [[NSUserDefaults standardUserDefaults] setObject:@(location.coordinate.latitude) forKey:@"SWLocationLatitude"];
+    [[NSUserDefaults standardUserDefaults] setObject:@(location.coordinate.longitude) forKey:@"SWLocationLongitude"];
   }else{
     _lblLBS.text = @"";
     _lbsView.hidden = YES;

@@ -37,8 +37,8 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
 - (void)postLink:(NSString *)link content:(NSString *)content{
   SWFeedComposeAPI *api = [[SWFeedComposeAPI alloc] init];
   api.feedDescription = content;
-  api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"latitude"]).floatValue;
-  api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"longitude"]).floatValue;
+  api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLatitude"]).floatValue;
+  api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLongitude"]).floatValue;
   api.link = link;
   api.feedType = SWFeedTypeLink;
   [SWHUD showWaiting];
@@ -134,8 +134,8 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
     if (wSelf.postImagesInfo.count == imageCount) {
       SWFeedComposeAPI *api = [[SWFeedComposeAPI alloc] init];
       api.feedDescription = content;
-      api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"latitude"]).floatValue;
-      api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"longitude"]).floatValue;
+      api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLatitude"]).floatValue;
+      api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLongitude"]).floatValue;
       api.feedType = SWFeedTypeImage;
       api.photoJson = photoJson;
       api.tags = postTags;
@@ -300,8 +300,8 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
 - (void)postVideoURL:(NSString *)videoUrl thumbImageURL:(NSString *)thumbImageURL content:(NSString *)content{
   SWFeedComposeAPI *api = [[SWFeedComposeAPI alloc] init];
   api.feedDescription = content;
-  api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"latitude"]).floatValue;
-  api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"longitude"]).floatValue;
+  api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLatitude"]).floatValue;
+  api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLongitude"]).floatValue;
   api.feedType = SWFeedTypeVideo;
   api.photoJson = [@[@{@"src":thumbImageURL?thumbImageURL:@"",@"width":@(_videoThumbSize.width),@"height":@(_videoThumbSize.height)}] JSONString];
   api.videoUrl = videoUrl;
