@@ -99,7 +99,7 @@
       _tagView[i].dataSource = self;
       _tagView[i].delegate = self;
       _tagView[i].viewMode = WTTagViewModePreview;
-      [self addSubview:_tagView[i]];
+      [_scrollView addSubview:_tagView[i]];
       _tagView[i].userInteractionEnabled = NO;
       _tagView[i].left = i*UIScreenWidth;
       _tagView[i].tag = i;
@@ -109,7 +109,7 @@
                                           [hud hide:YES];
                                           wSelf.imageSize = image.size;
                                           CGFloat height = image.size.height * UIScreenWidth/image.size.width;
-                                          tagView.frame = CGRectMake(0, (UIScreenHeight-height)/2.0, UIScreenWidth, height);
+                                          tagView.frame = CGRectMake(i*UIScreenWidth, (UIScreenHeight-height)/2.0, UIScreenWidth, height);
                                           [tagView reloadData];
        }];
       __weak typeof(zoomImageView)wZoomImageView = zoomImageView;

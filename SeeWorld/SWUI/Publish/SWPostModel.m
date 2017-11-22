@@ -69,7 +69,14 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
       NSString *token = resp.data;
       QNUploadManager *manager = [[QNUploadManager alloc] init];
       
-      NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
+      UIImage *imageUpload = image;
+      if (image.CGImage == nil) {
+        CIImage *ciImage = image.CIImage;
+        CIContext *content = [CIContext context];
+        CGImageRef cgImage = [content createCGImage:ciImage fromRect:ciImage.extent];
+        imageUpload = [UIImage imageWithCGImage:cgImage];
+      }
+      NSData *imageData = UIImageJPEGRepresentation(imageUpload, 0.3);
       [manager putData:imageData key:[SWObject createUUID]
                  token:token
               complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
