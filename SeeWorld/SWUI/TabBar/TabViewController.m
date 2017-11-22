@@ -236,11 +236,16 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
 }
 
 - (void)composeWithCamera{
-  PDVideoWhisperRecordVC *vc = [[PDVideoWhisperRecordVC alloc] init];
-  vc.delegate = self;
-  vc.startIndex = 1000;
-  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-  [self presentViewController:nav animated:YES completion:nil];
+  __weak typeof(self)wSelf = self;
+  if ([SWUtility checkCameraWithBlock:^{[wSelf composeWithCamera];}]) {
+    [SWUtility checkMicWithBlock:^{
+      PDVideoWhisperRecordVC *vc = [[PDVideoWhisperRecordVC alloc] init];
+      vc.delegate = self;
+      vc.startIndex = 1000;
+      UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+      [self presentViewController:nav animated:YES completion:nil];
+    }];
+  }
 }
 
 - (void)startChat{

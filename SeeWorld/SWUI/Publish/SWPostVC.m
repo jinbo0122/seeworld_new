@@ -266,12 +266,17 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
 }
 
 - (void)onCameraClicked{
-  PDVideoWhisperRecordVC *vc = [[PDVideoWhisperRecordVC alloc] init];
-  vc.delegate = self;
-  vc.startIndex = 1000+self.images.count;
-  vc.fromPostVC = YES;
-  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-  [self presentViewController:nav animated:YES completion:nil];
+  __weak typeof(self)wSelf = self;
+  if ([SWUtility checkCameraWithBlock:^{[wSelf onCameraClicked];}]) {
+    [SWUtility checkMicWithBlock:^{
+      PDVideoWhisperRecordVC *vc = [[PDVideoWhisperRecordVC alloc] init];
+      vc.delegate = wSelf;
+      vc.startIndex = 1000+wSelf.images.count;
+      vc.fromPostVC = YES;
+      UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+      [wSelf presentViewController:nav animated:YES completion:nil];
+    }];
+  }
 }
 
 - (void)onAlbumClicked{

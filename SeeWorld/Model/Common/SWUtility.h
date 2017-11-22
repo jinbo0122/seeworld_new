@@ -13,4 +13,6 @@
 + (void)addWindowSubview:(UIView *)view;
 + (BOOL)isViewOnMainWindow:(UIView *)view;
 + (UIView *)isViewOfClassOnMainView:(__unsafe_unretained Class)className;
++ (BOOL)checkCameraWithBlock:(COMPLETION_BLOCK)block;
++ (void)checkMicWithBlock:(COMPLETION_BLOCK)block;
 @end

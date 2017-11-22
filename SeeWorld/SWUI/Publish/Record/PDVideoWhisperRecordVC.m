@@ -16,6 +16,7 @@
 #import "SWPostPreviewVC.h"
 #import "AVAsset+VideoOrientation.h"
 #import "SWPostVC.h"
+#import <Photos/Photos.h>
 @interface PDVideoWhisperRecordVC ()<UzysAssetsPickerControllerDelegate, SCRecorderDelegate,
 SWPostPreviewVCDelegate>
 @property(nonatomic, strong)SCRecorder *recorder;
@@ -80,7 +81,7 @@ SWPostPreviewVCDelegate>
                                                                                  self.view.width, 122+iphoneXBottomAreaHeight)];
   [self.view addSubview:_bottomView];
   
-  _progressView = [[PDVideoWhisperRecordProgressView alloc] initWithFrame:CGRectMake(0, _topView.height + _cameraPreview.height -33,
+  _progressView = [[PDVideoWhisperRecordProgressView alloc] initWithFrame:CGRectMake(0, _cameraPreview.bottom-33,
                                                                                      self.view.width, 33)];
   [self.view addSubview:_progressView];
   _progressView.duration = 0;
@@ -252,18 +253,44 @@ SWPostPreviewVCDelegate>
 }
 
 - (void) saveVideoToAlbum:(NSURL*)videoURL{
-//  if (videoURL == nil) {
-//    return;
-//  }
-//  self.videoUrl = videoURL;
-//  __weak typeof(self)wSelf = self;
-//  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//    __strong typeof(wSelf)sSelf = wSelf;
-//    if (sSelf.videoUrl) {
-//      ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-//      [library saveVideo:sSelf.videoUrl toAlbum:@"SeeWorld+" completion:nil failure:nil];
-//    }
-//  });
+  PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+  if (status == PHAuthorizationStatusAuthorized) {
+    if (videoURL == nil) {
+      return;
+    }
+    self.videoUrl = videoURL;
+    __weak typeof(self)wSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      __strong typeof(wSelf)sSelf = wSelf;
+      if (sSelf.videoUrl) {
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        [library saveVideo:sSelf.videoUrl toAlbum:@"SeeWorld+" completion:nil failure:nil];
+      }
+    });
+  }else if (status == PHAuthorizationStatusNotDetermined){
+    __weak typeof(self)wSelf = self;
+    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+      if (status == PHAuthorizationStatusAuthorized) {
+        [wSelf saveVideoToAlbum:videoURL];
+      }else{
+        [self showDisableAlert];
+      }
+    }];
+  }else{
+    [self showDisableAlert];
+  }
+}
+
+- (void)showDisableAlert{
+  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:nil
+                                                   message:@"請在手機系統的設置 > 隱私 > 照片中，允許抱抱訪問你的手機相冊。"
+                                          cancelButtonItem:
+                         [RIButtonItem itemWithLabel:SWStringOkay
+                                              action:^{
+                                                [[UIApplication sharedApplication] openURL:[NSURL  URLWithString:UIApplicationOpenSettingsURLString]];
+                                              }]
+                                          otherButtonItems:nil];
+  [alert show];
 }
 
 
