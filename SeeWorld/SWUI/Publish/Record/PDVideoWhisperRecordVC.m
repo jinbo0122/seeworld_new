@@ -96,7 +96,7 @@ SWPostPreviewVCDelegate>
   }
   [self refreshButttons];
   [self performSelector:@selector(initSCRecorder) withObject:nil afterDelay:0.1];
-  
+  [self.view bringSubviewToFront:_btnChangeMode];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(onRegisnActive)
                                                name:UIApplicationWillResignActiveNotification
