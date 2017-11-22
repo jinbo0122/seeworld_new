@@ -54,7 +54,7 @@
   for (NSInteger i =0 ; i<2; i++) {
     SWFeedItem *feedItem = [feeds safeObjectAtIndex:i];
     if ([feedItem isKindOfClass:[SWFeedItem class]]) {
-      [_thumb[i].customImageView sd_setImageWithURL:[NSURL URLWithString:[feedItem.feed.picUrl stringByAppendingString:FEED_SMALL]]];
+      [_thumb[i].customImageView sd_setImageWithURL:[NSURL URLWithString:[[feedItem.feed firstPicUrl] stringByAppendingString:FEED_SMALL]]];
       _thumb[i].hidden = NO;
     }else{
       _thumb[i].hidden = YES;

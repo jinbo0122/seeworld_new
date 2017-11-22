@@ -267,7 +267,7 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 
 - (void)feedDetailViewDidPressImage:(SWFeedItem *)feedItem rect:(CGRect)rect{
   ALPhotoListFullView *view = [[ALPhotoListFullView alloc] initWithFrames:@[[NSValue valueWithCGRect:rect]]
-                                                                photoList:@[[feedItem.feed.picUrl stringByAppendingString:FEED_SMALL]]
+                                                                photoList:[feedItem.feed photoUrlsWithSuffix:FEED_SMALL]
                                                                     index:0];
   [view setFeedItem:feedItem];
   [[UIApplication sharedApplication].delegate.window addSubview:view];

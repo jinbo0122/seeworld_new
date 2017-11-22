@@ -49,36 +49,130 @@
 + (SWFeedInfoItem *)feedInfoItemByDic:(NSDictionary *)feedInfoDic{
   SWFeedInfoItem *feed = [[SWFeedInfoItem alloc] init];
   feed.fId = [feedInfoDic safeNumberObjectForKey:@"id"];
-  feed.picUrl = [feedInfoDic safeStringObjectForKey:@"photo"];
+  feed.type = [[feedInfoDic safeNumberObjectForKey:@"type"] integerValue];
   feed.content = [feedInfoDic safeStringObjectForKey:@"description"];
   feed.time = [feedInfoDic safeNumberObjectForKey:@"time"];
-  feed.tags = [NSMutableArray array];
-  NSArray *tagsArray = [feedInfoDic safeArrayObjectForKey:@"tags"];
-  for (NSInteger j=0; j<[tagsArray count]; j++) {
-    NSDictionary *tagDic = [tagsArray safeDicObjectAtIndex:j];
-    [feed.tags safeAddObject:[SWFeedTagItem feedTagItemByDic:tagDic]];
+  if (feed.type == SWFeedTypeImage) {
+    feed.photos = [SWFeedImageItem feedImagesByPhotos:[feedInfoDic safeStringObjectForKey:@"photo"]
+                                                 tags:[feedInfoDic safeArrayObjectForKey:@"tags"]];
+  }else if (feed.type == SWFeedTypeVideo){
+    feed.photos = [SWFeedImageItem feedImagesByPhotos:[feedInfoDic safeStringObjectForKey:@"photo"]
+                                                 tags:[feedInfoDic safeArrayObjectForKey:@"tags"]];
+    feed.videoUrl = [feedInfoDic safeStringObjectForKey:@"vedio"];
+  }else if (feed.type == SWFeedTypeLink){
+    feed.link = [SWFeedLinkItem feedLinkItem:[feedInfoDic safeStringObjectForKey:@"link"]];
   }
-  feed.imageHeight = [feedInfoDic safeNumberObjectForKey:@"height"];
-  feed.imageWidth = [feedInfoDic safeNumberObjectForKey:@"width"];
   return feed;
 }
 
 - (SWFeedInfoItem *)copy{
   SWFeedInfoItem *feed = [[SWFeedInfoItem alloc] init];
   feed.fId = [self.fId copy];
-  feed.picUrl = [self.picUrl copy];
+  feed.type = self.type;
   feed.content = [self.content copy];
   feed.time = [self.time copy];
-  feed.tags = [NSMutableArray array];
-  feed.imageHeight = [self.imageHeight copy];
-  feed.imageWidth = [self.imageWidth copy];
-  for (NSInteger j=0; j<[self.tags count]; j++) {
-    SWFeedTagItem *tag = [self.tags safeObjectAtIndex:j];
-    [feed.tags safeAddObject:[tag copy]];
+  if (self.type == SWFeedTypeImage) {
+    feed.photos = [NSMutableArray array];
+    for (NSInteger i=0; i<self.photos.count; i++) {
+      SWFeedImageItem *photoItem = [self.photos safeObjectAtIndex:i];
+      [feed.photos addObject:[photoItem copy]];
+    }
+  }else if (self.type == SWFeedTypeVideo){
+    feed.photos = [NSMutableArray array];
+    for (NSInteger i=0; i<self.photos.count; i++) {
+      SWFeedImageItem *photoItem = [self.photos safeObjectAtIndex:i];
+      [feed.photos addObject:[photoItem copy]];
+    }
+    feed.videoUrl = [self.videoUrl copy];
+  }else if (self.type == SWFeedTypeLink){
+    feed.link = [self.link copy];
   }
   return feed;
 }
+
+- (NSString *)firstPicUrl{
+  SWFeedImageItem *imageItem = [self.photos safeObjectAtIndex:0];
+  if ([imageItem isKindOfClass:[SWFeedImageItem class]]) {
+    return imageItem.picUrl;
+  }
+  return @"";
+}
+- (NSArray *)photoUrls{
+  return [self photoUrlsWithSuffix:@""];
+}
+
+- (NSArray *)photoUrlsWithSuffix:(NSString *)suffix{
+  NSMutableArray *photoUrls = [NSMutableArray array];
+  for (SWFeedImageItem *item in self.photos) {
+    [photoUrls safeAddObject:[item.picUrl stringByAppendingString:suffix]];
+  }
+  return photoUrls;
+}
 @end
+
+@implementation SWFeedImageItem
++ (NSMutableArray *)feedImagesByPhotos:(NSString *)photoJson tags:(NSArray *)tags{
+  NSArray *photos = [photoJson safeArrayFromJsonString];
+  NSMutableArray *images = [NSMutableArray array];
+  for (NSInteger i=0; i<photos.count; i++) {
+    SWFeedImageItem *imageItem = [[SWFeedImageItem alloc] init];
+    imageItem.index = i;
+    NSDictionary *info = [photos safeDicObjectAtIndex:i];
+    imageItem.picUrl = [info safeStringObjectForKey:@"src"];
+    imageItem.width = [[info safeNumberObjectForKey:@"width"] floatValue];
+    imageItem.height = [[info safeNumberObjectForKey:@"height"] floatValue];
+    imageItem.tags = [NSMutableArray array];
+    [images addObject:imageItem];
+  }
+  
+  for (NSDictionary *tagInfo in tags) {
+    NSInteger index = [[tagInfo safeNumberObjectForKey:@"imageId"] integerValue];
+    for (SWFeedImageItem *photoItem in images) {
+      if (photoItem.index == index) {
+        [photoItem.tags addObject:[SWFeedTagItem feedTagItemByDic:tagInfo]];
+      }
+    }
+  }
+  
+  return images;
+}
+
+- (SWFeedImageItem *)copy{
+  SWFeedImageItem *imageItem = [[SWFeedImageItem alloc] init];
+  imageItem.picUrl = [self.picUrl copy];
+  imageItem.width = self.width;
+  imageItem.height = self.height;
+  imageItem.index = self.index;
+  imageItem.tags = [NSMutableArray array];
+  for (NSInteger j=0; j<[self.tags count]; j++) {
+    SWFeedTagItem *tag = [self.tags safeObjectAtIndex:j];
+    [imageItem.tags safeAddObject:[tag copy]];
+  }
+  return imageItem;
+}
+@end
+
+@implementation SWFeedLinkItem
++ (SWFeedLinkItem *)feedLinkItem:(NSString *)linkJson{
+  NSDictionary *linkInfo = [linkJson safeJsonDicFromJsonString];
+  SWFeedLinkItem *link = [[SWFeedLinkItem alloc] init];
+  link.linkUrl = [linkInfo safeStringObjectForKey:@"link"];
+  link.title = [linkInfo safeStringObjectForKey:@"title"];
+  link.imageUrl = [linkInfo safeStringObjectForKey:@"image"];
+  return link;
+}
+
+- (SWFeedLinkItem *)copy{
+  SWFeedLinkItem *link = [[SWFeedLinkItem alloc] init];
+  link.linkUrl = [self.linkUrl copy];
+  link.title = [self.title copy];
+  link.imageUrl = [self.imageUrl copy];
+  return link;
+
+}
+@end
+
+
 
 @implementation SWFeedCommentItem
 + (SWFeedCommentItem *)feedCommentItem:(NSDictionary *)feedCommentDic{

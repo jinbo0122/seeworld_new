@@ -7,7 +7,6 @@
 //
 
 #import "SWAddTagViewVC.h"
-#import "ComposeViewController.h"
 #import "WTTagView.h"
 #import "WTTagViewItem.h"
 #import "WTTag.h"

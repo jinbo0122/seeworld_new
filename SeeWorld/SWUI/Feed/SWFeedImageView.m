@@ -43,40 +43,55 @@
 }
 
 - (void)refreshWithFeed:(SWFeedItem *)feedItem showTag:(BOOL)showTag{
-  CGFloat imageHeight = [feedItem.feed.imageHeight integerValue];
-  CGFloat imageWidth  = [feedItem.feed.imageWidth integerValue];
+  SWFeedImageItem *item = [feedItem.feed.photos safeObjectAtIndex:0];
+  if ([item isKindOfClass:[SWFeedImageItem class]]) {
+    self.height = UIScreenWidth *item.height/item.width;
+    
+    _tagView.frame = self.bounds;
+    [_tagView reloadData];
+    
+    _feedItem = feedItem;
+    [self.tagView reloadData];
+    [_tagView.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:[item.picUrl stringByAppendingString:FEED_SMALL]]];
+    _tagView.hidden = NO;
+  }else{
+    _tagView.hidden = YES;
+  }
   
-  self.height = UIScreenWidth *imageHeight/imageWidth;
-
-  _tagView.frame = self.bounds;
-  [_tagView reloadData];
-  
-  _feedItem = feedItem;
-  [self.tagView reloadData];
-  [_tagView.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:[feedItem.feed.picUrl stringByAppendingString:FEED_SMALL]]];
   self.backgroundColor = [UIColor whiteColor];
+
 }
 
 #pragma mark - WTTagView DataSource
 
-- (NSInteger)numberOfTagViewItemsInTagView:(WTTagView *)tagView
-{
-  return _feedItem.feed.tags.count;
+- (NSInteger)numberOfTagViewItemsInTagView:(WTTagView *)tagView{
+  SWFeedImageItem *item = [_feedItem.feed.photos safeObjectAtIndex:0];
+  if ([item isKindOfClass:[SWFeedImageItem class]]) {
+    return item.tags.count;
+  }else{
+    return 0;
+  }
 }
 
-- (UIView<WTTagViewItemMethods> *)tagView:(WTTagView *)tagView tagViewItemAtIndex:(NSInteger)index
-{
-  SWFeedTagItem *tag = _feedItem.feed.tags[index];
-  WTTagViewItem *tagViewItem = [[WTTagViewItem alloc] init];
-  tagViewItem.titleText = tag.tagName;
-  tagViewItem.tagViewItemDirection = 1- [tag.direction integerValue];
-  tagViewItem.centerPointPercentage = CGPointMake([tag.coord.x floatValue], [tag.coord.y floatValue]);
-  return tagViewItem;
+- (UIView<WTTagViewItemMethods> *)tagView:(WTTagView *)tagView tagViewItemAtIndex:(NSInteger)index{
+  SWFeedImageItem *item = [_feedItem.feed.photos safeObjectAtIndex:0];
+  if ([item isKindOfClass:[SWFeedImageItem class]]) {
+    SWFeedTagItem *tag = item.tags[index];
+    WTTagViewItem *tagViewItem = [[WTTagViewItem alloc] init];
+    tagViewItem.titleText = tag.tagName;
+    tagViewItem.tagViewItemDirection = 1- [tag.direction integerValue];
+    tagViewItem.centerPointPercentage = CGPointMake([tag.coord.x floatValue], [tag.coord.y floatValue]);
+    return tagViewItem;
+  }else{
+    return nil;
+  }
 }
 
 - (void)tagView:(WTTagView *)tagView didTappedTagViewItem:(UIView<WTTagViewItemMethods> *)tagViewItem atIndex:(NSInteger)index{
-  if (self.delegate && [self.delegate respondsToSelector:@selector(feedImageViewDidPressTag:)]) {
-    [self.delegate feedImageViewDidPressTag:_feedItem.feed.tags[index]];
+  SWFeedImageItem *item = [_feedItem.feed.photos safeObjectAtIndex:0];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedImageViewDidPressTag:)]
+      && [item isKindOfClass:[SWFeedImageItem class]]) {
+    [self.delegate feedImageViewDidPressTag:item.tags[index]];
   }
 }
 

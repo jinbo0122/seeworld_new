@@ -151,33 +151,32 @@
 }
 
 #pragma mark - WTTagView DataSource
-
-- (NSInteger)numberOfTagViewItemsInTagView:(WTTagView *)tagView
-{
-  return _feedItem.feed.tags.count;
-}
-
-- (UIView<WTTagViewItemMethods> *)tagView:(WTTagView *)tagView tagViewItemAtIndex:(NSInteger)index
-{
-  SWFeedTagItem *tag = _feedItem.feed.tags[index];
-  WTTagViewItem *tagViewItem = [[WTTagViewItem alloc] init];
-  tagViewItem.titleText = tag.tagName;
-  tagViewItem.tagViewItemDirection = 1- [tag.direction integerValue];
-  tagViewItem.centerPointPercentage = CGPointMake([tag.coord.x floatValue], [tag.coord.y floatValue]);
-  return tagViewItem;
-}
-
-- (void)tagView:(WTTagView *)tagView didTappedTagViewItem:(UIView<WTTagViewItemMethods> *)tagViewItem atIndex:(NSInteger)index{
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"onHomeFeedTagClicked" object:nil userInfo:@{@"tag":_feedItem.feed.tags[index]}];
-  
-  for (SWFeedTagButton *button in [self subviews]) {
-    if ([button isKindOfClass:[SWFeedTagButton class]]) {
-      [button removeFromSuperview];
-    }
-  }
-  
-  [self dismissFullScreen];
-}
+//TODO photo
+//- (NSInteger)numberOfTagViewItemsInTagView:(WTTagView *)tagView{
+//  return _feedItem.feed.tags.count;
+//}
+//
+//- (UIView<WTTagViewItemMethods> *)tagView:(WTTagView *)tagView tagViewItemAtIndex:(NSInteger)index
+//{
+//  SWFeedTagItem *tag = _feedItem.feed.tags[index];
+//  WTTagViewItem *tagViewItem = [[WTTagViewItem alloc] init];
+//  tagViewItem.titleText = tag.tagName;
+//  tagViewItem.tagViewItemDirection = 1- [tag.direction integerValue];
+//  tagViewItem.centerPointPercentage = CGPointMake([tag.coord.x floatValue], [tag.coord.y floatValue]);
+//  return tagViewItem;
+//}
+//
+//- (void)tagView:(WTTagView *)tagView didTappedTagViewItem:(UIView<WTTagViewItemMethods> *)tagViewItem atIndex:(NSInteger)index{
+//  [[NSNotificationCenter defaultCenter] postNotificationName:@"onHomeFeedTagClicked" object:nil userInfo:@{@"tag":_feedItem.feed.tags[index]}];
+//
+//  for (SWFeedTagButton *button in [self subviews]) {
+//    if ([button isKindOfClass:[SWFeedTagButton class]]) {
+//      [button removeFromSuperview];
+//    }
+//  }
+//
+//  [self dismissFullScreen];
+//}
 
 - (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view{
   _btnShowTag.tag = 1;

@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SWFeedComposeAPI.h"
 @class SWFeedInfoItem;
 @class SWFeedUserItem;
 @class SWFeedLikeItem;
 @class SWFeedTagCoordItem;
 @class SWFeedTagItem;
+@class SWFeedImageItem;
+@class SWFeedLinkItem;
 @interface SWFeedItem : NSObject
 @property (nonatomic, strong)SWFeedInfoItem *feed;
 @property (nonatomic, strong)SWFeedUserItem *user;
@@ -26,14 +29,36 @@
 
 @interface SWFeedInfoItem : NSObject
 @property (nonatomic, strong)NSNumber       *fId;
-@property (nonatomic, strong)NSString       *picUrl;
+@property (nonatomic, assign)SWFeedType     type;
+@property (nonatomic, strong)NSMutableArray *photos;
 @property (nonatomic, strong)NSString       *content;
+@property (nonatomic, strong)NSString       *videoUrl;
+@property (nonatomic, strong)SWFeedLinkItem *link;
 @property (nonatomic, strong)NSNumber       *time;
-@property (nonatomic, strong)NSMutableArray *tags;
-@property (nonatomic, strong)NSNumber       *imageWidth;
-@property (nonatomic, strong)NSNumber       *imageHeight;
 + (SWFeedInfoItem *)feedInfoItemByDic:(NSDictionary *)feedInfoDic;
 - (SWFeedInfoItem *)copy;
+- (NSString *)firstPicUrl;
+- (NSArray *)photoUrls;
+- (NSArray *)photoUrlsWithSuffix:(NSString *)suffix;
+@end
+
+@interface SWFeedImageItem : NSObject
+@property (nonatomic, assign)NSInteger      index;
+@property (nonatomic, strong)NSString       *picUrl;
+@property (nonatomic, assign)CGFloat        width;
+@property (nonatomic, assign)CGFloat        height;
+@property (nonatomic, strong)NSMutableArray *tags;
+
++ (NSMutableArray *)feedImagesByPhotos:(NSString *)photoJson tags:(NSArray *)tags;
+- (SWFeedImageItem *)copy;
+@end
+
+@interface SWFeedLinkItem : NSObject
+@property (nonatomic, strong)NSString       *linkUrl;
+@property (nonatomic, strong)NSString       *title;
+@property (nonatomic, strong)NSString       *imageUrl;
++ (SWFeedLinkItem *)feedLinkItem:(NSString *)linkJson;
+- (SWFeedLinkItem *)copy;
 @end
 
 typedef enum : NSUInteger {

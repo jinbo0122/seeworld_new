@@ -51,7 +51,13 @@
   
   if ([tagFeedItem.feedList.feeds count]>0) {
     for (SWFeedItem *feed in tagFeedItem.feedList.feeds) {
-      if ([feed.feed.imageWidth integerValue]) {
+      SWFeedType type = feed.feed.type;
+      if (type == SWFeedTypeImage && feed.feed.photos.count == 1) {
+        SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
+        if ([photoItem isKindOfClass:[SWFeedImageItem class]] && photoItem.width) {
+          [self.feeds addObject:feed];
+        }
+      }else{
         [self.feeds addObject:feed];
       }
     }

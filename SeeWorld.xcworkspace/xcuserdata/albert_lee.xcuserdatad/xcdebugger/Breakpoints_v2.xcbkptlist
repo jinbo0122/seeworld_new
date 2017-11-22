@@ -164,12 +164,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Feed/SWTagFeedsModel.m"
-            timestampString = "532896472.713511"
+            timestampString = "533023465.946438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
-            landmarkName = "-likeClickedByRow:"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-getFeedsByFeedId:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -196,39 +196,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.586569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-postLink:content:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.586874"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "-postVideo:thumbImageURL:content:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.587061"
+            timestampString = "533023465.946522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -244,11 +212,91 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.587238"
+            timestampString = "533023465.946864"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-postPhoto:tags:content:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533023465.947097"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "-postVideoURL:thumbImageURL:content:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533023465.947319"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "-postVideoURL:thumbImageURL:content:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SWPostModel postVideoURL:thumbImageURL:content:]"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533023466.220753"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "1084">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[SWPostModel postVideoURL:thumbImageURL:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533023466.224074"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533023465.94754"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-uploadImage:completionBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -260,23 +308,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.587411"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "-uploadImage:completionBlock:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.587583"
+            timestampString = "533023465.947761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -292,28 +324,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.587757"
+            timestampString = "533023465.948002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-postPhoto:tags:content:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/Qiniu/QiniuSDK/Common/QNFile.m"
-            timestampString = "532973609.58793"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-init:error:"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-uploadImages:completionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -324,12 +340,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "532973609.587966"
+            timestampString = "533023465.948224"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "-postVideo:thumbImageURL:content:"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-uploadImage:completionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -339,13 +355,61 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostVC.m"
-            timestampString = "532973627.78878"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533023465.948446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
-            landmarkName = "-checkLinkWithString:"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-postPhoto:tags:content:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/AddTag/AddTagSearchViewController.m"
+            timestampString = "533023079.068073"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533023465.948698"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-uploadImage:completionBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533023465.948928"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-uploadImage:completionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

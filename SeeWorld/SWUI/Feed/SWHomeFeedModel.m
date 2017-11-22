@@ -23,7 +23,13 @@
     if (feeds) {
       SWHomeFeedItem *homeFeedItem = [SWHomeFeedItem homeFeedItemFromDic:feeds];
       for (SWFeedItem *feed in homeFeedItem.feeds) {
-        if ([feed.feed.imageWidth integerValue]) {
+        SWFeedType type = feed.feed.type;
+        if (type == SWFeedTypeImage && feed.feed.photos.count == 1) {
+          SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
+          if ([photoItem isKindOfClass:[SWFeedImageItem class]] && photoItem.width) {
+            [self.feeds addObject:feed];
+          }
+        }else{
           [self.feeds addObject:feed];
         }
       }

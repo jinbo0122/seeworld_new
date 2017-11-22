@@ -194,12 +194,33 @@ didLongPressLinkWithURL:(NSURL *)url
 + (CGFloat)heightByFeed:(SWFeedItem *)feed{
   CGSize contentSize = [feed.feed.content sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
                                            constrainedToSize:CGSizeMake(UIScreenWidth-30, 1000)];
-  CGFloat iHeight = [feed.feed.imageHeight integerValue];
-  CGFloat iWidth  = [feed.feed.imageWidth integerValue];
-  
-  NSInteger imageHeight = UIScreenWidth *iHeight/iWidth;
+  NSInteger contentHeight = 0;
+  SWFeedType type = feed.feed.type;
+  if (type == SWFeedTypeLink) {
+    contentHeight = 62;
+  }else if (type == SWFeedTypeVideo){
+    SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
+    contentHeight = UIScreenWidth *photoItem.height/photoItem.width;
+  }else if (type == SWFeedTypeImage){
+    if (feed.feed.photos.count == 1) {
+      SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
+      contentHeight = UIScreenWidth *photoItem.height/photoItem.width;
+    }else if (feed.feed.photos.count == 2){
+      contentHeight = UIScreenWidth/2.0;
+    }else if (feed.feed.photos.count == 3){
+      contentHeight = UIScreenWidth/3.0;
+    }else if (feed.feed.photos.count == 4||
+              (feed.feed.photos.count>=7 && feed.feed.photos.count<=9)){
+      contentHeight = UIScreenWidth;
+    }else if (feed.feed.photos.count == 5||
+              feed.feed.photos.count == 6){
+      contentHeight = UIScreenWidth * 2.0/3.0;
+    }else{
+      contentHeight = 0;
+    }
+  }
 
-  return 10/*间隙*/+ 55/*头部*/ + imageHeight + 40 /*按钮*/
+  return 10/*间隙*/+ 55/*头部*/ + contentHeight + 40 /*按钮*/
   + (feed.feed.content.length>0?(contentSize.height+15):0)
   + (feed.likes.count>0?30:0) /*赞成员*/ + ((feed.feed.content.length>0||feed.likes.count>0||feed.comments.count>0)?15:0);
 }

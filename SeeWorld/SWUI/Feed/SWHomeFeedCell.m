@@ -135,12 +135,34 @@ didLongPressLinkWithURL:(NSURL *)url
                                                         withConstraints:CGSizeMake(UIScreenWidth-30, 1000)
                                                  limitedToNumberOfLines:50];
   
-  CGFloat iHeight = [feed.feed.imageHeight integerValue];
-  CGFloat iWidth  = [feed.feed.imageWidth integerValue];
+  NSInteger contentHeight = 0;
+  SWFeedType type = feed.feed.type;
+  if (type == SWFeedTypeLink) {
+    contentHeight = 62;
+  }else if (type == SWFeedTypeVideo){
+    SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
+    contentHeight = UIScreenWidth *photoItem.height/photoItem.width;
+  }else if (type == SWFeedTypeImage){
+    if (feed.feed.photos.count == 1) {
+      SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
+      contentHeight = UIScreenWidth *photoItem.height/photoItem.width;
+    }else if (feed.feed.photos.count == 2){
+      contentHeight = UIScreenWidth/2.0;
+    }else if (feed.feed.photos.count == 3){
+      contentHeight = UIScreenWidth/3.0;
+    }else if (feed.feed.photos.count == 4||
+              (feed.feed.photos.count>=7 && feed.feed.photos.count<=9)){
+      contentHeight = UIScreenWidth;
+    }else if (feed.feed.photos.count == 5||
+              feed.feed.photos.count == 6){
+      contentHeight = UIScreenWidth * 2.0/3.0;
+    }else{
+      contentHeight = 0;
+    }
+  }
   
-  NSInteger imageHeight = UIScreenWidth *iHeight/iWidth;
 
-  CGFloat height = 7/*间隙*/+ 55/*头部*/ + imageHeight + 40 /*按钮*/;
+  CGFloat height = 7/*间隙*/+ 55/*头部*/ + contentHeight + 40 /*按钮*/;
   height+= (feed.feed.content.length>0?ELEMENT_GAP_HEIGHT:0);//文字空隙
   height+= (feed.feed.content.length>0?(contentSize.height+ELEMENT_GAP_HEIGHT):0);//文字高度
   height+= ((feed.likes.count>0&&feed.feed.content.length>0)?5:(feed.likes.count>0?ELEMENT_GAP_HEIGHT:0));//赞上部空隙

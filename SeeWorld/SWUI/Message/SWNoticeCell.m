@@ -133,8 +133,8 @@
       _imageViewLike.hidden = YES;
     }
     [_btnFeed addTarget:self action:@selector(onFeedClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_btnFeed.customImageView sd_setImageWithURL:[NSURL URLWithString:[msgItem.feed.picUrl stringByAppendingString:FEED_THUMB]]];
+        
+    [_btnFeed.customImageView sd_setImageWithURL:[NSURL URLWithString:[[msgItem.feed firstPicUrl] stringByAppendingString:FEED_THUMB]]];
   }
   _lblTime.text = [NSString time:[msgItem.time doubleValue] format:MHPrettyDateShortRelativeTime];
   [_lblTime sizeToFit];
