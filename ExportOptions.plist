@@ -9,7 +9,7 @@
 	<key>provisioningProfiles</key>
 	<dict>
 		<key>com.seeworldplus.SeeWorldPlus</key>
-		<string>sw_adhoc_171116</string>
+		<string>sw_adhoc_171122</string>
 	</dict>
 	<key>signingCertificate</key>
 	<string>iPhone Distribution</string>
