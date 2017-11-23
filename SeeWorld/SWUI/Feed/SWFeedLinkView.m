@@ -30,7 +30,8 @@
 }
 
 - (void)refreshWithTitle:(NSString *)title image:(NSString *)imageUrl{
-  [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+  [_imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl]
+                placeholderImage:[UIImage imageNamed:@"link_default"]];
   _lblTitle.text = title;
 }
 

@@ -55,7 +55,7 @@
 - (void)refresshWithFeed:(SWFeedItem *)feedItem{
   [_iconAvatar sd_setImageWithURL:[NSURL URLWithString:[feedItem.user.picUrl stringByAppendingString:@"-avatar120"]]
                  placeholderImage:nil];
-  if ([feedItem.feed.time doubleValue]>[NSDate currentTime]) {
+  if ([feedItem.feed.time doubleValue]/1000.0>[NSDate currentTime]) {
     _lblTime.text = @"剛剛";
   }else{
     _lblTime.text = [NSString time:[feedItem.feed.time doubleValue] format:MHPrettyDateShortRelativeTime];
