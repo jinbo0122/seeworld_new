@@ -283,7 +283,7 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
   BOOL succ = [asset exportDataToURL:fileURL error:&error];
   if (succ) {
     AVURLAsset *urlAsset = [AVURLAsset assetWithURL:fileURL];
-    AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:urlAsset presetName:AVAssetExportPresetLowQuality];
+    AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:urlAsset presetName:AVAssetExportPresetMediumQuality];
     NSString *pathNew = [NSTemporaryDirectory() stringByAppendingPathComponent:[[[thumbImageURL lastPathComponent] stringByAppendingString:@"_compression"] stringByAppendingString:@".mp4"]];
     exportSession.outputURL = [NSURL fileURLWithPath:pathNew];
     exportSession.outputFileType = AVFileTypeMPEG4;
