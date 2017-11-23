@@ -14,6 +14,7 @@
 #import "SWHomeFeedReportView.h"
 #import "SWFeedTagButton.h"
 #import "SWAgreementVC.h"
+#import <AVKit/AVKit.h>
 @interface SWFeedDetailScrollVC ()<SWFeedCollectionViewDelegate,SWFeedDetailViewDelegate,
 SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic, strong)SWFeedCollectionView *collectionView;
@@ -300,8 +301,15 @@ SWFeedInteractVCDelegate,UIDocumentInteractionControllerDelegate,UIImagePickerCo
 }
 
 - (void)feedDetailViewDidPressVideo:(SWFeedItem *)feedItem{
-//  SWFeedCollectionCell *cell = (SWFeedCollectionCell*)[_collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0]];
-//  [cell playVideo];
+  AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
+  AVURLAsset *asset = [AVURLAsset assetWithURL:[NSURL URLWithString:feedItem.feed.videoUrl]];
+  AVPlayerItem *item = [AVPlayerItem playerItemWithAsset: asset];
+  AVPlayer * player = [[AVPlayer alloc] initWithPlayerItem: item];
+  vc.player = player;
+  [vc.view setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+  vc.showsPlaybackControls = YES;
+  [self presentViewController:vc animated:YES completion:nil];
+  [player play];
 }
 
 - (void)feedDetailViewDidPressUrl:(SWFeedItem *)feedItem{

@@ -166,6 +166,10 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
   [self.view addSubview:_videoView];
   [_videoView addTarget:self action:@selector(onVideoClicked) forControlEvents:UIControlEventTouchUpInside];
   [self refreshVideo];
+  
+  if (_enableLBS) {
+    [_btnLBS sendActionsForControlEvents:UIControlEventTouchUpInside];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -214,8 +218,8 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
       [_model postVideoWithAsset:_videoAsset thumbImage:_videoThumbImage content:_txtContent.text];
     }else if (_videoURLAsset){
       NSTimeInterval duration = CMTimeGetSeconds(_videoURLAsset.duration);
-      if (duration > 180 && ![[SWConfigManager sharedInstance].user.admin boolValue]) {
-        [PDProgressHUD showTip:@"視頻不能超過三分鐘"];
+      if (duration > 120 && ![[SWConfigManager sharedInstance].user.admin boolValue]) {
+        [PDProgressHUD showTip:@"視頻不能超過兩分鐘"];
         return;
       }
       [_model postVideo:_videoURLAsset.URL thumbImage:_videoThumbImage content:_txtContent.text];

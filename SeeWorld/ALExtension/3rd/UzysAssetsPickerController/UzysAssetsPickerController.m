@@ -121,7 +121,7 @@
   //    picker.modalPresentationStyle = UIModalPresentationCurrentContext;
   picker.delegate = self;
   picker.allowsEditing = NO;
-  picker.videoQuality = UIImagePickerControllerQualityTypeHigh;
+  picker.videoQuality = UIImagePickerControllerQualityTypeLow;
   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
   {
     NSArray *availableMediaTypes =
@@ -221,6 +221,7 @@
       self.labelSelectedMedia.hidden = YES;
       if (_defaultSegIndex) {
         [self.segmentedControl setSelectedSegmentIndex:_defaultSegIndex];
+        _btnCamera.hidden = YES;
         [self changeAssetType:NO endBlock:nil];
       }
     }

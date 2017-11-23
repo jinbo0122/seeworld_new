@@ -464,7 +464,7 @@ SWPostPreviewVCDelegate>
   _recorder.captureSessionPreset = AVCaptureSessionPreset640x480;
   _recorder.maxRecordDuration = CMTimeMake(180.0, 1);
   //_recorder.fastRecordMethodEnabled = YES;
-  _recorder.device = AVCaptureDevicePositionFront;
+  _recorder.device = AVCaptureDevicePositionBack;
   _recorder.delegate = self;
   _recorder.autoSetVideoOrientation = NO; //YES causes bad orientation for video from camera roll
   _recorder.previewView = _cameraPreview;

@@ -16,4 +16,6 @@
 @property(nonatomic, strong)ALAsset        *videoAsset;
 @property(nonatomic, strong)AVURLAsset     *videoURLAsset;
 
+@property(nonatomic, assign)BOOL            enableLBS;
+
 @end

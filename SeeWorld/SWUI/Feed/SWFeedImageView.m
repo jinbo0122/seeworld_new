@@ -25,8 +25,8 @@
   SWFeedLinkView         *_linkView;
   
   UIButton               *_btnImage[9];
-  SCPlayer          *_player;
-  SCVideoPlayerView *_playerView;
+//  SCPlayer          *_player;
+//  SCVideoPlayerView *_playerView;
 
   UIImageView *_iconPlay;
 }
@@ -105,7 +105,7 @@
       _iconPlay.hidden = NO;
       _iconPlay.image = [UIImage imageNamed:@"PLAY"];
       _iconPlay.frame = CGRectMake((self.width-40)/2.0, (self.height-40)/2.0, 40, 40);
-      _playerView.frame = self.bounds;
+//      _playerView.frame = self.bounds;
     }else{
       _iconPlay.hidden = YES;
     }
@@ -232,57 +232,56 @@
 
 #pragma mark - Video
 - (void)prepagePlay{
-  [self videoPause];
-  if (!_player) {
-    _player = [SCPlayer player];
-    _playerView = [[SCVideoPlayerView alloc] initWithPlayer:_player];
-    _playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    _playerView.frame = self.bounds;
-    [self addSubview:_playerView];
-    _player.loopEnabled = YES;
-  }
-  
-  __weak typeof(self)wSelf = self;
-  [_indicator removeFromSuperview];
-  _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-  _indicator.frame = CGRectMake(0, 0, 50, 50);
-  [_playerView addSubview:_indicator];
-  _indicator.center = CGPointMake(_playerView.width/2.0, _playerView.height/2.0);
-  [_indicator startAnimating];
-  _indicator.hidesWhenStopped = YES;
-  [[SWVideoPlayerManager sharedInstance]
-   getVideoFileWithFeed:_feedItem
-   completionBlock:^(NSURL *fileUrl) {
-     [wSelf.indicator stopAnimating];
-     [wSelf.indicator removeFromSuperview];
-     [wSelf playWithUrl:fileUrl];
-   } failedBlock:^{
-     [wSelf.indicator stopAnimating];
-     [wSelf.indicator removeFromSuperview];
-   }];
+//  [self videoPause];
+//  if (!_player) {
+//    _player = [SCPlayer player];
+//    _playerView = [[SCVideoPlayerView alloc] initWithPlayer:_player];
+//    _playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//    _playerView.frame = self.bounds;
+//    [self addSubview:_playerView];
+//    _player.loopEnabled = YES;
+//  }
+//
+//  __weak typeof(self)wSelf = self;
+//  [_indicator removeFromSuperview];
+//  _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//  _indicator.frame = CGRectMake(0, 0, 50, 50);
+//  [_playerView addSubview:_indicator];
+//  _indicator.center = CGPointMake(_playerView.width/2.0, _playerView.height/2.0);
+//  [_indicator startAnimating];
+//  _indicator.hidesWhenStopped = YES;
+//  [[SWVideoPlayerManager sharedInstance]
+//   getVideoFileWithFeed:_feedItem
+//   completionBlock:^(NSURL *fileUrl) {
+//     [wSelf.indicator stopAnimating];
+//     [wSelf.indicator removeFromSuperview];
+//     [wSelf playWithUrl:fileUrl];
+//   } failedBlock:^{
+//     [wSelf.indicator stopAnimating];
+//     [wSelf.indicator removeFromSuperview];
+//   }];
 }
 
 - (void)playWithUrl:(NSURL *)fileUrl{
-  [_player setItemByUrl:fileUrl];
-  [self videoResume];
+//  [_player setItemByUrl:fileUrl];
+//  [self videoResume];
 }
 
 - (void)videoResume{
-  if (![_player isPlaying]) {
-    [_player play];
-    
-  }
+//  if (![_player isPlaying]) {
+//    [_player play];
+//  }
 }
 
 - (void)videoPause{
-  if ([_player isPlaying]) {
-    [_player pause];
-  }
+//  if ([_player isPlaying]) {
+//    [_player pause];
+//  }
 }
 
 - (void)dealloc{
-  [_player pause];
-  _player.loopEnabled = NO;
-  _player = nil;
+//  [_player pause];
+//  _player.loopEnabled = NO;
+//  _player = nil;
 }
 @end

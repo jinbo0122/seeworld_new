@@ -108,6 +108,7 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   
   self.mineVC = [[SWMineVC alloc] init];
   self.mineVC.user = [SWConfigManager sharedInstance].user;
+  [_mineVC refreshUserInfo];
   self.mineNav = [[UINavigationController alloc] initWithRootViewController:self.mineVC];
   
   UITabBarItem *meItem = [[UITabBarItem alloc] initWithTitle:@""
@@ -234,6 +235,15 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
   [self presentViewController:nav animated:YES completion:nil];
 }
+
+- (void)composeWithLBS{
+  SWPostVC *vc = [[SWPostVC alloc] init];
+  vc.enableLBS = YES;
+  UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+  [self presentViewController:nav animated:YES completion:nil];
+}
+
+
 
 - (void)composeWithAlbum{
   UzysAssetsPickerController *photoPicker = [[UzysAssetsPickerController alloc] init];

@@ -11,4 +11,5 @@
 @interface SWMineVC : ALBaseVC
 @property(nonatomic, strong)SWFeedUserItem *user;
 - (void)refresh;
+- (void)refreshUserInfo;
 @end

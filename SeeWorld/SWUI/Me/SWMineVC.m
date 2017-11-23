@@ -86,7 +86,6 @@ SWFeedInteractVCDelegate>
 - (void)setUser:(SWFeedUserItem *)user{
   _user = user;
   _model.userId = _user?[_user.uId stringValue]:[[SWConfigManager sharedInstance].user.uId stringValue];
-  [self refreshUserInfo];
 }
 
 - (void)refreshUserInfo{

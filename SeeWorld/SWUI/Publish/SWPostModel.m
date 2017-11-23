@@ -1,4 +1,4 @@
- //
+//
 //  SWPostModel.m
 //  SeeWorld
 //
@@ -13,6 +13,9 @@
 #import "GetQiniuTokenResponse.h"
 #import "QNUploadManager.h"
 #import "QNResponseInfo.h"
+#import <AVKit/AVKit.h>
+#import "ALAsset+ALExtension.h"
+#import "SCRecorderHeader.h"
 typedef void(^COMPLETION_BLOCK_WITH_IMAGE_URL)(NSString *feedImageUrl);
 typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
 
@@ -274,36 +277,62 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
 }
 
 - (void)postVideoWithAsset:(ALAsset *)asset thumbImageURL:(NSString *)thumbImageURL content:(NSString *)content{
-  GetQiniuTokenApi *api = [[GetQiniuTokenApi alloc] init];
-  __weak typeof(self)wSelf = self;
-  [api startWithModelClass:[GetQiniuTokenResponse class] completionBlock:^(ModelMessage *message) {
-    if (message.isSuccess){
-      GetQiniuTokenResponse *resp = message.object;
-      NSString *token = resp.data;
-      QNUploadManager *manager = [[QNUploadManager alloc] init];
-      [manager putALAsset:asset
-                   key:[SWObject createUUID]
-                 token:token
-              complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-                if (info.ok && resp[@"key"]) {
-                  NSString *videoUrlString = [NSString stringWithFormat:@"http:/7xlsvh.com1.z0.glb.clouddn.com/%@",[resp valueForKey:@"key"]];
-                  [wSelf postVideoURL:videoUrlString thumbImageURL:thumbImageURL content:content];
-                }else{
-                  if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postModelDidPostFeedFailed:)]) {
-                    [wSelf.delegate postModelDidPostFeedFailed:wSelf];
-                  }
-                  [SWHUD hideWaiting];
-                  [SWHUD showCommonToast:@"發佈失败"];
-                }
-              } option:nil];
-    }else{
-      if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postModelDidPostFeedFailed:)]) {
-        [wSelf.delegate postModelDidPostFeedFailed:wSelf];
-      }
-      [SWHUD hideWaiting];
-      [SWHUD showCommonToast:@"發佈失败"];
+  NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[[thumbImageURL lastPathComponent] stringByAppendingString:@".mp4"]];
+  NSError *error;
+  NSURL *fileURL = [NSURL fileURLWithPath:path];
+  BOOL succ = [asset exportDataToURL:fileURL error:&error];
+  if (succ) {
+    AVURLAsset *urlAsset = [AVURLAsset assetWithURL:fileURL];
+    AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:urlAsset presetName:AVAssetExportPresetLowQuality];
+    NSString *pathNew = [NSTemporaryDirectory() stringByAppendingPathComponent:[[[thumbImageURL lastPathComponent] stringByAppendingString:@"_compression"] stringByAppendingString:@".mp4"]];
+    exportSession.outputURL = [NSURL fileURLWithPath:pathNew];
+    exportSession.outputFileType = AVFileTypeMPEG4;
+    exportSession.shouldOptimizeForNetworkUse = YES;
+    [exportSession exportAsynchronouslyWithCompletionHandler:^{
+      NSError *error = exportSession.error;
+      dispatch_async(dispatch_get_main_queue(), ^{
+        if (!error) {
+          GetQiniuTokenApi *api = [[GetQiniuTokenApi alloc] init];
+          __weak typeof(self)wSelf = self;
+          [api startWithModelClass:[GetQiniuTokenResponse class] completionBlock:^(ModelMessage *message) {
+            if (message.isSuccess){
+              GetQiniuTokenResponse *resp = message.object;
+              NSString *token = resp.data;
+              QNUploadManager *manager = [[QNUploadManager alloc] init];
+              [manager putFile:[exportSession.outputURL path]
+                           key:[SWObject createUUID]
+                         token:token
+                      complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                        if (info.ok && resp[@"key"]) {
+                          NSString *videoUrlString = [NSString stringWithFormat:@"http:/7xlsvh.com1.z0.glb.clouddn.com/%@",[resp valueForKey:@"key"]];
+                          [wSelf postVideoURL:videoUrlString thumbImageURL:thumbImageURL content:content];
+                        }else{
+                          if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postModelDidPostFeedFailed:)]) {
+                            [wSelf.delegate postModelDidPostFeedFailed:wSelf];
+                          }
+                          [SWHUD hideWaiting];
+                          [SWHUD showCommonToast:@"發佈失败"];
+                        }
+                      } option:nil];
+            }else{
+              if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postModelDidPostFeedFailed:)]) {
+                [wSelf.delegate postModelDidPostFeedFailed:wSelf];
+              }
+              [SWHUD hideWaiting];
+              [SWHUD showCommonToast:@"發佈失败"];
+            }
+          }];
+          
+        }
+      });
+    }];
+  }else{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(postModelDidPostFeedFailed:)]) {
+      [self.delegate postModelDidPostFeedFailed:self];
     }
-  }];
+    [SWHUD hideWaiting];
+    [SWHUD showCommonToast:@"發佈失败"];
+  }
 }
 
 

@@ -55,8 +55,12 @@
 - (void)refresshWithFeed:(SWFeedItem *)feedItem{
   [_iconAvatar sd_setImageWithURL:[NSURL URLWithString:[feedItem.user.picUrl stringByAppendingString:@"-avatar120"]]
                  placeholderImage:nil];
+  if ([feedItem.feed.time doubleValue]>[NSDate currentTime]) {
+    _lblTime.text = @"剛剛";
+  }else{
+    _lblTime.text = [NSString time:[feedItem.feed.time doubleValue] format:MHPrettyDateShortRelativeTime];
+  }
   
-  _lblTime.text = [NSString time:[feedItem.feed.time doubleValue] format:MHPrettyDateShortRelativeTime];
   CGSize timeSize = [_lblTime.text sizeWithAttributes:@{NSFontAttributeName:_lblTime.font}];
   _lblTime.frame = CGRectMake(self.width-15-timeSize.width, (self.height-timeSize.height)/2.0, timeSize.width, timeSize.height);
   
