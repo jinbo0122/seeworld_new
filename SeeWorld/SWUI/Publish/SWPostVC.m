@@ -428,7 +428,11 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
           SWPostPreviewVC *vc = [[SWPostPreviewVC alloc] init];
           vc.images = [imageArray mutableCopy];
           vc.delegate = self;
-          vc.startIndex = 1000+wSelf.images.count;
+          if (wSelf.isPickerChooseForChangeSinglePic&& wSelf.pickerChooseForChangeSingleIndex >=0) {
+            vc.startIndex = 1000+wSelf.pickerChooseForChangeSingleIndex;
+          }else{
+            vc.startIndex = 1000+wSelf.images.count;
+          }
           [picker.navigationController setNavigationBarHidden:NO];
           [picker.navigationController pushViewController:vc animated:YES];
         }else{
@@ -436,6 +440,13 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
                                     completion:^{
                                       if (wSelf.isPickerChooseForChangeSinglePic&& wSelf.pickerChooseForChangeSingleIndex >=0) {
                                         [wSelf.images replaceObjectAtIndex:wSelf.pickerChooseForChangeSingleIndex withObject:[imageArray safeObjectAtIndex:0]];
+                                        for (NSInteger i=0; i<wSelf.tags.count; i++) {
+                                          NSArray *tagArray = [wSelf.tags safeArrayObjectAtIndex:i];
+                                          if (tagArray.count>0 && [[tagArray[0] safeNumberObjectForKey:@"imageId"] integerValue] == wSelf.pickerChooseForChangeSingleIndex) {
+                                            [wSelf.tags removeObjectAtIndex:i];
+                                            break;
+                                          }
+                                        }
                                         [wSelf refreshImages];
                                       }else{
                                         [wSelf.images addObjectsFromArray:imageArray];
@@ -487,19 +498,21 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
 }
 
 #pragma mark Location Delegate
-- (void)selectLocationVCDidReturnWithLocation:(CLLocation *)location placemark:(CLPlacemark *)placemark{
+- (void)selectLocationVCDidReturnWithLocation:(CLLocation *)location placemark:(NSString *)placemark{
   if (placemark) {
-    _lblLBS.text = placemark.locality?placemark.locality:(placemark.administrativeArea?placemark.administrativeArea:placemark.country);
+    _lblLBS.text = placemark;
     [_lblLBS sizeToFit];
     _lblLBS.left = _iconLBS.right+7;
     _lblLBS.top = (_lbsView.height-_lblLBS.height)/2.0;
     _lbsView.hidden = NO;
     [_btnLBS setImage:[UIImage imageNamed:@"send_location"] forState:UIControlStateNormal];
+    _model.locationName = placemark;
     [[NSUserDefaults standardUserDefaults] setObject:@(location.coordinate.latitude) forKey:@"SWLocationLatitude"];
     [[NSUserDefaults standardUserDefaults] setObject:@(location.coordinate.longitude) forKey:@"SWLocationLongitude"];
   }else{
     _lblLBS.text = @"";
     _lbsView.hidden = YES;
+    _model.locationName = @"";
     [_btnLBS setImage:[UIImage imageNamed:@"send_location_export"] forState:UIControlStateNormal];
   }
   [self dismissViewControllerAnimated:YES completion:nil];

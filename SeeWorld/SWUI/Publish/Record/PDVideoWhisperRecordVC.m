@@ -252,33 +252,33 @@ SWPostPreviewVCDelegate>
   [_recorder stopRunning];
 }
 
-- (void) saveVideoToAlbum:(NSURL*)videoURL{
-  PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
-  if (status == PHAuthorizationStatusAuthorized) {
-    if (videoURL == nil) {
-      return;
-    }
-    self.videoUrl = videoURL;
-    __weak typeof(self)wSelf = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      __strong typeof(wSelf)sSelf = wSelf;
-      if (sSelf.videoUrl) {
-        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-        [library saveVideo:sSelf.videoUrl toAlbum:@"SeeWorld+" completion:nil failure:nil];
-      }
-    });
-  }else if (status == PHAuthorizationStatusNotDetermined){
-    __weak typeof(self)wSelf = self;
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-      if (status == PHAuthorizationStatusAuthorized) {
-        [wSelf saveVideoToAlbum:videoURL];
-      }else{
-        [self showDisableAlert];
-      }
-    }];
-  }else{
-    [self showDisableAlert];
-  }
+- (void)saveVideoToAlbum:(NSURL*)videoURL{
+//  PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+//  if (status == PHAuthorizationStatusAuthorized) {
+//    if (videoURL == nil) {
+//      return;
+//    }
+//    self.videoUrl = videoURL;
+//    __weak typeof(self)wSelf = self;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//      __strong typeof(wSelf)sSelf = wSelf;
+//      if (sSelf.videoUrl) {
+//        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+//        [library saveVideo:sSelf.videoUrl toAlbum:@"SeeWorld+" completion:nil failure:nil];
+//      }
+//    });
+//  }else if (status == PHAuthorizationStatusNotDetermined){
+//    __weak typeof(self)wSelf = self;
+//    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+//      if (status == PHAuthorizationStatusAuthorized) {
+//        [wSelf saveVideoToAlbum:videoURL];
+//      }else{
+//        [self showDisableAlert];
+//      }
+//    }];
+//  }else{
+//    [self showDisableAlert];
+//  }
 }
 
 - (void)showDisableAlert{

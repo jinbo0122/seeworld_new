@@ -194,11 +194,11 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
 }
 
 - (void)pushChat:(UIViewController *)vc{
-  [self.noticeNav popToRootViewControllerAnimated:NO];
-  [self.noticeNav pushViewController:vc animated:YES];
+  [self.msgNav popToRootViewControllerAnimated:NO];
+  [self.msgNav pushViewController:vc animated:YES];
 }
 - (void)popChatSetting{
-  [self.noticeNav popViewControllerAnimated:NO];
+  [self.msgNav popViewControllerAnimated:NO];
 }
 
 - (void)hidePickerController{

@@ -212,7 +212,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostVC.m"
-            timestampString = "533068862.337255"
+            timestampString = "533108523.51403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "371"
@@ -227,13 +227,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533068862.337299"
+            filePath = "SeeWorld/SWUI/Message/SWSelectContactVC.m"
+            timestampString = "533106556.382026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-postPhoto:tags:content:"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-startChat"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -243,13 +243,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533068862.337339"
+            filePath = "SeeWorld/SWUI/Message/SWSelectContactVC.m"
+            timestampString = "533106558.697856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-uploadImage:completionBlock:"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "-startChat"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -259,29 +259,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533068862.337374"
+            filePath = "SeeWorld/SWUI/Message/SWSelectContactVC.m"
+            timestampString = "533106567.369402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-uploadImage:completionBlock:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533068862.337408"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-uploadImage:completionBlock:"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-startChat"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

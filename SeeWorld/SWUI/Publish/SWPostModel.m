@@ -30,6 +30,7 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
   if (self = [super init]) {
     _currentUploadIndex = 0;
     _postImagesInfo = [NSMutableArray array];
+    _locationName = @"";
   }
   return self;
 }
@@ -41,6 +42,7 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
   api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLongitude"]).floatValue;
   api.link = link;
   api.feedType = SWFeedTypeLink;
+  api.location = _locationName?_locationName:@"";
   [SWHUD showWaiting];
   __weak typeof(self)wSelf = self;
   [api startWithModelClass:[FeedComposeResponse class] completionBlock:^(ModelMessage *message) {
@@ -146,6 +148,7 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
       api.feedType = SWFeedTypeImage;
       api.photoJson = photoJson;
       api.tags = postTags;
+      api.location = _locationName?_locationName:@"";
       [api startWithModelClass:[FeedComposeResponse class] completionBlock:^(ModelMessage *message) {
         [SWHUD hideWaiting];
         if (message.isSuccess){
@@ -312,6 +315,7 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
   api.feedType = SWFeedTypeVideo;
   api.photoJson = [@[@{@"src":thumbImageURL?thumbImageURL:@"",@"width":@(_videoThumbSize.width),@"height":@(_videoThumbSize.height)}] JSONString];
   api.videoUrl = videoUrl;
+  api.location = _locationName?_locationName:@"";
   __weak typeof(self)wSelf = self;
   [api startWithModelClass:[FeedComposeResponse class] completionBlock:^(ModelMessage *message) {
     [SWHUD hideWaiting];

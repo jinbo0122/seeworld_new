@@ -53,6 +53,8 @@
     for (NSInteger i=0; i<9; i++) {
       _btnImage[i] = [[UIButton alloc] initWithFrame:CGRectZero];
       _btnImage[i].tag = i;
+      _btnImage[i].imageView.contentMode = UIViewContentModeScaleAspectFill;
+      _btnImage[i].clipsToBounds = YES;
       [_btnImage[i] addTarget:self action:@selector(onImageClicked:) forControlEvents:UIControlEventTouchUpInside];
       [self addSubview:_btnImage[i]];
     }

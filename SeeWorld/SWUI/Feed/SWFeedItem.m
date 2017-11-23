@@ -62,6 +62,7 @@
   }else if (feed.type == SWFeedTypeLink){
     feed.link = [SWFeedLinkItem feedLinkItem:[feedInfoDic safeStringObjectForKey:@"link"]];
   }
+  feed.location = [feedInfoDic safeStringObjectForKey:@"location"];
   return feed;
 }
 
@@ -87,6 +88,7 @@
   }else if (self.type == SWFeedTypeLink){
     feed.link = [self.link copy];
   }
+  feed.location = [self.location copy];
   return feed;
 }
 

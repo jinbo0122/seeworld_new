@@ -19,6 +19,7 @@
              @"description":self.feedDescription,
              @"version":@1,
              @"photo":_photoJson?_photoJson:@"",
+             @"location":_location?_location:@"",
              @"type":@(SWFeedTypeLink)};
   }else if (_feedType == SWFeedTypeVideo){
     return @{@"jwt":[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"jwt"],
@@ -28,6 +29,7 @@
              @"latitude":@(self.latitude),
              @"description":self.feedDescription,
              @"version":@1,
+             @"location":_location?_location:@"",
              @"type":@(SWFeedTypeVideo)};
   }else{
     return @{@"jwt":[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"jwt"],
@@ -37,6 +39,7 @@
              @"description":self.feedDescription,
              @"version":@1,
              @"tags":[self.tags JSONString],
+             @"location":_location?_location:@"",
              @"type":@(SWFeedTypeImage)};
   }
 }

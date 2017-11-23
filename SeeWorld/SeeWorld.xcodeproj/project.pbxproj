@@ -116,7 +116,6 @@
 		49EBAAE91B794103009DB46F /* LoginResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBAAE51B794103009DB46F /* LoginResponse.m */; };
 		49EBAAEA1B794103009DB46F /* Meta.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBAAE71B794103009DB46F /* Meta.m */; };
 		49FD6D8E1BA718C700748E9E /* FeedTagEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD6D8D1BA718C700748E9E /* FeedTagEditView.m */; };
-		4B06D1011D202C8000AA4F84 /* SWHotTagsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B06D1001D202C8000AA4F84 /* SWHotTagsAPI.m */; };
 		4B0ACE171DA8D52500C2026A /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0ACE161DA8D52500C2026A /* TTTAttributedLabel.m */; };
 		4B0FD66A1DAF3B6A00F11FCE /* SWRegisterCheckPhoneAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0FD6691DAF3B6A00F11FCE /* SWRegisterCheckPhoneAPI.m */; };
 		4B0FD66F1DAF3E4D00F11FCE /* SWSMSVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0FD66E1DAF3E4D00F11FCE /* SWSMSVerifyVC.m */; };
@@ -223,6 +222,8 @@
 		4B5E9CAD1FC42D9E005F5852 /* LyGL2DTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E9CA41FC42D9E005F5852 /* LyGL2DTexture.m */; };
 		4B5E9CAE1FC42D9E005F5852 /* LyGLFrameBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5E9CA51FC42D9E005F5852 /* LyGLFrameBuffer.m */; };
 		4B6176D51BBA49FB00887BA2 /* SWPushSyncAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6176D41BBA49FB00887BA2 /* SWPushSyncAPI.m */; };
+		4B646B1C1FC692DC00A94E9E /* SWPostGetLocationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B646B1B1FC692DC00A94E9E /* SWPostGetLocationAPI.m */; };
+		4B646B201FC692F400A94E9E /* SWHotTagsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B646B1F1FC692F400A94E9E /* SWHotTagsAPI.m */; };
 		4B71F2951FC5881B00E2BB83 /* SWFeedLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */; };
 		4B7716E71FB98F410006B814 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D81FB98F410006B814 /* RongCallLib.framework */; };
 		4B7716E81FB98F410006B814 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */; };
@@ -671,8 +672,6 @@
 		49EBAAE71B794103009DB46F /* Meta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Meta.m; sourceTree = "<group>"; };
 		49FD6D8C1BA718C700748E9E /* FeedTagEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTagEditView.h; sourceTree = "<group>"; };
 		49FD6D8D1BA718C700748E9E /* FeedTagEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTagEditView.m; sourceTree = "<group>"; };
-		4B06D0FF1D202C8000AA4F84 /* SWHotTagsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWHotTagsAPI.h; sourceTree = "<group>"; };
-		4B06D1001D202C8000AA4F84 /* SWHotTagsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWHotTagsAPI.m; sourceTree = "<group>"; };
 		4B0ACE151DA8D52500C2026A /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		4B0ACE161DA8D52500C2026A /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		4B0FD6681DAF3B6A00F11FCE /* SWRegisterCheckPhoneAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRegisterCheckPhoneAPI.h; path = Register/SWRegisterCheckPhoneAPI.h; sourceTree = "<group>"; };
@@ -888,6 +887,10 @@
 		4B606F211D93CDFE00B9F9E0 /* SeeWorld.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeeWorld.entitlements; sourceTree = SOURCE_ROOT; };
 		4B6176D31BBA49FB00887BA2 /* SWPushSyncAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWPushSyncAPI.h; sourceTree = "<group>"; };
 		4B6176D41BBA49FB00887BA2 /* SWPushSyncAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWPushSyncAPI.m; sourceTree = "<group>"; };
+		4B646B1A1FC692DC00A94E9E /* SWPostGetLocationAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SWPostGetLocationAPI.h; path = API/SWPostGetLocationAPI.h; sourceTree = "<group>"; };
+		4B646B1B1FC692DC00A94E9E /* SWPostGetLocationAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SWPostGetLocationAPI.m; path = API/SWPostGetLocationAPI.m; sourceTree = "<group>"; };
+		4B646B1E1FC692F400A94E9E /* SWHotTagsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWHotTagsAPI.h; path = API/SWHotTagsAPI.h; sourceTree = "<group>"; };
+		4B646B1F1FC692F400A94E9E /* SWHotTagsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWHotTagsAPI.m; path = API/SWHotTagsAPI.m; sourceTree = "<group>"; };
 		4B71F2931FC5881B00E2BB83 /* SWFeedLinkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWFeedLinkView.h; sourceTree = "<group>"; };
 		4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWFeedLinkView.m; sourceTree = "<group>"; };
 		4B7716D81FB98F410006B814 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
@@ -2024,10 +2027,12 @@
 		4B06D0FD1D202C6900AA4F84 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				4B06D0FF1D202C8000AA4F84 /* SWHotTagsAPI.h */,
-				4B06D1001D202C8000AA4F84 /* SWHotTagsAPI.m */,
+				4B646B1E1FC692F400A94E9E /* SWHotTagsAPI.h */,
+				4B646B1F1FC692F400A94E9E /* SWHotTagsAPI.m */,
 				4BA6293C1FC3592D00F3B71D /* SWPostCheckLinkAPI.h */,
 				4BA6293D1FC3592D00F3B71D /* SWPostCheckLinkAPI.m */,
+				4B646B1A1FC692DC00A94E9E /* SWPostGetLocationAPI.h */,
+				4B646B1B1FC692DC00A94E9E /* SWPostGetLocationAPI.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -3444,6 +3449,8 @@
 				4B7B27181FBDFF7500F413C7 /* SWSelectLocationCell.m in Sources */,
 				493D450C1B777C8A00C406A1 /* QBImagePickerThumbnailView.m in Sources */,
 				49DE01151BC95D0800B4A1FE /* ResetPasswordsApi.m in Sources */,
+				4B646B1C1FC692DC00A94E9E /* SWPostGetLocationAPI.m in Sources */,
+				4B646B201FC692F400A94E9E /* SWHotTagsAPI.m in Sources */,
 				493D44491B777C3900C406A1 /* SWHUD.m in Sources */,
 				4B49809A1FC460FD003F88EF /* SWPostModel.m in Sources */,
 				493D45051B777C8A00C406A1 /* QBAssetsCollectionFooterView.m in Sources */,
@@ -3502,7 +3509,6 @@
 				493D44E81B777C8A00C406A1 /* MJPhotoView.m in Sources */,
 				493D44D71B777C8A00C406A1 /* DWTagList.m in Sources */,
 				4B1667071B9FFB9C00590D06 /* SWSearchModel.m in Sources */,
-				4B06D1011D202C8000AA4F84 /* SWHotTagsAPI.m in Sources */,
 				493D45031B777C8A00C406A1 /* OHASMarkupParserBase.m in Sources */,
 				4BE5A4911CF2C7ED00DA8E34 /* SWFeedCell.m in Sources */,
 				4BC0FE581B943B4F003F4723 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,

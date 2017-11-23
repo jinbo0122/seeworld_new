@@ -35,6 +35,7 @@
 @property (nonatomic, strong)NSString       *videoUrl;
 @property (nonatomic, strong)SWFeedLinkItem *link;
 @property (nonatomic, strong)NSNumber       *time;
+@property (nonatomic, strong)NSString       *location;
 + (SWFeedInfoItem *)feedInfoItemByDic:(NSDictionary *)feedInfoDic;
 - (SWFeedInfoItem *)copy;
 - (NSString *)firstPicUrl;

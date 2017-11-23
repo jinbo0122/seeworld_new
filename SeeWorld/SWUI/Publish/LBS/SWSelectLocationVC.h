@@ -14,5 +14,5 @@
 
 
 @protocol SWSelectLocationVCDelegate<NSObject>
-- (void)selectLocationVCDidReturnWithLocation:(CLLocation *)location placemark:(CLPlacemark *)placemark;
+- (void)selectLocationVCDidReturnWithLocation:(CLLocation *)location placemark:(NSString *)placemark;
 @end

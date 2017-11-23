@@ -8,11 +8,12 @@
 
 #import "SWSelectLocationVC.h"
 #import "SWSelectLocationCell.h"
+#import "SWPostGetLocationAPI.h"
 @interface SWSelectLocationVC ()<UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic, strong)CLLocation  *location;
 @property(nonatomic, strong)CLPlacemark *placemark;
 @property(nonatomic, strong)UITableView *tableView;
-
+@property(nonatomic, strong)NSString    *lbsPostionName;
 @end
 
 @implementation SWSelectLocationVC{
@@ -37,7 +38,9 @@
                                               if (!error) {
                                                 wSelf.location = location;
                                                 wSelf.placemark = placemark;
+                                                wSelf.lbsPostionName = wSelf.placemark.locality?wSelf.placemark.locality:(wSelf.placemark.administrativeArea?wSelf.placemark.administrativeArea:wSelf.placemark.country);
                                                 [wSelf.tableView reloadData];
+                                                [wSelf getLocation];
                                               }
                                             } failureBlock:^{
                                               
@@ -64,6 +67,22 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)getLocation{
+  SWPostGetLocationAPI *api = [[SWPostGetLocationAPI alloc] init];
+  api.latitude = _location.coordinate.latitude;
+  api.longitude= _location.coordinate.longitude;
+  __weak typeof(self)wSelf = self;
+  [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+    NSDictionary *dic = [request.responseString safeJsonDicFromJsonString];
+    if ([[dic safeStringObjectForKey:@"data"] length]>0) {
+      wSelf.lbsPostionName = [[[dic safeStringObjectForKey:@"data"] componentsSeparatedByString:@","] safeStringObjectAtIndex:0];
+      [wSelf.tableView reloadData];
+    }
+  } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+    
+  }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
   return _location?2:1;
 }
@@ -75,14 +94,15 @@
     cell = [[SWSelectLocationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
   }
   
-  [cell refreshWithRow:indexPath.row text:_placemark.locality?_placemark.locality:(_placemark.administrativeArea?_placemark.administrativeArea:_placemark.country)];
+  [cell refreshWithRow:indexPath.row text:_lbsPostionName];
   return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
   if (self.delegate && [self.delegate respondsToSelector:@selector(selectLocationVCDidReturnWithLocation:placemark:)]) {
-    [self.delegate selectLocationVCDidReturnWithLocation:indexPath.row?_location:nil placemark:indexPath.row?_placemark:nil];
+    [self.delegate selectLocationVCDidReturnWithLocation:indexPath.row?_location:nil
+                                               placemark:indexPath.row?_lbsPostionName:nil];
   }
 }
 /*

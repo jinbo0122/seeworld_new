@@ -16,4 +16,5 @@ typedef NS_ENUM(NSInteger, SWFeedType){
 @property(nonatomic, assign)SWFeedType feedType;
 @property(nonatomic, strong)NSString *link;
 @property(nonatomic, strong)NSString *videoUrl;
+@property(nonatomic, strong)NSString *location;
 @end
