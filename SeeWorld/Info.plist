@@ -60,7 +60,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.2.0</string>
+	<string>1.2.0.1</string>
 	<key>FacebookAppID</key>
 	<string>870374476332943</string>
 	<key>FacebookDisplayName</key>
@@ -121,10 +121,10 @@
 	<string>打开定位功能查看附近照片</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>點擊同意以便SeeWolrd使用麥克風</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>點擊同意以便SeeWolrd使用相冊</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>允許SeeWolrd創建相冊</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>點擊同意以便SeeWolrd使用相冊</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
