@@ -113,7 +113,9 @@ SWHomeHeaderViewDelegate>
                                                            style:UIBarButtonItemStylePlain
                                                           target:self
                                                           action:@selector(onPostClicked:)];
-  item.imageInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+  if (isRunningOnIOS11) {
+    item.imageInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+  }
   self.navigationItem.rightBarButtonItem = item;
 }
 

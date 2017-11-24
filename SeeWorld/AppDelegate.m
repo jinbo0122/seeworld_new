@@ -120,6 +120,7 @@
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userId"];
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"rongToken"];
   [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userInfo"];
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NOTICE_DELETE_INFO"];
   [SWConfigManager sharedInstance].user = nil;
   SWLoginVC *vc = [[SWLoginVC alloc] init];
   UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

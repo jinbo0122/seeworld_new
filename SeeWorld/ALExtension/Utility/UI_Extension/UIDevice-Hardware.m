@@ -353,6 +353,33 @@
   return (BOOL)result;
 }
 
+- (BOOL)isIOS9 {
+  static NSInteger result = -1;
+  if (result == -1) {
+    NSNumber *majorVersion = [[self.systemVersion componentsSeparatedByString:@"."] safeObjectAtIndex:0];
+    result = majorVersion.integerValue >= 9;
+  }
+  return (BOOL)result;
+}
+
+- (BOOL)isIOS10{
+  static NSInteger result = -1;
+  if (result == -1) {
+    NSNumber *majorVersion = [[self.systemVersion componentsSeparatedByString:@"."] safeObjectAtIndex:0];
+    result = majorVersion.integerValue >= 10;
+  }
+  return (BOOL)result;
+}
+
+- (BOOL)isIOS11{
+  static NSInteger result = -1;
+  if (result == -1) {
+    NSNumber *majorVersion = [[self.systemVersion componentsSeparatedByString:@"."] safeObjectAtIndex:0];
+    result = majorVersion.integerValue >= 11;
+  }
+  return (BOOL)result;
+}
+
 - (UIDeviceSreenType) screenType{
   if ([UIScreen mainScreen].bounds.size.height <= 480){
     return UIDEVICE_35INCH;

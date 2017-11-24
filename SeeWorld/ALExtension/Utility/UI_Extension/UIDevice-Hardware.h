@@ -156,5 +156,8 @@ typedef enum{
 - (UIDevicePerformance)performace;
 - (BOOL)isIOS7;
 - (BOOL)isIOS8;
+- (BOOL)isIOS9;
+- (BOOL)isIOS10;
+- (BOOL)isIOS11;
 - (UIDeviceSreenType) screenType;
 @end
