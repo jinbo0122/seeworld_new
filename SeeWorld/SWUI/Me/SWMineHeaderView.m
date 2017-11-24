@@ -10,6 +10,7 @@
 
 @implementation SWMineHeaderView{  
   UIView      *_bgInfo;
+  UILabel     *_lblIntro;
 }
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]) {
@@ -63,6 +64,13 @@
                         textAlignment:NSTextAlignmentLeft
                                  font:[UIFont systemFontOfSize:18]];
     
+    _lblIntro = [UILabel initWithFrame:CGRectMake(15, _lblName.bottom, UIScreenWidth-_btnAvatar.left-10-15, 25)
+                              bgColor:[UIColor clearColor]
+                            textColor:[UIColor colorWithRGBHex:0xffffff]
+                                 text:@""
+                        textAlignment:NSTextAlignmentLeft
+                                 font:[UIFont systemFontOfSize:12]];
+    
     _bgInfo = [[UIView alloc] initWithFrame:CGRectMake(0, _btnCover.bottom, self.width, 135.5)];
     _bgInfo.backgroundColor = [UIColor whiteColor];
     [self addSubview:_bgInfo];
@@ -72,6 +80,7 @@
     [self addSubview:_btnEditCover];
     [self addSubview:_btnEditAvatar];
     [self addSubview:_lblName];
+    [self addSubview:_lblIntro];
     
     [_btnCover addTarget:self action:@selector(onEditCoverClicked) forControlEvents:UIControlEventTouchUpInside];
     [_btnAvatar addTarget:self action:@selector(onEditAvatarClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -184,6 +193,9 @@
   _lblName.text = user.name;
   [_lblName sizeToFit];
   
+  _lblIntro.text = user.intro;
+  [_lblIntro sizeToFit];
+  
   NSMutableAttributedString *mutPost = [[NSMutableAttributedString alloc]
                                         initWithString:[@"貼文 " stringByAppendingString:[user.feedCount?user.feedCount:@0 stringValue]]
                                         attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],
@@ -252,7 +264,7 @@
 
 - (void)setIsEditMode:(BOOL)isEditMode{
   _isEditMode = isEditMode;
-  _lblName.hidden = _lblPost.hidden = _btnFollowing.hidden = _btnFollower.hidden = _btnChat.hidden = _btnEdit.hidden = _btnSetting.hidden = _btnPost.hidden = _btnMore.hidden = _btnFollow.hidden = isEditMode;
+  _lblName.hidden = _lblIntro.hidden = _lblPost.hidden = _btnFollowing.hidden = _btnFollower.hidden = _btnChat.hidden = _btnEdit.hidden = _btnSetting.hidden = _btnPost.hidden = _btnMore.hidden = _btnFollow.hidden = isEditMode;
   _btnEditAvatar.hidden = _btnEditCover.hidden = !isEditMode;
   _btnEdit.hidden = isEditMode;
   
