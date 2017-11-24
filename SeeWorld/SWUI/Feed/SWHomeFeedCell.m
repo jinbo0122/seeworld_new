@@ -15,7 +15,7 @@
 #define ELEMENT_GAP_HEIGHT 10
 @class SWFeedInfoItem;
 @interface SWHomeFeedCell()<SWFeedLikeMemberViewDelegate,SWFeedImageViewDelegate,
-SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
+SWFeedCommentViewDelegate,TTTAttributedLabelDelegate,SWFeedUserInfoHeaderViewDelegate>
 @property(nonatomic, strong)UIView *bgView;
 @property(nonatomic, strong)SWFeedUserInfoHeaderView  *headerView;
 @property(nonatomic, strong)SWFeedInteractView        *interactView;
@@ -38,6 +38,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate>
     [self.contentView addSubview:_bgView];
     
     _headerView = [[SWFeedUserInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 55)];
+    _headerView.delegate = self;
     [_bgView addSubview:_headerView];
   
     
@@ -173,9 +174,15 @@ didLongPressLinkWithURL:(NSURL *)url
   return height;
 }
 
-- (void)onHeaderClicked:(UIButton *)button{
+- (void)feedUserInfoHeaderViewDidPressAvatar:(SWFeedUserInfoHeaderView *)headerView{
   if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressUser:)]) {
     [self.delegate homeFeedCellDidPressUser:self.feedItem.user];
+  }
+}
+
+- (void)onHeaderClicked:(UIButton *)button{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(homeFeedCellDidPressReply:row:enableKeyboard:)]) {
+    [self.delegate homeFeedCellDidPressReply:self.feedItem row:self.row enableKeyboard:NO];
   }
 }
 

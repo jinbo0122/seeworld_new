@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SWFeedItem.h"
+@protocol SWFeedUserInfoHeaderViewDelegate;
 @interface SWFeedUserInfoHeaderView : UIButton
+@property(nonatomic, strong)id<SWFeedUserInfoHeaderViewDelegate>delegate;
 - (void)refresshWithFeed:(SWFeedItem *)feedItem;
+@end
+
+
+@protocol SWFeedUserInfoHeaderViewDelegate<NSObject>
+
+- (void)feedUserInfoHeaderViewDidPressAvatar:(SWFeedUserInfoHeaderView *)headerView;
+//- (void)feedUserInfoHeaderViewDidNeedEnterDetail:(SWFeedUserInfoHeaderView *)headerView;
+
 @end

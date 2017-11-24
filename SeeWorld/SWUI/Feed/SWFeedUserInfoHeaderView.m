@@ -7,9 +7,9 @@
 //
 
 #import "SWFeedUserInfoHeaderView.h"
-
+#import "UIButton+WebCache.h"
 @implementation SWFeedUserInfoHeaderView{
-  UIImageView *_iconAvatar;
+  UIButton    *_btnAvatar;
   UILabel     *_lblName;
   UILabel     *_lblTime;
   UILabel     *_lblLocation;
@@ -19,10 +19,10 @@
   if (self) {
     self.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
     
-    _iconAvatar = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
-    _iconAvatar.layer.masksToBounds = YES;
-    _iconAvatar.layer.cornerRadius  = _iconAvatar.width/2.0;
-    [self addSubview:_iconAvatar];
+    _btnAvatar = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 35, 35)];
+    _btnAvatar.layer.masksToBounds = YES;
+    _btnAvatar.layer.cornerRadius  = _btnAvatar.width/2.0;
+    [self addSubview:_btnAvatar];
     
     _lblName    = [UILabel initWithFrame:CGRectZero
                                  bgColor:[UIColor clearColor]
@@ -47,14 +47,22 @@
                            textAlignment:NSTextAlignmentLeft
                                     font:[UIFont systemFontOfSize:13]];
     [self addSubview:_lblLocation];
+    
+    [_btnAvatar addTarget:self action:@selector(onAvatarClicked) forControlEvents:UIControlEventTouchUpInside];
   }
   return self;
 }
 
+- (void)onAvatarClicked{
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedUserInfoHeaderViewDidPressAvatar:)]) {
+    [self.delegate feedUserInfoHeaderViewDidPressAvatar:self];
+  }
+}
+
 
 - (void)refresshWithFeed:(SWFeedItem *)feedItem{
-  [_iconAvatar sd_setImageWithURL:[NSURL URLWithString:[feedItem.user.picUrl stringByAppendingString:@"-avatar120"]]
-                 placeholderImage:nil];
+  [_btnAvatar sd_setImageWithURL:[NSURL URLWithString:[feedItem.user.picUrl stringByAppendingString:@"-avatar120"]]
+                        forState:UIControlStateNormal];
   if ([feedItem.feed.time doubleValue]/1000.0>[NSDate currentTime]) {
     _lblTime.text = @"剛剛";
   }else{
@@ -65,7 +73,7 @@
   _lblTime.frame = CGRectMake(self.width-15-timeSize.width, (self.height-timeSize.height)/2.0, timeSize.width, timeSize.height);
   
   _lblName.text = feedItem.user.name;
-  CGRect nameRect = [_lblName.text boundingRectWithSize:CGSizeMake(_lblName.left-10-_iconAvatar.right-10, self.height)
+  CGRect nameRect = [_lblName.text boundingRectWithSize:CGSizeMake(_lblName.left-10-_btnAvatar.right-10, self.height)
                                                 options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
                                              attributes:@{NSFontAttributeName:_lblName.font}
                                                 context:nil];
@@ -73,11 +81,11 @@
     _lblLocation.hidden = NO;
     _lblLocation.text = feedItem.feed.location;
     [_lblLocation sizeToFit];
-    _lblName.frame = CGRectMake(_iconAvatar.right+10, 10, CGRectGetWidth(nameRect), CGRectGetHeight(nameRect));
+    _lblName.frame = CGRectMake(_btnAvatar.right+10, 10, CGRectGetWidth(nameRect), CGRectGetHeight(nameRect));
     _lblLocation.frame = CGRectMake(_lblName.left, _lblName.bottom+2, _lblLocation.width, _lblLocation.height);
   }else{
     _lblLocation.hidden = YES;
-    _lblName.frame = CGRectMake(_iconAvatar.right+10, (self.height-CGRectGetHeight(nameRect))/2.0, CGRectGetWidth(nameRect), CGRectGetHeight(nameRect));
+    _lblName.frame = CGRectMake(_btnAvatar.right+10, (self.height-CGRectGetHeight(nameRect))/2.0, CGRectGetWidth(nameRect), CGRectGetHeight(nameRect));
   }
 }
 @end

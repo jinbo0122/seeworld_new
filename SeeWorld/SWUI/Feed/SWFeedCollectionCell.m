@@ -14,7 +14,8 @@
 #import "SWAgreementVC.h"
 @interface SWFeedCollectionCell()<SWFeedLikeMemberViewDelegate,SWFeedImageViewDelegate,
 TTTAttributedLabelDelegate,UITextFieldDelegate,SWFeedInteractModelDelegate,
-UITableViewDelegate,UITableViewDataSource,SWFeedInteractCommentCellDelegate>
+UITableViewDelegate,UITableViewDataSource,SWFeedInteractCommentCellDelegate,
+SWFeedUserInfoHeaderViewDelegate>
 @property(nonatomic, strong)UIView *bgView;
 @property(nonatomic, strong)UIView *bgHeaderView;
 @property(nonatomic, strong)SWFeedUserInfoHeaderView  *headerView;
@@ -43,6 +44,7 @@ UITableViewDelegate,UITableViewDataSource,SWFeedInteractCommentCellDelegate>
     [_bgView addSubview:_bgHeaderView];
     
     _headerView = [[SWFeedUserInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 55)];
+    _headerView.delegate = self;
     [_bgHeaderView addSubview:_headerView];
     
     _lblContent = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
@@ -232,6 +234,13 @@ didLongPressLinkWithURL:(NSURL *)url
 }
 
 - (void)onHeaderClicked:(UIButton *)button{
+  [self dismissKeyboard];
+  if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressUser:)]) {
+    [self.delegate feedDetailViewDidPressUser:self.feedItem.user];
+  }
+}
+
+- (void)feedUserInfoHeaderViewDidPressAvatar:(SWFeedUserInfoHeaderView *)headerView{
   [self dismissKeyboard];
   if (self.delegate && [self.delegate respondsToSelector:@selector(feedDetailViewDidPressUser:)]) {
     [self.delegate feedDetailViewDidPressUser:self.feedItem.user];
