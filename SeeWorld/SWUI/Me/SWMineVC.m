@@ -55,7 +55,7 @@ SWFeedInteractVCDelegate>
   _tableView.dataSource = self;
   _tableView.backgroundColor = [UIColor colorWithRGBHex:0xe8edf3];
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-  _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49+iphoneXBottomAreaHeight, 0);
+  _tableView.contentInset = UIEdgeInsetsMake((isRunningOnIOS11?0:(-iOSNavHeight)), 0, 49+iphoneXBottomAreaHeight, 0);
   _tableView.estimatedRowHeight = 0;
   _tableView.estimatedSectionFooterHeight = 0;
   _tableView.estimatedSectionHeaderHeight = 0;

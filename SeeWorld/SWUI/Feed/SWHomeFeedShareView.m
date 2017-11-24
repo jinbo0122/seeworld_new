@@ -99,7 +99,7 @@
     [_btnMoments addTarget:self action:@selector(onWeixinClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     _btnWeibo = [[UIButton alloc] initWithFrame:CGRectMake(_btnWechat.right+space, _btnFB.top, 30, 30)];
-    [_btnWeibo setImage:[UIImage imageNamed:@"signinr_btn_wibo"] forState:UIControlStateNormal];
+    [_btnWeibo setImage:[UIImage imageNamed:@"weibo_share"] forState:UIControlStateNormal];
     [_bgView addSubview:_btnWeibo];
     
     [_btnWeibo addTarget:self action:@selector(onWeiboClicked) forControlEvents:UIControlEventTouchUpInside];

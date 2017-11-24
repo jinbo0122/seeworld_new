@@ -53,7 +53,7 @@
   _header.isEditMode = YES;
   _header.delegate = self;
   
-  _editView = [[UIView alloc] initWithFrame:CGRectMake(0, _header.bottom+30, UIScreenWidth, 45*3)];
+  _editView = [[UIView alloc] initWithFrame:CGRectMake(0, _header.bottom+(isRunningOnIOS11?30:0), UIScreenWidth, 45*3)];
   _editView.backgroundColor = [UIColor whiteColor];
   [self.view addSubview:_editView];
   

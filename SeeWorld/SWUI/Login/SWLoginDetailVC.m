@@ -108,6 +108,9 @@
   _txtEmail.returnKeyType = UIReturnKeyDone;
   _txtPwd.returnKeyType = UIReturnKeyDone;
   
+  _txtEmail.text = @"lijinbo0122@gmail.com";
+  _txtPwd.text = @"lijinbo";
+  
   _txtEmail.delegate = self;
   _txtPwd.delegate = self;
   
