@@ -72,10 +72,10 @@
   
   ModifyUserInfoApi *api = [[ModifyUserInfoApi alloc] init];
   if ([_titleText isEqualToString:SWStringAboutMe]) {
-    api.intro = [SWConfigManager sharedInstance].user.intro;
+    api.intro = _txtField.text;
     api.name = [SWConfigManager sharedInstance].user.name;
   }else if ([_titleText isEqualToString:SWStringNickName]) {
-    api.name = [SWConfigManager sharedInstance].user.name;
+    api.name = _txtField.text;
     api.intro = [SWConfigManager sharedInstance].user.intro;
   }
   api.gender = [[SWConfigManager sharedInstance].user.gender integerValue];
