@@ -34,6 +34,8 @@
 - (BOOL)pushOpenStatus;
 - (void)processFollow:(SWFeedLikeItem *)likeItem;
 - (void)markReadMsg:(SWNoticeMsgItem *)msgItem;
+
+- (void)removeNoticeAtIndex:(NSInteger)index;
 @end
 
 

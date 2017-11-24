@@ -8,10 +8,14 @@
 
 #import "SWNoticeModel.h"
 #import "TabViewController.h"
+#define NOTICE_DELETE_INFO @"NOTICE_DELETE_INFO"
+@interface SWNoticeModel()
+@property(nonatomic, strong)NSMutableDictionary *deleteInfo;
+@end
+
 @implementation SWNoticeModel{
   NSTimer *_timer;
   NSMutableArray *_timerNotices;
-  
   NSNumber *_firstLocalNoticeMId;
 }
 + (SWNoticeModel *)sharedInstance{
@@ -26,11 +30,10 @@
 - (id)init{
   if (self = [super init]) {
     self.notices = [NSMutableArray array];
-    
     _timerNotices = [NSMutableArray array];
-    
     _firstLocalNoticeMId = [[NSUserDefaults standardUserDefaults] safeNumberObjectForKey:@"firstLocalNoticeMId"];
     _freshDotIndex = -1;
+    _deleteInfo = [[[NSUserDefaults standardUserDefaults] safeDicObjectForKey:NOTICE_DELETE_INFO] mutableCopy];
   }
   return self;
 }
@@ -78,7 +81,10 @@
 - (void)syncContentData{
   [self.notices removeAllObjects];
   for (NSInteger i=0;i<_timerNotices.count;i++) {
-    [self.notices safeAddObject:[_timerNotices safeObjectAtIndex:i]];
+    SWNoticeMsgItem *item = [_timerNotices safeObjectAtIndex:i];
+    if (![[_deleteInfo safeNumberObjectForKey:[item.mId stringValue]] boolValue]) {
+      [self.notices safeAddObject:item];
+    }
     if(self.delegate && [self.delegate respondsToSelector:@selector(noticeModelDidLoadNotices:)]){
       [self.delegate noticeModelDidLoadNotices:self];
     }
@@ -138,7 +144,10 @@
     if (isFromTimer) {
       [wTimerNotices removeAllObjects];
       for (NSInteger i=0; i<notices.count; i++) {
-        [wTimerNotices safeAddObject:[SWNoticeMsgItem msgItemByDic:[notices safeDicObjectAtIndex:i]]];
+        SWNoticeMsgItem *item = [SWNoticeMsgItem msgItemByDic:[notices safeDicObjectAtIndex:i]];
+        if (![[wSelf.deleteInfo safeNumberObjectForKey:[item.mId stringValue]] boolValue]) {
+          [wTimerNotices safeAddObject:item];
+        }
       }
       [wSelf dealDot];
     }else{
@@ -148,8 +157,10 @@
         [wSelf.notices removeAllObjects];
       }
       for (NSInteger i=0; i<notices.count; i++) {
-        [wSelf.notices safeAddObject:[SWNoticeMsgItem msgItemByDic:[notices safeDicObjectAtIndex:i]]];
-        
+        SWNoticeMsgItem *item = [SWNoticeMsgItem msgItemByDic:[notices safeDicObjectAtIndex:i]];
+        if (![[wSelf.deleteInfo safeNumberObjectForKey:[item.mId stringValue]] boolValue]) {
+          [wSelf.notices safeAddObject:item];
+        }
         if (i==0&&[mId integerValue]==0) {
           localNoticeMId = [[SWNoticeMsgItem msgItemByDic:[notices safeDicObjectAtIndex:i]] mId];
           [[NSUserDefaults standardUserDefaults] setSafeNumberObject:localNoticeMId forKey:@"firstLocalNoticeMId"];
@@ -215,6 +226,14 @@
   [[NSUserDefaults standardUserDefaults] setObject:msgReadDic forKey:@"msgReadDic"];
   [[NSUserDefaults standardUserDefaults] synchronize];
 
+}
+
+- (void)removeNoticeAtIndex:(NSInteger)index{
+  SWNoticeMsgItem *item = [_notices safeObjectAtIndex:index];
+  [_deleteInfo setObject:@1 forKey:[item.mId stringValue]];
+  [[NSUserDefaults standardUserDefaults] setObject:_deleteInfo forKey:NOTICE_DELETE_INFO];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  [_notices safeRemoveObjectAtIndex:index];
 }
 
 - (void)pushOpen:(BOOL)open{

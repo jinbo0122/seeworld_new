@@ -148,6 +148,17 @@ SWNoticeCellDelegate,SWNoticeModelDelegate>
   [SWFeedUserItem pushUserVC:userItem nav:self.navigationController];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+  return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    [[SWNoticeModel sharedInstance] removeNoticeAtIndex:indexPath.row];
+    [_tbVCNotices.tableView reloadData];
+  }
+}
+
 #pragma mark Like Cell Delegate
 - (void)noticeCellDidPressFollow:(SWNoticeMsgItem *)msgItem{
   SWFeedLikeItem *likeItem = [[SWFeedLikeItem alloc] init];
