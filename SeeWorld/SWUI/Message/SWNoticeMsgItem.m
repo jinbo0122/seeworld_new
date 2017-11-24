@@ -24,6 +24,8 @@
   NSDictionary *feedUserDic = [feedDic safeDicObjectForKey:@"user"];
   msg.user = [SWFeedUserItem feedUserItemByDic:feedUserDic];
   
+  msg.noticeDic = feedDic;
+  
   return msg;
 }
 @end

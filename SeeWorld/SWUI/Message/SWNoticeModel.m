@@ -9,6 +9,8 @@
 #import "SWNoticeModel.h"
 #import "TabViewController.h"
 #define NOTICE_DELETE_INFO @"NOTICE_DELETE_INFO"
+#define NOTICE_CACHE @"NOTICE_CACHE"
+
 @interface SWNoticeModel()
 @property(nonatomic, strong)NSMutableDictionary *deleteInfo;
 @end
@@ -29,11 +31,15 @@
 
 - (id)init{
   if (self = [super init]) {
-    self.notices = [NSMutableArray array];
     _timerNotices = [NSMutableArray array];
     _firstLocalNoticeMId = [[NSUserDefaults standardUserDefaults] safeNumberObjectForKey:@"firstLocalNoticeMId"];
     _freshDotIndex = -1;
     _deleteInfo = [[[NSUserDefaults standardUserDefaults] safeDicObjectForKey:NOTICE_DELETE_INFO] mutableCopy];
+    NSArray *noticeCache = [[NSUserDefaults standardUserDefaults] safeArrayObjectForKey:NOTICE_CACHE];
+    _notices = [NSMutableArray array];
+    for (NSInteger i=0; i<noticeCache.count; i++) {
+      [_notices addObject:[SWNoticeMsgItem msgItemByDic:[noticeCache safeDicObjectAtIndex:i]]];
+    }
   }
   return self;
 }
@@ -97,8 +103,23 @@
   
   self.freshDotIndex = -1;
   
+  [self saveCache];
+  
   _unreadNoticeCount = 0;
   [TabViewController dotAppearance];
+}
+
+- (void)saveCache{
+  __weak typeof(self)wSelf = self;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    NSMutableArray *cache = [NSMutableArray array];
+    for (NSInteger i=0; i<wSelf.notices.count; i++) {
+      SWNoticeMsgItem *item = [wSelf.notices safeObjectAtIndex:i];
+      [cache safeAddObject:item.noticeDic];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:cache forKey:NOTICE_CACHE];
+    [NSUserDefaults standardUserDefaults];
+  });
 }
 
 - (void)syncGetuiCID{
@@ -167,6 +188,7 @@
           [[NSUserDefaults standardUserDefaults] synchronize];
         }
       }
+      [wSelf saveCache];
       @synchronized(wTimerNotices) {
         [wTimerNotices removeAllObjects];
         [wTimerNotices addObjectsFromArray:wSelf.notices];

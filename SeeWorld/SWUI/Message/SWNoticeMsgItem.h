@@ -16,5 +16,6 @@
 @property (nonatomic, strong)NSNumber       *status;
 @property (nonatomic, strong)NSNumber       *mId;
 @property (nonatomic, strong)NSString       *comment;
+@property (nonatomic, strong)NSDictionary   *noticeDic;
 + (SWNoticeMsgItem *)msgItemByDic:(NSDictionary *)feedDic;
 @end
