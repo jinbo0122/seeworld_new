@@ -519,6 +519,11 @@ SWFeedInteractVCDelegate>
 }
 
 #pragma mark Model Delegate
+- (void)tagFeedModelDidPressLike:(SWTagFeedsModel *)model row:(NSInteger)row{
+  [self.tableView reloadData];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadCollectionLike" object:nil];
+}
+
 - (void)tagFeedModelDidLoadContents:(SWTagFeedsModel *)model{
   [self.tableView reloadData];
 }
