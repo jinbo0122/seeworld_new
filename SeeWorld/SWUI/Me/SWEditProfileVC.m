@@ -47,7 +47,7 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
   self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"編輯個人資料" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   
-  _header = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 288.5)];
+  _header = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, iOSNavHeight, UIScreenWidth, 330.5)];
   [self.view addSubview:_header];
   [_header refreshWithUser:[SWConfigManager sharedInstance].user];
   _header.isEditMode = YES;

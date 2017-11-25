@@ -14,7 +14,7 @@
 }
 - (id)initWithFrame:(CGRect)frame{
   if (self = [super initWithFrame:frame]) {
-    _btnCover = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 183+iOSTopHeight)];
+    _btnCover = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 225+iOSTopHeight)];
     _btnCover.customImageView = [[UIImageView alloc] initWithFrame:_btnCover.bounds];
     [_btnCover addSubview:_btnCover.customImageView];
     _btnCover.customImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -23,7 +23,7 @@
     cover.backgroundColor = [UIColor colorWithRGBHex:0x000000 alpha:0.2];
     [_btnCover.customImageView addSubview:cover];
     
-    _btnAvatar = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-95-35, 136.5+iOSTopHeight, 95, 95)];
+    _btnAvatar = [[UIButton alloc] initWithFrame:CGRectMake(UIScreenWidth-95-35, _btnCover.bottom-46.5, 95, 95)];
     _btnAvatar.customImageView = [[UIImageView alloc] initWithFrame:_btnAvatar.bounds];
     _btnAvatar.customImageView.layer.masksToBounds = YES;
     _btnAvatar.customImageView.layer.cornerRadius = _btnAvatar.customImageView.width/2.0;

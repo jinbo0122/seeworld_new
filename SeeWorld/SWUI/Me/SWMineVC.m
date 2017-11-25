@@ -64,7 +64,7 @@ SWFeedInteractVCDelegate>
     _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
   
-  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 318.5+iOSTopHeight)];
+  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 360.5+iOSTopHeight)];
   _headerView.isEditMode = NO;
   _headerView.delegate = self;
   if (self.user) {
