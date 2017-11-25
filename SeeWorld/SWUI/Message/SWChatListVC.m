@@ -60,6 +60,8 @@
                                                                style:UIBarButtonItemStylePlain
                                                               target:self action:@selector(onNewChatClicked)];
   self.navigationItem.rightBarButtonItem = rightBar;
+  
+  self.emptyConversationView.top = iOSNavHeight+100;
 }
 
 - (void)didReceiveMemoryWarning {
