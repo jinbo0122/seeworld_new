@@ -99,7 +99,7 @@
   SWMsgVC *vc = [[SWMsgVC alloc]init];
   vc.conversationType = model.conversationType;
   vc.targetId = model.targetId;
-  vc.title = model.conversationTitle;
+  vc.titleText = model.conversationTitle;
   vc.hidesBottomBarWhenPushed = YES;
   _pushing = YES;
   [self.navigationController pushViewControllerWithCustomAnimation:vc];

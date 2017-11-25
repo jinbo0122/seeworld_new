@@ -9,5 +9,5 @@
 #import <RongIMKit/RongIMKit.h>
 #import <RongCallKit/RongCallKit.h>
 @interface SWMsgVC : RCConversationViewController
-
+@property(nonatomic, strong)NSString *titleText;
 @end

@@ -133,7 +133,7 @@
 
 - (void)setFeedItem:(SWFeedItem *)feedItem{
   _feedItem = feedItem;
-  _btnShowTag = [[UIButton alloc] initWithFrame:CGRectMake((UIScreenWidth-60)/2.0, UIScreenHeight-80 - iphoneXBottomAreaHeight, 60, 60)];
+  _btnShowTag = [[UIButton alloc] initWithFrame:CGRectMake((UIScreenWidth-36)/2.0, UIScreenHeight-80 - iphoneXBottomAreaHeight, 36, 36)];
   [_btnShowTag setImage:[UIImage imageNamed:@"home_btn_tag_off"] forState:UIControlStateNormal];
   [_btnShowTag addTarget:self action:@selector(onShowTagClicked:) forControlEvents:UIControlEventTouchUpInside];
   [self addSubview:_btnShowTag];

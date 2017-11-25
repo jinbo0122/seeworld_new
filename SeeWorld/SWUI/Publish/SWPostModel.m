@@ -38,6 +38,32 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
   return self;
 }
 
+- (void)postContent:(NSString *)content{
+  SWFeedComposeAPI *api = [[SWFeedComposeAPI alloc] init];
+  api.feedDescription = content;
+  api.latitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLatitude"]).floatValue;
+  api.longitude = ((NSNumber *)[[NSUserDefaults standardUserDefaults] valueForKey:@"SWLocationLongitude"]).floatValue;
+  api.feedType = SWFeedTypeText;
+  api.location = _locationName?_locationName:@"";
+  [SWHUD showWaiting];
+  __weak typeof(self)wSelf = self;
+  [api startWithModelClass:[FeedComposeResponse class] completionBlock:^(ModelMessage *message) {
+    [SWHUD hideWaiting];
+    if (message.isSuccess){
+      [SWHUD showCommonToast:@"發佈成功"];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"hidePickerController" object:nil];
+      if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postModelDidPostFeed:)]) {
+        [wSelf.delegate postModelDidPostFeed:wSelf];
+      }
+    }else{
+      if (wSelf.delegate && [wSelf.delegate respondsToSelector:@selector(postModelDidPostFeedFailed:)]) {
+        [wSelf.delegate postModelDidPostFeedFailed:wSelf];
+      }
+      [SWHUD showCommonToast:@"發佈失败"];
+    }
+  }];
+}
+
 - (void)postLink:(NSString *)link content:(NSString *)content{
   SWFeedComposeAPI *api = [[SWFeedComposeAPI alloc] init];
   api.feedDescription = content;

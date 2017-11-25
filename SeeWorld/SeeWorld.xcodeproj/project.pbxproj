@@ -226,6 +226,7 @@
 		4B646B201FC692F400A94E9E /* SWHotTagsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B646B1F1FC692F400A94E9E /* SWHotTagsAPI.m */; };
 		4B646B271FC6B97A00A94E9E /* ALAsset+ALExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B646B261FC6B97A00A94E9E /* ALAsset+ALExtension.m */; };
 		4B71F2951FC5881B00E2BB83 /* SWFeedLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */; };
+		4B74F25C1FC94E3500A5903D /* SWNoticeDeleteAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B74F25B1FC94E3500A5903D /* SWNoticeDeleteAPI.m */; };
 		4B7716E71FB98F410006B814 /* RongCallLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D81FB98F410006B814 /* RongCallLib.framework */; };
 		4B7716E81FB98F410006B814 /* AgoraRtcEngineKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */; };
 		4B7716E91FB98F410006B814 /* RongIMLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B7716DB1FB98F410006B814 /* RongIMLib.framework */; };
@@ -896,6 +897,8 @@
 		4B646B261FC6B97A00A94E9E /* ALAsset+ALExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "ALAsset+ALExtension.m"; sourceTree = "<group>"; };
 		4B71F2931FC5881B00E2BB83 /* SWFeedLinkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWFeedLinkView.h; sourceTree = "<group>"; };
 		4B71F2941FC5881B00E2BB83 /* SWFeedLinkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWFeedLinkView.m; sourceTree = "<group>"; };
+		4B74F25A1FC94E3500A5903D /* SWNoticeDeleteAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWNoticeDeleteAPI.h; sourceTree = "<group>"; };
+		4B74F25B1FC94E3500A5903D /* SWNoticeDeleteAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWNoticeDeleteAPI.m; sourceTree = "<group>"; };
 		4B7716D81FB98F410006B814 /* RongCallLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongCallLib.framework; sourceTree = "<group>"; };
 		4B7716D91FB98F410006B814 /* AgoraRtcEngineKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgoraRtcEngineKit.framework; sourceTree = "<group>"; };
 		4B7716DB1FB98F410006B814 /* RongIMLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RongIMLib.framework; sourceTree = "<group>"; };
@@ -2903,6 +2906,8 @@
 				4BC175A81C511E2F002ACE2F /* SWReportUserAPI.m */,
 				4BC175AB1C51202D002ACE2F /* SWRongTokenAPI.h */,
 				4BC175AC1C51202D002ACE2F /* SWRongTokenAPI.m */,
+				4B74F25A1FC94E3500A5903D /* SWNoticeDeleteAPI.h */,
+				4B74F25B1FC94E3500A5903D /* SWNoticeDeleteAPI.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -3473,6 +3478,7 @@
 				4BC0FE521B943B4F003F4723 /* MBProgressHUD+ALExtension.m in Sources */,
 				4B5E9CAA1FC42D9E005F5852 /* GLProgram.m in Sources */,
 				4B109C691D0464DC003EC5A2 /* SWFindPwdVC.m in Sources */,
+				4B74F25C1FC94E3500A5903D /* SWNoticeDeleteAPI.m in Sources */,
 				4BFBFBDB1C3A418C003C3D87 /* SWPostEnterView.m in Sources */,
 				49AD7C121BA75543000405F4 /* WTextField.m in Sources */,
 				4B207FBD1BA54FF400203393 /* SWExploreAPI.m in Sources */,

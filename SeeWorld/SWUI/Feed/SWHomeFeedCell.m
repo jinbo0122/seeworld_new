@@ -40,7 +40,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate,SWFeedUserInfoHeaderViewDel
     _headerView = [[SWFeedUserInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 55)];
     _headerView.delegate = self;
     [_bgView addSubview:_headerView];
-  
+    
     
     _lblContent = [[TTTAttributedLabel alloc] initWithFrame:CGRectZero];
     _lblContent.enabledTextCheckingTypes = NSTextCheckingTypeLink;
@@ -91,7 +91,7 @@ SWFeedCommentViewDelegate,TTTAttributedLabelDelegate,SWFeedUserInfoHeaderViewDel
   self.row      = row;
   _bgView.frame = CGRectMake(0, 7, UIScreenWidth, [SWHomeFeedCell heightByFeed:feed]-7);
   [_headerView refresshWithFeed:feed];
-
+  
   NSAttributedString *content = [[NSAttributedString alloc] initWithString:feed.feed.content
                                                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],
                                                                              NSForegroundColorAttributeName:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]}];
@@ -131,14 +131,14 @@ didLongPressLinkWithURL:(NSURL *)url
   NSAttributedString *content = [[NSAttributedString alloc] initWithString:feed.feed.content
                                                                 attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16],
                                                                              NSForegroundColorAttributeName:[UIColor whiteColor]}];
-
+  
   CGSize contentSize = [TTTAttributedLabel sizeThatFitsAttributedString:content
                                                         withConstraints:CGSizeMake(UIScreenWidth-30, 1000)
                                                  limitedToNumberOfLines:50];
   
   NSInteger contentHeight = 0;
   SWFeedType type = feed.feed.type;
-  if (type == SWFeedTypeLink || [feed.feed.content isEqualToString:@"http://www.qq.com"]) {
+  if (type == SWFeedTypeLink) {
     contentHeight = 62;
   }else if (type == SWFeedTypeVideo){
     SWFeedImageItem *photoItem = [feed.feed.photos safeObjectAtIndex:0];
@@ -160,9 +160,11 @@ didLongPressLinkWithURL:(NSURL *)url
     }else{
       contentHeight = 0;
     }
+  }else if (type == SWFeedTypeText){
+    contentHeight = 0;
   }
   
-
+  
   CGFloat height = 7/*间隙*/+ 55/*头部*/ + contentHeight + 40 /*按钮*/;
   height+= (feed.feed.content.length>0?ELEMENT_GAP_HEIGHT:0);//文字空隙
   height+= (feed.feed.content.length>0?(contentSize.height+ELEMENT_GAP_HEIGHT):0);//文字高度

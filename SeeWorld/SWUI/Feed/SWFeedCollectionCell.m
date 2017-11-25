@@ -226,6 +226,8 @@ didLongPressLinkWithURL:(NSURL *)url
     }else{
       contentHeight = 0;
     }
+  }else if (type == SWFeedTypeText){
+    contentHeight = 0;
   }
 
   return 10/*间隙*/+ 55/*头部*/ + contentHeight + 40 /*按钮*/
@@ -432,7 +434,7 @@ didLongPressLinkWithURL:(NSURL *)url
   if ([commentItem.user.uId isEqualToNumber:@0]||[[commentItem.user.uId stringValue] isEqualToString:[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"]]||[commentItem.user.relation integerValue]==SWUserRelationTypeSelf||
       [_interactModel.feedItem.user.uId isEqual:@0]||[[_interactModel.feedItem.user.uId stringValue] isEqualToString:[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"]]) {
     __weak typeof(self)wSelf = self;
-    [[[SWAlertView alloc] initWithTitle:@"刪除評論"
+    [[[SWAlertView alloc] initWithTitle:@"刪除留言"
                              cancelText:SWStringCancel
                             cancelBlock:^{
                               

@@ -5,6 +5,7 @@ typedef NS_ENUM(NSInteger, SWFeedType){
   SWFeedTypeImage = 0,
   SWFeedTypeVideo = 1,
   SWFeedTypeLink  = 2,
+  SWFeedTypeText  = 3,
 };
 
 @interface SWFeedComposeAPI : SWRequestApi

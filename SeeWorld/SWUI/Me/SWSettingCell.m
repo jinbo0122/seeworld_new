@@ -96,7 +96,7 @@
         _lblTitle.text = @"動態通知";
         _switchControl.on = [[SWNoticeModel sharedInstance] pushOpenStatus];
       }else{
-        _lblTitle.text = @"不公開賬號";
+        _lblTitle.text = @"不公開帳號";
         _switchControl.on = [[SWConfigManager sharedInstance].user.issecret boolValue];
       }
     }else if (indexPath.section==2){

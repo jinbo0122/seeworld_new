@@ -171,7 +171,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                                   SWMsgVC *chat = [[SWMsgVC alloc] init];
                                                   chat.conversationType = ConversationType_DISCUSSION;
                                                   chat.targetId = discussion.discussionId;
-                                                  chat.title = discussion.discussionName;
+                                                  chat.titleText = discussion.discussionName;
                                                   chat.hidesBottomBarWhenPushed = YES;
                                                   [wSelf dismissViewControllerAnimated:YES
                                                                             completion:^{
@@ -192,7 +192,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
     chat.conversationType = ConversationType_PRIVATE;
     SWFeedUserItem *userItem = (SWFeedUserItem *)_model.selectedContacts.firstObject;
     chat.targetId = [userItem.uId stringValue];
-    chat.title = userItem.name;
+    chat.titleText = userItem.name;
     chat.hidesBottomBarWhenPushed = YES;
     [[SWChatModel sharedInstance] saveUser:[userItem.uId stringValue] name:userItem.name picUrl:userItem.picUrl];
     [self dismissViewControllerAnimated:YES
@@ -221,7 +221,7 @@ UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate>
                                               SWMsgVC *chat = [[SWMsgVC alloc] init];
                                               chat.conversationType = ConversationType_DISCUSSION;
                                               chat.targetId = discussion.discussionId;
-                                              chat.title = discussion.discussionName;
+                                              chat.titleText = discussion.discussionName;
                                               chat.hidesBottomBarWhenPushed = YES;
                                               [wSelf dismissViewControllerAnimated:YES
                                                                         completion:^{
