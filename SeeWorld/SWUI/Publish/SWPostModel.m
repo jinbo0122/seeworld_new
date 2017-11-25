@@ -147,7 +147,7 @@ typedef void(^COMPLETION_BLOCK_WITH_PhotoJson)(NSString *photoJson);
   [self uploadImage:images[_currentUploadIndex] completionBlock:^(NSString *feedImageUrl) {
     [wSelf.postImagesInfo addObject:@{@"src":feedImageUrl,
                                       @"width":@(size.width),
-                                      @"height":@(size.width)}];
+                                      @"height":@(size.height)}];
     wSelf.currentUploadIndex++;
     [wSelf uploadImages:images completionBlock:block];
   }];

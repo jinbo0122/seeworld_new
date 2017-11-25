@@ -8,7 +8,7 @@
 
 #ifndef SeeWorld_UrlDefine_h
 #define SeeWorld_UrlDefine_h
-//#define Base_URL @"http://54.169.215.202:8080"
+#define Base_URL @"http://54.169.215.202:8080"
 //#define Base_URL @"http://api1.seeworldplus.com:8080"
-#define Base_URL @"http://api2.seeworldplus.com:8080"
+//#define Base_URL @"http://api2.seeworldplus.com:8080"
 #endif

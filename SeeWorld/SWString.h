@@ -40,7 +40,7 @@
 #define SWStringChat            @"訊息"
 #define SWStringLike            @"讃"
 #define SWStringSelectContact   @"選擇聯絡人"
-#define SWStringNoNotices       @"你暫時還沒有收到新的通知哦~"
+#define SWStringNoNotices       @"暫無新通知，快認識更多的朋友吧"
 #define SWStringNoContacts      @"你目前還沒有好友，快去找朋友吧~"
 #define SWStringGoHomePage      @"去主頁逛逛"
 #define SWStringChatDetail      @"聊天設定"

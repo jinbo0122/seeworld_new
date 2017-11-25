@@ -297,7 +297,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "223"
             endingLineNumber = "223"
-            landmarkName = "-postPhoto:tags:content:"
+            landmarkName = "-postVideo:thumbImage:content:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -313,7 +313,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "256"
             endingLineNumber = "256"
-            landmarkName = "-postVideo:thumbImage:content:"
+            landmarkName = "-postVideo:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -345,7 +345,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "292"
             endingLineNumber = "292"
-            landmarkName = "-postVideo:thumbImageURL:content:"
+            landmarkName = "-postVideoWithAsset:thumbImage:content:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -377,7 +377,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "387"
             endingLineNumber = "387"
-            landmarkName = "-postVideoWithAsset:thumbImageURL:content:"
+            landmarkName = "-postVideoURL:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -426,6 +426,22 @@
             startingLineNumber = "340"
             endingLineNumber = "340"
             landmarkName = "-postVideoWithAsset:thumbImageURL:content:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533324626.624601"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-uploadImage:completionBlock:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
