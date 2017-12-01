@@ -226,6 +226,8 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
     }
   }else if (_images.count){
     [_model postPhoto:_images tags:_tags content:_txtContent.text];
+  }else if (_txtContent.text.length){
+    [_model postContent:_txtContent.text];
   }
 }
 
@@ -252,7 +254,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
 
 - (void)refreshImages{
   if (_images.count == 0) {
-    if (_isPostingLink) {
+    if (_txtContent.text.length) {
       _enableRightBarItem = YES;
     }else{
       _enableRightBarItem = NO;
@@ -576,8 +578,7 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
   }
 }
 
-- (void)textViewDidChange:(UITextView *)textView
-{
+- (void)textViewDidChange:(UITextView *)textView{
   _lblPlaceHolder.hidden = textView.text.length;
   _lblLength.text = [NSString stringWithFormat:@"%lu/2000", (unsigned long)textView.text.length];
   //根据大小改变颜色
@@ -604,6 +605,13 @@ SWPostPhotoViewDelagate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate,S
       _linkView.hidden = YES;
     }
   }
+  
+  if (textView.text.length || [self isPostingVideo] || _images.count>0) {
+    _enableRightBarItem = YES;
+  }else{
+    _enableRightBarItem = NO;
+  }
+  [self rightBar];
 }
 
 - (void)checkLinkWithString:(NSString *)string{

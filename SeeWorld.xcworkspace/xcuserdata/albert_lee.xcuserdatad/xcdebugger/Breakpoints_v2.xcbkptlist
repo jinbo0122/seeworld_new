@@ -131,6 +131,22 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Message/SWContactModel.m"
+            timestampString = "532509111.536402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-getContacts"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "SeeWorld/ALExtension/3rd/UzysAssetsPickerController/UzysAssetsPickerController.m"
             timestampString = "533121604.067729"
             startingColumnNumber = "9223372036854775807"
@@ -164,13 +180,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Feed/SWFeedCollectionCell.m"
-            timestampString = "533289419.220957"
+            timestampString = "533213226.323065"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
-            landmarkName = "SWFeedCollectionCell"
-            landmarkType = "3">
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "-playVideo"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -180,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostVC.m"
-            timestampString = "533121604.067865"
+            timestampString = "533797907.538937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "-videoWhisperRecordVCDidReturnImages:tags:"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,7 +212,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Message/SWSelectContactVC.m"
-            timestampString = "533289419.221279"
+            timestampString = "533106556.382026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
@@ -212,7 +228,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Message/SWSelectContactVC.m"
-            timestampString = "533289419.221503"
+            timestampString = "533106558.697856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "180"
@@ -228,7 +244,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Message/SWSelectContactVC.m"
-            timestampString = "533289419.221561"
+            timestampString = "533106567.369402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -244,13 +260,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostVC.m"
-            timestampString = "533121604.068005"
+            timestampString = "533797907.539293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "-uzysAssetsPickerController:didFinishPickingAssets:preview:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__70-[SWPostVC uzysAssetsPickerController:didFinishPickingAssets:preview:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostVC.m"
+                  timestampString = "533797907.856193"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "420"
+                  endingLineNumber = "420"
+                  offsetFromSymbolStart = "388">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__70-[SWPostVC uzysAssetsPickerController:didFinishPickingAssets:preview:]_block_invoke_2"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostVC.m"
+                  timestampString = "533797907.858134"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "420"
+                  endingLineNumber = "420"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -260,11 +308,137 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.627874"
+            timestampString = "533797907.539356"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "-postVideo:thumbImage:content:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SWPostModel postVideo:thumbImage:content:]"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.861403"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[SWPostModel postVideo:thumbImage:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.863068"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "206"
+                  endingLineNumber = "206"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533797907.551528"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "-postPhoto:tags:content:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[SWPostModel postPhoto:tags:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.866425"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "1052">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[SWPostModel postPhoto:tags:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.868054"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "1096">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.163"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.869852"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.164"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.87186"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
+            timestampString = "533797907.551835"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "-postVideo:thumbImage:content:"
             landmarkType = "7">
          </BreakpointContent>
@@ -276,27 +450,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.627923"
+            timestampString = "533797907.552102"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-postVideo:thumbImage:content:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.627957"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "-postVideo:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,13 +466,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.62799"
+            timestampString = "533797907.55237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-postVideo:thumbImageURL:content:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[SWPostModel postVideo:thumbImageURL:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.883073"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "664">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[SWPostModel postVideo:thumbImageURL:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.884705"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "1164">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_.183"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.886322"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.184"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.888179"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -324,13 +544,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.62802"
+            timestampString = "533797907.552668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-postVideoWithAsset:thumbImage:content:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SWPostModel postVideoWithAsset:thumbImage:content:]"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.89299"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "274"
+                  endingLineNumber = "274"
+                  offsetFromSymbolStart = "264">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__53-[SWPostModel postVideoWithAsset:thumbImage:content:]_block_invoke"
+                  moduleName = "SeeWorld"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/albert_lee/Documents/seeworld_new/SeeWorld/SWUI/Publish/SWPostModel.m"
+                  timestampString = "533797907.894603"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -340,43 +592,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.62805"
+            timestampString = "533797907.552928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "-postVideoWithAsset:thumbImage:content:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.628079"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
-            landmarkName = "-postVideoURL:thumbImageURL:content:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.628108"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "360"
-            endingLineNumber = "360"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "-postVideoWithAsset:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
@@ -388,11 +608,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.628138"
+            timestampString = "533797907.553205"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-postVideoWithAsset:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
@@ -404,11 +624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.628166"
+            timestampString = "533797907.55345"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "-postVideoWithAsset:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
@@ -420,28 +640,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SeeWorld/SWUI/Publish/SWPostModel.m"
-            timestampString = "533325339.628194"
+            timestampString = "533797907.553699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-uploadImage:completionBlock:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SeeWorld/SWUI/Message/SWChatListVC.m"
-            timestampString = "533325339.62823"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-showEmptyConversationView"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
+            landmarkName = "-postVideoWithAsset:thumbImageURL:content:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

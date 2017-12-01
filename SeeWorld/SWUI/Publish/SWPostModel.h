@@ -11,7 +11,7 @@
 @interface SWPostModel : NSObject
 @property(nonatomic,  weak)id<SWPostModelDelegate>delegate;
 @property(nonatomic,  strong)NSString *locationName;
-
+- (void)postContent:(NSString *)content;
 - (void)postLink:(NSString *)link content:(NSString *)content;
 - (void)postPhoto:(NSArray *)images tags:(NSArray *)tags content:(NSString *)content;
 - (void)postVideo:(NSURL *)videoUrl thumbImage:(UIImage *)thumbImage content:(NSString *)content;
