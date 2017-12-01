@@ -12,7 +12,6 @@ pod 'RegExCategories'
 pod "Qiniu"
 pod 'UIView+FDCollapsibleConstraints'
 pod 'MCFireworksButton'
-pod 'FXNotifications'
 pod 'RKNotificationHub'
 pod 'UITableView+FDTemplateLayoutCell'
 pod "SKTagView"
