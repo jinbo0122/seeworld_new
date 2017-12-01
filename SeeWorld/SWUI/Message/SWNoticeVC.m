@@ -65,15 +65,10 @@ SWNoticeCellDelegate,SWNoticeModelDelegate>
     _tbVCNotices.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
   [self.view addSubview:self.tbVCNotices.tableView];
-  _emptyNoticeView = [[UIView alloc] initWithFrame:CGRectMake((self.view.width-210)/2.0, 134, 210, 200)];
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(33, 0, 144, 144)];
+  _emptyNoticeView = [[UIView alloc] initWithFrame:CGRectMake(0, iOSNavHeight+100, self.view.width, 130)];
+  UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.width-125)/2.0, 0, 125, 130)];
   imageView.image = [UIImage imageNamed:@"no_notice"];
   [_emptyNoticeView addSubview:imageView];
-  UILabel *lbl = [UILabel initWithFrame:CGRectMake(0, imageView.bottom+25, _emptyNoticeView.width, 25) bgColor:[UIColor clearColor]
-                              textColor:[UIColor colorWithRGBHex:0x55acef]
-                                   text:SWStringNoNotices
-                          textAlignment:NSTextAlignmentCenter font:[UIFont systemFontOfSize:15]];
-  [_emptyNoticeView addSubview:lbl];
   [self.tbVCNotices.tableView addSubview:_emptyNoticeView];
   _emptyNoticeView.hidden = YES;
   [self reloadModelData];

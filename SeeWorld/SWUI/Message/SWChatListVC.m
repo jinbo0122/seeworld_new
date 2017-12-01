@@ -56,28 +56,12 @@
   self.conversationListTableView.backgroundColor = [UIColor colorWithRGBHex:0xffffff];
   [self setConversationPortraitSize:CGSizeMake(50, 50)];
   [self setCellBackgroundColor:[UIColor colorWithRGBHex:0xffffff]];
-  
-  __weak typeof(self)wSelf = self;
-  [[NSNotificationCenter defaultCenter] addObserverForName:@"RCIMConnected" object:nil queue:[NSOperationQueue mainQueue]
-                                                usingBlock:^(NSNotification * _Nonnull note) {
-                                                  [wSelf initChatVC];
-                                                }];
-  
-  if (_isChatConnected) {
-    [self initChatVC];
-  }
-  
   UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"notice_btn_chat"]
                                                                style:UIBarButtonItemStylePlain
                                                               target:self action:@selector(onNewChatClicked)];
   self.navigationItem.rightBarButtonItem = rightBar;
-}
-
-- (void)initChatVC{
-  _emptyChatView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.width + (self.view.width-144)/2.0,iOSNavHeight+50, 144, 144)];
-  _emptyChatView.image = [UIImage imageNamed:@"no_message"];
-  _emptyChatView.tag = 1001;
-  [self.view addSubview:_emptyChatView];
+  
+  self.emptyConversationView.top = iOSNavHeight+100;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,7 +83,7 @@
   SWMsgVC *vc = [[SWMsgVC alloc]init];
   vc.conversationType = model.conversationType;
   vc.targetId = model.targetId;
-  vc.title = model.conversationTitle;
+  vc.titleText = model.conversationTitle;
   vc.hidesBottomBarWhenPushed = YES;
   _pushing = YES;
   [self.navigationController pushViewControllerWithCustomAnimation:vc];

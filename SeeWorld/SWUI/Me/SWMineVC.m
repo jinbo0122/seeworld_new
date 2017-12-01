@@ -65,7 +65,7 @@ SWFeedInteractVCDelegate>
     _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
   }
   
-  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 318.5+iOSTopHeight)];
+  _headerView = [[SWMineHeaderView alloc] initWithFrame:CGRectMake(0, 0, UIScreenWidth, 360.5+iOSTopHeight)];
   _headerView.isEditMode = NO;
   _headerView.delegate = self;
   if (self.user) {
@@ -284,14 +284,14 @@ SWFeedInteractVCDelegate>
   SWMsgVC *chat = [[SWMsgVC alloc]init];
   chat.conversationType = ConversationType_PRIVATE;
   chat.targetId = [self.user.uId stringValue];
-  chat.title = self.user.name;
+  chat.titleText = self.user.name;
   [[SWChatModel sharedInstance] saveUser:[self.user.uId stringValue] name:self.user.name picUrl:self.user.picUrl];
   [self.navigationController pushViewController:chat animated:YES];
 }
 
 - (void)mineHeaderDidPressMore:(SWMineHeaderView *)header{
   __weak typeof(self)wSelf = self;
-  SWActionSheetView *action = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds title:nil content:@"舉報"];
+  SWActionSheetView *action = [[SWActionSheetView alloc] initWithFrame:[UIScreen mainScreen].bounds title:nil content:@"檢舉"];
   action.completeBlock = ^{
     SWHomeFeedReportView *reportView = [[SWHomeFeedReportView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     reportView.userId = [wSelf.user.uId stringValue];

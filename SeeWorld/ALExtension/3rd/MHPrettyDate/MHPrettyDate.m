@@ -183,12 +183,12 @@
       if (minutes == 0)
       {
         int seconds =  ((int)[date timeIntervalSinceNow])%60 * -1;
-        dateString = [NSString stringWithFormat:@"%d%@",seconds,NSLocalizedStringFromTable(@"秒前", @"MHPrettyDate", nil)];
+        dateString = [NSString stringWithFormat:@"%d%@",seconds,NSLocalizedStringFromTable(@"秒", @"MHPrettyDate", nil)];
       }
       else
       {
-        if (minutes == 1) post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"分钟前", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"分钟", @"MHPrettyDate", nil);
-        else post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"分钟前", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"分钟前", @"MHPrettyDate", nil);
+        if (minutes == 1) post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"分钟", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"分钟", @"MHPrettyDate", nil);
+        else post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"分钟", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"分钟", @"MHPrettyDate", nil);
         dateString = [NSString stringWithFormat: @"%ld%@", (unsigned long)minutes, post];
       }
     }
@@ -198,14 +198,14 @@
       NSInteger hours = [prettyDate hoursFromNow: date] * -1;
       NSString  *post;
       
-      if (hours == 1) post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"小時前", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"小時", @"MHPrettyDate", nil);
-      else post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"小時前", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"小時前", @"MHPrettyDate", nil);
+      if (hours == 1) post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"小時", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"小時", @"MHPrettyDate", nil);
+      else post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"小時", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"小時", @"MHPrettyDate", nil);
       dateString = [NSString stringWithFormat: @"%ld%@", (unsigned long)hours, post];
     }
   }
   else if ([MHPrettyDate isYesterday:date])
   {
-    dateString = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"1天前", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"1天前", @"MHPrettyDate", nil);
+    dateString = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"1天", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"1天", @"MHPrettyDate", nil);
   }
   else
   {
@@ -213,7 +213,7 @@
     NSInteger days = [prettyDate daysFromNow: date] * -1;
     NSString  *post;
     
-    post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"天前", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"天前", @"MHPrettyDate", nil);
+    post = (dateFormat == MHPrettyDateLongRelativeTime) ? NSLocalizedStringFromTable(@"天", @"MHPrettyDate", nil) : NSLocalizedStringFromTable(@"天", @"MHPrettyDate", nil);
     dateString = [NSString stringWithFormat: @"%ld%@", (unsigned long)days, post];
   }
   

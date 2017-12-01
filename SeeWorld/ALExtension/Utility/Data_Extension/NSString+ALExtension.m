@@ -28,20 +28,49 @@
   
   unixTime = unixTime/1000;
   
-  NSDate *date = [NSDate dateWithTimeIntervalSince1970:unixTime];
-  NSString *timeString = [MHPrettyDate prettyDateFromDate:date
-                                               withFormat:format];
-  
-  if (format == MHPrettyDateShortRelativeTime && ![[timeString substringFromIndex:timeString.length-1] isEqualToString:@"前"]) {
-    timeString = [timeString stringByAppendingString:@"前"];
+  NSTimeInterval currentTime = [NSDate currentTime];
+  NSTimeInterval timeDiff =  currentTime - unixTime;
+  if (unixTime >= currentTime ||
+      timeDiff < 60) {
+    return @"剛剛";
+  }else if (timeDiff >= 60 &&
+            timeDiff < 60 * 60){
+    return [NSString stringWithFormat:@"%@分鐘前", @((int)(timeDiff/60))];
+  }else if (timeDiff >= 60 * 60 &&
+            timeDiff < 60*60*24){
+    return [NSString stringWithFormat:@"%@小時前", @((int)(timeDiff/(60*60)))];
+  }else if (timeDiff >= 60 * 60 *24 &&
+            timeDiff < 60*60*24 *2){
+    return @"昨天";
+  }else{
+    return [NSString calendarString:unixTime];
   }
-  
-  if (timeString.length>0 && [timeString characterAtIndex:0] == '-') {
-    return [timeString substringFromIndex:1];
-  }
-  
-  return timeString;
 }
+
++ (NSString *)calendarString:(NSTimeInterval)unixTime{
+  NSDate *date = [NSDate dateWithTimeIntervalSince1970:unixTime];
+  NSCalendar* calendar = [NSCalendar currentCalendar];
+  NSDateComponents* components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay
+                                             fromDate:date];
+  
+  NSInteger day = [components day];
+  NSInteger month = [components month];
+  NSInteger year = [components year];
+  
+  
+  NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:[NSDate currentTime]];
+  NSCalendar* currentCalendar = [NSCalendar currentCalendar];
+  NSDateComponents* currentDateComponents = [currentCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay
+                                                               fromDate:currentDate];
+  
+  NSInteger currentYear = [currentDateComponents year];
+  NSString *yearStr = year==currentYear?@"":[NSString stringWithFormat:@"%@年",@(year)];
+  NSString *timeStr = [NSString stringWithFormat:@"%@%@月%@日",yearStr,@(month),@(day)];
+  return timeStr;
+}
+
+
+
 
 - (NSString *)trimWhitespace
 {

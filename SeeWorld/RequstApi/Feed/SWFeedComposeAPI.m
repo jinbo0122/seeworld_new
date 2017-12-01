@@ -21,6 +21,15 @@
              @"photo":_photoJson?_photoJson:@"",
              @"location":_location?_location:@"",
              @"type":@(SWFeedTypeLink)};
+  }else if (_feedType == SWFeedTypeText) {
+    return @{@"jwt":[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"jwt"],
+             @"longitude":@(self.longitude),
+             @"latitude":@(self.latitude),
+             @"description":self.feedDescription,
+             @"version":@1,
+             @"photo":_photoJson?_photoJson:@"",
+             @"location":_location?_location:@"",
+             @"type":@(SWFeedTypeText)};
   }else if (_feedType == SWFeedTypeVideo){
     return @{@"jwt":[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"jwt"],
              @"video":_videoUrl?_videoUrl:@"",

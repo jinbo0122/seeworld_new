@@ -22,6 +22,8 @@ SWPostPreviewVCDelegate>
 @property(nonatomic, strong)SCRecorder *recorder;
 @property(nonatomic, strong)NSURL      *videoUrl;
 @property (nonatomic, strong) UzysAssetsPickerController *photoPicker;
+@property(nonatomic, strong)UISwipeGestureRecognizer *swipeGesture;
+@property(nonatomic, strong)UISwipeGestureRecognizer *swipeLeftGesture;
 
 @end
 
@@ -68,7 +70,7 @@ SWPostPreviewVCDelegate>
     [_btnChangeMode addSubview:_lblChangeModeLabel[i]];
     _lblChangeModeLabel[i].userInteractionEnabled = NO;
   }
-  _lblChangeModeLabel[1].text = @"視頻";
+  _lblChangeModeLabel[1].text = @"錄影";
   _lblChangeModeLabel[1].textColor = [UIColor colorWithRGBHex:0x55acef];
   _lblChangeModeLabel[2].text = @"拍照";
   
@@ -95,6 +97,18 @@ SWPostPreviewVCDelegate>
   [self refreshButttons];
   [self performSelector:@selector(initSCRecorder) withObject:nil afterDelay:0.1];
   [self.view bringSubviewToFront:_btnChangeMode];
+  
+  
+  _swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+  _swipeGesture.direction = UISwipeGestureRecognizerDirectionRight;
+  [_swipeGesture setNumberOfTouchesRequired:1];
+  [_cameraPreview addGestureRecognizer:_swipeGesture];
+
+  _swipeLeftGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipe:)];
+  _swipeLeftGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+  [_swipeLeftGesture setNumberOfTouchesRequired:1];
+  [_cameraPreview addGestureRecognizer:_swipeLeftGesture];
+  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(onRegisnActive)
                                                name:UIApplicationWillResignActiveNotification
@@ -130,15 +144,26 @@ SWPostPreviewVCDelegate>
 }
 
 #pragma mark - Custom Methods
+- (void)onSwipe:(UISwipeGestureRecognizer *)gesturue{
+  if (gesturue.state == UIGestureRecognizerStateEnded) {
+    if (gesturue.direction == UISwipeGestureRecognizerDirectionLeft) {
+      _btnChangeMode.tag = 0;
+    }else if (gesturue.direction == UISwipeGestureRecognizerDirectionRight){
+      _btnChangeMode.tag = 1;
+    }
+    [self onChangeModeClicked];
+  }
+}
+
 - (void)onChangeModeClicked{
   _btnChangeMode.tag = 1-_btnChangeMode.tag;
   if (_btnChangeMode.tag) {
     _lblChangeModeLabel[2].text = @"";
-    _lblChangeModeLabel[0].text = @"視頻";
+    _lblChangeModeLabel[0].text = @"錄影";
     _lblChangeModeLabel[1].text = @"拍照";
   }else{
     _lblChangeModeLabel[0].text = @"";
-    _lblChangeModeLabel[1].text = @"視頻";
+    _lblChangeModeLabel[1].text = @"錄影";
     _lblChangeModeLabel[2].text = @"拍照";
   }
 }

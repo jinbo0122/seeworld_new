@@ -41,11 +41,11 @@
     [self addSubview:_lblTime];
     
     _lblLocation    = [UILabel initWithFrame:CGRectZero
-                                 bgColor:[UIColor clearColor]
-                               textColor:[UIColor colorWithRGBHex:0x8A9BAC]
-                                    text:@""
-                           textAlignment:NSTextAlignmentLeft
-                                    font:[UIFont systemFontOfSize:13]];
+                                     bgColor:[UIColor clearColor]
+                                   textColor:[UIColor colorWithRGBHex:0x8A9BAC]
+                                        text:@""
+                               textAlignment:NSTextAlignmentLeft
+                                        font:[UIFont systemFontOfSize:13]];
     [self addSubview:_lblLocation];
     
     [_btnAvatar addTarget:self action:@selector(onAvatarClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -63,11 +63,7 @@
 - (void)refresshWithFeed:(SWFeedItem *)feedItem{
   [_btnAvatar sd_setImageWithURL:[NSURL URLWithString:[feedItem.user.picUrl stringByAppendingString:@"-avatar120"]]
                         forState:UIControlStateNormal];
-  if ([feedItem.feed.time doubleValue]/1000.0>[NSDate currentTime]) {
-    _lblTime.text = @"剛剛";
-  }else{
-    _lblTime.text = [NSString time:[feedItem.feed.time doubleValue] format:MHPrettyDateShortRelativeTime];
-  }
+  _lblTime.text = [NSString time:[feedItem.feed.time doubleValue] format:MHPrettyDateShortRelativeTime];
   
   CGSize timeSize = [_lblTime.text sizeWithAttributes:@{NSFontAttributeName:_lblTime.font}];
   _lblTime.frame = CGRectMake(self.width-15-timeSize.width, (self.height-timeSize.height)/2.0, timeSize.width, timeSize.height);

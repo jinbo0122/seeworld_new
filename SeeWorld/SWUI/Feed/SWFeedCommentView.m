@@ -32,7 +32,7 @@
 
 - (void)refreshWithFeedComments:(NSArray *)comments{
   _comments = comments;
-  _lblComment.text = [NSString stringWithFormat:@"%@條評論",@(comments.count)];
+  _lblComment.text = [NSString stringWithFormat:@"%@條留言",@(comments.count)];
   _lblComment.hidden = comments.count==0;
   self.frame = CGRectMake(0, 0, UIScreenWidth, comments.count?19:0);
   _lblComment.frame = CGRectMake(12, 0, self.width-24, self.height);

@@ -103,7 +103,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
 //  self.commentInputView.txtField.delegate = self;
 //  [self.commentInputView.btnPhoto addTarget:self action:@selector(onSendPhotoClicked) forControlEvents:UIControlEventTouchUpInside];
 //  [self.scrollView addSubview:self.commentInputView];
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"贊" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:@"讚" color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
   self.tbVCLikes = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
   self.tbVCLikes.view.frame = self.view.bounds;
   self.tbVCLikes.view.left  = 0;
@@ -289,7 +289,7 @@ SWFeedInteractModelDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,
   if ([commentItem.user.uId isEqualToNumber:@0]||[[commentItem.user.uId stringValue] isEqualToString:[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"]]||[commentItem.user.relation integerValue]==SWUserRelationTypeSelf||
       [self.model.feedItem.user.uId isEqual:@0]||[[self.model.feedItem.user.uId stringValue] isEqualToString:[[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"]]) {
     __weak typeof(self)wSelf = self;
-    [[[SWAlertView alloc] initWithTitle:@"刪除評論"
+    [[[SWAlertView alloc] initWithTitle:@"刪除留言"
                              cancelText:SWStringCancel
                             cancelBlock:^{
                               

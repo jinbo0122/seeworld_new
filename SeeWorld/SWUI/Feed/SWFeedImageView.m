@@ -73,7 +73,7 @@
 - (void)refreshWithFeed:(SWFeedItem *)feedItem showTag:(BOOL)showTag{
   SWFeedType type = feedItem.feed.type;
   _feedItem = feedItem;
-  if (type == SWFeedTypeLink || [feedItem.feed.content isEqualToString:@"http://www.qq.com"]) {
+  if (type == SWFeedTypeLink) {
     _linkView.hidden = NO;
     [_linkView refreshWithTitle:feedItem.feed.link.title image:feedItem.feed.link.imageUrl];
     _tagView.hidden = YES;
@@ -82,6 +82,14 @@
     }
     _iconPlay.hidden = YES;
     self.height = _linkView.height;
+  }else if (type == SWFeedTypeText) {
+    _linkView.hidden = YES;
+    _tagView.hidden = YES;
+    for (NSInteger i=0; i<9; i++) {
+      _btnImage[i].hidden = YES;
+    }
+    _iconPlay.hidden = YES;
+    self.height = 0;
   }else if (type == SWFeedTypeVideo ||
             (type == SWFeedTypeImage && feedItem.feed.photos.count==1)){
     _linkView.hidden = YES;

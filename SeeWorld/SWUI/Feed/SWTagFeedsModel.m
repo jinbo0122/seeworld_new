@@ -38,6 +38,9 @@
 }
 
 - (void)loadCache{
+  if (!self.userId) {
+    return;
+  }
   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
   NSString *path = paths.count > 0? [paths objectAtIndex:0]:@"";
   NSString *fullPath = [path stringByAppendingPathComponent:[@"user_feed_cache_" stringByAppendingString:self.userId]];

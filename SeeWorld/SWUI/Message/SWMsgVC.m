@@ -12,7 +12,7 @@
 #import "MJPhoto.h"
 #import "MJPhotoView.h"
 @interface SWMsgVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property(nonatomic, strong)NSString *name;
+
 @end
 
 @implementation SWMsgVC{
@@ -37,11 +37,11 @@
                                                                             style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(onRightBtnClicked)];
-  self.name = self.title;
-  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.title
+  if (!self.titleText) {
+    self.titleText = @"用戶";
+  }
+  self.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:self.titleText
                                                                 color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
-  self.title = @"";
-  
   _libraryPicker = [[UIImagePickerController alloc] init];
   _libraryPicker.navigationBar.tintColor = [UIColor whiteColor];
   _libraryPicker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
@@ -67,10 +67,9 @@
                                          success:^(RCDiscussion *discussion) {
                                            wSelf.navigationItem.titleView = [[ALTitleLabel alloc] initWithTitle:discussion.discussionName
                                                                                                           color:[UIColor colorWithRGBHex:NAV_BAR_COLOR_HEX]];
-                                           wSelf.name = discussion.discussionName;
-                                           wSelf.title = @"";
+                                           wSelf.titleText = discussion.discussionName;
                                          } error:^(RCErrorCode status) {
-                                           
+
                                          }];
   }
 }
@@ -80,7 +79,7 @@
   vc.cType = self.conversationType;
   vc.targetId = self.targetId;
   vc.messages = self.conversationDataRepository;
-  vc.name = self.name;
+  vc.name = self.titleText;
   [self.navigationController pushViewController:vc animated:YES];
 }
 

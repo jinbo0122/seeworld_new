@@ -8,6 +8,7 @@
 
 #import "SWNoticeModel.h"
 #import "TabViewController.h"
+#import "SWNoticeDeleteAPI.h"
 #define NOTICE_DELETE_INFO @"NOTICE_DELETE_INFO"
 #define NOTICE_CACHE @"NOTICE_CACHE"
 
@@ -253,6 +254,13 @@
 - (void)removeNoticeAtIndex:(NSInteger)index{
   SWNoticeMsgItem *item = [_notices safeObjectAtIndex:index];
   [_deleteInfo setObject:@1 forKey:[item.mId stringValue]];
+  SWNoticeDeleteAPI *api = [[SWNoticeDeleteAPI alloc] init];
+  api.messageId = item.mId;
+  [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+    
+  } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+    
+  }];
   [[NSUserDefaults standardUserDefaults] setObject:_deleteInfo forKey:NOTICE_DELETE_INFO];
   [[NSUserDefaults standardUserDefaults] synchronize];
   [_notices safeRemoveObjectAtIndex:index];
