@@ -10,6 +10,8 @@
 #import "MOBFImageServiceTypeDef.h"
 #import <Foundation/Foundation.h>
 
+@class MOBFImageCachePolicy;
+
 /**
  *  图片获取器
  */
@@ -21,6 +23,14 @@
  *  @return 图片服务实例
  */
 + (instancetype)sharedInstance;
+
+/**
+ 初始化图片服务实例
+
+ @param cachePolicy 缓存策略
+ @return 图片服务实例
+ */
+- (instancetype)initWithCachePolicy:(MOBFImageCachePolicy *)cachePolicy;
 
 /**
  *  是否存在图片缓存
@@ -40,8 +50,19 @@
  *  @return 服务观察者
  */
 - (MOBFImageObserver *)getImageWithURL:(NSURL *)url
-                                result:
-                                    (MOBFImageGetterResultHandler)resultHandler;
+                                result:(MOBFImageGetterResultHandler)resultHandler;
+
+
+/**
+ 获取图片数据
+
+ @param url           图片路径
+ @param resultHandler 返回事件
+
+ @return 服务观察者
+ */
+- (MOBFImageObserver *)getImageDataWithURL:(NSURL *)url
+                                    result:(MOBFImageDataGetterResultHandler)resultHandler;
 
 /**
  *  移除图片观察者

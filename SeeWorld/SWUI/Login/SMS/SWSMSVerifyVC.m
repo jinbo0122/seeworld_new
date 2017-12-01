@@ -103,7 +103,6 @@
   [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
                           phoneNumber:_phone
                                  zone:_prefix
-                     customIdentifier:nil
                                result:^(NSError *error) {
                                  if (!error) {
                                    [wSelf setResendText:@59];
@@ -148,7 +147,7 @@
     [SMSSDK commitVerificationCode:code
                        phoneNumber:_phone
                               zone:_prefix
-                            result:^(SMSSDKUserInfo *userInfo, NSError *error) {
+                            result:^(NSError *error) {
                               if (!error) {
                                 [wSelf registerDetail];
                               }else{

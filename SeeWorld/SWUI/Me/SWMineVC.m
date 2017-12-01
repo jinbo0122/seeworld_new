@@ -22,6 +22,7 @@
 #import "SWHomeFeedShareView.h"
 #import "SWFeedTagButton.h"
 #import "SWUserListVC.h"
+#import <AVKit/AVKit.h>
 @interface SWMineVC ()<SWMineHeaderViewDelegate,UITableViewDelegate,UITableViewDataSource,
 SWTagFeedsModelDelegate,SWHomeFeedCellDelegate,UIDocumentInteractionControllerDelegate,
 SWFeedInteractVCDelegate>
@@ -495,12 +496,15 @@ SWFeedInteractVCDelegate>
 }
 
 - (void)homeFeedCellDidPressVideo:(SWFeedItem *)feedItem row:(NSInteger)row{
-  SWFeedDetailScrollVC *vc = [[SWFeedDetailScrollVC alloc] init];
-  vc.model = _model;
-  vc.currentIndex = row;
-  vc.hidesBottomBarWhenPushed = YES;
-  vc.needEnableKeyboardOnLoad = NO;
-  [self.navigationController pushViewController:vc animated:YES];
+  AVPlayerViewController *vc = [[AVPlayerViewController alloc] init];
+  AVURLAsset *asset = [AVURLAsset assetWithURL:[NSURL URLWithString:feedItem.feed.videoUrl]];
+  AVPlayerItem *item = [AVPlayerItem playerItemWithAsset: asset];
+  AVPlayer * player = [[AVPlayer alloc] initWithPlayerItem: item];
+  vc.player = player;
+  [vc.view setFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+  vc.showsPlaybackControls = YES;
+  [self presentViewController:vc animated:YES completion:nil];
+  [player play];
 }
 
 #pragma mark Feed Interact VC Delegate

@@ -42,9 +42,9 @@
   [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil]
    setBackgroundColor:[UIColor clearColor]];
   
-//  UIOffset backButtonTextOffset = UIOffsetMake(0, -40);
-//  [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:backButtonTextOffset
-//                                                       forBarMetrics:UIBarMetricsDefault];
+  //  UIOffset backButtonTextOffset = UIOffsetMake(0, -40);
+  //  [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:backButtonTextOffset
+  //                                                       forBarMetrics:UIBarMetricsDefault];
 #if TARGET_IPHONE_SIMULATOR
 #else
   [WXApi registerApp:SWWeixinAPI];
@@ -98,7 +98,6 @@
       }
     }];
   }
-  [SMSSDK registerApp:@"17e13a6c92280" withSecret:@"1ee42041e0f56c2dafeb335fc64035a7"];  
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                   didFinishLaunchingWithOptions:launchOptions];;
 }

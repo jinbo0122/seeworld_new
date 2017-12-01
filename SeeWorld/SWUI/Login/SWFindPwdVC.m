@@ -213,7 +213,6 @@
     [SMSSDK getVerificationCodeByMethod:SMSGetCodeMethodSMS
                             phoneNumber:_txtEmail.text
                                    zone:[_areaCode substringFromIndex:1]
-                       customIdentifier:nil
                                  result:^(NSError *error) {
                                    if (!error) {
                                      [wSelf setResendText:@59];
@@ -265,7 +264,7 @@
     [SMSSDK commitVerificationCode:_txtCode.text
                        phoneNumber:_txtEmail.text
                               zone:[_areaCode substringFromIndex:1]
-                            result:^(SMSSDKUserInfo *userInfo, NSError *error) {
+                            result:^(NSError *error) {
                               if (!error) {
                                 SWResetPwdVC *vc = [[SWResetPwdVC alloc] init];
                                 vc.type = 1;

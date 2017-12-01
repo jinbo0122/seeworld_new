@@ -150,5 +150,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>MOBAppKey</key>
+	<string>17e13a6c92280</string>
+	<key>MOBAppSecret</key>
+	<string>1ee42041e0f56c2dafeb335fc64035a7</string>
 </dict>
 </plist>
