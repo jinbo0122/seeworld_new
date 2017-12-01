@@ -67,7 +67,7 @@ DEFER_STRINGIFY(__FILE__) " line " DEFER_STRINGIFY(__LINE__)
 #import "SWNoticeCell.h"
 #import "SWFeedDetailScrollVC.h"
 #import "SWFeedSingleAPI.h"
-#import "GeTuiSdk.h"
+#import <GTSDK/GeTuiSdk.h>
 #import "SWPushSyncAPI.h"
 #import "SWChatModel.h"
 #import "SWMsgVC.h"
