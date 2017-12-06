@@ -96,6 +96,12 @@ SWFeedInteractVCDelegate>
   }else{
     api.userId = [[SWConfigManager sharedInstance].user.uId stringValue];
   }
+  if (_isFromTab) {
+    api.userId = [[SWConfigManager sharedInstance].user.uId stringValue];
+  }
+  if ([api.userId isEqualToString:@"0"]) {
+    api.userId = [[NSUserDefaults standardUserDefaults] safeStringObjectForKey:@"userId"];
+  }
   __weak typeof(self)wSelf = self;
   [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     SWFeedUserItem *user = [SWFeedUserItem feedUserItemByDic:[[request.responseString safeJsonDicFromJsonString] safeDicObjectForKey:@"data"]];

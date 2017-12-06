@@ -291,8 +291,6 @@
     [api startWithModelClass:[LoginResponse class] completionBlock:^(ModelMessage *message) {
       [SWHUD hideWaiting];
       if (message.isSuccess) {
-        TabViewController *tabVC = [[TabViewController alloc] init];
-        [UIApplication sharedApplication].keyWindow.rootViewController = tabVC;
         [[NSUserDefaults standardUserDefaults] setSafeStringObject:((LoginResponse *)(message.object)).data.jwt
                                                             forKey:@"jwt"];
         [[NSUserDefaults standardUserDefaults] setSafeStringObject:((LoginResponse *)(message.object)).data.name
@@ -308,6 +306,8 @@
         [[NSUserDefaults standardUserDefaults] setSafeNumberObject:[NSNumber numberWithInt:((LoginResponse *)(message.object)).data.gender]
                                                             forKey:@"userGender"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        TabViewController *tabVC = [[TabViewController alloc] init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabVC;
         [[SWConfigManager sharedInstance] getUser:((LoginResponse *)(message.object)).data.userId
                                   completionBlock:^(SWFeedUserItem *user) {
                                     [SWConfigManager sharedInstance].user = user;
