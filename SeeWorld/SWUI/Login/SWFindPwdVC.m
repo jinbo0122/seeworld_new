@@ -53,11 +53,11 @@
   [_btnPhone addTarget:self action:@selector(onSelectCountry) forControlEvents:UIControlEventTouchUpInside];
 
   
-  _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, 141, 22, 22)];
+  _iconMail = [[UIImageView alloc] initWithFrame:CGRectMake(37, 141+iOSTopHeight, 22, 22)];
   _iconMail.image = [UIImage imageNamed:@"signin_register_icon_phone"];
   [self.view addSubview:_iconMail];
   
-  _iconCode = [[UIImageView alloc] initWithFrame:CGRectMake(37, 314, 29, 14)];
+  _iconCode = [[UIImageView alloc] initWithFrame:CGRectMake(37, 314+iOSTopHeight, 29, 14)];
   _iconCode.image = [UIImage imageNamed:@"forgetpassworld_icon"];
   [self.view addSubview:_iconCode];
   
