@@ -71,13 +71,13 @@ SWFeedInteractVCDelegate>
   if (self.user) {
     SWFeedUserItem *user = [[SWConfigManager sharedInstance] userByUId:self.user.uId];
     if (user) {
-      [_headerView refreshWithUser:user];
+      [_headerView refreshWithUser:user fromTab:_isFromTab];
       _user = user;
     }else{
-      [_headerView refreshWithUser:_user];
+      [_headerView refreshWithUser:_user fromTab:_isFromTab];
     }
   }else{
-    [_headerView refreshWithUser:[SWConfigManager sharedInstance].user];
+    [_headerView refreshWithUser:[SWConfigManager sharedInstance].user fromTab:_isFromTab];
   }
   _tableView.tableHeaderView = _headerView;
   [_model loadCache];
@@ -100,7 +100,7 @@ SWFeedInteractVCDelegate>
   [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     SWFeedUserItem *user = [SWFeedUserItem feedUserItemByDic:[[request.responseString safeJsonDicFromJsonString] safeDicObjectForKey:@"data"]];
     wSelf.user = user;
-    [wSelf.headerView refreshWithUser:wSelf.user];
+    [wSelf.headerView refreshWithUser:wSelf.user fromTab:wSelf.isFromTab];
     [wSelf rightBar];
     [[SWConfigManager sharedInstance] saveUser:user];
   } failure:^(YTKBaseRequest *request) {
@@ -210,7 +210,7 @@ SWFeedInteractVCDelegate>
   NSString *action = hasFollow?@"unfollow":@"follow";
   api.action = action;
   self.user.relation = @(hasFollow?SWUserRelationTypeUnrelated:SWUserRelationTypeFollowing);
-  [_headerView refreshWithUser:self.user];
+  [_headerView refreshWithUser:self.user fromTab:_isFromTab];
   __weak typeof(self)wSelf = self;
   [api startWithCompletionBlockWithSuccess:^(YTKBaseRequest *request) {
     [wSelf refreshUserInfo];

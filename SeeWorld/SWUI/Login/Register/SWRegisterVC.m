@@ -166,11 +166,12 @@
     [SWHUD showCommonToast:@"密碼不能少於6位！"];
     return;
   }
-  
+  PDProgressHUD *hud = [PDProgressHUD showLoadingInView:self.view];
   __weak typeof(self)wSelf = self;
   SWRegisterCheckPhoneAPI *api = [[SWRegisterCheckPhoneAPI alloc] init];
   api.tel = [[_areaCode substringFromIndex:1] stringByAppendingString:_txtPhone.text];
   [api startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+    [hud removeFromSuperview];
     if ([[[[request.responseString safeJsonDicFromJsonString] safeDicObjectForKey:@"data"] safeNumberObjectForKey:@"available"] boolValue]) {
       SWSMSVerifyVC *vc = [[SWSMSVerifyVC alloc] init];
       vc.prefix = [_areaCode substringFromIndex:1];
@@ -186,6 +187,7 @@
       }], nil] show];
     }
   } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+    [hud removeFromSuperview];
     [MBProgressHUD showTip:@"請求失敗"];
   }];
 

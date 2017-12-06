@@ -10,6 +10,7 @@
 
 @interface SWMineVC : ALBaseVC
 @property(nonatomic, strong)SWFeedUserItem *user;
+@property(nonatomic, assign)BOOL isFromTab;
 - (void)refresh;
 - (void)refreshUserInfo;
 @end

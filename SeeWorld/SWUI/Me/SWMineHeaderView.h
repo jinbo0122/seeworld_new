@@ -31,6 +31,7 @@
 
 @property(nonatomic, strong)UIView   *privateView;
 - (void)refreshWithUser:(SWFeedUserItem *)user;
+- (void)refreshWithUser:(SWFeedUserItem *)user fromTab:(BOOL)fromTab;
 @end
 
 @protocol SWMineHeaderViewDelegate <NSObject>

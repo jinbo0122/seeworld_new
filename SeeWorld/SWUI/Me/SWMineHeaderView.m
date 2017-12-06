@@ -181,6 +181,10 @@
 }
 
 - (void)refreshWithUser:(SWFeedUserItem *)user{
+  [self refreshWithUser:user fromTab:NO];
+}
+
+- (void)refreshWithUser:(SWFeedUserItem *)user fromTab:(BOOL)fromTab{
   
   if (user.bghead.length>0) {
     [_btnCover.customImageView sd_setImageWithURL:[NSURL URLWithString:user.bghead]];
@@ -242,8 +246,8 @@
   [_btnFollower addTarget:self action:@selector(onFollowerClick) forControlEvents:UIControlEventTouchUpInside];
   
   BOOL isSelf = [user.uId integerValue] == [[SWFeedUserItem myself].uId integerValue];
-  _btnMore.hidden = _btnChat.hidden = _btnFollow.hidden = isSelf;
-  _btnPost.hidden = _btnEdit.hidden = _btnSetting.hidden = !isSelf;
+  _btnMore.hidden = _btnChat.hidden = _btnFollow.hidden = (isSelf||fromTab);
+  _btnPost.hidden = _btnEdit.hidden = _btnSetting.hidden = !(isSelf||fromTab);
 
   SWUserRelationType relation = [user.relation integerValue];
   NSString *resource = relation==SWUserRelationTypeFollowing?@"mine_followed":(relation==SWUserRelationTypeInterFollow?@"mine_followeeachother":@"mine_follow");

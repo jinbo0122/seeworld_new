@@ -107,6 +107,7 @@ SWPostEnterViewDelegate,SWPostPreviewVCDelegate,PDVideoWhisperRecordVCDelegate>{
   self.msgNav.tabBarItem = messageItem;
   
   self.mineVC = [[SWMineVC alloc] init];
+  self.mineVC.isFromTab = YES;
   self.mineVC.user = [SWConfigManager sharedInstance].user;
   [_mineVC refreshUserInfo];
   self.mineNav = [[UINavigationController alloc] initWithRootViewController:self.mineVC];
